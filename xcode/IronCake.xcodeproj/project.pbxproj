@@ -15,13 +15,21 @@
 		D667FBE5184CE84600404D8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE4184CE84600404D8D /* Cocoa.framework */; };
 		D667FBF5184CE84600404D8D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBC7184CE7AC00404D8D /* XCTest.framework */; };
 		D667FBF6184CE84600404D8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE4184CE84600404D8D /* Cocoa.framework */; };
-		D667FBF9184CE84600404D8D /* libIronCakeOSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE3184CE84600404D8D /* libIronCakeOSX.a */; };
-		D667FC0F184CE8E000404D8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D667FC0B184CE8E000404D8D /* InfoPlist.strings */; };
-		D667FC10184CE8E000404D8D /* IronCakeTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D667FC0D184CE8E000404D8D /* IronCakeTests-Info.plist */; };
-		D667FC11184CE8E000404D8D /* IronCakeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D667FC0E184CE8E000404D8D /* IronCakeTests.m */; };
-		D667FC17184CE8E700404D8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D667FC13184CE8E700404D8D /* InfoPlist.strings */; };
-		D667FC18184CE8E700404D8D /* IronCakeTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D667FC15184CE8E700404D8D /* IronCakeTests-Info.plist */; };
-		D667FC19184CE8E700404D8D /* IronCakeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D667FC16184CE8E700404D8D /* IronCakeTests.m */; };
+		D667FBF9184CE84600404D8D /* libIronCakeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE3184CE84600404D8D /* libIronCakeMac.a */; };
+		D667FC27184CF9CE00404D8D /* allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC24184CF9CE00404D8D /* allocator.cpp */; };
+		D667FC28184CF9CE00404D8D /* allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC24184CF9CE00404D8D /* allocator.cpp */; };
+		D667FC29184CF9CE00404D8D /* allocator.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC25184CF9CE00404D8D /* allocator.h */; };
+		D667FC2A184CF9CE00404D8D /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC26184CF9CE00404D8D /* platform.h */; };
+		D667FC2E184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC2C184CFAAC00404D8D /* ICKAllocatorTest.mm */; };
+		D667FC2F184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC2C184CFAAC00404D8D /* ICKAllocatorTest.mm */; };
+		D667FC34184CFD9A00404D8D /* linked_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC32184CFD9A00404D8D /* linked_list.cpp */; };
+		D667FC35184CFD9A00404D8D /* linked_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC32184CFD9A00404D8D /* linked_list.cpp */; };
+		D667FC36184CFD9A00404D8D /* linked_list.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC33184CFD9A00404D8D /* linked_list.h */; };
+		D667FC39184D0B7100404D8D /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC37184D0B7100404D8D /* memory.cpp */; };
+		D667FC3A184D0B7100404D8D /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC37184D0B7100404D8D /* memory.cpp */; };
+		D667FC3B184D0B7100404D8D /* memory.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC38184D0B7100404D8D /* memory.h */; };
+		D667FC3D184D170700404D8D /* macro.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC3C184D170700404D8D /* macro.h */; };
+		D667FC3F184D176900404D8D /* compiler.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC3E184D176900404D8D /* compiler.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,21 +64,26 @@
 /* Begin PBXFileReference section */
 		D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBB9184CE7AC00404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D667FBC6184CE7AC00404D8D /* IronCakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronCakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D667FBC6184CE7AC00404D8D /* IronCakeiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronCakeiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBC7184CE7AC00404D8D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D667FBCA184CE7AC00404D8D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		D667FBE3184CE84600404D8D /* libIronCakeOSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeOSX.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D667FBE3184CE84600404D8D /* libIronCakeMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBE4184CE84600404D8D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		D667FBE7184CE84600404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D667FBE8184CE84600404D8D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D667FBE9184CE84600404D8D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		D667FBF4184CE84600404D8D /* IronCakeOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronCakeOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D667FC0C184CE8E000404D8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D667FC0D184CE8E000404D8D /* IronCakeTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IronCakeTests-Info.plist"; sourceTree = "<group>"; };
-		D667FC0E184CE8E000404D8D /* IronCakeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IronCakeTests.m; sourceTree = "<group>"; };
-		D667FC14184CE8E700404D8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D667FC15184CE8E700404D8D /* IronCakeTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IronCakeTests-Info.plist"; sourceTree = "<group>"; };
-		D667FC16184CE8E700404D8D /* IronCakeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IronCakeTests.m; sourceTree = "<group>"; };
+		D667FBF4184CE84600404D8D /* IronCakeMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronCakeMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D667FC24184CF9CE00404D8D /* allocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = allocator.cpp; sourceTree = "<group>"; };
+		D667FC25184CF9CE00404D8D /* allocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allocator.h; sourceTree = "<group>"; };
+		D667FC26184CF9CE00404D8D /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		D667FC2C184CFAAC00404D8D /* ICKAllocatorTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ICKAllocatorTest.mm; sourceTree = "<group>"; };
+		D667FC2D184CFAAC00404D8D /* IronCakeTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IronCakeTests-Info.plist"; sourceTree = "<group>"; };
+		D667FC32184CFD9A00404D8D /* linked_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = linked_list.cpp; sourceTree = "<group>"; };
+		D667FC33184CFD9A00404D8D /* linked_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = linked_list.h; sourceTree = "<group>"; };
+		D667FC37184D0B7100404D8D /* memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory.cpp; sourceTree = "<group>"; };
+		D667FC38184D0B7100404D8D /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
+		D667FC3C184D170700404D8D /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
+		D667FC3E184D176900404D8D /* compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compiler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +120,7 @@
 			files = (
 				D667FBF6184CE84600404D8D /* Cocoa.framework in Frameworks */,
 				D667FBF5184CE84600404D8D /* XCTest.framework in Frameworks */,
-				D667FBF9184CE84600404D8D /* libIronCakeOSX.a in Frameworks */,
+				D667FBF9184CE84600404D8D /* libIronCakeMac.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,8 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				D667FC09184CE8D500404D8D /* src */,
-				D667FC0A184CE8E000404D8D /* IronCakeiOSTests */,
-				D667FC12184CE8E700404D8D /* IronCakeOSXTests */,
+				D667FC2B184CFAAC00404D8D /* test */,
 				D667FBB8184CE7AC00404D8D /* Frameworks */,
 				D667FBB7184CE7AC00404D8D /* Products */,
 			);
@@ -129,9 +141,9 @@
 			isa = PBXGroup;
 			children = (
 				D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */,
-				D667FBC6184CE7AC00404D8D /* IronCakeTests.xctest */,
-				D667FBE3184CE84600404D8D /* libIronCakeOSX.a */,
-				D667FBF4184CE84600404D8D /* IronCakeOSXTests.xctest */,
+				D667FBC6184CE7AC00404D8D /* IronCakeiOSTests.xctest */,
+				D667FBE3184CE84600404D8D /* libIronCakeMac.a */,
+				D667FBF4184CE84600404D8D /* IronCakeMacTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,29 +173,35 @@
 		D667FC09184CE8D500404D8D /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D667FC23184CF9CE00404D8D /* ick */,
 			);
 			name = src;
 			path = ../src;
 			sourceTree = "<group>";
 		};
-		D667FC0A184CE8E000404D8D /* IronCakeiOSTests */ = {
+		D667FC23184CF9CE00404D8D /* ick */ = {
 			isa = PBXGroup;
 			children = (
-				D667FC0B184CE8E000404D8D /* InfoPlist.strings */,
-				D667FC0D184CE8E000404D8D /* IronCakeTests-Info.plist */,
-				D667FC0E184CE8E000404D8D /* IronCakeTests.m */,
+				D667FC26184CF9CE00404D8D /* platform.h */,
+				D667FC3E184D176900404D8D /* compiler.h */,
+				D667FC3C184D170700404D8D /* macro.h */,
+				D667FC24184CF9CE00404D8D /* allocator.cpp */,
+				D667FC25184CF9CE00404D8D /* allocator.h */,
+				D667FC32184CFD9A00404D8D /* linked_list.cpp */,
+				D667FC33184CFD9A00404D8D /* linked_list.h */,
+				D667FC37184D0B7100404D8D /* memory.cpp */,
+				D667FC38184D0B7100404D8D /* memory.h */,
 			);
-			path = IronCakeiOSTests;
+			path = ick;
 			sourceTree = "<group>";
 		};
-		D667FC12184CE8E700404D8D /* IronCakeOSXTests */ = {
+		D667FC2B184CFAAC00404D8D /* test */ = {
 			isa = PBXGroup;
 			children = (
-				D667FC13184CE8E700404D8D /* InfoPlist.strings */,
-				D667FC15184CE8E700404D8D /* IronCakeTests-Info.plist */,
-				D667FC16184CE8E700404D8D /* IronCakeTests.m */,
+				D667FC2C184CFAAC00404D8D /* ICKAllocatorTest.mm */,
+				D667FC2D184CFAAC00404D8D /* IronCakeTests-Info.plist */,
 			);
-			path = IronCakeOSXTests;
+			path = test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +211,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D667FC2A184CF9CE00404D8D /* platform.h in Headers */,
+				D667FC29184CF9CE00404D8D /* allocator.h in Headers */,
+				D667FC36184CFD9A00404D8D /* linked_list.h in Headers */,
+				D667FC3F184D176900404D8D /* compiler.h in Headers */,
+				D667FC3B184D0B7100404D8D /* memory.h in Headers */,
+				D667FC3D184D170700404D8D /* macro.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,12 +255,12 @@
 			);
 			name = IronCakeiOSTests;
 			productName = IronCakeTests;
-			productReference = D667FBC6184CE7AC00404D8D /* IronCakeTests.xctest */;
+			productReference = D667FBC6184CE7AC00404D8D /* IronCakeiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D667FBE2184CE84600404D8D /* IronCakeOSX */ = {
+		D667FBE2184CE84600404D8D /* IronCakeMac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D667FC02184CE84600404D8D /* Build configuration list for PBXNativeTarget "IronCakeOSX" */;
+			buildConfigurationList = D667FC02184CE84600404D8D /* Build configuration list for PBXNativeTarget "IronCakeMac" */;
 			buildPhases = (
 				D667FBDF184CE84600404D8D /* Sources */,
 				D667FBE0184CE84600404D8D /* Frameworks */,
@@ -246,14 +270,14 @@
 			);
 			dependencies = (
 			);
-			name = IronCakeOSX;
+			name = IronCakeMac;
 			productName = IronCake;
-			productReference = D667FBE3184CE84600404D8D /* libIronCakeOSX.a */;
+			productReference = D667FBE3184CE84600404D8D /* libIronCakeMac.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		D667FBF3184CE84600404D8D /* IronCakeOSXTests */ = {
+		D667FBF3184CE84600404D8D /* IronCakeMacTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D667FC05184CE84600404D8D /* Build configuration list for PBXNativeTarget "IronCakeOSXTests" */;
+			buildConfigurationList = D667FC05184CE84600404D8D /* Build configuration list for PBXNativeTarget "IronCakeMacTests" */;
 			buildPhases = (
 				D667FBF0184CE84600404D8D /* Sources */,
 				D667FBF1184CE84600404D8D /* Frameworks */,
@@ -264,9 +288,9 @@
 			dependencies = (
 				D667FBF8184CE84600404D8D /* PBXTargetDependency */,
 			);
-			name = IronCakeOSXTests;
+			name = IronCakeMacTests;
 			productName = IronCakeTests;
-			productReference = D667FBF4184CE84600404D8D /* IronCakeOSXTests.xctest */;
+			productReference = D667FBF4184CE84600404D8D /* IronCakeMacTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -292,8 +316,8 @@
 			targets = (
 				D667FBB5184CE7AC00404D8D /* IronCakeiOS */,
 				D667FBC5184CE7AC00404D8D /* IronCakeiOSTests */,
-				D667FBE2184CE84600404D8D /* IronCakeOSX */,
-				D667FBF3184CE84600404D8D /* IronCakeOSXTests */,
+				D667FBE2184CE84600404D8D /* IronCakeMac */,
+				D667FBF3184CE84600404D8D /* IronCakeMacTests */,
 			);
 		};
 /* End PBXProject section */
@@ -303,8 +327,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D667FC10184CE8E000404D8D /* IronCakeTests-Info.plist in Resources */,
-				D667FC0F184CE8E000404D8D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,8 +334,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D667FC18184CE8E700404D8D /* IronCakeTests-Info.plist in Resources */,
-				D667FC17184CE8E700404D8D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +344,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D667FC34184CFD9A00404D8D /* linked_list.cpp in Sources */,
+				D667FC27184CF9CE00404D8D /* allocator.cpp in Sources */,
+				D667FC39184D0B7100404D8D /* memory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,7 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D667FC11184CE8E000404D8D /* IronCakeTests.m in Sources */,
+				D667FC2E184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +362,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D667FC35184CFD9A00404D8D /* linked_list.cpp in Sources */,
+				D667FC28184CF9CE00404D8D /* allocator.cpp in Sources */,
+				D667FC3A184D0B7100404D8D /* memory.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D667FC19184CE8E700404D8D /* IronCakeTests.m in Sources */,
+				D667FC2F184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,29 +386,10 @@
 		};
 		D667FBF8184CE84600404D8D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D667FBE2184CE84600404D8D /* IronCakeOSX */;
+			target = D667FBE2184CE84600404D8D /* IronCakeMac */;
 			targetProxy = D667FBF7184CE84600404D8D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D667FC0B184CE8E000404D8D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D667FC0C184CE8E000404D8D /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		D667FC13184CE8E700404D8D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D667FC14184CE8E700404D8D /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D667FBD7184CE7AC00404D8D /* Debug */ = {
@@ -417,6 +424,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../src,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -449,6 +461,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../src,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -488,7 +505,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "IronCakeTests/IronCakeTests-Info.plist";
+				INFOPLIST_FILE = "test/IronCakeTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -503,7 +520,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
-				INFOPLIST_FILE = "IronCakeTests/IronCakeTests-Info.plist";
+				INFOPLIST_FILE = "test/IronCakeTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -555,7 +572,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "IronCakeTests/IronCakeTests-Info.plist";
+				INFOPLIST_FILE = "test/IronCakeTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -573,7 +590,7 @@
 					"$(inherited)",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "IronCakeTests/IronCakeTests-Info.plist";
+				INFOPLIST_FILE = "test/IronCakeTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -611,21 +628,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D667FC02184CE84600404D8D /* Build configuration list for PBXNativeTarget "IronCakeOSX" */ = {
+		D667FC02184CE84600404D8D /* Build configuration list for PBXNativeTarget "IronCakeMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D667FC03184CE84600404D8D /* Debug */,
 				D667FC04184CE84600404D8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		D667FC05184CE84600404D8D /* Build configuration list for PBXNativeTarget "IronCakeOSXTests" */ = {
+		D667FC05184CE84600404D8D /* Build configuration list for PBXNativeTarget "IronCakeMacTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D667FC06184CE84600404D8D /* Debug */,
 				D667FC07184CE84600404D8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

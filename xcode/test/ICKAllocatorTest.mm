@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#include <ick/allocator.h>
+#include <ick/base/allocator.h>
 
 @interface ICKAllocatorTest : XCTestCase
 

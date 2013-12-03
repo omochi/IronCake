@@ -16,35 +16,35 @@
 		D667FBF5184CE84600404D8D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBC7184CE7AC00404D8D /* XCTest.framework */; };
 		D667FBF6184CE84600404D8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE4184CE84600404D8D /* Cocoa.framework */; };
 		D667FBF9184CE84600404D8D /* libIronCakeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE3184CE84600404D8D /* libIronCakeMac.a */; };
-		D667FC27184CF9CE00404D8D /* allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC24184CF9CE00404D8D /* allocator.cpp */; };
-		D667FC28184CF9CE00404D8D /* allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC24184CF9CE00404D8D /* allocator.cpp */; };
-		D667FC29184CF9CE00404D8D /* allocator.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC25184CF9CE00404D8D /* allocator.h */; };
-		D667FC2A184CF9CE00404D8D /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC26184CF9CE00404D8D /* platform.h */; };
 		D667FC2E184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC2C184CFAAC00404D8D /* ICKAllocatorTest.mm */; };
 		D667FC2F184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC2C184CFAAC00404D8D /* ICKAllocatorTest.mm */; };
-		D667FC34184CFD9A00404D8D /* linked_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC32184CFD9A00404D8D /* linked_list.cpp */; };
-		D667FC35184CFD9A00404D8D /* linked_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC32184CFD9A00404D8D /* linked_list.cpp */; };
-		D667FC36184CFD9A00404D8D /* linked_list.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC33184CFD9A00404D8D /* linked_list.h */; };
-		D667FC39184D0B7100404D8D /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC37184D0B7100404D8D /* memory.cpp */; };
-		D667FC3A184D0B7100404D8D /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC37184D0B7100404D8D /* memory.cpp */; };
-		D667FC3B184D0B7100404D8D /* memory.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC38184D0B7100404D8D /* memory.h */; };
-		D667FC3D184D170700404D8D /* macro.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC3C184D170700404D8D /* macro.h */; };
-		D667FC3F184D176900404D8D /* compiler.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC3E184D176900404D8D /* compiler.h */; };
-		D667FC42184E1F7C00404D8D /* crt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC40184E1F7C00404D8D /* crt.cpp */; };
-		D667FC43184E1F7C00404D8D /* crt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC40184E1F7C00404D8D /* crt.cpp */; };
-		D667FC44184E1F7C00404D8D /* crt.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC41184E1F7C00404D8D /* crt.h */; };
-		D667FC47184E271400404D8D /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC45184E271400404D8D /* log.cpp */; };
-		D667FC48184E271400404D8D /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC45184E271400404D8D /* log.cpp */; };
-		D667FC49184E271400404D8D /* log.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC46184E271400404D8D /* log.h */; };
-		D667FC4C184E36D600404D8D /* cstr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC4A184E36D600404D8D /* cstr.cpp */; };
-		D667FC4D184E36D600404D8D /* cstr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC4A184E36D600404D8D /* cstr.cpp */; };
-		D667FC4E184E36D600404D8D /* cstr.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC4B184E36D600404D8D /* cstr.h */; };
-		D667FC51184E41F000404D8D /* assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC4F184E41F000404D8D /* assert.cpp */; };
-		D667FC52184E41F000404D8D /* assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC4F184E41F000404D8D /* assert.cpp */; };
-		D667FC53184E41F000404D8D /* assert.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC50184E41F000404D8D /* assert.h */; };
-		D667FC56184E426300404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC54184E426300404D8D /* abort.cpp */; };
-		D667FC57184E426300404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC54184E426300404D8D /* abort.cpp */; };
-		D667FC58184E426300404D8D /* abort.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC55184E426300404D8D /* abort.h */; };
+		D667FC6D184E490C00404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5A184E490C00404D8D /* abort.cpp */; };
+		D667FC6E184E490C00404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5A184E490C00404D8D /* abort.cpp */; };
+		D667FC6F184E490C00404D8D /* abort.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC5B184E490C00404D8D /* abort.h */; };
+		D667FC70184E490C00404D8D /* allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5C184E490C00404D8D /* allocator.cpp */; };
+		D667FC71184E490C00404D8D /* allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5C184E490C00404D8D /* allocator.cpp */; };
+		D667FC72184E490C00404D8D /* allocator.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC5D184E490C00404D8D /* allocator.h */; };
+		D667FC73184E490C00404D8D /* assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5E184E490C00404D8D /* assert.cpp */; };
+		D667FC74184E490C00404D8D /* assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5E184E490C00404D8D /* assert.cpp */; };
+		D667FC75184E490C00404D8D /* assert.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC5F184E490C00404D8D /* assert.h */; };
+		D667FC76184E490C00404D8D /* compiler.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC60184E490C00404D8D /* compiler.h */; };
+		D667FC77184E490C00404D8D /* crt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC61184E490C00404D8D /* crt.cpp */; };
+		D667FC78184E490C00404D8D /* crt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC61184E490C00404D8D /* crt.cpp */; };
+		D667FC79184E490C00404D8D /* crt.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC62184E490C00404D8D /* crt.h */; };
+		D667FC7A184E490C00404D8D /* cstr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC63184E490C00404D8D /* cstr.cpp */; };
+		D667FC7B184E490C00404D8D /* cstr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC63184E490C00404D8D /* cstr.cpp */; };
+		D667FC7C184E490C00404D8D /* cstr.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC64184E490C00404D8D /* cstr.h */; };
+		D667FC7D184E490C00404D8D /* linked_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC65184E490C00404D8D /* linked_list.cpp */; };
+		D667FC7E184E490C00404D8D /* linked_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC65184E490C00404D8D /* linked_list.cpp */; };
+		D667FC7F184E490C00404D8D /* linked_list.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC66184E490C00404D8D /* linked_list.h */; };
+		D667FC80184E490C00404D8D /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC67184E490C00404D8D /* log.cpp */; };
+		D667FC81184E490C00404D8D /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC67184E490C00404D8D /* log.cpp */; };
+		D667FC82184E490C00404D8D /* log.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC68184E490C00404D8D /* log.h */; };
+		D667FC83184E490C00404D8D /* macro.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC69184E490C00404D8D /* macro.h */; };
+		D667FC84184E490C00404D8D /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC6A184E490C00404D8D /* memory.cpp */; };
+		D667FC85184E490C00404D8D /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC6A184E490C00404D8D /* memory.cpp */; };
+		D667FC86184E490C00404D8D /* memory.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC6B184E490C00404D8D /* memory.h */; };
+		D667FC87184E490C00404D8D /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC6C184E490C00404D8D /* platform.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,27 +88,27 @@
 		D667FBE8184CE84600404D8D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D667FBE9184CE84600404D8D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D667FBF4184CE84600404D8D /* IronCakeMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronCakeMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D667FC24184CF9CE00404D8D /* allocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = allocator.cpp; sourceTree = "<group>"; };
-		D667FC25184CF9CE00404D8D /* allocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allocator.h; sourceTree = "<group>"; };
-		D667FC26184CF9CE00404D8D /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 		D667FC2C184CFAAC00404D8D /* ICKAllocatorTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ICKAllocatorTest.mm; sourceTree = "<group>"; };
 		D667FC2D184CFAAC00404D8D /* IronCakeTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IronCakeTests-Info.plist"; sourceTree = "<group>"; };
-		D667FC32184CFD9A00404D8D /* linked_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = linked_list.cpp; sourceTree = "<group>"; };
-		D667FC33184CFD9A00404D8D /* linked_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = linked_list.h; sourceTree = "<group>"; };
-		D667FC37184D0B7100404D8D /* memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory.cpp; sourceTree = "<group>"; };
-		D667FC38184D0B7100404D8D /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
-		D667FC3C184D170700404D8D /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
-		D667FC3E184D176900404D8D /* compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compiler.h; sourceTree = "<group>"; };
-		D667FC40184E1F7C00404D8D /* crt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crt.cpp; sourceTree = "<group>"; };
-		D667FC41184E1F7C00404D8D /* crt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crt.h; sourceTree = "<group>"; };
-		D667FC45184E271400404D8D /* log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = log.cpp; sourceTree = "<group>"; };
-		D667FC46184E271400404D8D /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
-		D667FC4A184E36D600404D8D /* cstr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cstr.cpp; sourceTree = "<group>"; };
-		D667FC4B184E36D600404D8D /* cstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cstr.h; sourceTree = "<group>"; };
-		D667FC4F184E41F000404D8D /* assert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = assert.cpp; sourceTree = "<group>"; };
-		D667FC50184E41F000404D8D /* assert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assert.h; sourceTree = "<group>"; };
-		D667FC54184E426300404D8D /* abort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = abort.cpp; sourceTree = "<group>"; };
-		D667FC55184E426300404D8D /* abort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = abort.h; sourceTree = "<group>"; };
+		D667FC5A184E490C00404D8D /* abort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = abort.cpp; sourceTree = "<group>"; };
+		D667FC5B184E490C00404D8D /* abort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = abort.h; sourceTree = "<group>"; };
+		D667FC5C184E490C00404D8D /* allocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = allocator.cpp; sourceTree = "<group>"; };
+		D667FC5D184E490C00404D8D /* allocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allocator.h; sourceTree = "<group>"; };
+		D667FC5E184E490C00404D8D /* assert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = assert.cpp; sourceTree = "<group>"; };
+		D667FC5F184E490C00404D8D /* assert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assert.h; sourceTree = "<group>"; };
+		D667FC60184E490C00404D8D /* compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compiler.h; sourceTree = "<group>"; };
+		D667FC61184E490C00404D8D /* crt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crt.cpp; sourceTree = "<group>"; };
+		D667FC62184E490C00404D8D /* crt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crt.h; sourceTree = "<group>"; };
+		D667FC63184E490C00404D8D /* cstr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cstr.cpp; sourceTree = "<group>"; };
+		D667FC64184E490C00404D8D /* cstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cstr.h; sourceTree = "<group>"; };
+		D667FC65184E490C00404D8D /* linked_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = linked_list.cpp; sourceTree = "<group>"; };
+		D667FC66184E490C00404D8D /* linked_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = linked_list.h; sourceTree = "<group>"; };
+		D667FC67184E490C00404D8D /* log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = log.cpp; sourceTree = "<group>"; };
+		D667FC68184E490C00404D8D /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
+		D667FC69184E490C00404D8D /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
+		D667FC6A184E490C00404D8D /* memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory.cpp; sourceTree = "<group>"; };
+		D667FC6B184E490C00404D8D /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
+		D667FC6C184E490C00404D8D /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,25 +207,7 @@
 		D667FC23184CF9CE00404D8D /* ick */ = {
 			isa = PBXGroup;
 			children = (
-				D667FC26184CF9CE00404D8D /* platform.h */,
-				D667FC3E184D176900404D8D /* compiler.h */,
-				D667FC3C184D170700404D8D /* macro.h */,
-				D667FC25184CF9CE00404D8D /* allocator.h */,
-				D667FC24184CF9CE00404D8D /* allocator.cpp */,
-				D667FC38184D0B7100404D8D /* memory.h */,
-				D667FC37184D0B7100404D8D /* memory.cpp */,
-				D667FC41184E1F7C00404D8D /* crt.h */,
-				D667FC40184E1F7C00404D8D /* crt.cpp */,
-				D667FC4B184E36D600404D8D /* cstr.h */,
-				D667FC4A184E36D600404D8D /* cstr.cpp */,
-				D667FC46184E271400404D8D /* log.h */,
-				D667FC45184E271400404D8D /* log.cpp */,
-				D667FC55184E426300404D8D /* abort.h */,
-				D667FC54184E426300404D8D /* abort.cpp */,
-				D667FC50184E41F000404D8D /* assert.h */,
-				D667FC4F184E41F000404D8D /* assert.cpp */,
-				D667FC32184CFD9A00404D8D /* linked_list.cpp */,
-				D667FC33184CFD9A00404D8D /* linked_list.h */,
+				D667FC59184E490C00404D8D /* base */,
 			);
 			path = ick;
 			sourceTree = "<group>";
@@ -239,6 +221,32 @@
 			path = test;
 			sourceTree = "<group>";
 		};
+		D667FC59184E490C00404D8D /* base */ = {
+			isa = PBXGroup;
+			children = (
+				D667FC5A184E490C00404D8D /* abort.cpp */,
+				D667FC5B184E490C00404D8D /* abort.h */,
+				D667FC5C184E490C00404D8D /* allocator.cpp */,
+				D667FC5D184E490C00404D8D /* allocator.h */,
+				D667FC5E184E490C00404D8D /* assert.cpp */,
+				D667FC5F184E490C00404D8D /* assert.h */,
+				D667FC60184E490C00404D8D /* compiler.h */,
+				D667FC61184E490C00404D8D /* crt.cpp */,
+				D667FC62184E490C00404D8D /* crt.h */,
+				D667FC63184E490C00404D8D /* cstr.cpp */,
+				D667FC64184E490C00404D8D /* cstr.h */,
+				D667FC65184E490C00404D8D /* linked_list.cpp */,
+				D667FC66184E490C00404D8D /* linked_list.h */,
+				D667FC67184E490C00404D8D /* log.cpp */,
+				D667FC68184E490C00404D8D /* log.h */,
+				D667FC69184E490C00404D8D /* macro.h */,
+				D667FC6A184E490C00404D8D /* memory.cpp */,
+				D667FC6B184E490C00404D8D /* memory.h */,
+				D667FC6C184E490C00404D8D /* platform.h */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -246,17 +254,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D667FC4E184E36D600404D8D /* cstr.h in Headers */,
-				D667FC2A184CF9CE00404D8D /* platform.h in Headers */,
-				D667FC53184E41F000404D8D /* assert.h in Headers */,
-				D667FC29184CF9CE00404D8D /* allocator.h in Headers */,
-				D667FC44184E1F7C00404D8D /* crt.h in Headers */,
-				D667FC36184CFD9A00404D8D /* linked_list.h in Headers */,
-				D667FC3F184D176900404D8D /* compiler.h in Headers */,
-				D667FC58184E426300404D8D /* abort.h in Headers */,
-				D667FC49184E271400404D8D /* log.h in Headers */,
-				D667FC3B184D0B7100404D8D /* memory.h in Headers */,
-				D667FC3D184D170700404D8D /* macro.h in Headers */,
+				D667FC7C184E490C00404D8D /* cstr.h in Headers */,
+				D667FC72184E490C00404D8D /* allocator.h in Headers */,
+				D667FC7F184E490C00404D8D /* linked_list.h in Headers */,
+				D667FC83184E490C00404D8D /* macro.h in Headers */,
+				D667FC87184E490C00404D8D /* platform.h in Headers */,
+				D667FC75184E490C00404D8D /* assert.h in Headers */,
+				D667FC6F184E490C00404D8D /* abort.h in Headers */,
+				D667FC82184E490C00404D8D /* log.h in Headers */,
+				D667FC86184E490C00404D8D /* memory.h in Headers */,
+				D667FC79184E490C00404D8D /* crt.h in Headers */,
+				D667FC76184E490C00404D8D /* compiler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,14 +392,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D667FC34184CFD9A00404D8D /* linked_list.cpp in Sources */,
-				D667FC42184E1F7C00404D8D /* crt.cpp in Sources */,
-				D667FC56184E426300404D8D /* abort.cpp in Sources */,
-				D667FC51184E41F000404D8D /* assert.cpp in Sources */,
-				D667FC27184CF9CE00404D8D /* allocator.cpp in Sources */,
-				D667FC47184E271400404D8D /* log.cpp in Sources */,
-				D667FC39184D0B7100404D8D /* memory.cpp in Sources */,
-				D667FC4C184E36D600404D8D /* cstr.cpp in Sources */,
+				D667FC7D184E490C00404D8D /* linked_list.cpp in Sources */,
+				D667FC73184E490C00404D8D /* assert.cpp in Sources */,
+				D667FC80184E490C00404D8D /* log.cpp in Sources */,
+				D667FC77184E490C00404D8D /* crt.cpp in Sources */,
+				D667FC84184E490C00404D8D /* memory.cpp in Sources */,
+				D667FC6D184E490C00404D8D /* abort.cpp in Sources */,
+				D667FC7A184E490C00404D8D /* cstr.cpp in Sources */,
+				D667FC70184E490C00404D8D /* allocator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,14 +415,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D667FC35184CFD9A00404D8D /* linked_list.cpp in Sources */,
-				D667FC43184E1F7C00404D8D /* crt.cpp in Sources */,
-				D667FC57184E426300404D8D /* abort.cpp in Sources */,
-				D667FC52184E41F000404D8D /* assert.cpp in Sources */,
-				D667FC28184CF9CE00404D8D /* allocator.cpp in Sources */,
-				D667FC48184E271400404D8D /* log.cpp in Sources */,
-				D667FC3A184D0B7100404D8D /* memory.cpp in Sources */,
-				D667FC4D184E36D600404D8D /* cstr.cpp in Sources */,
+				D667FC7E184E490C00404D8D /* linked_list.cpp in Sources */,
+				D667FC74184E490C00404D8D /* assert.cpp in Sources */,
+				D667FC81184E490C00404D8D /* log.cpp in Sources */,
+				D667FC78184E490C00404D8D /* crt.cpp in Sources */,
+				D667FC85184E490C00404D8D /* memory.cpp in Sources */,
+				D667FC6E184E490C00404D8D /* abort.cpp in Sources */,
+				D667FC7B184E490C00404D8D /* cstr.cpp in Sources */,
+				D667FC71184E490C00404D8D /* allocator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

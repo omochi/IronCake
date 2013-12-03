@@ -45,6 +45,11 @@
 		D667FC85184E490C00404D8D /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC6A184E490C00404D8D /* memory.cpp */; };
 		D667FC86184E490C00404D8D /* memory.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC6B184E490C00404D8D /* memory.h */; };
 		D667FC87184E490C00404D8D /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC6C184E490C00404D8D /* platform.h */; };
+		D667FC89184E4C9B00404D8D /* ICKLinkedListTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC88184E4C9B00404D8D /* ICKLinkedListTest.mm */; };
+		D667FC8A184E4C9B00404D8D /* ICKLinkedListTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC88184E4C9B00404D8D /* ICKLinkedListTest.mm */; };
+		D667FC8D184E512300404D8D /* ick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC8B184E512300404D8D /* ick.cpp */; };
+		D667FC8E184E512300404D8D /* ick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC8B184E512300404D8D /* ick.cpp */; };
+		D667FC8F184E512300404D8D /* ick.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC8C184E512300404D8D /* ick.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +114,9 @@
 		D667FC6A184E490C00404D8D /* memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory.cpp; sourceTree = "<group>"; };
 		D667FC6B184E490C00404D8D /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
 		D667FC6C184E490C00404D8D /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		D667FC88184E4C9B00404D8D /* ICKLinkedListTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ICKLinkedListTest.mm; sourceTree = "<group>"; };
+		D667FC8B184E512300404D8D /* ick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ick.cpp; sourceTree = "<group>"; };
+		D667FC8C184E512300404D8D /* ick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ick.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +215,8 @@
 		D667FC23184CF9CE00404D8D /* ick */ = {
 			isa = PBXGroup;
 			children = (
+				D667FC8C184E512300404D8D /* ick.h */,
+				D667FC8B184E512300404D8D /* ick.cpp */,
 				D667FC59184E490C00404D8D /* base */,
 			);
 			path = ick;
@@ -217,6 +227,7 @@
 			children = (
 				D667FC2C184CFAAC00404D8D /* ICKAllocatorTest.mm */,
 				D667FC2D184CFAAC00404D8D /* IronCakeTests-Info.plist */,
+				D667FC88184E4C9B00404D8D /* ICKLinkedListTest.mm */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -260,6 +271,7 @@
 				D667FC83184E490C00404D8D /* macro.h in Headers */,
 				D667FC87184E490C00404D8D /* platform.h in Headers */,
 				D667FC75184E490C00404D8D /* assert.h in Headers */,
+				D667FC8F184E512300404D8D /* ick.h in Headers */,
 				D667FC6F184E490C00404D8D /* abort.h in Headers */,
 				D667FC82184E490C00404D8D /* log.h in Headers */,
 				D667FC86184E490C00404D8D /* memory.h in Headers */,
@@ -395,6 +407,7 @@
 				D667FC7D184E490C00404D8D /* linked_list.cpp in Sources */,
 				D667FC73184E490C00404D8D /* assert.cpp in Sources */,
 				D667FC80184E490C00404D8D /* log.cpp in Sources */,
+				D667FC8D184E512300404D8D /* ick.cpp in Sources */,
 				D667FC77184E490C00404D8D /* crt.cpp in Sources */,
 				D667FC84184E490C00404D8D /* memory.cpp in Sources */,
 				D667FC6D184E490C00404D8D /* abort.cpp in Sources */,
@@ -407,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D667FC89184E4C9B00404D8D /* ICKLinkedListTest.mm in Sources */,
 				D667FC2E184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +432,7 @@
 				D667FC7E184E490C00404D8D /* linked_list.cpp in Sources */,
 				D667FC74184E490C00404D8D /* assert.cpp in Sources */,
 				D667FC81184E490C00404D8D /* log.cpp in Sources */,
+				D667FC8E184E512300404D8D /* ick.cpp in Sources */,
 				D667FC78184E490C00404D8D /* crt.cpp in Sources */,
 				D667FC85184E490C00404D8D /* memory.cpp in Sources */,
 				D667FC6E184E490C00404D8D /* abort.cpp in Sources */,
@@ -430,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D667FC8A184E4C9B00404D8D /* ICKLinkedListTest.mm in Sources */,
 				D667FC2F184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

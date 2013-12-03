@@ -17,7 +17,7 @@
 namespace ick{
 	void LogPut(FILE * stream, const char * str){
 		int status = fputs(str, stream);
-		if(status != EOF){ ::abort(); }
+		if(status == EOF){ ::abort(); }
 	}
 	void LogPrint(FILE * stream, const char * format, ...){
 		va_list ap;
@@ -64,7 +64,7 @@ namespace ick{
 	}
 	void LogErrorV(const char * format, va_list ap){
 		char * format_ln = ick::CStrAppend(format, "\n");
-		LogInfoNV(format_ln, ap);
+		LogErrorNV(format_ln, ap);
 		ICK_FREE(format_ln);
 	}
 	

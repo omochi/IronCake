@@ -14,7 +14,7 @@ namespace ick{
 	int CStrLen(const char * str){
 		int len = 0;
 		const char * p = str;
-		while(p[0] != '\0'){ len++; }
+		while(p[0] != '\0'){ len++; p++; }
 		return len;
 	}
 	char * CStrCopyA(Allocator * allocator, const char * str){

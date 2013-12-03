@@ -11,6 +11,8 @@
 #include "platform.h"
 #include "compiler.h"
 
+#include <stdio.h>
+
 #ifdef ICK_GCC
 #	define ICK_FUNC __PRETTY_FUNCTION__
 #elif defined ICK_MSVC

@@ -39,6 +39,12 @@
 		D667FC4C184E36D600404D8D /* cstr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC4A184E36D600404D8D /* cstr.cpp */; };
 		D667FC4D184E36D600404D8D /* cstr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC4A184E36D600404D8D /* cstr.cpp */; };
 		D667FC4E184E36D600404D8D /* cstr.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC4B184E36D600404D8D /* cstr.h */; };
+		D667FC51184E41F000404D8D /* assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC4F184E41F000404D8D /* assert.cpp */; };
+		D667FC52184E41F000404D8D /* assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC4F184E41F000404D8D /* assert.cpp */; };
+		D667FC53184E41F000404D8D /* assert.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC50184E41F000404D8D /* assert.h */; };
+		D667FC56184E426300404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC54184E426300404D8D /* abort.cpp */; };
+		D667FC57184E426300404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC54184E426300404D8D /* abort.cpp */; };
+		D667FC58184E426300404D8D /* abort.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC55184E426300404D8D /* abort.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +105,10 @@
 		D667FC46184E271400404D8D /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
 		D667FC4A184E36D600404D8D /* cstr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cstr.cpp; sourceTree = "<group>"; };
 		D667FC4B184E36D600404D8D /* cstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cstr.h; sourceTree = "<group>"; };
+		D667FC4F184E41F000404D8D /* assert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = assert.cpp; sourceTree = "<group>"; };
+		D667FC50184E41F000404D8D /* assert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assert.h; sourceTree = "<group>"; };
+		D667FC54184E426300404D8D /* abort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = abort.cpp; sourceTree = "<group>"; };
+		D667FC55184E426300404D8D /* abort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = abort.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +220,10 @@
 				D667FC4A184E36D600404D8D /* cstr.cpp */,
 				D667FC46184E271400404D8D /* log.h */,
 				D667FC45184E271400404D8D /* log.cpp */,
+				D667FC55184E426300404D8D /* abort.h */,
+				D667FC54184E426300404D8D /* abort.cpp */,
+				D667FC50184E41F000404D8D /* assert.h */,
+				D667FC4F184E41F000404D8D /* assert.cpp */,
 				D667FC32184CFD9A00404D8D /* linked_list.cpp */,
 				D667FC33184CFD9A00404D8D /* linked_list.h */,
 			);
@@ -234,10 +248,12 @@
 			files = (
 				D667FC4E184E36D600404D8D /* cstr.h in Headers */,
 				D667FC2A184CF9CE00404D8D /* platform.h in Headers */,
+				D667FC53184E41F000404D8D /* assert.h in Headers */,
 				D667FC29184CF9CE00404D8D /* allocator.h in Headers */,
 				D667FC44184E1F7C00404D8D /* crt.h in Headers */,
 				D667FC36184CFD9A00404D8D /* linked_list.h in Headers */,
 				D667FC3F184D176900404D8D /* compiler.h in Headers */,
+				D667FC58184E426300404D8D /* abort.h in Headers */,
 				D667FC49184E271400404D8D /* log.h in Headers */,
 				D667FC3B184D0B7100404D8D /* memory.h in Headers */,
 				D667FC3D184D170700404D8D /* macro.h in Headers */,
@@ -370,6 +386,8 @@
 			files = (
 				D667FC34184CFD9A00404D8D /* linked_list.cpp in Sources */,
 				D667FC42184E1F7C00404D8D /* crt.cpp in Sources */,
+				D667FC56184E426300404D8D /* abort.cpp in Sources */,
+				D667FC51184E41F000404D8D /* assert.cpp in Sources */,
 				D667FC27184CF9CE00404D8D /* allocator.cpp in Sources */,
 				D667FC47184E271400404D8D /* log.cpp in Sources */,
 				D667FC39184D0B7100404D8D /* memory.cpp in Sources */,
@@ -391,6 +409,8 @@
 			files = (
 				D667FC35184CFD9A00404D8D /* linked_list.cpp in Sources */,
 				D667FC43184E1F7C00404D8D /* crt.cpp in Sources */,
+				D667FC57184E426300404D8D /* abort.cpp in Sources */,
+				D667FC52184E41F000404D8D /* assert.cpp in Sources */,
 				D667FC28184CF9CE00404D8D /* allocator.cpp in Sources */,
 				D667FC48184E271400404D8D /* log.cpp in Sources */,
 				D667FC3A184D0B7100404D8D /* memory.cpp in Sources */,

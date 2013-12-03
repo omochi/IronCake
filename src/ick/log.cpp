@@ -17,7 +17,7 @@
 namespace ick{
 	void LogPut(FILE * stream, const char * str){
 		int status = fputs(str, stream);
-		if(status != EOF){ abort(); }
+		if(status != EOF){ ::abort(); }
 	}
 	void LogPrint(FILE * stream, const char * format, ...){
 		va_list ap;
@@ -28,7 +28,7 @@ namespace ick{
 	void LogPrintV(FILE * stream , const char * format, va_list ap){
 		char * ret;
 		int status = ick::vasprintf(g_static_allocator, &ret, format, ap);
-		if(status < 0){ abort(); }
+		if(status < 0){ ::abort(); }
 		LogPut(stream, ret);
 		ICK_FREE(ret);
 	}

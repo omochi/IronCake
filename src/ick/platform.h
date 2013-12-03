@@ -12,12 +12,9 @@
 #	include <TargetConditionals.h>
 #	ifdef TARGET_OS_IPHONE
 #		define ICK_IOS
-#	elif defined TARGET_OS_MAC
-#		define ICK_OSX
+#	endif
+#	ifdef TARGET_OS_MAC
+#		define ICK_MAC
 #	endif
 #endif
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>

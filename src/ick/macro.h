@@ -8,10 +8,17 @@
 
 #pragma once
 
+#include "platform.h"
 #include "compiler.h"
 
 #ifdef ICK_GCC
 #	define ICK_FUNC __PRETTY_FUNCTION__
 #elif defined ICK_MSVC
 #	define ICK_FUNC __FUNCSIG__
+#endif
+
+#ifdef ICK_MAC
+#	define ICK_PRINTF_LIKE(f,a) __printflike(f,a)
+#else
+#	define ICK_PRINTF_LIKE(f,a)
 #endif

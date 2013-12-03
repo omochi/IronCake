@@ -30,6 +30,15 @@
 		D667FC3B184D0B7100404D8D /* memory.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC38184D0B7100404D8D /* memory.h */; };
 		D667FC3D184D170700404D8D /* macro.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC3C184D170700404D8D /* macro.h */; };
 		D667FC3F184D176900404D8D /* compiler.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC3E184D176900404D8D /* compiler.h */; };
+		D667FC42184E1F7C00404D8D /* crt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC40184E1F7C00404D8D /* crt.cpp */; };
+		D667FC43184E1F7C00404D8D /* crt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC40184E1F7C00404D8D /* crt.cpp */; };
+		D667FC44184E1F7C00404D8D /* crt.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC41184E1F7C00404D8D /* crt.h */; };
+		D667FC47184E271400404D8D /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC45184E271400404D8D /* log.cpp */; };
+		D667FC48184E271400404D8D /* log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC45184E271400404D8D /* log.cpp */; };
+		D667FC49184E271400404D8D /* log.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC46184E271400404D8D /* log.h */; };
+		D667FC4C184E36D600404D8D /* cstr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC4A184E36D600404D8D /* cstr.cpp */; };
+		D667FC4D184E36D600404D8D /* cstr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC4A184E36D600404D8D /* cstr.cpp */; };
+		D667FC4E184E36D600404D8D /* cstr.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC4B184E36D600404D8D /* cstr.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +93,12 @@
 		D667FC38184D0B7100404D8D /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
 		D667FC3C184D170700404D8D /* macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macro.h; sourceTree = "<group>"; };
 		D667FC3E184D176900404D8D /* compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compiler.h; sourceTree = "<group>"; };
+		D667FC40184E1F7C00404D8D /* crt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crt.cpp; sourceTree = "<group>"; };
+		D667FC41184E1F7C00404D8D /* crt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crt.h; sourceTree = "<group>"; };
+		D667FC45184E271400404D8D /* log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = log.cpp; sourceTree = "<group>"; };
+		D667FC46184E271400404D8D /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
+		D667FC4A184E36D600404D8D /* cstr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cstr.cpp; sourceTree = "<group>"; };
+		D667FC4B184E36D600404D8D /* cstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cstr.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,12 +200,18 @@
 				D667FC26184CF9CE00404D8D /* platform.h */,
 				D667FC3E184D176900404D8D /* compiler.h */,
 				D667FC3C184D170700404D8D /* macro.h */,
-				D667FC24184CF9CE00404D8D /* allocator.cpp */,
 				D667FC25184CF9CE00404D8D /* allocator.h */,
+				D667FC24184CF9CE00404D8D /* allocator.cpp */,
+				D667FC38184D0B7100404D8D /* memory.h */,
+				D667FC37184D0B7100404D8D /* memory.cpp */,
+				D667FC41184E1F7C00404D8D /* crt.h */,
+				D667FC40184E1F7C00404D8D /* crt.cpp */,
+				D667FC4B184E36D600404D8D /* cstr.h */,
+				D667FC4A184E36D600404D8D /* cstr.cpp */,
+				D667FC46184E271400404D8D /* log.h */,
+				D667FC45184E271400404D8D /* log.cpp */,
 				D667FC32184CFD9A00404D8D /* linked_list.cpp */,
 				D667FC33184CFD9A00404D8D /* linked_list.h */,
-				D667FC37184D0B7100404D8D /* memory.cpp */,
-				D667FC38184D0B7100404D8D /* memory.h */,
 			);
 			path = ick;
 			sourceTree = "<group>";
@@ -211,10 +232,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D667FC4E184E36D600404D8D /* cstr.h in Headers */,
 				D667FC2A184CF9CE00404D8D /* platform.h in Headers */,
 				D667FC29184CF9CE00404D8D /* allocator.h in Headers */,
+				D667FC44184E1F7C00404D8D /* crt.h in Headers */,
 				D667FC36184CFD9A00404D8D /* linked_list.h in Headers */,
 				D667FC3F184D176900404D8D /* compiler.h in Headers */,
+				D667FC49184E271400404D8D /* log.h in Headers */,
 				D667FC3B184D0B7100404D8D /* memory.h in Headers */,
 				D667FC3D184D170700404D8D /* macro.h in Headers */,
 			);
@@ -345,8 +369,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D667FC34184CFD9A00404D8D /* linked_list.cpp in Sources */,
+				D667FC42184E1F7C00404D8D /* crt.cpp in Sources */,
 				D667FC27184CF9CE00404D8D /* allocator.cpp in Sources */,
+				D667FC47184E271400404D8D /* log.cpp in Sources */,
 				D667FC39184D0B7100404D8D /* memory.cpp in Sources */,
+				D667FC4C184E36D600404D8D /* cstr.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,8 +390,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D667FC35184CFD9A00404D8D /* linked_list.cpp in Sources */,
+				D667FC43184E1F7C00404D8D /* crt.cpp in Sources */,
 				D667FC28184CF9CE00404D8D /* allocator.cpp in Sources */,
+				D667FC48184E271400404D8D /* log.cpp in Sources */,
 				D667FC3A184D0B7100404D8D /* memory.cpp in Sources */,
+				D667FC4D184E36D600404D8D /* cstr.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

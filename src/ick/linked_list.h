@@ -9,7 +9,7 @@
 #pragma once
 
 #include <stdlib.h>
-#include "allcator.h"
+#include "allocator.h"
 #include "memory.h"
 
 namespace ick{

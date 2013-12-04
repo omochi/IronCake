@@ -145,5 +145,8 @@ namespace ick{
 			}
 			ICK_DELETE_A(allocator(), node);
 		}
+		void Clear(){
+			while(last_){ Remove(last_); }
+		}
 	};
 }

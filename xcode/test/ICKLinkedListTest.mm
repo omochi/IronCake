@@ -32,6 +32,8 @@
 - (void)test1{
 	ick::LinkedList<int> list;
 	XCTAssertEqual(list.num(), 0);
+	XCTAssertFalse(list.first());
+	XCTAssertFalse(list.last());
 	
 	list.InsertLast(1);
 	XCTAssertEqual(list.num(), 1);
@@ -67,6 +69,58 @@
 	XCTAssertEqual(list.num(), 3);
 	XCTAssertEqual(n2->next(), n4);
 	XCTAssertEqual(n4->prev(), n2);
+	
+	list.InsertFirst(6);
+	XCTAssertEqual(list.num(), 4);
+	XCTAssertEqual(list.first()->value(), 6);
+	XCTAssertEqual(list.first()->next(), n1);
+	XCTAssertEqual(list.first(), n1->prev());
+	
+	list.InsertLast(7);
+	XCTAssertEqual(list.num(), 5);
+	XCTAssertEqual(list.last()->value(), 7);
+	XCTAssertEqual(list.last()->prev(), n4);
+	XCTAssertEqual(list.last(), n4->next());
+	
+	list.InsertBefore(n2, 8);
+	XCTAssertEqual(list.num(), 6);
+	XCTAssertEqual(n1->next()->value(), 8);
+	XCTAssertEqual(n2->prev()->value(), 8);
+	
+	list.InsertAfter(n2, 9);
+	XCTAssertEqual(list.num(), 7);
+	XCTAssertEqual(n2->next()->value(), 9);
+	XCTAssertEqual(n4->prev()->value(), 9);
+	
+	list.Remove(list.last());
+	XCTAssertEqual(list.num(), 6);
+	list.Remove(list.last());
+	XCTAssertEqual(list.num(), 5);
+	list.Remove(list.last());
+	XCTAssertEqual(list.num(), 4);
+	list.Remove(list.last());
+	XCTAssertEqual(list.num(), 3);
+	list.Remove(list.last());
+	XCTAssertEqual(list.num(), 2);
+	list.Remove(list.last());
+	XCTAssertEqual(list.num(), 1);
+	list.Remove(list.last());
+	XCTAssertEqual(list.num(), 0);
+	
+	XCTAssertFalse(list.first());
+	XCTAssertFalse(list.last());
+	
+	list.InsertLast(1);
+	list.InsertLast(2);
+	list.InsertLast(3);
+	list.InsertLast(4);
+	XCTAssertEqual(list.num(), 4);
+	
+	list.Clear();
+	XCTAssertEqual(list.num(), 0);
+	XCTAssertFalse(list.first());
+	XCTAssertFalse(list.last());
+
 }
 
 @end

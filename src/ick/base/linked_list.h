@@ -22,10 +22,6 @@ namespace ick{
 		T value_;
 		LinkedListNode<T> * next_;
 		LinkedListNode<T> * prev_;
-		const List * list() const { return list_; }
-		void set_list(const List * list) { list_ = list; }
-		void set_next(LinkedListNode<T> * next) { next_ = next; }
-		void set_prev(LinkedListNode<T> * prev) { prev_ = prev; }
 	public:
 		LinkedListNode():
 		list_(NULL),value_(),next_(NULL),prev_(NULL)
@@ -48,60 +44,56 @@ namespace ick{
 		int num_;
 		Node * first_;
 		Node * last_;
-		void set_first(Node * first) { first_ = first; }
-		void set_last(Node * last) { last_ = last; }
 
 		Node * CreateNode(const T & value) const {
-			return ICK_NEW_A(allocator(), Node, value);
+			return ICK_NEW1_A(allocator(), Node, value);
 		}
 		void InsertFirst(Node * new_node){
-			ICK_ASSERT(!new_node->list());
-			if(!first()){
+			ICK_ASSERT(!new_node->list_);
+			if(!first_){
 				num_++;
-				set_first(new_node);
-				set_last(new_node);
-				new_node->set_list(this);
-				new_node->set_prev(NULL);
-				new_node->set_next(NULL);
+				first_ = new_node;
+				last_ = new_node;
+				new_node->list_ = this;
 			}else{
-				InsertBefore(first(), new_node);
+				InsertBefore(first_, new_node);
 			}
 		}
 		void InsertLast(Node * new_node){
-			ICK_ASSERT(!new_node->list());
-			if(!last()){
+			ICK_ASSERT(!new_node->list_);
+			if(!last_){
 				InsertFirst(new_node);
 			}else{
-				InsertAfter(last(), new_node);
+				InsertAfter(last_, new_node);
 			}
 		}
 		void InsertBefore(Node * node, Node * new_node) {
-			ICK_ASSERT(node->list() == this);
-			ICK_ASSERT(!new_node->list());
+			ICK_ASSERT(node->list_ == this);
+			ICK_ASSERT(!new_node->list_);
 			num_++;
-			new_node->set_list(this);
-			new_node->set_prev(node->prev());
-			new_node->set_next(node);
-			if(!node->prev()){
-				set_first(new_node);
+			new_node->list_ = this;
+			new_node->prev_ = node->prev_;
+			new_node->next_ = node;
+			if(!node->prev_){
+				first_ = new_node;
 			}else{
-				node->prev()->set_next(new_node);
+				node->prev_->next_ = new_node;
 			}
-			node->set_prev(new_node);
+			node->prev_ = new_node;
 		}
 		void InsertAfter(Node * node, Node * new_node) {
-			ICK_ASSERT(node->list() == this);
-			ICK_ASSERT(!new_node->list());
+			ICK_ASSERT(node->list_ == this);
+			ICK_ASSERT(!new_node->list_);
 			num_++;
-			new_node->set_list(this);
-			new_node->set_prev(node);
-			new_node->set_next(node->next());
-			if(!node->next()){
-				set_last(new_node);
+			new_node->list_ = this;
+			new_node->prev_ = node;
+			new_node->next_ = node->next_;
+			if(!node->next_){
+				last_ = new_node;
 			}else{
-				node->next()->set_prev(new_node);
+				node->next_->prev_ = new_node;
 			}
-			node->set_next(new_node);
+			node->next_ = new_node;
 		}
 	public:
 		LinkedList():
@@ -139,17 +131,17 @@ namespace ick{
 		}
 		//nodeはdeleteされる
 		void Remove(Node * node){
-			ICK_ASSERT(node->list() == this);
+			ICK_ASSERT(node->list_ == this);
 			num_--;
-			if(!node->prev()){
-				set_first(node->next());
+			if(!node->prev_){
+				first_ = node->next_;
 			}else{
-				node->prev()->set_next(node->next());
+				node->prev_->next_ = node->next_;
 			}
-			if(!node->next()){
-				set_last(node->prev());
+			if(!node->next_){
+				last_ = node->prev_;
 			}else{
-				node->next()->set_prev(node->prev());
+				node->next_->prev_ = node->prev_;
 			}
 			ICK_DELETE_A(allocator(), node);
 		}

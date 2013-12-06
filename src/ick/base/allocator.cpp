@@ -10,6 +10,7 @@
 
 #include "memory.h"
 #include "crt.h"
+#include "log.h"
 #include "linked_list.h"
 
 namespace ick{
@@ -38,28 +39,28 @@ namespace ick{
 		return Align(Offset(block, sizeof(Node *) + sizeof(int32_t)), alignment);
 	}
 	void DebugAllocator::NodeWriteNodeAddress(Node * node){
-		Copy(&node, Offset(node->value().user, -4-(int)sizeof(Node*)), sizeof(Node*));
+		MemoryCopy(&node, Offset(node->value().user, -4-(int)sizeof(Node*)), sizeof(Node*));
 	}
 	DebugAllocator::Node * DebugAllocator::NodeFromUserAddress(void * user){
 		Node * node;
-		Copy(Offset(user, -4-(int)sizeof(Node*)), &node, sizeof(Node*));
+		MemoryCopy(Offset(user, -4-(int)sizeof(Node*)), &node, sizeof(Node*));
 		return node;
 	}
 	int32_t DebugAllocator::NodeReadHeadSignature(Node * node){
 		int32_t signature;
-		Copy(Offset(node->value().user, -4), &signature, 4);
+		MemoryCopy(Offset(node->value().user, -4), &signature, 4);
 		return signature;
 	}
 	void DebugAllocator::NodeWriteHeadSignature(Node * node){
-		Copy(&kHeadSignature, Offset(node->value().user, -4), 4);
+		MemoryCopy(&kHeadSignature, Offset(node->value().user, -4), 4);
 	}
 	int32_t DebugAllocator::NodeReadFootSignature(Node * node){
 		int32_t signature;
-		Copy(Offset(node->value().user, (int)node->value().size), &signature, 4);
+		MemoryCopy(Offset(node->value().user, (int)node->value().size), &signature, 4);
 		return signature;
 	}
 	void DebugAllocator::NodeWriteFootSignature(Node * node){
-		Copy(&kFootSignature, Offset(node->value().user, (int)node->value().size), 4);
+		MemoryCopy(&kFootSignature, Offset(node->value().user, (int)node->value().size), 4);
 	}
 	bool DebugAllocator::NodeCheckSignature(Node * node){
 		return
@@ -87,7 +88,7 @@ namespace ick{
 		if(r<0){ ::abort(); }
 		va_end(ap);
 		
-		size_t alloc_size = sizeof(Node *) + 4 + size + 4;
+		size_t alloc_size = sizeof(Node *) + 4 + (alignment - 1) + size + 4;
 		
 		DebugAllocatorBlockInfo info;
 		info.block = allocator_->Allocate(alloc_size, alignment);
@@ -121,17 +122,13 @@ namespace ick{
 	}
 	
 	void DebugAllocator::Dump(){
-		ick::Allocator * allocator = g_static_allocator;
-		g_static_allocator = allocator_;
-		
 		for(Node * node = info_list_->first(); node; node = node->next()){
-			ICK_LOG_INFO("block: %p, user: %p, size: %zd, alignment: %zd, comment: %s",
-						 node->value().block,node->value().user,
-						 node->value().size,node->value().alignment,
-						 node->value().comment);
+			ICK_LOG_INFO_A(allocator_,
+						   "block: %p, user: %p, size: %zd, alignment: %zd, comment: %s",
+						   node->value().block,node->value().user,
+						   node->value().size,node->value().alignment,
+						   node->value().comment);
 		}
-		
-		g_static_allocator = allocator;
 	}
 	
 	DebugAllocator * StaticDebugAllocator(){

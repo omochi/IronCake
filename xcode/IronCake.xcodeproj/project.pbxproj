@@ -59,6 +59,10 @@
 		D667FCA2185231AE00404D8D /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FCA0185231AE00404D8D /* math.cpp */; };
 		D667FCA3185231AE00404D8D /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FCA0185231AE00404D8D /* math.cpp */; };
 		D667FCA4185231AE00404D8D /* math.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FCA1185231AE00404D8D /* math.h */; };
+		D667FCA618523B5300404D8D /* ICKArrayTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FCA518523B5300404D8D /* ICKArrayTest.mm */; };
+		D667FCA718523B5300404D8D /* ICKArrayTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FCA518523B5300404D8D /* ICKArrayTest.mm */; };
+		D667FCA918523C9600404D8D /* build.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FCA818523C9600404D8D /* build.h */; };
+		D667FCAB1852520600404D8D /* array_decl.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FCAA1852520600404D8D /* array_decl.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +137,9 @@
 		D667FC971852232300404D8D /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
 		D667FCA0185231AE00404D8D /* math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
 		D667FCA1185231AE00404D8D /* math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math.h; sourceTree = "<group>"; };
+		D667FCA518523B5300404D8D /* ICKArrayTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ICKArrayTest.mm; sourceTree = "<group>"; };
+		D667FCA818523C9600404D8D /* build.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = build.h; sourceTree = "<group>"; };
+		D667FCAA1852520600404D8D /* array_decl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array_decl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +253,7 @@
 				D667FC95184FA2AA00404D8D /* ICKTestBase.h */,
 				D667FC92184FA29100404D8D /* ICKTestBase.mm */,
 				D667FC88184E4C9B00404D8D /* ICKLinkedListTest.mm */,
+				D667FCA518523B5300404D8D /* ICKArrayTest.mm */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -255,6 +263,7 @@
 			children = (
 				D667FC6C184E490C00404D8D /* platform.h */,
 				D667FC60184E490C00404D8D /* compiler.h */,
+				D667FCA818523C9600404D8D /* build.h */,
 				D667FC90184F95DD00404D8D /* std.h */,
 				D667FC69184E490C00404D8D /* macro.h */,
 				D667FC5D184E490C00404D8D /* allocator.h */,
@@ -273,6 +282,7 @@
 				D667FC5E184E490C00404D8D /* assert.cpp */,
 				D667FC66184E490C00404D8D /* linked_list.h */,
 				D667FC65184E490C00404D8D /* linked_list.cpp */,
+				D667FCAA1852520600404D8D /* array_decl.h */,
 				D667FC971852232300404D8D /* array.h */,
 				D667FC961852232300404D8D /* array.cpp */,
 				D667FCA0185231AE00404D8D /* math.cpp */,
@@ -299,8 +309,10 @@
 				D667FC75184E490C00404D8D /* assert.h in Headers */,
 				D667FC8F184E512300404D8D /* ick.h in Headers */,
 				D667FC6F184E490C00404D8D /* abort.h in Headers */,
+				D667FCAB1852520600404D8D /* array_decl.h in Headers */,
 				D667FC82184E490C00404D8D /* log.h in Headers */,
 				D667FC86184E490C00404D8D /* memory.h in Headers */,
+				D667FCA918523C9600404D8D /* build.h in Headers */,
 				D667FC79184E490C00404D8D /* crt.h in Headers */,
 				D667FC76184E490C00404D8D /* compiler.h in Headers */,
 			);
@@ -451,6 +463,7 @@
 				D667FC89184E4C9B00404D8D /* ICKLinkedListTest.mm in Sources */,
 				D667FC2E184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */,
 				D667FC93184FA29100404D8D /* ICKTestBase.mm in Sources */,
+				D667FCA618523B5300404D8D /* ICKArrayTest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +492,7 @@
 				D667FC8A184E4C9B00404D8D /* ICKLinkedListTest.mm in Sources */,
 				D667FC2F184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */,
 				D667FC94184FA29100404D8D /* ICKTestBase.mm in Sources */,
+				D667FCA718523B5300404D8D /* ICKArrayTest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

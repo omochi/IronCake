@@ -47,10 +47,10 @@ namespace ick{
 		Node * last_;
 
 		Node * CreateNode(const T & value) const {
-			return ICK_NEW1_A(allocator(), Node, value);
+			return ICK_NEW1_A(allocator_, Node, value);
 		}
 		void InsertFirst(Node * new_node){
-			ICK_ASSERT(!new_node->list_);
+			ICK_ASSERT_A(allocator_, !new_node->list_);
 			if(!first_){
 				num_++;
 				first_ = new_node;
@@ -61,7 +61,7 @@ namespace ick{
 			}
 		}
 		void InsertLast(Node * new_node){
-			ICK_ASSERT(!new_node->list_);
+			ICK_ASSERT_A(allocator_,!new_node->list_);
 			if(!last_){
 				InsertFirst(new_node);
 			}else{
@@ -69,8 +69,8 @@ namespace ick{
 			}
 		}
 		void InsertBefore(Node * node, Node * new_node) {
-			ICK_ASSERT(node->list_ == this);
-			ICK_ASSERT(!new_node->list_);
+			ICK_ASSERT_A(allocator_,node->list_ == this);
+			ICK_ASSERT_A(allocator_,!new_node->list_);
 			num_++;
 			new_node->list_ = this;
 			new_node->prev_ = node->prev_;
@@ -83,8 +83,8 @@ namespace ick{
 			node->prev_ = new_node;
 		}
 		void InsertAfter(Node * node, Node * new_node) {
-			ICK_ASSERT(node->list_ == this);
-			ICK_ASSERT(!new_node->list_);
+			ICK_ASSERT_A(allocator_,node->list_ == this);
+			ICK_ASSERT_A(allocator_,!new_node->list_);
 			num_++;
 			new_node->list_ = this;
 			new_node->prev_ = node;
@@ -101,7 +101,7 @@ namespace ick{
 		allocator_(g_static_allocator),num_(0),first_(NULL),last_(NULL)
 		{
 		}
-		LinkedList(Allocator * allocator):
+		explicit LinkedList(Allocator * allocator):
 		allocator_(allocator),num_(0),first_(NULL),last_(NULL)
 		{
 		}
@@ -132,7 +132,7 @@ namespace ick{
 		}
 		//nodeはdeleteされる
 		void Remove(Node * node){
-			ICK_ASSERT(node->list_ == this);
+			ICK_ASSERT_A(allocator_, node->list_ == this);
 			num_--;
 			if(!node->prev_){
 				first_ = node->next_;
@@ -144,7 +144,7 @@ namespace ick{
 			}else{
 				node->next_->prev_ = node->prev_;
 			}
-			ICK_DELETE_A(allocator(), node);
+			ICK_DELETE_A(allocator_, node);
 		}
 		void Clear(){
 			while(last_){ Remove(last_); }

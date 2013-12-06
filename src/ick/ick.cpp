@@ -10,7 +10,8 @@
 
 namespace ick{
 	bool startedup = false;
-	MallocAllocator mallocAllocator;
+	struct StartupInfo g_startup_info;
+	MallocAllocator g_malloc_allocator;
 	
 	bool Startup(const struct StartupInfo & info){
 		if(startedup){
@@ -18,11 +19,20 @@ namespace ick{
 			return false;
 		}
 		startedup = true;
+		g_startup_info = info;
+		
+		Allocator * allocator;
+		
 		if(info.allocator){
-			g_static_allocator = info.allocator;
+			allocator = info.allocator;
 		}else{
-			g_static_allocator = & mallocAllocator;
+			allocator = & g_malloc_allocator;
 		}
+		
+		if(info.memory_debug){
+			allocator = ICK_NEW1_A(allocator, DebugAllocator, allocator);
+		}
+		g_static_allocator = allocator;
 		return true;
 	}
 	bool IsStartedup() {
@@ -33,6 +43,15 @@ namespace ick{
 			ICK_LOG_ERROR("has not startedup");
 			return false;
 		}
+		
+		struct StartupInfo info = g_startup_info;
+		
+		if(info.memory_debug){
+			DebugAllocator * debug_allocator = (ick::DebugAllocator *)g_static_allocator;
+			Allocator * allocator = debug_allocator->allocator();
+			ICK_DELETE_A(allocator, debug_allocator);
+		}
+		
 		startedup = false;
 		g_static_allocator = NULL;
 		return true;

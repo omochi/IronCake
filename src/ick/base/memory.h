@@ -77,6 +77,6 @@ namespace ick {
 	
 	template <typename T> size_t AlignmentOf() { return AlignmentOf_<T>::value; }
 
-	void Copy(const void * src, void * dest, size_t size);
+	void MemoryCopy(const void * src, void * dest, size_t size);
 	
 }

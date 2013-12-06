@@ -8,7 +8,10 @@
 
 #pragma once
 
+#include "build.h"
 #include "std.h"
+
+#define ICK_ARRAY_SIZE(a) (sizeof(a)/sizeof((a)[0]))
 
 #ifdef ICK_GCC
 #	define ICK_FUNC __PRETTY_FUNCTION__

@@ -11,6 +11,7 @@
 #include "base/platform.h"
 #include "base/compiler.h"
 #include "base/std.h"
+#include "base/build.h"
 #include "base/macro.h"
 #include "base/allocator.h"
 #include "base/memory.h"
@@ -20,10 +21,12 @@
 #include "base/abort.h"
 #include "base/assert.h"
 #include "base/linked_list.h"
+#include "base/array.h"
 
 namespace ick{
 	struct StartupInfo {
 		Allocator * allocator;
+		bool memory_debug;
 	};
 	bool Startup(const struct StartupInfo & info);
 	bool IsStartedup();

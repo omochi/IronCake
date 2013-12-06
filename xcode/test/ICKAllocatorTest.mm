@@ -19,7 +19,7 @@
 - (void)setUp
 {
     [super setUp];
-	struct ick::StartupInfo info = { NULL };
+	struct ick::StartupInfo info = { NULL, false };
 	ick::Startup(info);
 }
 

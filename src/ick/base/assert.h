@@ -12,7 +12,7 @@
 
 #ifdef ICK_DEBUG
 #	define ICK_ASSERT(cond) ICK_ASSERT_A(ick::g_static_allocator, cond)
-#	define ICK_ASSERT_A(allocator, cond) if( ! (cond) ) { ICK_ABORT_A(allocator, "assertion failed (%s) ", #cond, ##__VA_ARGS__); }
+#	define ICK_ASSERT_A(allocator, cond) if( ! (cond) ) { ICK_ABORT_A(allocator, "assertion failed (%s) ", #cond); }
 #else
 #	define ICK_ASSERT(cond)
 #	define ICK_ASSERT_A(allocator, cond)

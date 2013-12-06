@@ -8,6 +8,7 @@
 
 #include "abort.h"
 #include "allocator.h"
+#include "log.h"
 
 namespace ick{
 	void Abort(const char * format, ...) {

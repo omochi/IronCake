@@ -53,10 +53,12 @@ namespace ick{
 		return r;
 	}
 	int vasprintf(Allocator * allocator, char **ret, const char * format, va_list ap){
-		int num = ick::vsnprintf(NULL, 0, format, ap);
+		va_list ap2;
+		va_copy(ap2, ap);
+		int num = ick::vsnprintf(NULL, 0, format, ap2);
+		va_end(ap2);
 		size_t size = num + 1;
 		*ret = ICK_ALLOC_A(allocator, char, size);
-		int r = ick::vsnprintf(*ret, size, format, ap);
-		return r;
+		return ick::vsnprintf(*ret, size, format, ap);
 	}
 }

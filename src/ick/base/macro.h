@@ -8,10 +8,7 @@
 
 #pragma once
 
-#include "platform.h"
-#include "compiler.h"
-
-#include <stdio.h>
+#include "std.h"
 
 #ifdef ICK_GCC
 #	define ICK_FUNC __PRETTY_FUNCTION__

@@ -10,6 +10,7 @@
 
 #include "base/platform.h"
 #include "base/compiler.h"
+#include "base/std.h"
 #include "base/macro.h"
 #include "base/allocator.h"
 #include "base/memory.h"

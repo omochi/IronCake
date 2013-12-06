@@ -8,9 +8,6 @@
 
 #pragma once
 
-#include <stdio.h>
-#include <stdarg.h>
-
 #include "macro.h"
 
 namespace ick {

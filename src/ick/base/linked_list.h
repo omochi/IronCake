@@ -9,6 +9,7 @@
 #pragma once
 
 #include "memory.h"
+#include "allocator.h"
 #include "assert.h"
 
 namespace ick{

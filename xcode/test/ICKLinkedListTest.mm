@@ -6,11 +6,9 @@
 //  Copyright (c) 2013年 omochimetaru. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+#import "ICKTestBase.h"
 
-#include <ick/ick.h>
-
-@interface ICKLinkedListTest : XCTestCase
+@interface ICKLinkedListTest : ICKTestBase
 
 @end
 
@@ -19,13 +17,12 @@
 - (void)setUp
 {
     [super setUp];
-	struct ick::StartupInfo info = { NULL };
-	ick::Startup(info);
+
 }
 
 - (void)tearDown
 {
-	ick::Shutdown();
+
 	[super tearDown];
 }
 

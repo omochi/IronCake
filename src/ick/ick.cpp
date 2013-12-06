@@ -17,6 +17,7 @@ namespace ick{
 			ICK_LOG_ERROR("already startedup");
 			return false;
 		}
+		startedup = true;
 		if(info.allocator){
 			g_static_allocator = info.allocator;
 		}else{
@@ -32,6 +33,7 @@ namespace ick{
 			ICK_LOG_ERROR("has not startedup");
 			return false;
 		}
+		startedup = false;
 		g_static_allocator = NULL;
 		return true;
 	}

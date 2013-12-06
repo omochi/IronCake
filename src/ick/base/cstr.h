@@ -14,10 +14,11 @@ namespace ick{
 	int CStrLen(const char * str);
 	
 	//free
-	char * CStrCopyA(Allocator * allocator, const char * str);
 	char * CStrCopy(const char * str);
+	char * CStrCopyA(Allocator * allocator, const char * str);
 	
-	char * CStrAppendA(Allocator * allocator, const char * str1, const char * str2);
 	char * CStrAppend(const char * str1, const char * str2);
+	char * CStrAppendA(Allocator * allocator, const char * str1, const char * str2);
+
 	
 }

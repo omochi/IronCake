@@ -7,8 +7,7 @@
 //
 
 #include "abort.h"
-
-#include <stdlib.h>
+#include "allocator.h"
 
 namespace ick{
 	void Abort(const char * format, ...) {
@@ -18,7 +17,17 @@ namespace ick{
 		va_end(ap);
 	}
 	void AbortV(const char * format, va_list ap) {
-		LogErrorV(format, ap);
+		AbortVA(g_static_allocator, format, ap);
+	}
+	
+	void AbortA(Allocator * allocator, const char * format, ...){
+		va_list ap;
+		va_start(ap, format);
+		ick::AbortVA(allocator, format, ap);
+		va_end(ap);
+	}
+	void AbortVA(Allocator * allocator, const char * format, va_list ap){
+		ick::LogPrintVA(allocator, LogLevelError, format, ap);
 		::abort();
 	}
 }

@@ -8,8 +8,6 @@
 
 #pragma once
 
-#include <stdio.h>
-#include <stdarg.h>
 #include "macro.h"
 
 // 呼び出し箇所ダンプを挿入するやつ
@@ -28,27 +26,26 @@
 
 // 使う用
 
-#define ICK_LOG_INFO(format, ...) ICK_LOG_CALL0(ick::LogInfo, format, ##__VA_ARGS__)
-#define ICK_LOG_INFO_N(format, ...) ICK_LOG_CALL0(ick::LogInfoN, format, ##__VA_ARGS__)
-#define ICK_LOG_ERROR(format, ...) ICK_LOG_CALL0(ick::LogError, format, ##__VA_ARGS__)
-#define ICK_LOG_ERROR_N(format, ...) ICK_LOG_CALL0(ick::LogErrorN, format, ##__VA_ARGS__)
+#define ICK_LOG_PRINT(level, format, ...) ICK_LOG_CALL1(ick::LogPrint, level, format, ##__VA_ARGS__)
+#define ICK_LOG_PRINT_A(allocator, level, format, ...) ICK_LOG_CALL2(ick::LogPrintA, allocator, level, format, ##__VA_ARGS__)
+
+#define ICK_LOG_INFO(format, ...) ICK_LOG_PRINT(ick::LogLevelInfo, format, ##__VA_ARGS__)
+#define ICK_LOG_INFO_A(allocator, format, ...) ICK_LOG_PRINT_A(allocator, ick::LogLevelInfo, format, ##__VA_ARGS__)
+#define ICK_LOG_ERROR(format, ...) ICK_LOG_PRINT(ick::LogLevelError, format, ##__VA_ARGS__)
+#define ICK_LOG_ERROR_A(allocator, format, ...) ICK_LOG_PRINT_A(allocator, ick::LogLevelError, format, ##__VA_ARGS__)
+
 
 namespace ick{
-	//下請け
-	void LogPut(FILE * stream, const char * str);
-	void LogPrint(FILE * stream, const char * format, ...) ICK_PRINTF_LIKE(2, 3);
-	void LogPrintV(FILE * stream , const char * format, va_list ap) ICK_PRINTF_LIKE(2, 0);
+	class Allocator;
 	
-	void LogInfo(const char * format, ...) ICK_PRINTF_LIKE(1, 2);
-	void LogInfoV(const char * format, va_list ap) ICK_PRINTF_LIKE(1, 0);
+	enum LogLevel {
+		LogLevelInfo,
+		LogLevelError
+	};
 	
-	//N付きは改行無し
-	void LogInfoN(const char * format,...) ICK_PRINTF_LIKE(1, 2);
-	void LogInfoNV(const char * format, va_list ap) ICK_PRINTF_LIKE(1, 0);
-	
-	void LogError(const char * format, ...) ICK_PRINTF_LIKE(1, 2);
-	void LogErrorV(const char * format, va_list ap) ICK_PRINTF_LIKE(1, 0);
-
-	void LogErrorN(const char * format, ...) ICK_PRINTF_LIKE(1, 2);
-	void LogErrorNV(const char * format, va_list ap) ICK_PRINTF_LIKE(1, 0);
+	void LogPut(enum LogLevel level, const char * str);
+	void LogPrint(enum LogLevel level, const char * format, ...) ICK_PRINTF_LIKE(2, 3);
+	void LogPrintV(enum LogLevel level, const char * format, va_list ap) ICK_PRINTF_LIKE(2, 0);
+	void LogPrintA(Allocator * allocator, enum LogLevel level, const char * format, ...) ICK_PRINTF_LIKE(3, 4);
+	void LogPrintVA(Allocator * allocator, enum LogLevel level, const char * format, va_list ap) ICK_PRINTF_LIKE(3, 0);
 }

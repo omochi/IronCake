@@ -22,6 +22,7 @@
 #include "base/assert.h"
 #include "base/linked_list.h"
 #include "base/array.h"
+#include "base/string.h"
 
 namespace ick{
 	struct StartupInfo {

@@ -113,6 +113,9 @@ namespace ick{
 			}
 			num_ = num;
 		}
+		const T * items() const { return items_; }
+		T * items() { return items_; }
+		
 		void Reserve(int num){
 			if(alloc_num_ * 2 >= num){
 				set_alloc_num(alloc_num_ * 2);
@@ -120,46 +123,51 @@ namespace ick{
 				set_alloc_num(num);
 			}
 		}
-		void Splice(int index, int remove_num, const Array<T> & array){
+		void Splice(int index, int remove_num, const T * insert_items, int insert_num){
 			ICK_ASSERT_A(allocator_, 0 <= index && index <= num_);
 			ICK_ASSERT_A(allocator_, 0 <= remove_num);
 			ICK_ASSERT_A(allocator_, index + remove_num <= num_);
-			int num_delta = array.num() - remove_num;
+			ICK_ASSERT_A(allocator_, 0 <= insert_num);
+			int num_delta = insert_num - remove_num;
 			int new_num = num_ + num_delta;
 			if(num_delta > 0){
 				Reserve(new_num);
 				set_num(new_num);
-				for(int i = new_num - 1; i >= index + array.num(); i--){
+				for(int i = new_num - 1; i >= index + insert_num; i--){
 					items_[i] = items_[i-num_delta];
 				}
 			}
-			for(int i = 0; i < array.num_ ; i++){
-				items_[index + i] = array.items_[i];
+			for(int i = 0; i < insert_num ; i++){
+				items_[index + i] = insert_items[i];
 			}
 			if(num_delta < 0){
-				for(int i = index + array.num(); i <= new_num - 1; i++){
+				for(int i = index + insert_num; i <= new_num - 1; i++){
 					items_[i] = items_[i-num_delta];
 				}
 				set_num(new_num);
 			}
 		}
+		
+		void Splice(int index, int remove_num, const Array<T> & insert_array){
+			Splice(index, remove_num, insert_array.items(), insert_array.num());
+		}
 		void Append(const T & a){
-			Splice(num_, 0, ArrayMake1(a));
+			Splice(num_, 0, &a, 1);
 		}
 		void Append(const Array<T> & a){
 			Splice(num_, 0, a);
 		}
 		void Insert(int index, const T & a){
-			Splice(index, 0, ArrayMake1(a));
+			Splice(index, 0, &a, 1);
 		}
 		void Insert(int index, const Array<T> & a){
 			Splice(index, 0, a);
 		}
 		void Remove(int index, int num){
-			Splice(index, num, Array<T>());
+			Splice(index, num, NULL, 0);
 		}
 		void Remove(int index){
-			Splice(index, 1, Array<T>());
+			Splice(index, 1, NULL, 0);
 		}
 	};
 		

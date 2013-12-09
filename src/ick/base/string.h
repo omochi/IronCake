@@ -26,14 +26,21 @@ namespace ick{
 		Allocator * allocator() const;
 		int num() const;
 		const char * cstr() const;
+		char * cstr();
 		
-		char operator [] (int index) const;
+		const char & operator [] (int index) const;
 		char & operator [] (int index);
+		
+		bool operator == (const String & cmp) const;
+		bool operator != (const String & cmp) const { return ! (* this == cmp); }
 				
 		void Clear();
 		
-		void Splice(int index, int remove_num, const String & str);
+		void Splice(int index, int remove_num, const char * insert_chars, int insert_num);
+		void Splice(int index, int remove_num, const String & insert_str);
+		void Append(const char * chars, int num);
 		void Append(const String & str);
+		void Insert(int index, const char * chars, int num);
 		void Insert(int index, const String & str);
 		void Remove(int index, int num);
 		void Remove(int index);

@@ -10,6 +10,8 @@
 		D63ABDC91855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
 		D63ABDCA1855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
 		D63ABDCB1855FCAC004349F8 /* string.h in Headers */ = {isa = PBXBuildFile; fileRef = D63ABDC81855FCAC004349F8 /* string.h */; };
+		D63ABDCD18560F35004349F8 /* ICKStringTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDCC18560F35004349F8 /* ICKStringTest.mm */; };
+		D63ABDCE18560F35004349F8 /* ICKStringTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDCC18560F35004349F8 /* ICKStringTest.mm */; };
 		D667FBBA184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
 		D667FBC8184CE7AC00404D8D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBC7184CE7AC00404D8D /* XCTest.framework */; };
 		D667FBC9184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
@@ -100,6 +102,7 @@
 /* Begin PBXFileReference section */
 		D63ABDC71855FCAC004349F8 /* string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string.cpp; sourceTree = "<group>"; };
 		D63ABDC81855FCAC004349F8 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
+		D63ABDCC18560F35004349F8 /* ICKStringTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ICKStringTest.mm; sourceTree = "<group>"; };
 		D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBB9184CE7AC00404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D667FBC6184CE7AC00404D8D /* IronCakeiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronCakeiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,6 +262,7 @@
 				D667FC92184FA29100404D8D /* ICKTestBase.mm */,
 				D667FC88184E4C9B00404D8D /* ICKLinkedListTest.mm */,
 				D667FCA518523B5300404D8D /* ICKArrayTest.mm */,
+				D63ABDCC18560F35004349F8 /* ICKStringTest.mm */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -470,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D667FC89184E4C9B00404D8D /* ICKLinkedListTest.mm in Sources */,
+				D63ABDCD18560F35004349F8 /* ICKStringTest.mm in Sources */,
 				D667FC2E184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */,
 				D667FC93184FA29100404D8D /* ICKTestBase.mm in Sources */,
 				D667FCA618523B5300404D8D /* ICKArrayTest.mm in Sources */,
@@ -500,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D667FC8A184E4C9B00404D8D /* ICKLinkedListTest.mm in Sources */,
+				D63ABDCE18560F35004349F8 /* ICKStringTest.mm in Sources */,
 				D667FC2F184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */,
 				D667FC94184FA29100404D8D /* ICKTestBase.mm in Sources */,
 				D667FCA718523B5300404D8D /* ICKArrayTest.mm in Sources */,

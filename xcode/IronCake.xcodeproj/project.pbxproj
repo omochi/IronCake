@@ -12,6 +12,7 @@
 		D63ABDCB1855FCAC004349F8 /* string.h in Headers */ = {isa = PBXBuildFile; fileRef = D63ABDC81855FCAC004349F8 /* string.h */; };
 		D63ABDCD18560F35004349F8 /* ICKStringTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDCC18560F35004349F8 /* ICKStringTest.mm */; };
 		D63ABDCE18560F35004349F8 /* ICKStringTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDCC18560F35004349F8 /* ICKStringTest.mm */; };
+		D63ABDD118562119004349F8 /* ICKArrayTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FCA518523B5300404D8D /* ICKArrayTest.mm */; };
 		D667FBBA184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
 		D667FBC8184CE7AC00404D8D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBC7184CE7AC00404D8D /* XCTest.framework */; };
 		D667FBC9184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
@@ -64,7 +65,6 @@
 		D667FCA2185231AE00404D8D /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FCA0185231AE00404D8D /* math.cpp */; };
 		D667FCA3185231AE00404D8D /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FCA0185231AE00404D8D /* math.cpp */; };
 		D667FCA4185231AE00404D8D /* math.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FCA1185231AE00404D8D /* math.h */; };
-		D667FCA618523B5300404D8D /* ICKArrayTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FCA518523B5300404D8D /* ICKArrayTest.mm */; };
 		D667FCA718523B5300404D8D /* ICKArrayTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FCA518523B5300404D8D /* ICKArrayTest.mm */; };
 		D667FCA918523C9600404D8D /* build.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FCA818523C9600404D8D /* build.h */; };
 		D667FCAB1852520600404D8D /* array_decl.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FCAA1852520600404D8D /* array_decl.h */; };
@@ -473,11 +473,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D63ABDD118562119004349F8 /* ICKArrayTest.mm in Sources */,
 				D667FC89184E4C9B00404D8D /* ICKLinkedListTest.mm in Sources */,
 				D63ABDCD18560F35004349F8 /* ICKStringTest.mm in Sources */,
 				D667FC2E184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */,
 				D667FC93184FA29100404D8D /* ICKTestBase.mm in Sources */,
-				D667FCA618523B5300404D8D /* ICKArrayTest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,7 +567,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -603,7 +603,7 @@
 					../src,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -615,6 +615,7 @@
 				HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -626,6 +627,7 @@
 				HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -633,7 +635,6 @@
 		D667FBDD184CE7AC00404D8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -645,6 +646,7 @@
 				);
 				INFOPLIST_FILE = "test/IronCakeTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -652,7 +654,6 @@
 		D667FBDE184CE7AC00404D8D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -660,6 +661,7 @@
 				);
 				INFOPLIST_FILE = "test/IronCakeTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

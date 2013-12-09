@@ -123,6 +123,19 @@ namespace ick{
 				set_alloc_num(num);
 			}
 		}
+		
+		Array<T> Slice(int index, int num){
+			ICK_ASSERT_A(allocator_, 0 <= index && index <= num_);
+			ICK_ASSERT_A(allocator_, 0 <= num);
+			ICK_ASSERT_A(allocator_, index + num <= num_);
+			Array<T> r;
+			r.set_num(num);
+			for(int i = 0; i < num; i++){
+				r[i] = items_[index + i];
+			}
+			return r;
+		}
+		
 		void Splice(int index, int remove_num, const T * insert_items, int insert_num){
 			ICK_ASSERT_A(allocator_, 0 <= index && index <= num_);
 			ICK_ASSERT_A(allocator_, 0 <= remove_num);

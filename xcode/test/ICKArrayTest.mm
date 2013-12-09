@@ -75,6 +75,11 @@
 	
 	a1.Splice(0, 2, ick::ArrayMake3(10,11,12));
 	XCTAssertTrue(a1 == ick::ArrayMake6(10,11,12,8,9,6));
+	
+	XCTAssertTrue(a1.Slice(0, 0) == ick::Array<int>());
+	XCTAssertTrue(a1.Slice(0, 2) == ick::ArrayMake2(10,11));
+	XCTAssertTrue(a1.Slice(1, 3) == ick::ArrayMake3(11,12,8));
+	XCTAssertTrue(a1.Slice(3, 3) == ick::ArrayMake3(8,9,6));
 }
 
 - (void)test4{

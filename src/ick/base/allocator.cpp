@@ -36,31 +36,31 @@ namespace ick{
 	const int32_t DebugAllocator::kFootSignature = 0xDEADBEEF;
 	
 	void * DebugAllocator::BlockGetUserAddress(void * block, size_t alignment){
-		return Align(Offset(block, sizeof(Node *) + sizeof(int32_t)), alignment);
+		return AddressAlign(AddressOffset(block, sizeof(Node *) + sizeof(int32_t)), alignment);
 	}
 	void DebugAllocator::NodeWriteNodeAddress(Node * node){
-		MemoryCopy(&node, Offset(node->value().user, -4-(int)sizeof(Node*)), sizeof(Node*));
+		MemoryCopy(&node, AddressOffset(node->value().user, -4-(int)sizeof(Node*)), sizeof(Node*));
 	}
 	DebugAllocator::Node * DebugAllocator::NodeFromUserAddress(void * user){
 		Node * node;
-		MemoryCopy(Offset(user, -4-(int)sizeof(Node*)), &node, sizeof(Node*));
+		MemoryCopy(AddressOffset(user, -4-(int)sizeof(Node*)), &node, sizeof(Node*));
 		return node;
 	}
 	int32_t DebugAllocator::NodeReadHeadSignature(Node * node){
 		int32_t signature;
-		MemoryCopy(Offset(node->value().user, -4), &signature, 4);
+		MemoryCopy(AddressOffset(node->value().user, -4), &signature, 4);
 		return signature;
 	}
 	void DebugAllocator::NodeWriteHeadSignature(Node * node){
-		MemoryCopy(&kHeadSignature, Offset(node->value().user, -4), 4);
+		MemoryCopy(&kHeadSignature, AddressOffset(node->value().user, -4), 4);
 	}
 	int32_t DebugAllocator::NodeReadFootSignature(Node * node){
 		int32_t signature;
-		MemoryCopy(Offset(node->value().user, (int)node->value().size), &signature, 4);
+		MemoryCopy(AddressOffset(node->value().user, (int)node->value().size), &signature, 4);
 		return signature;
 	}
 	void DebugAllocator::NodeWriteFootSignature(Node * node){
-		MemoryCopy(&kFootSignature, Offset(node->value().user, (int)node->value().size), 4);
+		MemoryCopy(&kFootSignature, AddressOffset(node->value().user, (int)node->value().size), 4);
 	}
 	bool DebugAllocator::NodeCheckSignature(Node * node){
 		return

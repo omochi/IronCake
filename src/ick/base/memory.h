@@ -32,7 +32,7 @@
 	ICK_NEW6_A(ick::g_static_allocator,T,a1,a2,a3,a4,a5,a6)
 #define ICK_NEW7(T,a1,a2,a3,a4,a5,a6,a7) \
 	ICK_NEW7_A(ick::g_static_allocator,T,a1,a2,a3,a4,a5,a6,a7)
-#define ICK_DELETE(obj) ICK_DELETE_A(ick::g_static_allocator,obj)
+#define ICK_DELETE(obj) ICK_DELETE_A(ick::g_static_allocator, obj)
 
 #ifdef ICK_MEMORY_DEBUG
 #	define ICK_ALLOC_A(allocator,T,num) ((T *)(allocator)->AllocateDebug(sizeof(T) * (num),\
@@ -58,13 +58,13 @@
 	new ((void *)ICK_ALLOC_A(allocator,T,1)) T(a1,a2,a3,a4,a5,a6)
 #define ICK_NEW7_A(allocator,T,a1,a2,a3,a4,a5,a6,a7) \
 	new ((void *)ICK_ALLOC_A(allocator,T,1)) T(a1,a2,a3,a4,a5,a6,a7)
-#define ICK_DELETE_A(allocator,obj) { ick::Delete(obj); ICK_FREE_A(allocator,obj); }
+#define ICK_DELETE_A(allocator,obj) { ick::Destroy(obj); ICK_FREE_A(allocator, obj); }
 
 namespace ick {
-	template <typename T> void Delete(T * obj){ obj->~T(); }
+	template <typename T> void Destroy(T * obj){ obj->~T(); }
 	
-	void * Offset(void * address, int offset);
-	void * Align(void * address, size_t alignment);
+	void * AddressOffset(void * address, int offset);
+	void * AddressAlign(void * address, size_t alignment);
 	
 	template <typename T> class AlignmentOf_ {
 		struct helper {

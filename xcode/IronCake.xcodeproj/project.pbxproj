@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D63ABDC91855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
+		D63ABDCA1855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
+		D63ABDCB1855FCAC004349F8 /* string.h in Headers */ = {isa = PBXBuildFile; fileRef = D63ABDC81855FCAC004349F8 /* string.h */; };
 		D667FBBA184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
 		D667FBC8184CE7AC00404D8D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBC7184CE7AC00404D8D /* XCTest.framework */; };
 		D667FBC9184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
@@ -95,6 +98,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D63ABDC71855FCAC004349F8 /* string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string.cpp; sourceTree = "<group>"; };
+		D63ABDC81855FCAC004349F8 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
 		D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBB9184CE7AC00404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D667FBC6184CE7AC00404D8D /* IronCakeiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronCakeiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -285,8 +290,10 @@
 				D667FCAA1852520600404D8D /* array_decl.h */,
 				D667FC971852232300404D8D /* array.h */,
 				D667FC961852232300404D8D /* array.cpp */,
-				D667FCA0185231AE00404D8D /* math.cpp */,
+				D63ABDC81855FCAC004349F8 /* string.h */,
+				D63ABDC71855FCAC004349F8 /* string.cpp */,
 				D667FCA1185231AE00404D8D /* math.h */,
+				D667FCA0185231AE00404D8D /* math.cpp */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -311,6 +318,7 @@
 				D667FC6F184E490C00404D8D /* abort.h in Headers */,
 				D667FCAB1852520600404D8D /* array_decl.h in Headers */,
 				D667FC82184E490C00404D8D /* log.h in Headers */,
+				D63ABDCB1855FCAC004349F8 /* string.h in Headers */,
 				D667FC86184E490C00404D8D /* memory.h in Headers */,
 				D667FCA918523C9600404D8D /* build.h in Headers */,
 				D667FC79184E490C00404D8D /* crt.h in Headers */,
@@ -448,6 +456,7 @@
 				D667FC8D184E512300404D8D /* ick.cpp in Sources */,
 				D667FC77184E490C00404D8D /* crt.cpp in Sources */,
 				D667FC84184E490C00404D8D /* memory.cpp in Sources */,
+				D63ABDC91855FCAC004349F8 /* string.cpp in Sources */,
 				D667FCA2185231AE00404D8D /* math.cpp in Sources */,
 				D667FC6D184E490C00404D8D /* abort.cpp in Sources */,
 				D667FC981852232300404D8D /* array.cpp in Sources */,
@@ -477,6 +486,7 @@
 				D667FC8E184E512300404D8D /* ick.cpp in Sources */,
 				D667FC78184E490C00404D8D /* crt.cpp in Sources */,
 				D667FC85184E490C00404D8D /* memory.cpp in Sources */,
+				D63ABDCA1855FCAC004349F8 /* string.cpp in Sources */,
 				D667FCA3185231AE00404D8D /* math.cpp in Sources */,
 				D667FC6E184E490C00404D8D /* abort.cpp in Sources */,
 				D667FC991852232300404D8D /* array.cpp in Sources */,
@@ -596,6 +606,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/IronCake.dst;
+				HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -606,6 +617,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/IronCake.dst;
+				HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -659,6 +671,7 @@
 					"$(inherited)",
 					ICK_MEMORY_DEBUG,
 				);
+				HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -674,6 +687,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

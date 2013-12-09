@@ -101,6 +101,7 @@ namespace ick{
 		}
 		bool operator != (const Array & cmp) const { return ! (*this == cmp); }
 		
+		Allocator * allocator() const { return allocator_; }
 		int num() const { return num_; }
 		void set_num(int num){
 			if(num > alloc_num_){
@@ -138,10 +139,6 @@ namespace ick{
 			if(num_delta < 0){
 				for(int i = index + array.num(); i <= new_num - 1; i++){
 					items_[i] = items_[i-num_delta];
-				}
-				
-				for(int i = 0; i < array.num_ ; i++){
-					items_[index + i] = array.items_[i];
 				}
 				set_num(new_num);
 			}

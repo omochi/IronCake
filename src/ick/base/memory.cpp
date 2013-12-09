@@ -9,10 +9,10 @@
 #include "memory.h"
 
 namespace ick{
-	void * Offset(void * address, int offset){
+	void * AddressOffset(void * address, int offset){
 		return (void *)((intptr_t)address + offset);
 	}
-	void * Align(void * address, size_t alignment){
+	void * AddressAlign(void * address, size_t alignment){
 		uintptr_t x = (uintptr_t)address;
 		uintptr_t a = (uintptr_t)alignment;
 		return (void *)( (x+a-1) & ~(a-1) );

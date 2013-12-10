@@ -17,24 +17,26 @@ namespace ick{
 	chars_(allocator){
 		Clear();
 	}
-	String::String(const char * cstr):
-	chars_(g_static_allocator){
-		int n = CStrLen(cstr);
-		chars_.set_num(n+1);
-		for(int i = 0; i < n; i++){ chars_[i] = cstr[i]; }
-		chars_[n] = '\0';
+	String::String(int num):
+	chars_(){
+		set_num(num);
 	}
-	String::String(const String & copy){
-		*this = copy;
+	String::String(const char * cstr):
+	chars_(){
+		Set(cstr, CStrLen(cstr));
+	}
+	String::String(const char * chars, int num):
+	chars_(){
+		Set(chars, num);
+	}
+	String::String(const String & value){
+		Set(value);
 	}
 	String::~String(){
 		
 	}
-	String & String::operator = (const String & copy){
-		int n = copy.num();
-		chars_.set_num(n+1);
-		for(int i = 0; i < n; i++){ chars_[i] = copy[i]; }
-		chars_[n] = '\0';
+	String & String::operator = (const String & value){
+		Set(value);
 		return * this;
 	}
 	
@@ -44,6 +46,10 @@ namespace ick{
 	
 	int String::num() const {
 		return chars_.num() - 1;
+	}
+	void String::set_num(int num){
+		chars_.set_num(num + 1);
+		chars_[num] = '\0';
 	}
 	
 	const char * String::cstr() const{
@@ -68,10 +74,21 @@ namespace ick{
 		return true;
 	}
 	
-	void String::Clear(){
-		chars_.set_num(1);
-		chars_[0] = '\0';
+	String String::Slice(int index, int num) const{
+		String r(num);
+		r.Splice(0, num, &chars_[index], num);
+		return r;
 	}
+	
+	void String::Clear(){
+		set_num(0);
+	}
+	
+	void String::Set(const char * chars, int num){
+		set_num(num);
+		Splice(0, num, chars, num);
+	}
+	void String::Set(const String & value){ Set(&value.chars_[0], value.num()); }
 	
 	void String::Splice(int index, int remove_num, const char * insert_chars, int insert_num){
 		int num = this->num();
@@ -101,6 +118,33 @@ namespace ick{
 	}
 	void String::Remove(int index){
 		Splice(index, 1, NULL, 0);
+	}
+	
+	String String::Format(const char * format, ...){
+		va_list ap;
+		va_start(ap, format);
+		String r = FormatV(format, ap);
+		va_end(ap);
+		return r;
+	}
+	String String::FormatV(const char * format, va_list ap){
+		return FormatAV(g_static_allocator, format, ap);
+	}
+	String String::FormatA(Allocator * allocator, const char * format, ...){
+		va_list ap;
+		va_start(ap, format);
+		String r = FormatAV(allocator, format, ap);
+		va_end(ap);
+		return r;
+	}
+	String String::FormatAV(Allocator * allocator, const char *format, va_list ap){
+		char * cstr;
+		int st = ick::vasprintf(allocator, &cstr, format, ap);
+		if(st < 0){ ICK_ABORT_A(allocator, "vasprintf failed"); }
+		String s = String(allocator);
+		s.Set(cstr, CStrLen(cstr));
+		ICK_FREE_A(allocator, cstr);
+		return s;
 	}
 }
 

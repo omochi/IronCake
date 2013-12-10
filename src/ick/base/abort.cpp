@@ -28,7 +28,7 @@ namespace ick{
 		va_end(ap);
 	}
 	void AbortVA(Allocator * allocator, const char * format, va_list ap){
-		ick::LogPrintVA(allocator, LogLevelError, format, ap);
+		ick::LogPrintAV(allocator, LogLevelError, format, ap);
 		::abort();
 	}
 }

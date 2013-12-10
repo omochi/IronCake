@@ -47,5 +47,5 @@ namespace ick{
 	void LogPrint(enum LogLevel level, const char * format, ...) ICK_PRINTF_LIKE(2, 3);
 	void LogPrintV(enum LogLevel level, const char * format, va_list ap) ICK_PRINTF_LIKE(2, 0);
 	void LogPrintA(Allocator * allocator, enum LogLevel level, const char * format, ...) ICK_PRINTF_LIKE(3, 4);
-	void LogPrintVA(Allocator * allocator, enum LogLevel level, const char * format, va_list ap) ICK_PRINTF_LIKE(3, 0);
+	void LogPrintAV(Allocator * allocator, enum LogLevel level, const char * format, va_list ap) ICK_PRINTF_LIKE(3, 0);
 }

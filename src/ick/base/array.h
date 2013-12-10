@@ -67,20 +67,18 @@ namespace ick{
 		}
 		Array(T * items, int num):
 		allocator_(g_static_allocator),items_(NULL),alloc_num_(0),num_(0){
-			set_num(num);
-			for(int i = 0; i < num; i++){ items_[i] = items[i]; }
+			Set(items, num);
 		}
-		Array(const Array & copy):
+		Array(const Array & value):
 		allocator_(g_static_allocator),items_(NULL),alloc_num_(0),num_(0){
-			*this = copy;
+			Set(value);
 		}
 		~Array(){
 			set_alloc_num(0);
 		}
 		
-		Array<T> & operator = (const Array & copy){
-			set_num(copy.num_);
-			for(int i = 0; i < num_; i++){ items_[i] = copy.items_[i]; }
+		Array<T> & operator = (const Array & value){
+			Set(value);
 			return * this;
 		}
 		
@@ -116,6 +114,15 @@ namespace ick{
 		const T * items() const { return items_; }
 		T * items() { return items_; }
 		
+		Array<T> Slice(int index, int num) const {
+			ICK_ASSERT_A(allocator_, 0 <= index && index <= num_);
+			ICK_ASSERT_A(allocator_, 0 <= num);
+			ICK_ASSERT_A(allocator_, index + num <= num_);
+			Array<T> r(num);
+			r.Splice(0, num, &items_[index], num);
+			return r;
+		}
+		
 		void Reserve(int num){
 			if(alloc_num_ * 2 >= num){
 				set_alloc_num(alloc_num_ * 2);
@@ -124,18 +131,15 @@ namespace ick{
 			}
 		}
 		
-		Array<T> Slice(int index, int num){
-			ICK_ASSERT_A(allocator_, 0 <= index && index <= num_);
-			ICK_ASSERT_A(allocator_, 0 <= num);
-			ICK_ASSERT_A(allocator_, index + num <= num_);
-			Array<T> r;
-			r.set_num(num);
-			for(int i = 0; i < num; i++){
-				r[i] = items_[index + i];
-			}
-			return r;
+		void Clear(){
+			set_num(0);
 		}
-		
+		void Set(const T * items, int num){
+			set_num(num);
+			Splice(0, num, items, num);
+		}
+		void Set(const Array<T> & value){ Set(value.items_, value.num_); }
+
 		void Splice(int index, int remove_num, const T * insert_items, int insert_num){
 			ICK_ASSERT_A(allocator_, 0 <= index && index <= num_);
 			ICK_ASSERT_A(allocator_, 0 <= remove_num);

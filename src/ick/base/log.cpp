@@ -35,15 +35,15 @@ namespace ick{
 		va_end(ap);
 	}
 	void LogPrintV(enum LogLevel level, const char * format, va_list ap){
-		LogPrintVA(g_static_allocator, level, format, ap);
+		LogPrintAV(g_static_allocator, level, format, ap);
 	}
 	void LogPrintA(Allocator * allocator, enum LogLevel level, const char * format, ...){
 		va_list ap;
 		va_start(ap, format);
-		LogPrintVA(allocator, level, format, ap);
+		LogPrintAV(allocator, level, format, ap);
 		va_end(ap);
 	}
-	void LogPrintVA(Allocator * allocator, enum LogLevel level, const char * format, va_list ap){
+	void LogPrintAV(Allocator * allocator, enum LogLevel level, const char * format, va_list ap){
 		char * str;
 		int status = ick::vasprintf(allocator, &str, format, ap);
 		if(status < 0){ ::abort(); }

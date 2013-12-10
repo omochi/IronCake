@@ -35,10 +35,12 @@
 #define ICK_DELETE(obj) ICK_DELETE_A(ick::g_static_allocator, obj)
 
 #ifdef ICK_MEMORY_DEBUG
-#	define ICK_ALLOC_A(allocator,T,num) ((T *)(allocator)->AllocateDebug(sizeof(T) * (num),\
-		ick::AlignmentOf<T>(),"%s:%s:%d",__FILE__,ICK_FUNC,__LINE__))
+#	define ICK_ALLOC_A(allocator,T,num) ((T *)(allocator)->AllocateDebug(\
+		sizeof(T) * static_cast<size_t>(num),ick::AlignmentOf<T>(),\
+		"%s:%s:%d",__FILE__,ICK_FUNC,__LINE__))
 #else
-#	define ICK_ALLOC_A(allocator,T,num) ((T *)(allocator)->Allocate(sizeof(T) * (num),ick::AlignmentOf<T>()))
+#	define ICK_ALLOC_A(allocator,T,num) ((T *)(allocator)->Allocate(\
+		sizeof(T) * static_cast<size_t>(num),ick::AlignmentOf<T>()))
 #endif
 
 #define ICK_FREE_A(allocator,memory) (allocator)->Free(memory)

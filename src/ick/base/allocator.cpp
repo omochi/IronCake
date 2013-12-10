@@ -19,6 +19,7 @@ namespace ick{
 	Allocator::~Allocator(){
 	}
 	void * Allocator::AllocateDebug(size_t size, size_t alignment, const char * format,...){
+		(void)format;
 		return Allocate(size, alignment);
 	}
 		
@@ -26,14 +27,15 @@ namespace ick{
 		
 	}
 	void * MallocAllocator::Allocate(size_t size, size_t alignment){
+		(void)alignment;
 		return malloc(size);
 	}
 	void MallocAllocator::Free(void * memory){
 		free(memory);
 	}
 
-	const int32_t DebugAllocator::kHeadSignature = 0xBADDCAFE;
-	const int32_t DebugAllocator::kFootSignature = 0xDEADBEEF;
+	const uint32_t DebugAllocator::kHeadSignature = 0xBADDCAFE;
+	const uint32_t DebugAllocator::kFootSignature = 0xDEADBEEF;
 	
 	void * DebugAllocator::BlockGetUserAddress(void * block, size_t alignment){
 		return AddressAlign(AddressOffset(block, sizeof(Node *) + sizeof(int32_t)), alignment);
@@ -46,16 +48,16 @@ namespace ick{
 		MemoryCopy(AddressOffset(user, -4-(int)sizeof(Node*)), &node, sizeof(Node*));
 		return node;
 	}
-	int32_t DebugAllocator::NodeReadHeadSignature(Node * node){
-		int32_t signature;
+	uint32_t DebugAllocator::NodeReadHeadSignature(Node * node){
+		uint32_t signature;
 		MemoryCopy(AddressOffset(node->value().user, -4), &signature, 4);
 		return signature;
 	}
 	void DebugAllocator::NodeWriteHeadSignature(Node * node){
 		MemoryCopy(&kHeadSignature, AddressOffset(node->value().user, -4), 4);
 	}
-	int32_t DebugAllocator::NodeReadFootSignature(Node * node){
-		int32_t signature;
+	uint32_t DebugAllocator::NodeReadFootSignature(Node * node){
+		uint32_t signature;
 		MemoryCopy(AddressOffset(node->value().user, (int)node->value().size), &signature, 4);
 		return signature;
 	}

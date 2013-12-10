@@ -57,7 +57,7 @@ namespace ick{
 		va_copy(ap2, ap);
 		int num = ick::vsnprintf(NULL, 0, format, ap2);
 		va_end(ap2);
-		size_t size = num + 1;
+		size_t size = static_cast<size_t>(num + 1);
 		*ret = ICK_ALLOC_A(allocator, char, size);
 		return ick::vsnprintf(*ret, size, format, ap);
 	}

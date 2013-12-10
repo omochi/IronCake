@@ -56,16 +56,16 @@ namespace ick{
 		Allocator * allocator() const { return allocator_; }
 		List * info_list() const { return info_list_; }
 		
-		static const int32_t kHeadSignature;
-		static const int32_t kFootSignature;
+		static const uint32_t kHeadSignature;
+		static const uint32_t kFootSignature;
 
 		static void * BlockGetUserAddress(void * block, size_t alignment);
 		
 		static void NodeWriteNodeAddress(Node * node);
 		static Node * NodeFromUserAddress(void * user);
-		static int32_t NodeReadHeadSignature(Node * node);
+		static uint32_t NodeReadHeadSignature(Node * node);
 		static void NodeWriteHeadSignature(Node * node);
-		static int32_t NodeReadFootSignature(Node * node);
+		static uint32_t NodeReadFootSignature(Node * node);
 		static void NodeWriteFootSignature(Node * node);
 		static bool NodeCheckSignature(Node * node);
 

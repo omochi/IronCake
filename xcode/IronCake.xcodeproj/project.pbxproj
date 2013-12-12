@@ -16,6 +16,9 @@
 		D60284AE1858CD6B00CE5EC5 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D60284AD1858CD6B00CE5EC5 /* main.mm */; };
 		D60284B41858CD6B00CE5EC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D60284B31858CD6B00CE5EC5 /* Images.xcassets */; };
 		D60284CD1858CE7900CE5EC5 /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D60284971858CBE200CE5EC5 /* libgtest.a */; };
+		D60284D0185A108F00CE5EC5 /* ICKTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D60284CF185A108F00CE5EC5 /* ICKTestAppDelegate.m */; };
+		D60284D4185A119300CE5EC5 /* ICKTestAppMainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D60284D2185A119300CE5EC5 /* ICKTestAppMainViewController.mm */; };
+		D60284D5185A119300CE5EC5 /* ICKTestAppMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60284D3185A119300CE5EC5 /* ICKTestAppMainViewController.xib */; };
 		D6079B5E185766D900DFDEAA /* ICKTestBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC92184FA29100404D8D /* ICKTestBase.mm */; };
 		D6079B5F185766E500DFDEAA /* ICKStringTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDCC18560F35004349F8 /* ICKStringTest.mm */; };
 		D63ABDC91855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
@@ -117,6 +120,11 @@
 		D60284AB1858CD6B00CE5EC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D60284AD1858CD6B00CE5EC5 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		D60284B31858CD6B00CE5EC5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D60284CE185A108F00CE5EC5 /* ICKTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICKTestAppDelegate.h; sourceTree = "<group>"; };
+		D60284CF185A108F00CE5EC5 /* ICKTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICKTestAppDelegate.m; sourceTree = "<group>"; };
+		D60284D1185A119300CE5EC5 /* ICKTestAppMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICKTestAppMainViewController.h; sourceTree = "<group>"; };
+		D60284D2185A119300CE5EC5 /* ICKTestAppMainViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ICKTestAppMainViewController.mm; sourceTree = "<group>"; };
+		D60284D3185A119300CE5EC5 /* ICKTestAppMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ICKTestAppMainViewController.xib; sourceTree = "<group>"; };
 		D6079B7E1858C01600DFDEAA /* MacTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D63ABDC71855FCAC004349F8 /* string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string.cpp; sourceTree = "<group>"; };
 		D63ABDC81855FCAC004349F8 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
@@ -241,6 +249,11 @@
 			children = (
 				D60284B31858CD6B00CE5EC5 /* Images.xcassets */,
 				D60284A81858CD6B00CE5EC5 /* Supporting Files */,
+				D60284CE185A108F00CE5EC5 /* ICKTestAppDelegate.h */,
+				D60284CF185A108F00CE5EC5 /* ICKTestAppDelegate.m */,
+				D60284D1185A119300CE5EC5 /* ICKTestAppMainViewController.h */,
+				D60284D2185A119300CE5EC5 /* ICKTestAppMainViewController.mm */,
+				D60284D3185A119300CE5EC5 /* ICKTestAppMainViewController.xib */,
 			);
 			path = iOSTest;
 			sourceTree = "<group>";
@@ -550,6 +563,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60284D5185A119300CE5EC5 /* ICKTestAppMainViewController.xib in Resources */,
 				D60284AC1858CD6B00CE5EC5 /* InfoPlist.strings in Resources */,
 				D60284B41858CD6B00CE5EC5 /* Images.xcassets in Resources */,
 			);
@@ -576,6 +590,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60284D4185A119300CE5EC5 /* ICKTestAppMainViewController.mm in Sources */,
+				D60284D0185A108F00CE5EC5 /* ICKTestAppDelegate.m in Sources */,
 				D60284AE1858CD6B00CE5EC5 /* main.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,4 +1,4 @@
-//
+﻿//
 //  type.h
 //  IronCake
 //
@@ -12,6 +12,7 @@
 #include "compiler.h"
 
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stddef.h>

@@ -1,4 +1,4 @@
-//
+﻿//
 //  ICKLinkedList.h
 //  IronCake
 //

@@ -1,4 +1,4 @@
-//
+﻿//
 //  cstr.h
 //  IronCake
 //

@@ -1,4 +1,4 @@
-//
+﻿//
 //  build.h
 //  IronCake
 //
@@ -10,6 +10,6 @@
 
 #include "platform.h"
 
-#if defined DEBUG
+#if defined DEBUG || defined _DEBUG
 #	define ICK_DEBUG
 #endif

@@ -1,4 +1,4 @@
-//
+﻿//
 //  crt.cpp
 //  IronCake
 //
@@ -19,7 +19,7 @@ namespace ick{
 		return r;
 	}
 	int vprintf(const char * format, va_list ap){
-		return ::vprintf(format, ap);
+		return ick::fprintf(stdout, format, ap);
 	}
 	
 	int fprintf(FILE * stream, const char * format, ...){
@@ -30,7 +30,11 @@ namespace ick{
 		return r;
 	}
 	int vfprintf(FILE * stream, const char * format, va_list ap){
+#ifdef ICK_WINDOWS
+		return ::vfprintf_s(stream, format, ap);
+#else
 		return ::vfprintf(stream, format, ap);
+#endif
 	}
 	
 	//下請けに
@@ -42,7 +46,12 @@ namespace ick{
 		return r;
 	}
 	int vsnprintf(char * str, size_t size, const char * format, va_list ap){
+#ifdef ICK_WINDOWS
+		if (!str){ return ::_vscprintf(format, ap); }
+		return ::vsnprintf_s(str, size, _TRUNCATE, format, ap);
+#else
 		return ::vsnprintf(str, size, format, ap);
+#endif
 	}
 	
 	int asprintf(Allocator * allocator, char **ret, const char * format, ...){

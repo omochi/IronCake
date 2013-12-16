@@ -1,4 +1,4 @@
-//
+﻿//
 //  crt.h
 //  IronCake
 //
@@ -12,7 +12,7 @@
 
 namespace ick {
 	class Allocator;
-	
+
 	int printf(const char * format, ...) ICK_PRINTF_LIKE(1, 2);
 	int vprintf(const char * format, va_list ap) ICK_PRINTF_LIKE(1, 0);
 	

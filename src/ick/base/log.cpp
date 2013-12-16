@@ -1,4 +1,4 @@
-//
+﻿//
 //  log.cpp
 //  IronCake
 //

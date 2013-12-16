@@ -1,4 +1,4 @@
-//
+﻿//
 //  array.cpp
 //  IronCake
 //
@@ -7,3 +7,5 @@
 //
 
 #include "array.h"
+
+ICK_NO_EMPTY_DUMMY

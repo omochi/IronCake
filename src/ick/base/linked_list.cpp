@@ -1,4 +1,4 @@
-//
+﻿//
 //  ICKLinkedList.cpp
 //  IronCake
 //
@@ -7,3 +7,5 @@
 //
 
 #include "linked_list.h"
+
+ICK_NO_EMPTY_DUMMY

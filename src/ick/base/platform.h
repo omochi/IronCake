@@ -1,4 +1,4 @@
-//
+﻿//
 //  ICKEnv.h
 //  IronCake
 //
@@ -16,5 +16,9 @@
 #	ifdef TARGET_OS_MAC
 #		define ICK_MAC
 #	endif
+#endif
+
+#ifdef _WIN32
+#	define ICK_WINDOWS
 #endif
 

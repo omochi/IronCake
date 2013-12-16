@@ -1,4 +1,4 @@
-//
+﻿//
 //  array_decl.h
 //  IronCake
 //

@@ -1,4 +1,4 @@
-//
+﻿//
 //  macro.h
 //  IronCake
 //

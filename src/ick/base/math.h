@@ -1,4 +1,4 @@
-//
+﻿//
 //  math.h
 //  IronCake
 //

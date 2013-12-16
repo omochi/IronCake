@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include <string.h>
 #include <new>
 
 #include "macro.h"

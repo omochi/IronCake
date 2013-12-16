@@ -8,6 +8,10 @@
 
 #include "allocator.h"
 
+#ifdef ICK_WINDOWS
+#	include <malloc.h>
+#endif
+
 #include "memory.h"
 #include "crt.h"
 #include "log.h"
@@ -27,11 +31,21 @@ namespace ick{
 		
 	}
 	void * MallocAllocator::Allocate(size_t size, size_t alignment){
-		(void)alignment;
-		return malloc(size);
+#ifdef ICK_WINDOWS
+		return _aligned_malloc(size, alignment);
+#else
+		void * memory;
+		if(alignment < sizeof(void *)){ alignment = sizeof(void *); }
+		if (posix_memalign(&memory, alignment, size)){ abort(); }
+		return memory;
+#endif
 	}
 	void MallocAllocator::Free(void * memory){
+#ifdef ICK_WINDOWS
+		_aligned_free(memory);
+#else
 		free(memory);
+#endif
 	}
 
 	const uint32_t DebugAllocator::kHeadSignature = 0xBADDCAFE;

@@ -8,6 +8,8 @@
 
 #include "memory.h"
 
+#include <string.h>
+
 namespace ick{
 	void * AddressOffset(void * address, int offset){
 		return (void *)((intptr_t)address + offset);

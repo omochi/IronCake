@@ -1,7 +1,6 @@
-// IronCakeTest.cpp : コンソール アプリケーションのエントリ ポイントを定義します。
-//
-
-#include "stdafx.h"
+#include <SDKDDKVer.h>
+#include <stdio.h>
+#include <tchar.h>
 
 #include <gtest/gtest.h>
 

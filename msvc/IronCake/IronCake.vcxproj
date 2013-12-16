@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\ick\base\abort.cpp" />
+    <ClCompile Include="..\..\src\ick\base\allocator.cpp" />
+    <ClCompile Include="..\..\src\ick\base\array.cpp" />
+    <ClCompile Include="..\..\src\ick\base\assert.cpp" />
+    <ClCompile Include="..\..\src\ick\base\crt.cpp" />
+    <ClCompile Include="..\..\src\ick\base\cstr.cpp" />
+    <ClCompile Include="..\..\src\ick\base\linked_list.cpp" />
+    <ClCompile Include="..\..\src\ick\base\log.cpp" />
+    <ClCompile Include="..\..\src\ick\base\math.cpp" />
+    <ClCompile Include="..\..\src\ick\base\memory.cpp" />
+    <ClCompile Include="..\..\src\ick\base\string.cpp" />
+    <ClCompile Include="..\..\src\ick\ick.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\ick\base\abort.h" />
+    <ClInclude Include="..\..\src\ick\base\allocator.h" />
+    <ClInclude Include="..\..\src\ick\base\array.h" />
+    <ClInclude Include="..\..\src\ick\base\array_decl.h" />
+    <ClInclude Include="..\..\src\ick\base\assert.h" />
+    <ClInclude Include="..\..\src\ick\base\build.h" />
+    <ClInclude Include="..\..\src\ick\base\compiler.h" />
+    <ClInclude Include="..\..\src\ick\base\crt.h" />
+    <ClInclude Include="..\..\src\ick\base\cstr.h" />
+    <ClInclude Include="..\..\src\ick\base\linked_list.h" />
+    <ClInclude Include="..\..\src\ick\base\log.h" />
+    <ClInclude Include="..\..\src\ick\base\macro.h" />
+    <ClInclude Include="..\..\src\ick\base\math.h" />
+    <ClInclude Include="..\..\src\ick\base\memory.h" />
+    <ClInclude Include="..\..\src\ick\base\platform.h" />
+    <ClInclude Include="..\..\src\ick\base\std.h" />
+    <ClInclude Include="..\..\src\ick\base\string.h" />
+    <ClInclude Include="..\..\src\ick\ick.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{041F6C9E-A855-4A8F-829F-7E776271DC3F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>IronCake</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

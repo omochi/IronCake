@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ick">
+      <UniqueIdentifier>{224caf43-e773-49a4-a3bd-7d2e8039539f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ick\base">
+      <UniqueIdentifier>{f6286743-8feb-4e55-8317-1c38365bc0f5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\ick\ick.cpp">
+      <Filter>ick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\abort.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\allocator.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\array.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\assert.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\crt.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\cstr.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\linked_list.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\log.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\math.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\memory.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\string.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\ick\ick.h">
+      <Filter>ick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\abort.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\allocator.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\array.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\array_decl.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\assert.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\build.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\compiler.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\crt.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\cstr.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\linked_list.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\log.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\macro.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\math.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\memory.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\platform.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\std.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\string.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -25,7 +25,7 @@ namespace ick{
 		return ret_str;
 	}
 	char * CStrCopy(const char * str){
-		return CStrCopyA(g_static_allocator, str);
+		return CStrCopyA(static_allocator(), str);
 	}
 	char * CStrAppendA(Allocator * allocator, const char * str1, const char * str2){
 		int len1 = CStrLen(str1);
@@ -37,6 +37,6 @@ namespace ick{
 		return ret_str;
 	}
 	char * CStrAppend(const char * str1, const char * str2){
-		return CStrAppendA(g_static_allocator, str1, str2);
+		return CStrAppendA(static_allocator(), str1, str2);
 	}
 }

@@ -35,7 +35,7 @@ namespace ick{
 		va_end(ap);
 	}
 	void LogPrintV(enum LogLevel level, const char * format, va_list ap){
-		LogPrintAV(g_static_allocator, level, format, ap);
+		LogPrintAV(static_allocator(), level, format, ap);
 	}
 	void LogPrintA(Allocator * allocator, enum LogLevel level, const char * format, ...){
 		va_list ap;

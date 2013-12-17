@@ -21,13 +21,13 @@ namespace ick{
 		g_startup_info = info;
 			
 		if(info.allocator){
-			g_static_allocator = info.allocator;
+			set_static_allocator(info.allocator);
 		}else{
-			g_static_allocator = new MallocAllocator();
+			set_static_allocator(new MallocAllocator());
 		}
 		
 		if(info.memory_debug){
-			g_static_allocator = ICK_NEW1(DebugAllocator, g_static_allocator);
+			set_static_allocator(ICK_NEW1(DebugAllocator, static_allocator()));
 		}
 		return true;
 	}
@@ -43,17 +43,17 @@ namespace ick{
 		struct StartupInfo info = g_startup_info;
 		
 		if(info.memory_debug){
-			DebugAllocator * debug_allocator = (ick::DebugAllocator *)g_static_allocator;
-			g_static_allocator = debug_allocator->allocator();
+			DebugAllocator * debug_allocator = static_debug_allocator();
+			set_static_allocator(debug_allocator->allocator());
 			ICK_DELETE(debug_allocator);
 		}
 
 		if(!info.allocator){
-			delete g_static_allocator;
+			delete static_allocator();
 		}
 		
 		startedup = false;
-		g_static_allocator = NULL;
+		set_static_allocator(NULL);
 		return true;
 	}
 }

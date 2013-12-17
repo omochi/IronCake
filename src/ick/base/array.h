@@ -56,17 +56,17 @@ namespace ick{
 		}
 	public:
 		Array():
-		allocator_(g_static_allocator),items_(NULL),alloc_num_(0),num_(0){
+		allocator_(static_allocator()), items_(NULL), alloc_num_(0), num_(0){
 		}
 		explicit Array(Allocator * allocator):
 		allocator_(allocator),items_(NULL),alloc_num_(0),num_(0){
 		}
 		explicit Array(int num):
-		allocator_(g_static_allocator),items_(NULL),alloc_num_(0),num_(0){
+		allocator_(static_allocator()), items_(NULL), alloc_num_(0), num_(0){
 			set_num(num);
 		}
 		Array(T * items, int num):
-		allocator_(g_static_allocator),items_(NULL),alloc_num_(0),num_(0){
+		allocator_(static_allocator()), items_(NULL), alloc_num_(0), num_(0){
 			Set(items, num);
 		}
 		Array(const Array & value):

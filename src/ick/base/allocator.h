@@ -13,7 +13,8 @@
 namespace ick{
 	class Allocator;
 
-	extern Allocator * g_static_allocator;
+	Allocator * static_allocator();
+	void set_static_allocator(Allocator * allocator);
 	
 	class Allocator {
 	public:
@@ -82,6 +83,6 @@ namespace ick{
 	};
 	
 	//キャスト
-	DebugAllocator * StaticDebugAllocator();
+	DebugAllocator * static_debug_allocator();
 	
 }

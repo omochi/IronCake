@@ -18,7 +18,7 @@ namespace ick{
 		va_end(ap);
 	}
 	void AbortV(const char * format, va_list ap) {
-		AbortVA(g_static_allocator, format, ap);
+		AbortVA(static_allocator(), format, ap);
 	}
 	
 	void AbortA(Allocator * allocator, const char * format, ...){

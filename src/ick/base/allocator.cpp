@@ -19,7 +19,14 @@
 
 namespace ick{
 	Allocator * g_static_allocator = NULL;
-	
+
+	Allocator * static_allocator(){
+		return g_static_allocator;
+	}
+	void set_static_allocator(Allocator * allocator){
+		g_static_allocator = allocator;
+	}
+
 	Allocator::~Allocator(){
 	}
 	void * Allocator::AllocateDebug(size_t size, size_t alignment, const char * format,...){
@@ -147,7 +154,7 @@ namespace ick{
 		}
 	}
 	
-	DebugAllocator * StaticDebugAllocator(){
+	DebugAllocator * static_debug_allocator(){
 		return static_cast<DebugAllocator *>(g_static_allocator);
 	}
 }

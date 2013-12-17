@@ -128,7 +128,7 @@ namespace ick{
 		return r;
 	}
 	String String::FormatV(const char * format, va_list ap){
-		return FormatAV(g_static_allocator, format, ap);
+		return FormatAV(static_allocator(), format, ap);
 	}
 	String String::FormatA(Allocator * allocator, const char * format, ...){
 		va_list ap;

@@ -27,8 +27,6 @@ namespace ick{
 		g_static_allocator = allocator;
 	}
 
-	Allocator::~Allocator(){
-	}
 	void * Allocator::AllocateDebug(size_t size, size_t alignment, const char * format,...){
 		(void)format;
 		return Allocate(size, alignment);

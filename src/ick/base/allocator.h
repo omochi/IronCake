@@ -18,7 +18,7 @@ namespace ick{
 	
 	class Allocator {
 	public:
-		virtual ~Allocator();
+		virtual ~Allocator(){};
 		virtual void * Allocate(size_t size, size_t alignment) = 0;
 		virtual void * AllocateDebug(size_t size, size_t alignment, const char * format, ...) ICK_PRINTF_LIKE(4, 5);
 		virtual void Free(void * memory) = 0;

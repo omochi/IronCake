@@ -23,6 +23,10 @@
 #include "base/linked_list.h"
 #include "base/array.h"
 #include "base/string.h"
+#include "base/error.h"
+
+#include "thread/runnable.h"
+#include "thread/thread.h"
 
 namespace ick{
 	struct StartupInfo {

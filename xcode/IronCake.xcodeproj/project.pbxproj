@@ -30,6 +30,15 @@
 		D602850E1860BAEB00CE5EC5 /* TestiOS-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D602850B1860BAEB00CE5EC5 /* TestiOS-info.plist */; };
 		D60285101860BAF300CE5EC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D602850F1860BAF300CE5EC5 /* Images.xcassets */; };
 		D60285121860BBB400CE5EC5 /* libgtest-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D60285111860BBB400CE5EC5 /* libgtest-ios.a */; };
+		D60285161860C22C00CE5EC5 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285141860C22C00CE5EC5 /* thread.cpp */; };
+		D60285171860C22C00CE5EC5 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285141860C22C00CE5EC5 /* thread.cpp */; };
+		D60285181860C22C00CE5EC5 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = D60285151860C22C00CE5EC5 /* thread.h */; };
+		D602851A1860C75600CE5EC5 /* runnable.h in Headers */ = {isa = PBXBuildFile; fileRef = D60285191860C75600CE5EC5 /* runnable.h */; };
+		D602851D1860C9F500CE5EC5 /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D602851B1860C9F500CE5EC5 /* error.cpp */; };
+		D602851E1860C9F500CE5EC5 /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D602851B1860C9F500CE5EC5 /* error.cpp */; };
+		D602851F1860C9F500CE5EC5 /* error.h in Headers */ = {isa = PBXBuildFile; fileRef = D602851C1860C9F500CE5EC5 /* error.h */; };
+		D60285361860D4D500CE5EC5 /* thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285331860D4D100CE5EC5 /* thread_test.cpp */; };
+		D60285371860D4D500CE5EC5 /* thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285331860D4D100CE5EC5 /* thread_test.cpp */; };
 		D63ABDC91855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
 		D63ABDCA1855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
 		D63ABDCB1855FCAC004349F8 /* string.h in Headers */ = {isa = PBXBuildFile; fileRef = D63ABDC81855FCAC004349F8 /* string.h */; };
@@ -126,6 +135,12 @@
 		D602850B1860BAEB00CE5EC5 /* TestiOS-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TestiOS-info.plist"; sourceTree = "<group>"; };
 		D602850F1860BAF300CE5EC5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D60285111860BBB400CE5EC5 /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
+		D60285141860C22C00CE5EC5 /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
+		D60285151860C22C00CE5EC5 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
+		D60285191860C75600CE5EC5 /* runnable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runnable.h; sourceTree = "<group>"; };
+		D602851B1860C9F500CE5EC5 /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error.cpp; sourceTree = "<group>"; };
+		D602851C1860C9F500CE5EC5 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
+		D60285331860D4D100CE5EC5 /* thread_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = thread_test.cpp; path = ../test/thread_test.cpp; sourceTree = "<group>"; };
 		D6079B7E1858C01600DFDEAA /* MacTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D63ABDC71855FCAC004349F8 /* string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string.cpp; sourceTree = "<group>"; };
 		D63ABDC81855FCAC004349F8 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
@@ -239,10 +254,11 @@
 			isa = PBXGroup;
 			children = (
 				D60284D71860B2EE00CE5EC5 /* allocator_test.cpp */,
+				D60284DB1860B2EE00CE5EC5 /* test_base.h */,
 				D60284D81860B2EE00CE5EC5 /* array_test.cpp */,
 				D60284D91860B2EE00CE5EC5 /* linked_list_test.cpp */,
 				D60284DA1860B2EE00CE5EC5 /* string_test.cpp */,
-				D60284DB1860B2EE00CE5EC5 /* test_base.h */,
+				D60285331860D4D100CE5EC5 /* thread_test.cpp */,
 			);
 			name = test;
 			sourceTree = "<group>";
@@ -253,6 +269,16 @@
 				D60285081860BAEB00CE5EC5 /* InfoPlist.strings */,
 			);
 			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		D60285131860BF9F00CE5EC5 /* thread */ = {
+			isa = PBXGroup;
+			children = (
+				D60285191860C75600CE5EC5 /* runnable.h */,
+				D60285151860C22C00CE5EC5 /* thread.h */,
+				D60285141860C22C00CE5EC5 /* thread.cpp */,
+			);
+			path = thread;
 			sourceTree = "<group>";
 		};
 		D667FBAD184CE7AC00404D8D = {
@@ -316,9 +342,10 @@
 		D667FC23184CF9CE00404D8D /* ick */ = {
 			isa = PBXGroup;
 			children = (
+				D667FC59184E490C00404D8D /* base */,
+				D60285131860BF9F00CE5EC5 /* thread */,
 				D667FC8C184E512300404D8D /* ick.h */,
 				D667FC8B184E512300404D8D /* ick.cpp */,
-				D667FC59184E490C00404D8D /* base */,
 			);
 			path = ick;
 			sourceTree = "<group>";
@@ -354,6 +381,8 @@
 				D63ABDC71855FCAC004349F8 /* string.cpp */,
 				D667FCA1185231AE00404D8D /* math.h */,
 				D667FCA0185231AE00404D8D /* math.cpp */,
+				D602851C1860C9F500CE5EC5 /* error.h */,
+				D602851B1860C9F500CE5EC5 /* error.cpp */,
 			);
 			path = base;
 			sourceTree = "<group>";
@@ -372,6 +401,7 @@
 				D667FC83184E490C00404D8D /* macro.h in Headers */,
 				D667FCA4185231AE00404D8D /* math.h in Headers */,
 				D667FC87184E490C00404D8D /* platform.h in Headers */,
+				D602851A1860C75600CE5EC5 /* runnable.h in Headers */,
 				D667FC9A1852232300404D8D /* array.h in Headers */,
 				D667FC75184E490C00404D8D /* assert.h in Headers */,
 				D667FC8F184E512300404D8D /* ick.h in Headers */,
@@ -381,6 +411,8 @@
 				D63ABDCB1855FCAC004349F8 /* string.h in Headers */,
 				D667FC86184E490C00404D8D /* memory.h in Headers */,
 				D667FCA918523C9600404D8D /* build.h in Headers */,
+				D60285181860C22C00CE5EC5 /* thread.h in Headers */,
+				D602851F1860C9F500CE5EC5 /* error.h in Headers */,
 				D667FC79184E490C00404D8D /* crt.h in Headers */,
 				D667FC76184E490C00404D8D /* compiler.h in Headers */,
 			);
@@ -513,6 +545,7 @@
 				D60284EA1860B31B00CE5EC5 /* linked_list_test.cpp in Sources */,
 				D60284EB1860B31B00CE5EC5 /* string_test.cpp in Sources */,
 				D60284E91860B31B00CE5EC5 /* array_test.cpp in Sources */,
+				D60285371860D4D500CE5EC5 /* thread_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +558,7 @@
 				D60284E61860B31B00CE5EC5 /* linked_list_test.cpp in Sources */,
 				D60285061860BA7700CE5EC5 /* main.cpp in Sources */,
 				D60284E51860B31B00CE5EC5 /* array_test.cpp in Sources */,
+				D60285361860D4D500CE5EC5 /* thread_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,12 +571,14 @@
 				D667FC80184E490C00404D8D /* log.cpp in Sources */,
 				D667FC8D184E512300404D8D /* ick.cpp in Sources */,
 				D667FC77184E490C00404D8D /* crt.cpp in Sources */,
+				D60285161860C22C00CE5EC5 /* thread.cpp in Sources */,
 				D667FC84184E490C00404D8D /* memory.cpp in Sources */,
 				D63ABDC91855FCAC004349F8 /* string.cpp in Sources */,
 				D667FCA2185231AE00404D8D /* math.cpp in Sources */,
 				D667FC6D184E490C00404D8D /* abort.cpp in Sources */,
 				D667FC981852232300404D8D /* array.cpp in Sources */,
 				D667FC7A184E490C00404D8D /* cstr.cpp in Sources */,
+				D602851D1860C9F500CE5EC5 /* error.cpp in Sources */,
 				D667FC70184E490C00404D8D /* allocator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,12 +592,14 @@
 				D667FC81184E490C00404D8D /* log.cpp in Sources */,
 				D667FC8E184E512300404D8D /* ick.cpp in Sources */,
 				D667FC78184E490C00404D8D /* crt.cpp in Sources */,
+				D60285171860C22C00CE5EC5 /* thread.cpp in Sources */,
 				D667FC85184E490C00404D8D /* memory.cpp in Sources */,
 				D63ABDCA1855FCAC004349F8 /* string.cpp in Sources */,
 				D667FCA3185231AE00404D8D /* math.cpp in Sources */,
 				D667FC6E184E490C00404D8D /* abort.cpp in Sources */,
 				D667FC991852232300404D8D /* array.cpp in Sources */,
 				D667FC7B184E490C00404D8D /* cstr.cpp in Sources */,
+				D602851E1860C9F500CE5EC5 /* error.cpp in Sources */,
 				D667FC71184E490C00404D8D /* allocator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -740,7 +778,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
@@ -801,7 +839,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;

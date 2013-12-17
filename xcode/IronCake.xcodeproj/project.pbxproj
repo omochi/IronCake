@@ -23,31 +23,18 @@
 		D60284EB1860B31B00CE5EC5 /* string_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60284DA1860B2EE00CE5EC5 /* string_test.cpp */; };
 		D60284F11860B35900CE5EC5 /* libIronCakeiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */; };
 		D60284FB1860B6FB00CE5EC5 /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D60284971858CBE200CE5EC5 /* libgtest.a */; };
-		D60285031860B81D00CE5EC5 /* libgtest-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D60285021860B81D00CE5EC5 /* libgtest-ios.a */; };
 		D60285041860B95700CE5EC5 /* libIronCakeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE3184CE84600404D8D /* libIronCakeMac.a */; };
 		D60285061860BA7700CE5EC5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285051860BA7700CE5EC5 /* main.cpp */; };
 		D602850C1860BAEB00CE5EC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D60285081860BAEB00CE5EC5 /* InfoPlist.strings */; };
 		D602850D1860BAEB00CE5EC5 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D602850A1860BAEB00CE5EC5 /* main.mm */; };
 		D602850E1860BAEB00CE5EC5 /* TestiOS-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D602850B1860BAEB00CE5EC5 /* TestiOS-info.plist */; };
 		D60285101860BAF300CE5EC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D602850F1860BAF300CE5EC5 /* Images.xcassets */; };
-		D6079B5E185766D900DFDEAA /* ICKTestBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC92184FA29100404D8D /* ICKTestBase.mm */; };
-		D6079B5F185766E500DFDEAA /* ICKStringTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDCC18560F35004349F8 /* ICKStringTest.mm */; };
+		D60285121860BBB400CE5EC5 /* libgtest-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D60285111860BBB400CE5EC5 /* libgtest-ios.a */; };
 		D63ABDC91855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
 		D63ABDCA1855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
 		D63ABDCB1855FCAC004349F8 /* string.h in Headers */ = {isa = PBXBuildFile; fileRef = D63ABDC81855FCAC004349F8 /* string.h */; };
-		D63ABDCE18560F35004349F8 /* ICKStringTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDCC18560F35004349F8 /* ICKStringTest.mm */; };
-		D63ABDD118562119004349F8 /* ICKArrayTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FCA518523B5300404D8D /* ICKArrayTest.mm */; };
 		D667FBBA184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
-		D667FBC8184CE7AC00404D8D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBC7184CE7AC00404D8D /* XCTest.framework */; };
-		D667FBC9184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
-		D667FBCB184CE7AC00404D8D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBCA184CE7AC00404D8D /* UIKit.framework */; };
-		D667FBCE184CE7AC00404D8D /* libIronCakeiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */; };
 		D667FBE5184CE84600404D8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE4184CE84600404D8D /* Cocoa.framework */; };
-		D667FBF5184CE84600404D8D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBC7184CE7AC00404D8D /* XCTest.framework */; };
-		D667FBF6184CE84600404D8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE4184CE84600404D8D /* Cocoa.framework */; };
-		D667FBF9184CE84600404D8D /* libIronCakeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE3184CE84600404D8D /* libIronCakeMac.a */; };
-		D667FC2E184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC2C184CFAAC00404D8D /* ICKAllocatorTest.mm */; };
-		D667FC2F184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC2C184CFAAC00404D8D /* ICKAllocatorTest.mm */; };
 		D667FC6D184E490C00404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5A184E490C00404D8D /* abort.cpp */; };
 		D667FC6E184E490C00404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5A184E490C00404D8D /* abort.cpp */; };
 		D667FC6F184E490C00404D8D /* abort.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC5B184E490C00404D8D /* abort.h */; };
@@ -75,20 +62,16 @@
 		D667FC85184E490C00404D8D /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC6A184E490C00404D8D /* memory.cpp */; };
 		D667FC86184E490C00404D8D /* memory.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC6B184E490C00404D8D /* memory.h */; };
 		D667FC87184E490C00404D8D /* platform.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC6C184E490C00404D8D /* platform.h */; };
-		D667FC89184E4C9B00404D8D /* ICKLinkedListTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC88184E4C9B00404D8D /* ICKLinkedListTest.mm */; };
-		D667FC8A184E4C9B00404D8D /* ICKLinkedListTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC88184E4C9B00404D8D /* ICKLinkedListTest.mm */; };
 		D667FC8D184E512300404D8D /* ick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC8B184E512300404D8D /* ick.cpp */; };
 		D667FC8E184E512300404D8D /* ick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC8B184E512300404D8D /* ick.cpp */; };
 		D667FC8F184E512300404D8D /* ick.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC8C184E512300404D8D /* ick.h */; };
 		D667FC91184F95DD00404D8D /* std.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC90184F95DD00404D8D /* std.h */; };
-		D667FC94184FA29100404D8D /* ICKTestBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC92184FA29100404D8D /* ICKTestBase.mm */; };
 		D667FC981852232300404D8D /* array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC961852232300404D8D /* array.cpp */; };
 		D667FC991852232300404D8D /* array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC961852232300404D8D /* array.cpp */; };
 		D667FC9A1852232300404D8D /* array.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FC971852232300404D8D /* array.h */; };
 		D667FCA2185231AE00404D8D /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FCA0185231AE00404D8D /* math.cpp */; };
 		D667FCA3185231AE00404D8D /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FCA0185231AE00404D8D /* math.cpp */; };
 		D667FCA4185231AE00404D8D /* math.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FCA1185231AE00404D8D /* math.h */; };
-		D667FCA718523B5300404D8D /* ICKArrayTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FCA518523B5300404D8D /* ICKArrayTest.mm */; };
 		D667FCA918523C9600404D8D /* build.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FCA818523C9600404D8D /* build.h */; };
 		D667FCAB1852520600404D8D /* array_decl.h in Headers */ = {isa = PBXBuildFile; fileRef = D667FCAA1852520600404D8D /* array_decl.h */; };
 /* End PBXBuildFile section */
@@ -107,20 +90,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = D667FBB5184CE7AC00404D8D;
 			remoteInfo = IronCakeiOS;
-		};
-		D667FBCC184CE7AC00404D8D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D667FBAE184CE7AC00404D8D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D667FBB5184CE7AC00404D8D;
-			remoteInfo = IronCake;
-		};
-		D667FBF7184CE84600404D8D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D667FBAE184CE7AC00404D8D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D667FBE2184CE84600404D8D;
-			remoteInfo = IronCake;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -150,23 +119,18 @@
 		D60284D91860B2EE00CE5EC5 /* linked_list_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = linked_list_test.cpp; path = ../test/linked_list_test.cpp; sourceTree = "<group>"; };
 		D60284DA1860B2EE00CE5EC5 /* string_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = string_test.cpp; path = ../test/string_test.cpp; sourceTree = "<group>"; };
 		D60284DB1860B2EE00CE5EC5 /* test_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = test_base.h; path = ../test/test_base.h; sourceTree = "<group>"; };
-		D60284F91860B6F200CE5EC5 /* libgtest-static-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-static-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-static-ios.a"; sourceTree = "<group>"; };
 		D60284FC1860B70000CE5EC5 /* libgtest_main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest_main.a; path = "../../../../../Library/Developer/Xcode/DerivedData/IronCake-emfqkmnunqhkvyczwvcyitznypja/Build/Products/Debug/libgtest_main.a"; sourceTree = "<group>"; };
-		D60284FE1860B70A00CE5EC5 /* libgtest-static-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-static-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-static-ios.a"; sourceTree = "<group>"; };
-		D60285001860B72100CE5EC5 /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
-		D60285021860B81D00CE5EC5 /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
 		D60285051860BA7700CE5EC5 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D60285091860BAEB00CE5EC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		D602850A1860BAEB00CE5EC5 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		D602850B1860BAEB00CE5EC5 /* TestiOS-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TestiOS-info.plist"; sourceTree = "<group>"; };
 		D602850F1860BAF300CE5EC5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D60285111860BBB400CE5EC5 /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
 		D6079B7E1858C01600DFDEAA /* MacTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D63ABDC71855FCAC004349F8 /* string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string.cpp; sourceTree = "<group>"; };
 		D63ABDC81855FCAC004349F8 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
-		D63ABDCC18560F35004349F8 /* ICKStringTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ICKStringTest.mm; sourceTree = "<group>"; };
 		D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBB9184CE7AC00404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D667FBC6184CE7AC00404D8D /* IronCakeiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronCakeiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBC7184CE7AC00404D8D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D667FBCA184CE7AC00404D8D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		D667FBE3184CE84600404D8D /* libIronCakeMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,9 +138,6 @@
 		D667FBE7184CE84600404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D667FBE8184CE84600404D8D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D667FBE9184CE84600404D8D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		D667FBF4184CE84600404D8D /* IronCakeMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IronCakeMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D667FC2C184CFAAC00404D8D /* ICKAllocatorTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ICKAllocatorTest.mm; sourceTree = "<group>"; };
-		D667FC2D184CFAAC00404D8D /* IronCakeTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IronCakeTests-Info.plist"; sourceTree = "<group>"; };
 		D667FC5A184E490C00404D8D /* abort.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = abort.cpp; sourceTree = "<group>"; };
 		D667FC5B184E490C00404D8D /* abort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = abort.h; sourceTree = "<group>"; };
 		D667FC5C184E490C00404D8D /* allocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = allocator.cpp; sourceTree = "<group>"; };
@@ -196,17 +157,13 @@
 		D667FC6A184E490C00404D8D /* memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory.cpp; sourceTree = "<group>"; };
 		D667FC6B184E490C00404D8D /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
 		D667FC6C184E490C00404D8D /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
-		D667FC88184E4C9B00404D8D /* ICKLinkedListTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ICKLinkedListTest.mm; sourceTree = "<group>"; };
 		D667FC8B184E512300404D8D /* ick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ick.cpp; sourceTree = "<group>"; };
 		D667FC8C184E512300404D8D /* ick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ick.h; sourceTree = "<group>"; };
 		D667FC90184F95DD00404D8D /* std.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = std.h; sourceTree = "<group>"; };
-		D667FC92184FA29100404D8D /* ICKTestBase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ICKTestBase.mm; sourceTree = "<group>"; };
-		D667FC95184FA2AA00404D8D /* ICKTestBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICKTestBase.h; sourceTree = "<group>"; };
 		D667FC961852232300404D8D /* array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = array.cpp; sourceTree = "<group>"; };
 		D667FC971852232300404D8D /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
 		D667FCA0185231AE00404D8D /* math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
 		D667FCA1185231AE00404D8D /* math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = math.h; sourceTree = "<group>"; };
-		D667FCA518523B5300404D8D /* ICKArrayTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ICKArrayTest.mm; sourceTree = "<group>"; };
 		D667FCA818523C9600404D8D /* build.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = build.h; sourceTree = "<group>"; };
 		D667FCAA1852520600404D8D /* array_decl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array_decl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,7 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D60285031860B81D00CE5EC5 /* libgtest-ios.a in Frameworks */,
+				D60285121860BBB400CE5EC5 /* libgtest-ios.a in Frameworks */,
 				D60284F11860B35900CE5EC5 /* libIronCakeiOS.a in Frameworks */,
 				D60284A51858CD6B00CE5EC5 /* CoreGraphics.framework in Frameworks */,
 				D60284A61858CD6B00CE5EC5 /* UIKit.framework in Frameworks */,
@@ -241,32 +198,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D667FBC3184CE7AC00404D8D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D667FBC8184CE7AC00404D8D /* XCTest.framework in Frameworks */,
-				D667FBCB184CE7AC00404D8D /* UIKit.framework in Frameworks */,
-				D667FBC9184CE7AC00404D8D /* Foundation.framework in Frameworks */,
-				D667FBCE184CE7AC00404D8D /* libIronCakeiOS.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D667FBE0184CE84600404D8D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D667FBE5184CE84600404D8D /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D667FBF1184CE84600404D8D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D667FBF6184CE84600404D8D /* Cocoa.framework in Frameworks */,
-				D667FBF5184CE84600404D8D /* XCTest.framework in Frameworks */,
-				D667FBF9184CE84600404D8D /* libIronCakeMac.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,9 +258,8 @@
 		D667FBAD184CE7AC00404D8D = {
 			isa = PBXGroup;
 			children = (
-				D60284D61860B2E000CE5EC5 /* test */,
 				D667FC09184CE8D500404D8D /* src */,
-				D667FC2B184CFAAC00404D8D /* test */,
+				D60284D61860B2E000CE5EC5 /* test */,
 				D602849A1858CC0900CE5EC5 /* MacTest */,
 				D60284A71858CD6B00CE5EC5 /* iOSTest */,
 				D667FBB8184CE7AC00404D8D /* Frameworks */,
@@ -336,9 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */,
-				D667FBC6184CE7AC00404D8D /* IronCakeiOSTests.xctest */,
 				D667FBE3184CE84600404D8D /* libIronCakeMac.a */,
-				D667FBF4184CE84600404D8D /* IronCakeMacTests.xctest */,
 				D6079B7E1858C01600DFDEAA /* MacTest */,
 				D60284A21858CD6B00CE5EC5 /* TestiOS.app */,
 			);
@@ -348,11 +281,8 @@
 		D667FBB8184CE7AC00404D8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D60285021860B81D00CE5EC5 /* libgtest-ios.a */,
-				D60285001860B72100CE5EC5 /* libgtest-ios.a */,
-				D60284FE1860B70A00CE5EC5 /* libgtest-static-ios.a */,
+				D60285111860BBB400CE5EC5 /* libgtest-ios.a */,
 				D60284FC1860B70000CE5EC5 /* libgtest_main.a */,
-				D60284F91860B6F200CE5EC5 /* libgtest-static-ios.a */,
 				D60284971858CBE200CE5EC5 /* libgtest.a */,
 				D667FBB9184CE7AC00404D8D /* Foundation.framework */,
 				D667FBC7184CE7AC00404D8D /* XCTest.framework */,
@@ -391,20 +321,6 @@
 				D667FC59184E490C00404D8D /* base */,
 			);
 			path = ick;
-			sourceTree = "<group>";
-		};
-		D667FC2B184CFAAC00404D8D /* test */ = {
-			isa = PBXGroup;
-			children = (
-				D667FC2D184CFAAC00404D8D /* IronCakeTests-Info.plist */,
-				D667FC2C184CFAAC00404D8D /* ICKAllocatorTest.mm */,
-				D667FC95184FA2AA00404D8D /* ICKTestBase.h */,
-				D667FC92184FA29100404D8D /* ICKTestBase.mm */,
-				D667FC88184E4C9B00404D8D /* ICKLinkedListTest.mm */,
-				D667FCA518523B5300404D8D /* ICKArrayTest.mm */,
-				D63ABDCC18560F35004349F8 /* ICKStringTest.mm */,
-			);
-			path = test;
 			sourceTree = "<group>";
 		};
 		D667FC59184E490C00404D8D /* base */ = {
@@ -525,24 +441,6 @@
 			productReference = D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		D667FBC5184CE7AC00404D8D /* IronCakeiOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D667FBDC184CE7AC00404D8D /* Build configuration list for PBXNativeTarget "IronCakeiOSTests" */;
-			buildPhases = (
-				D667FBC2184CE7AC00404D8D /* Sources */,
-				D667FBC3184CE7AC00404D8D /* Frameworks */,
-				D667FBC4184CE7AC00404D8D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D667FBCD184CE7AC00404D8D /* PBXTargetDependency */,
-			);
-			name = IronCakeiOSTests;
-			productName = IronCakeTests;
-			productReference = D667FBC6184CE7AC00404D8D /* IronCakeiOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		D667FBE2184CE84600404D8D /* IronCakeMac */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D667FC02184CE84600404D8D /* Build configuration list for PBXNativeTarget "IronCakeMac" */;
@@ -560,24 +458,6 @@
 			productReference = D667FBE3184CE84600404D8D /* libIronCakeMac.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		D667FBF3184CE84600404D8D /* IronCakeMacTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D667FC05184CE84600404D8D /* Build configuration list for PBXNativeTarget "IronCakeMacTests" */;
-			buildPhases = (
-				D667FBF0184CE84600404D8D /* Sources */,
-				D667FBF1184CE84600404D8D /* Frameworks */,
-				D667FBF2184CE84600404D8D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D667FBF8184CE84600404D8D /* PBXTargetDependency */,
-			);
-			name = IronCakeMacTests;
-			productName = IronCakeTests;
-			productReference = D667FBF4184CE84600404D8D /* IronCakeMacTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -586,14 +466,6 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = omochimetaru;
-				TargetAttributes = {
-					D667FBC5184CE7AC00404D8D = {
-						TestTargetID = D60284A11858CD6B00CE5EC5;
-					};
-					D667FBF3184CE84600404D8D = {
-						TestTargetID = D60284A11858CD6B00CE5EC5;
-					};
-				};
 			};
 			buildConfigurationList = D667FBB1184CE7AC00404D8D /* Build configuration list for PBXProject "IronCake" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -608,9 +480,7 @@
 			projectRoot = "";
 			targets = (
 				D667FBB5184CE7AC00404D8D /* IronCakeiOS */,
-				D667FBC5184CE7AC00404D8D /* IronCakeiOSTests */,
 				D667FBE2184CE84600404D8D /* IronCakeMac */,
-				D667FBF3184CE84600404D8D /* IronCakeMacTests */,
 				D6079B7D1858C01600DFDEAA /* TestMac */,
 				D60284A11858CD6B00CE5EC5 /* TestiOS */,
 			);
@@ -626,20 +496,6 @@
 				D60285101860BAF300CE5EC5 /* Images.xcassets in Resources */,
 				D60284D5185A119300CE5EC5 /* ICKTestAppMainViewController.xib in Resources */,
 				D602850C1860BAEB00CE5EC5 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D667FBC4184CE7AC00404D8D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D667FBF2184CE84600404D8D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,18 +547,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D667FBC2184CE7AC00404D8D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D6079B5E185766D900DFDEAA /* ICKTestBase.mm in Sources */,
-				D63ABDD118562119004349F8 /* ICKArrayTest.mm in Sources */,
-				D6079B5F185766E500DFDEAA /* ICKStringTest.mm in Sources */,
-				D667FC89184E4C9B00404D8D /* ICKLinkedListTest.mm in Sources */,
-				D667FC2E184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D667FBDF184CE84600404D8D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -722,18 +566,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D667FBF0184CE84600404D8D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D667FC8A184E4C9B00404D8D /* ICKLinkedListTest.mm in Sources */,
-				D63ABDCE18560F35004349F8 /* ICKStringTest.mm in Sources */,
-				D667FC2F184CFAAC00404D8D /* ICKAllocatorTest.mm in Sources */,
-				D667FC94184FA29100404D8D /* ICKTestBase.mm in Sources */,
-				D667FCA718523B5300404D8D /* ICKArrayTest.mm in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -746,16 +578,6 @@
 			isa = PBXTargetDependency;
 			target = D667FBB5184CE7AC00404D8D /* IronCakeiOS */;
 			targetProxy = D60284EF1860B35300CE5EC5 /* PBXContainerItemProxy */;
-		};
-		D667FBCD184CE7AC00404D8D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D667FBB5184CE7AC00404D8D /* IronCakeiOS */;
-			targetProxy = D667FBCC184CE7AC00404D8D /* PBXContainerItemProxy */;
-		};
-		D667FBF8184CE84600404D8D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D667FBE2184CE84600404D8D /* IronCakeMac */;
-			targetProxy = D667FBF7184CE84600404D8D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1026,40 +848,6 @@
 			};
 			name = Release;
 		};
-		D667FBDD184CE7AC00404D8D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iOSTest.app/iOSTest";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				INFOPLIST_FILE = "test/IronCakeTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		D667FBDE184CE7AC00404D8D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iOSTest.app/iOSTest";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				INFOPLIST_FILE = "test/IronCakeTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 		D667FC03184CE84600404D8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1075,38 +863,6 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		D667FC06184CE84600404D8D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iOSTest.app/iOSTest";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "test/IronCakeTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		D667FC07184CE84600404D8D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iOSTest.app/iOSTest";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "test/IronCakeTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -1149,29 +905,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D667FBDC184CE7AC00404D8D /* Build configuration list for PBXNativeTarget "IronCakeiOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D667FBDD184CE7AC00404D8D /* Debug */,
-				D667FBDE184CE7AC00404D8D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		D667FC02184CE84600404D8D /* Build configuration list for PBXNativeTarget "IronCakeMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D667FC03184CE84600404D8D /* Debug */,
 				D667FC04184CE84600404D8D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D667FC05184CE84600404D8D /* Build configuration list for PBXNativeTarget "IronCakeMacTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D667FC06184CE84600404D8D /* Debug */,
-				D667FC07184CE84600404D8D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

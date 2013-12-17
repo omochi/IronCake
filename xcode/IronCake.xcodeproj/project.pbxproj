@@ -7,13 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D602849C1858CC5900CE5EC5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D602849B1858CC5900CE5EC5 /* main.cpp */; };
 		D60284A31858CD6B00CE5EC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
 		D60284A51858CD6B00CE5EC5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D60284A41858CD6B00CE5EC5 /* CoreGraphics.framework */; };
 		D60284A61858CD6B00CE5EC5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBCA184CE7AC00404D8D /* UIKit.framework */; };
-		D60284AC1858CD6B00CE5EC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D60284AA1858CD6B00CE5EC5 /* InfoPlist.strings */; };
-		D60284AE1858CD6B00CE5EC5 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D60284AD1858CD6B00CE5EC5 /* main.mm */; };
-		D60284B41858CD6B00CE5EC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D60284B31858CD6B00CE5EC5 /* Images.xcassets */; };
 		D60284D0185A108F00CE5EC5 /* ICKTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D60284CF185A108F00CE5EC5 /* ICKTestAppDelegate.m */; };
 		D60284D4185A119300CE5EC5 /* ICKTestAppMainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D60284D2185A119300CE5EC5 /* ICKTestAppMainViewController.mm */; };
 		D60284D5185A119300CE5EC5 /* ICKTestAppMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60284D3185A119300CE5EC5 /* ICKTestAppMainViewController.xib */; };
@@ -29,6 +25,11 @@
 		D60284FB1860B6FB00CE5EC5 /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D60284971858CBE200CE5EC5 /* libgtest.a */; };
 		D60285031860B81D00CE5EC5 /* libgtest-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D60285021860B81D00CE5EC5 /* libgtest-ios.a */; };
 		D60285041860B95700CE5EC5 /* libIronCakeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE3184CE84600404D8D /* libIronCakeMac.a */; };
+		D60285061860BA7700CE5EC5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285051860BA7700CE5EC5 /* main.cpp */; };
+		D602850C1860BAEB00CE5EC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D60285081860BAEB00CE5EC5 /* InfoPlist.strings */; };
+		D602850D1860BAEB00CE5EC5 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D602850A1860BAEB00CE5EC5 /* main.mm */; };
+		D602850E1860BAEB00CE5EC5 /* TestiOS-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D602850B1860BAEB00CE5EC5 /* TestiOS-info.plist */; };
+		D60285101860BAF300CE5EC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D602850F1860BAF300CE5EC5 /* Images.xcassets */; };
 		D6079B5E185766D900DFDEAA /* ICKTestBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC92184FA29100404D8D /* ICKTestBase.mm */; };
 		D6079B5F185766E500DFDEAA /* ICKStringTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDCC18560F35004349F8 /* ICKStringTest.mm */; };
 		D63ABDC91855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
@@ -137,13 +138,8 @@
 
 /* Begin PBXFileReference section */
 		D60284971858CBE200CE5EC5 /* libgtest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest.a; path = "../../../../../Library/Developer/Xcode/DerivedData/IronCake-emfqkmnunqhkvyczwvcyitznypja/Build/Products/Debug/libgtest.a"; sourceTree = "<group>"; };
-		D602849B1858CC5900CE5EC5 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = MacTest/main.cpp; sourceTree = "<group>"; };
-		D60284A21858CD6B00CE5EC5 /* iOSTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60284A21858CD6B00CE5EC5 /* TestiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60284A41858CD6B00CE5EC5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D60284A91858CD6B00CE5EC5 /* iOSTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOSTest-Info.plist"; sourceTree = "<group>"; };
-		D60284AB1858CD6B00CE5EC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D60284AD1858CD6B00CE5EC5 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
-		D60284B31858CD6B00CE5EC5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D60284CE185A108F00CE5EC5 /* ICKTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICKTestAppDelegate.h; sourceTree = "<group>"; };
 		D60284CF185A108F00CE5EC5 /* ICKTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICKTestAppDelegate.m; sourceTree = "<group>"; };
 		D60284D1185A119300CE5EC5 /* ICKTestAppMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICKTestAppMainViewController.h; sourceTree = "<group>"; };
@@ -159,6 +155,11 @@
 		D60284FE1860B70A00CE5EC5 /* libgtest-static-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-static-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-static-ios.a"; sourceTree = "<group>"; };
 		D60285001860B72100CE5EC5 /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
 		D60285021860B81D00CE5EC5 /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
+		D60285051860BA7700CE5EC5 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D60285091860BAEB00CE5EC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		D602850A1860BAEB00CE5EC5 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		D602850B1860BAEB00CE5EC5 /* TestiOS-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TestiOS-info.plist"; sourceTree = "<group>"; };
+		D602850F1860BAF300CE5EC5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D6079B7E1858C01600DFDEAA /* MacTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D63ABDC71855FCAC004349F8 /* string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string.cpp; sourceTree = "<group>"; };
 		D63ABDC81855FCAC004349F8 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
@@ -275,33 +276,27 @@
 		D602849A1858CC0900CE5EC5 /* MacTest */ = {
 			isa = PBXGroup;
 			children = (
-				D602849B1858CC5900CE5EC5 /* main.cpp */,
+				D60285051860BA7700CE5EC5 /* main.cpp */,
 			);
 			name = MacTest;
+			path = TestMac;
 			sourceTree = "<group>";
 		};
 		D60284A71858CD6B00CE5EC5 /* iOSTest */ = {
 			isa = PBXGroup;
 			children = (
-				D60284B31858CD6B00CE5EC5 /* Images.xcassets */,
-				D60284A81858CD6B00CE5EC5 /* Supporting Files */,
+				D602850F1860BAF300CE5EC5 /* Images.xcassets */,
+				D60285071860BAEB00CE5EC5 /* en.lproj */,
+				D602850A1860BAEB00CE5EC5 /* main.mm */,
+				D602850B1860BAEB00CE5EC5 /* TestiOS-info.plist */,
 				D60284CE185A108F00CE5EC5 /* ICKTestAppDelegate.h */,
 				D60284CF185A108F00CE5EC5 /* ICKTestAppDelegate.m */,
 				D60284D1185A119300CE5EC5 /* ICKTestAppMainViewController.h */,
 				D60284D2185A119300CE5EC5 /* ICKTestAppMainViewController.mm */,
 				D60284D3185A119300CE5EC5 /* ICKTestAppMainViewController.xib */,
 			);
-			path = iOSTest;
-			sourceTree = "<group>";
-		};
-		D60284A81858CD6B00CE5EC5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D60284A91858CD6B00CE5EC5 /* iOSTest-Info.plist */,
-				D60284AA1858CD6B00CE5EC5 /* InfoPlist.strings */,
-				D60284AD1858CD6B00CE5EC5 /* main.mm */,
-			);
-			name = "Supporting Files";
+			name = iOSTest;
+			path = TestiOS;
 			sourceTree = "<group>";
 		};
 		D60284D61860B2E000CE5EC5 /* test */ = {
@@ -314,6 +309,14 @@
 				D60284DB1860B2EE00CE5EC5 /* test_base.h */,
 			);
 			name = test;
+			sourceTree = "<group>";
+		};
+		D60285071860BAEB00CE5EC5 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				D60285081860BAEB00CE5EC5 /* InfoPlist.strings */,
+			);
+			path = en.lproj;
 			sourceTree = "<group>";
 		};
 		D667FBAD184CE7AC00404D8D = {
@@ -337,7 +340,7 @@
 				D667FBE3184CE84600404D8D /* libIronCakeMac.a */,
 				D667FBF4184CE84600404D8D /* IronCakeMacTests.xctest */,
 				D6079B7E1858C01600DFDEAA /* MacTest */,
-				D60284A21858CD6B00CE5EC5 /* iOSTest.app */,
+				D60284A21858CD6B00CE5EC5 /* TestiOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -470,9 +473,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D60284A11858CD6B00CE5EC5 /* iOSTest */ = {
+		D60284A11858CD6B00CE5EC5 /* TestiOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D60284C71858CD6B00CE5EC5 /* Build configuration list for PBXNativeTarget "iOSTest" */;
+			buildConfigurationList = D60284C71858CD6B00CE5EC5 /* Build configuration list for PBXNativeTarget "TestiOS" */;
 			buildPhases = (
 				D602849E1858CD6B00CE5EC5 /* Sources */,
 				D602849F1858CD6B00CE5EC5 /* Frameworks */,
@@ -483,14 +486,14 @@
 			dependencies = (
 				D60284F01860B35300CE5EC5 /* PBXTargetDependency */,
 			);
-			name = iOSTest;
+			name = TestiOS;
 			productName = iOSTest;
-			productReference = D60284A21858CD6B00CE5EC5 /* iOSTest.app */;
+			productReference = D60284A21858CD6B00CE5EC5 /* TestiOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D6079B7D1858C01600DFDEAA /* MacTest */ = {
+		D6079B7D1858C01600DFDEAA /* TestMac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D6079B861858C01600DFDEAA /* Build configuration list for PBXNativeTarget "MacTest" */;
+			buildConfigurationList = D6079B861858C01600DFDEAA /* Build configuration list for PBXNativeTarget "TestMac" */;
 			buildPhases = (
 				D6079B7A1858C01600DFDEAA /* Sources */,
 				D6079B7B1858C01600DFDEAA /* Frameworks */,
@@ -500,7 +503,7 @@
 			dependencies = (
 				D60284EE1860B34F00CE5EC5 /* PBXTargetDependency */,
 			);
-			name = MacTest;
+			name = TestMac;
 			productName = TestMac;
 			productReference = D6079B7E1858C01600DFDEAA /* MacTest */;
 			productType = "com.apple.product-type.tool";
@@ -608,8 +611,8 @@
 				D667FBC5184CE7AC00404D8D /* IronCakeiOSTests */,
 				D667FBE2184CE84600404D8D /* IronCakeMac */,
 				D667FBF3184CE84600404D8D /* IronCakeMacTests */,
-				D6079B7D1858C01600DFDEAA /* MacTest */,
-				D60284A11858CD6B00CE5EC5 /* iOSTest */,
+				D6079B7D1858C01600DFDEAA /* TestMac */,
+				D60284A11858CD6B00CE5EC5 /* TestiOS */,
 			);
 		};
 /* End PBXProject section */
@@ -619,9 +622,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D602850E1860BAEB00CE5EC5 /* TestiOS-info.plist in Resources */,
+				D60285101860BAF300CE5EC5 /* Images.xcassets in Resources */,
 				D60284D5185A119300CE5EC5 /* ICKTestAppMainViewController.xib in Resources */,
-				D60284AC1858CD6B00CE5EC5 /* InfoPlist.strings in Resources */,
-				D60284B41858CD6B00CE5EC5 /* Images.xcassets in Resources */,
+				D602850C1860BAEB00CE5EC5 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,8 +652,8 @@
 			files = (
 				D60284D4185A119300CE5EC5 /* ICKTestAppMainViewController.mm in Sources */,
 				D60284D0185A108F00CE5EC5 /* ICKTestAppDelegate.m in Sources */,
-				D60284AE1858CD6B00CE5EC5 /* main.mm in Sources */,
 				D60284E81860B31B00CE5EC5 /* allocator_test.cpp in Sources */,
+				D602850D1860BAEB00CE5EC5 /* main.mm in Sources */,
 				D60284EA1860B31B00CE5EC5 /* linked_list_test.cpp in Sources */,
 				D60284EB1860B31B00CE5EC5 /* string_test.cpp in Sources */,
 				D60284E91860B31B00CE5EC5 /* array_test.cpp in Sources */,
@@ -660,10 +664,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D602849C1858CC5900CE5EC5 /* main.cpp in Sources */,
 				D60284E71860B31B00CE5EC5 /* string_test.cpp in Sources */,
 				D60284E41860B31B00CE5EC5 /* allocator_test.cpp in Sources */,
 				D60284E61860B31B00CE5EC5 /* linked_list_test.cpp in Sources */,
+				D60285061860BA7700CE5EC5 /* main.cpp in Sources */,
 				D60284E51860B31B00CE5EC5 /* array_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -756,10 +760,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D60284AA1858CD6B00CE5EC5 /* InfoPlist.strings */ = {
+		D60285081860BAEB00CE5EC5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D60284AB1858CD6B00CE5EC5 /* en */,
+				D60285091860BAEB00CE5EC5 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -791,7 +795,7 @@
 					../libs/googletest/include,
 					../libs/googletest/src,
 				);
-				INFOPLIST_FILE = "iOSTest/iOSTest-Info.plist";
+				INFOPLIST_FILE = "TestiOS/TestiOS-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/IronCake-emfqkmnunqhkvyczwvcyitznypja/Build/Products/Debug",
@@ -823,7 +827,7 @@
 					../libs/googletest/include,
 					../libs/googletest/src,
 				);
-				INFOPLIST_FILE = "iOSTest/iOSTest-Info.plist";
+				INFOPLIST_FILE = "TestiOS/TestiOS-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/IronCake-emfqkmnunqhkvyczwvcyitznypja/Build/Products/Debug",
@@ -1109,7 +1113,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D60284C71858CD6B00CE5EC5 /* Build configuration list for PBXNativeTarget "iOSTest" */ = {
+		D60284C71858CD6B00CE5EC5 /* Build configuration list for PBXNativeTarget "TestiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D60284C81858CD6B00CE5EC5 /* Debug */,
@@ -1118,7 +1122,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D6079B861858C01600DFDEAA /* Build configuration list for PBXNativeTarget "MacTest" */ = {
+		D6079B861858C01600DFDEAA /* Build configuration list for PBXNativeTarget "TestMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D6079B841858C01600DFDEAA /* Debug */,

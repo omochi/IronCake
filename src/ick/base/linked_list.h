@@ -98,7 +98,7 @@ namespace ick{
 		}
 	public:
 		LinkedList():
-		allocator_(g_static_allocator),num_(0),first_(NULL),last_(NULL)
+		allocator_(static_allocator()),num_(0),first_(NULL),last_(NULL)
 		{
 		}
 		explicit LinkedList(Allocator * allocator):

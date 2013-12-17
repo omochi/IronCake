@@ -1,4 +1,4 @@
-#include <gtest/gtest.h>
+Ôªø#include <gtest/gtest.h>
 #include <ick/ick.h>
 
 class AllocatorTest : public testing::Test {
@@ -72,7 +72,7 @@ TEST_F(AllocatorTest, test4){
 	ick::DebugAllocator * allocator = ICK_NEW1(ick::DebugAllocator, ick::static_allocator());
 
 	int * a = ICK_ALLOC_A(allocator, int, 3);
-	//ÇÌÇ¥Ç∆ÇÕÇ›èoÇÈ
+	//„Çè„Åñ„Å®„ÅØ„ÅøÂá∫„Çã
 	for (int i = 0; i <= 3; i++){
 		a[i] = i;
 	}
@@ -81,7 +81,7 @@ TEST_F(AllocatorTest, test4){
 	bool ok = allocator->CheckSignatures(&node);
 	EXPECT_FALSE(ok);
 
-	//ÉIÅ[ÉoÅ[ÉtÉçÅ[åüèo
+	//„Ç™„Éº„Éê„Éº„Éï„É≠„ÉºÊ§úÂá∫
 	EXPECT_EQ((void *)a, node->value().user);
 	
 	ICK_DELETE(allocator);

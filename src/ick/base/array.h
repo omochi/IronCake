@@ -70,7 +70,7 @@ namespace ick{
 			Set(items, num);
 		}
 		Array(const Array & value):
-		allocator_(g_static_allocator),items_(NULL),alloc_num_(0),num_(0){
+		allocator_(static_allocator()), items_(NULL), alloc_num_(0), num_(0){
 			Set(value);
 		}
 		~Array(){

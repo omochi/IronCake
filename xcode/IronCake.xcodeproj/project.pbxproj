@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D60284991858CBE200CE5EC5 /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D60284971858CBE200CE5EC5 /* libgtest.a */; };
 		D602849C1858CC5900CE5EC5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D602849B1858CC5900CE5EC5 /* main.cpp */; };
 		D60284A31858CD6B00CE5EC5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
 		D60284A51858CD6B00CE5EC5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D60284A41858CD6B00CE5EC5 /* CoreGraphics.framework */; };
@@ -15,10 +14,21 @@
 		D60284AC1858CD6B00CE5EC5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D60284AA1858CD6B00CE5EC5 /* InfoPlist.strings */; };
 		D60284AE1858CD6B00CE5EC5 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D60284AD1858CD6B00CE5EC5 /* main.mm */; };
 		D60284B41858CD6B00CE5EC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D60284B31858CD6B00CE5EC5 /* Images.xcassets */; };
-		D60284CD1858CE7900CE5EC5 /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D60284971858CBE200CE5EC5 /* libgtest.a */; };
 		D60284D0185A108F00CE5EC5 /* ICKTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D60284CF185A108F00CE5EC5 /* ICKTestAppDelegate.m */; };
 		D60284D4185A119300CE5EC5 /* ICKTestAppMainViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D60284D2185A119300CE5EC5 /* ICKTestAppMainViewController.mm */; };
 		D60284D5185A119300CE5EC5 /* ICKTestAppMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D60284D3185A119300CE5EC5 /* ICKTestAppMainViewController.xib */; };
+		D60284E41860B31B00CE5EC5 /* allocator_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60284D71860B2EE00CE5EC5 /* allocator_test.cpp */; };
+		D60284E51860B31B00CE5EC5 /* array_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60284D81860B2EE00CE5EC5 /* array_test.cpp */; };
+		D60284E61860B31B00CE5EC5 /* linked_list_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60284D91860B2EE00CE5EC5 /* linked_list_test.cpp */; };
+		D60284E71860B31B00CE5EC5 /* string_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60284DA1860B2EE00CE5EC5 /* string_test.cpp */; };
+		D60284E81860B31B00CE5EC5 /* allocator_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60284D71860B2EE00CE5EC5 /* allocator_test.cpp */; };
+		D60284E91860B31B00CE5EC5 /* array_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60284D81860B2EE00CE5EC5 /* array_test.cpp */; };
+		D60284EA1860B31B00CE5EC5 /* linked_list_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60284D91860B2EE00CE5EC5 /* linked_list_test.cpp */; };
+		D60284EB1860B31B00CE5EC5 /* string_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60284DA1860B2EE00CE5EC5 /* string_test.cpp */; };
+		D60284F11860B35900CE5EC5 /* libIronCakeiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */; };
+		D60284FB1860B6FB00CE5EC5 /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D60284971858CBE200CE5EC5 /* libgtest.a */; };
+		D60285031860B81D00CE5EC5 /* libgtest-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D60285021860B81D00CE5EC5 /* libgtest-ios.a */; };
+		D60285041860B95700CE5EC5 /* libIronCakeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE3184CE84600404D8D /* libIronCakeMac.a */; };
 		D6079B5E185766D900DFDEAA /* ICKTestBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = D667FC92184FA29100404D8D /* ICKTestBase.mm */; };
 		D6079B5F185766E500DFDEAA /* ICKStringTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDCC18560F35004349F8 /* ICKStringTest.mm */; };
 		D63ABDC91855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
@@ -83,6 +93,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D60284ED1860B34F00CE5EC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D667FBAE184CE7AC00404D8D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D667FBE2184CE84600404D8D;
+			remoteInfo = IronCakeMac;
+		};
+		D60284EF1860B35300CE5EC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D667FBAE184CE7AC00404D8D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D667FBB5184CE7AC00404D8D;
+			remoteInfo = IronCakeiOS;
+		};
 		D667FBCC184CE7AC00404D8D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D667FBAE184CE7AC00404D8D /* Project object */;
@@ -125,6 +149,16 @@
 		D60284D1185A119300CE5EC5 /* ICKTestAppMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICKTestAppMainViewController.h; sourceTree = "<group>"; };
 		D60284D2185A119300CE5EC5 /* ICKTestAppMainViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ICKTestAppMainViewController.mm; sourceTree = "<group>"; };
 		D60284D3185A119300CE5EC5 /* ICKTestAppMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ICKTestAppMainViewController.xib; sourceTree = "<group>"; };
+		D60284D71860B2EE00CE5EC5 /* allocator_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = allocator_test.cpp; path = ../test/allocator_test.cpp; sourceTree = "<group>"; };
+		D60284D81860B2EE00CE5EC5 /* array_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = array_test.cpp; path = ../test/array_test.cpp; sourceTree = "<group>"; };
+		D60284D91860B2EE00CE5EC5 /* linked_list_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = linked_list_test.cpp; path = ../test/linked_list_test.cpp; sourceTree = "<group>"; };
+		D60284DA1860B2EE00CE5EC5 /* string_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = string_test.cpp; path = ../test/string_test.cpp; sourceTree = "<group>"; };
+		D60284DB1860B2EE00CE5EC5 /* test_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = test_base.h; path = ../test/test_base.h; sourceTree = "<group>"; };
+		D60284F91860B6F200CE5EC5 /* libgtest-static-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-static-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-static-ios.a"; sourceTree = "<group>"; };
+		D60284FC1860B70000CE5EC5 /* libgtest_main.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest_main.a; path = "../../../../../Library/Developer/Xcode/DerivedData/IronCake-emfqkmnunqhkvyczwvcyitznypja/Build/Products/Debug/libgtest_main.a"; sourceTree = "<group>"; };
+		D60284FE1860B70A00CE5EC5 /* libgtest-static-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-static-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-static-ios.a"; sourceTree = "<group>"; };
+		D60285001860B72100CE5EC5 /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
+		D60285021860B81D00CE5EC5 /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
 		D6079B7E1858C01600DFDEAA /* MacTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D63ABDC71855FCAC004349F8 /* string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string.cpp; sourceTree = "<group>"; };
 		D63ABDC81855FCAC004349F8 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
@@ -181,7 +215,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D60284CD1858CE7900CE5EC5 /* libgtest.a in Frameworks */,
+				D60285031860B81D00CE5EC5 /* libgtest-ios.a in Frameworks */,
+				D60284F11860B35900CE5EC5 /* libIronCakeiOS.a in Frameworks */,
 				D60284A51858CD6B00CE5EC5 /* CoreGraphics.framework in Frameworks */,
 				D60284A61858CD6B00CE5EC5 /* UIKit.framework in Frameworks */,
 				D60284A31858CD6B00CE5EC5 /* Foundation.framework in Frameworks */,
@@ -192,7 +227,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D60284991858CBE200CE5EC5 /* libgtest.a in Frameworks */,
+				D60285041860B95700CE5EC5 /* libIronCakeMac.a in Frameworks */,
+				D60284FB1860B6FB00CE5EC5 /* libgtest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,9 +304,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D60284D61860B2E000CE5EC5 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				D60284D71860B2EE00CE5EC5 /* allocator_test.cpp */,
+				D60284D81860B2EE00CE5EC5 /* array_test.cpp */,
+				D60284D91860B2EE00CE5EC5 /* linked_list_test.cpp */,
+				D60284DA1860B2EE00CE5EC5 /* string_test.cpp */,
+				D60284DB1860B2EE00CE5EC5 /* test_base.h */,
+			);
+			name = test;
+			sourceTree = "<group>";
+		};
 		D667FBAD184CE7AC00404D8D = {
 			isa = PBXGroup;
 			children = (
+				D60284D61860B2E000CE5EC5 /* test */,
 				D667FC09184CE8D500404D8D /* src */,
 				D667FC2B184CFAAC00404D8D /* test */,
 				D602849A1858CC0900CE5EC5 /* MacTest */,
@@ -296,6 +345,11 @@
 		D667FBB8184CE7AC00404D8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D60285021860B81D00CE5EC5 /* libgtest-ios.a */,
+				D60285001860B72100CE5EC5 /* libgtest-ios.a */,
+				D60284FE1860B70A00CE5EC5 /* libgtest-static-ios.a */,
+				D60284FC1860B70000CE5EC5 /* libgtest_main.a */,
+				D60284F91860B6F200CE5EC5 /* libgtest-static-ios.a */,
 				D60284971858CBE200CE5EC5 /* libgtest.a */,
 				D667FBB9184CE7AC00404D8D /* Foundation.framework */,
 				D667FBC7184CE7AC00404D8D /* XCTest.framework */,
@@ -427,6 +481,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D60284F01860B35300CE5EC5 /* PBXTargetDependency */,
 			);
 			name = iOSTest;
 			productName = iOSTest;
@@ -443,6 +498,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D60284EE1860B34F00CE5EC5 /* PBXTargetDependency */,
 			);
 			name = MacTest;
 			productName = TestMac;
@@ -593,6 +649,10 @@
 				D60284D4185A119300CE5EC5 /* ICKTestAppMainViewController.mm in Sources */,
 				D60284D0185A108F00CE5EC5 /* ICKTestAppDelegate.m in Sources */,
 				D60284AE1858CD6B00CE5EC5 /* main.mm in Sources */,
+				D60284E81860B31B00CE5EC5 /* allocator_test.cpp in Sources */,
+				D60284EA1860B31B00CE5EC5 /* linked_list_test.cpp in Sources */,
+				D60284EB1860B31B00CE5EC5 /* string_test.cpp in Sources */,
+				D60284E91860B31B00CE5EC5 /* array_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +661,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D602849C1858CC5900CE5EC5 /* main.cpp in Sources */,
+				D60284E71860B31B00CE5EC5 /* string_test.cpp in Sources */,
+				D60284E41860B31B00CE5EC5 /* allocator_test.cpp in Sources */,
+				D60284E61860B31B00CE5EC5 /* linked_list_test.cpp in Sources */,
+				D60284E51860B31B00CE5EC5 /* array_test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +733,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D60284EE1860B34F00CE5EC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D667FBE2184CE84600404D8D /* IronCakeMac */;
+			targetProxy = D60284ED1860B34F00CE5EC5 /* PBXContainerItemProxy */;
+		};
+		D60284F01860B35300CE5EC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D667FBB5184CE7AC00404D8D /* IronCakeiOS */;
+			targetProxy = D60284EF1860B35300CE5EC5 /* PBXContainerItemProxy */;
+		};
 		D667FBCD184CE7AC00404D8D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D667FBB5184CE7AC00404D8D /* IronCakeiOS */;
@@ -763,6 +837,7 @@
 		D6079B841858C01600DFDEAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -782,6 +857,7 @@
 		D6079B851858C01600DFDEAA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -1040,6 +1116,7 @@
 				D60284C91858CD6B00CE5EC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D6079B861858C01600DFDEAA /* Build configuration list for PBXNativeTarget "MacTest" */ = {
 			isa = XCConfigurationList;

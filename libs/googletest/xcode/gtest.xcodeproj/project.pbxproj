@@ -79,6 +79,7 @@
 		4539C9390EC280E200A70F4C /* gtest-param-util-generated.h in Copy Headers Internal */ = {isa = PBXBuildFile; fileRef = 4539C9360EC280E200A70F4C /* gtest-param-util-generated.h */; };
 		4539C93A0EC280E200A70F4C /* gtest-param-util.h in Copy Headers Internal */ = {isa = PBXBuildFile; fileRef = 4539C9370EC280E200A70F4C /* gtest-param-util.h */; };
 		4567C8181264FF71007740BE /* gtest-printers.h in Headers */ = {isa = PBXBuildFile; fileRef = 4567C8171264FF71007740BE /* gtest-printers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D60284F41860B5A400CE5EC5 /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = 224A12A10E9EADA700BD17FD /* gtest-all.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -244,6 +245,7 @@
 		4539C9360EC280E200A70F4C /* gtest-param-util-generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gtest-param-util-generated.h"; sourceTree = "<group>"; };
 		4539C9370EC280E200A70F4C /* gtest-param-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gtest-param-util.h"; sourceTree = "<group>"; };
 		4567C8171264FF71007740BE /* gtest-printers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gtest-printers.h"; sourceTree = "<group>"; };
+		D60284F81860B5A400CE5EC5 /* libgtest-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libgtest-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +298,7 @@
 				40C84987101A36850083642A /* gtest_unittest */,
 				4089A0130FFACEFC000B29AE /* sample1_unittest-framework */,
 				40C84997101A36A60083642A /* sample1_unittest-static */,
+				D60284F81860B5A400CE5EC5 /* libgtest-ios.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -575,6 +578,21 @@
 			productReference = 4539C8FF0EC27F6400A70F4C /* gtest.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		D60284F21860B5A400CE5EC5 /* gtest-static-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D60284F51860B5A400CE5EC5 /* Build configuration list for PBXNativeTarget "gtest-static-ios" */;
+			buildPhases = (
+				D60284F31860B5A400CE5EC5 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "gtest-static-ios";
+			productName = "gtest-static";
+			productReference = D60284F81860B5A400CE5EC5 /* libgtest-ios.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -601,6 +619,7 @@
 			targets = (
 				8D07F2BC0486CC7A007CD1D0 /* gtest-framework */,
 				40C848F9101A209C0083642A /* gtest-static */,
+				D60284F21860B5A400CE5EC5 /* gtest-static-ios */,
 				40C8490A101A217E0083642A /* gtest_main-static */,
 				40899F420FFA7184000B29AE /* gtest_unittest-framework */,
 				40C8497A101A36850083642A /* gtest_unittest-static */,
@@ -716,6 +735,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				40899F3A0FFA70D4000B29AE /* gtest-all.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D60284F31860B5A400CE5EC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D60284F41860B5A400CE5EC5 /* gtest-all.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -880,6 +907,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40899FB30FFA7567000B29AE /* StaticLibraryTarget.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
@@ -896,6 +924,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40899FB30FFA7567000B29AE /* StaticLibraryTarget.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
@@ -1025,6 +1054,7 @@
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_VERSION = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1037,6 +1067,41 @@
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_VERSION = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D60284F61860B5A400CE5EC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40899FB30FFA7567000B29AE /* StaticLibraryTarget.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				HEADER_SEARCH_PATHS = (
+					../,
+					../include/,
+				);
+				PRODUCT_NAME = "gtest-ios";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D60284F71860B5A400CE5EC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40899FB30FFA7567000B29AE /* StaticLibraryTarget.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				HEADER_SEARCH_PATHS = (
+					../,
+					../include/,
+				);
+				PRODUCT_NAME = "gtest-ios";
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -1129,6 +1194,15 @@
 			buildConfigurations = (
 				4FADC24708B4156D00ABE55E /* Debug */,
 				4FADC24808B4156D00ABE55E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D60284F51860B5A400CE5EC5 /* Build configuration list for PBXNativeTarget "gtest-static-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D60284F61860B5A400CE5EC5 /* Debug */,
+				D60284F71860B5A400CE5EC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

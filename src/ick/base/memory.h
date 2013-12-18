@@ -15,6 +15,7 @@
 
 #define ICK_ALLOC(T,num) ICK_ALLOC_A(ick::static_allocator(),T,num)
 #define ICK_FREE(memory) ICK_FREE_A(ick::static_allocator(),memory)
+
 #define ICK_NEW0(T) \
 	ICK_NEW0_A(ick::static_allocator(),T)
 #define ICK_NEW1(T,a1) \

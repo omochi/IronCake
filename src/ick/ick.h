@@ -25,6 +25,8 @@
 #include "base/string.h"
 #include "base/error.h"
 
+#include "function/function.h"
+
 #include "thread/runnable.h"
 #include "thread/thread.h"
 

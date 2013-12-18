@@ -39,6 +39,9 @@
 		D602851F1860C9F500CE5EC5 /* error.h in Headers */ = {isa = PBXBuildFile; fileRef = D602851C1860C9F500CE5EC5 /* error.h */; };
 		D60285361860D4D500CE5EC5 /* thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285331860D4D100CE5EC5 /* thread_test.cpp */; };
 		D60285371860D4D500CE5EC5 /* thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285331860D4D100CE5EC5 /* thread_test.cpp */; };
+		D60285401861E64200CE5EC5 /* function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D602853E1861E64200CE5EC5 /* function.cpp */; };
+		D60285411861E64200CE5EC5 /* function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D602853E1861E64200CE5EC5 /* function.cpp */; };
+		D60285421861E64200CE5EC5 /* function.h in Headers */ = {isa = PBXBuildFile; fileRef = D602853F1861E64200CE5EC5 /* function.h */; };
 		D63ABDC91855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
 		D63ABDCA1855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
 		D63ABDCB1855FCAC004349F8 /* string.h in Headers */ = {isa = PBXBuildFile; fileRef = D63ABDC81855FCAC004349F8 /* string.h */; };
@@ -134,14 +137,16 @@
 		D602850A1860BAEB00CE5EC5 /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		D602850B1860BAEB00CE5EC5 /* TestiOS-info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TestiOS-info.plist"; sourceTree = "<group>"; };
 		D602850F1860BAF300CE5EC5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D60285111860BBB400CE5EC5 /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
+		D60285111860BBB400CE5EC5 /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgtest-ios.a"; path = "../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
 		D60285141860C22C00CE5EC5 /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
 		D60285151860C22C00CE5EC5 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
 		D60285191860C75600CE5EC5 /* runnable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runnable.h; sourceTree = "<group>"; };
 		D602851B1860C9F500CE5EC5 /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error.cpp; sourceTree = "<group>"; };
 		D602851C1860C9F500CE5EC5 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
 		D60285331860D4D100CE5EC5 /* thread_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = thread_test.cpp; path = ../test/thread_test.cpp; sourceTree = "<group>"; };
-		D6079B7E1858C01600DFDEAA /* MacTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D602853E1861E64200CE5EC5 /* function.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = function.cpp; sourceTree = "<group>"; };
+		D602853F1861E64200CE5EC5 /* function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function.h; sourceTree = "<group>"; };
+		D6079B7E1858C01600DFDEAA /* TestMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestMac; sourceTree = BUILT_PRODUCTS_DIR; };
 		D63ABDC71855FCAC004349F8 /* string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string.cpp; sourceTree = "<group>"; };
 		D63ABDC81855FCAC004349F8 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
 		D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -281,6 +286,15 @@
 			path = thread;
 			sourceTree = "<group>";
 		};
+		D602853D1861E64200CE5EC5 /* function */ = {
+			isa = PBXGroup;
+			children = (
+				D602853F1861E64200CE5EC5 /* function.h */,
+				D602853E1861E64200CE5EC5 /* function.cpp */,
+			);
+			path = function;
+			sourceTree = "<group>";
+		};
 		D667FBAD184CE7AC00404D8D = {
 			isa = PBXGroup;
 			children = (
@@ -298,7 +312,7 @@
 			children = (
 				D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */,
 				D667FBE3184CE84600404D8D /* libIronCakeMac.a */,
-				D6079B7E1858C01600DFDEAA /* MacTest */,
+				D6079B7E1858C01600DFDEAA /* TestMac */,
 				D60284A21858CD6B00CE5EC5 /* TestiOS.app */,
 			);
 			name = Products;
@@ -343,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				D667FC59184E490C00404D8D /* base */,
+				D602853D1861E64200CE5EC5 /* function */,
 				D60285131860BF9F00CE5EC5 /* thread */,
 				D667FC8C184E512300404D8D /* ick.h */,
 				D667FC8B184E512300404D8D /* ick.cpp */,
@@ -406,6 +421,7 @@
 				D667FC75184E490C00404D8D /* assert.h in Headers */,
 				D667FC8F184E512300404D8D /* ick.h in Headers */,
 				D667FC6F184E490C00404D8D /* abort.h in Headers */,
+				D60285421861E64200CE5EC5 /* function.h in Headers */,
 				D667FCAB1852520600404D8D /* array_decl.h in Headers */,
 				D667FC82184E490C00404D8D /* log.h in Headers */,
 				D63ABDCB1855FCAC004349F8 /* string.h in Headers */,
@@ -453,7 +469,7 @@
 			);
 			name = TestMac;
 			productName = TestMac;
-			productReference = D6079B7E1858C01600DFDEAA /* MacTest */;
+			productReference = D6079B7E1858C01600DFDEAA /* TestMac */;
 			productType = "com.apple.product-type.tool";
 		};
 		D667FBB5184CE7AC00404D8D /* IronCakeiOS */ = {
@@ -569,6 +585,7 @@
 				D667FC7D184E490C00404D8D /* linked_list.cpp in Sources */,
 				D667FC73184E490C00404D8D /* assert.cpp in Sources */,
 				D667FC80184E490C00404D8D /* log.cpp in Sources */,
+				D60285401861E64200CE5EC5 /* function.cpp in Sources */,
 				D667FC8D184E512300404D8D /* ick.cpp in Sources */,
 				D667FC77184E490C00404D8D /* crt.cpp in Sources */,
 				D60285161860C22C00CE5EC5 /* thread.cpp in Sources */,
@@ -590,6 +607,7 @@
 				D667FC7E184E490C00404D8D /* linked_list.cpp in Sources */,
 				D667FC74184E490C00404D8D /* assert.cpp in Sources */,
 				D667FC81184E490C00404D8D /* log.cpp in Sources */,
+				D60285411861E64200CE5EC5 /* function.cpp in Sources */,
 				D667FC8E184E512300404D8D /* ick.cpp in Sources */,
 				D667FC78184E490C00404D8D /* crt.cpp in Sources */,
 				D60285171860C22C00CE5EC5 /* thread.cpp in Sources */,

@@ -37,7 +37,29 @@ void Func1(int n, int * x){
 	*x = xt;
 }
 
+int f1(){
+	return 1;
+}
+
+void f2(){
+	
+}
+
+int f3(int x){
+	return x * 2;
+}
+
 TEST_F(ThreadTest, function_thread){
+	
+	ick::NativeFunction<int (*)()> nf1(f1);
+	EXPECT_EQ(1, nf1());
+	
+	ick::NativeFunction<void (*)()> nf2(f2);
+	nf2();
+	
+
+	
+	
 	struct Func1Closure {
 		int x;
 		int n;

@@ -1,0 +1,35 @@
+#pragma once
+
+namespace ick {
+	template <typename FP, int N> class FunctionBinder;
+
+	$var an_max = 2
+	$range an 0..an_max $$ args num
+	$for an [[
+	$range ai 1..an
+	$range bn 1..an $$ bind num
+	$for bn [[
+	$range bi 1..bn
+	$var can = an - bn $$ call args num
+	$range cai bn+1..an
+
+	template <typename R$for ai [[, typename A$ai]]>
+	Function<R(*)($for cai , [[A$cai]])> 
+	FunctionBind1(Function<R(*)($for ai , [[A$ai]]),$bn> function 
+	$for bi [[, A$bi a$bi]]){
+		return Function<R(*)($for cai , [[A$cai]])>(
+			FunctorHolder<
+				FunctionBinder<R(*)($for ai , [[A$ai]]),$bn>,
+				R(*)($for ai , [[A$ai]])
+			>(
+				FunctionBinder<R(*)($for ai , [[A$ai]]),$bn>(
+					*function.holder() $for bi [[, a$bi[[]]_]] 
+				)
+			)
+		);
+	}
+
+	]] $$ bind num
+	]] $$ args num
+
+}

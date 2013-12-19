@@ -1,0 +1,54 @@
+#pragma once
+
+#include "../base/memory.h"
+
+#include "functor_holder.h"
+#include "function.h"
+
+namespace ick {
+	template <typename FP, int N> class FunctionBinder;
+
+	$var an_max = 2
+	$range an 0..an_max $$ args num
+	$for an [[
+	$range ai 1..an
+	$range bn 1..an $$ bind num
+	$for bn [[
+	$range bi 1..bn
+	$var can = an - bn $$ call args num
+	$range cai bn+1..an
+
+	template <typename R$for ai [[, typename A$ai]]>
+	class FunctionBinder<R(*)($for ai , [[A$ai]]),$bn>{
+	public:
+		typedef R (*FunctionType)($for ai , [[A$ai]]);
+		typedef FunctionBinder<FunctionType,$bn> ThisType;
+	private:
+		BaseFunctorHolder<FunctionType> * holder_;
+		$for bi [[A$bi a$bi[[]]_; ]]
+
+	public:
+		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, $for bi , [[A$bi a$bi]]):
+		$for bi , [[a$bi[[]]_(a$bi)]]
+		
+		{
+			holder_ = holder.Clone();
+		}
+		FunctionBinder(const FunctionBinder & copy):
+		$for bi , [[a$bi[[]]_(copy.a$bi)]]
+
+		{
+			holder_ = copy.holder_->Clone();
+		}
+		virtual ~FunctionBinder(){
+			ICK_DELETE(holder_);
+		}
+		virtual R operator() ($for cai , [[A$cai a$cai]]) {
+			return (*holder_)($for bi , [[a$bi[[]]_]] $if (bn * can) > 0 [[, ]] $for cai , [[a$cai]]);
+		}
+	};
+	
+	]] $$ bind num
+	]] $$ args num
+
+}

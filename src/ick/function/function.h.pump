@@ -1,0 +1,47 @@
+#pragma once
+
+#include "../base/memory.h"
+
+#include "functor_holder.h"
+
+namespace ick {
+	template <typename FP> class Function;
+
+	$var an_max = 8
+	$range an 0..an_max
+	$for an [[
+	$range ai 1..an
+
+	template <typename R$for ai [[, typename A$ai]]>
+	class Function<R(*)($for ai , [[A$ai]])>{
+	public:
+		typedef R (*FunctionType)($for ai , [[A$ai]]);
+		typedef Function<FunctionType> ThisType;
+	private:
+		ThisType & operator = (const ThisType & copy);
+
+		BaseFunctorHolder<FunctionType> * holder_;
+	public:
+		BaseFunctorHolder<FunctionType> * holder() const { return holder_; }
+
+		//暗黙
+		Function(FunctionType native_function){
+			holder_ = ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>, native_function);
+		}
+		explicit Function(const BaseFunctorHolder<FunctionType> & holder){
+			holder_ = holder->Clone();
+		}
+		Function(const ThisType & copy){
+			holder_ = copy.holder_->Clone();
+		}
+		virtual ~Function(){
+			ICK_DELETE(holder_);
+		}
+		R operator() ($for ai , [[A$ai a$ai]]) { 
+			return (*holder_)($for ai , [[a$ai]]); 
+		}
+	};
+
+	]]
+}
+

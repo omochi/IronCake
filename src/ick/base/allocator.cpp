@@ -27,11 +27,6 @@ namespace ick{
 		g_static_allocator = allocator;
 	}
 
-	void * Allocator::AllocateDebug(size_t size, size_t alignment, const char * format,...){
-		(void)format;
-		return Allocate(size, alignment);
-	}
-		
 	MallocAllocator::~MallocAllocator(){
 		
 	}
@@ -45,6 +40,13 @@ namespace ick{
 		return memory;
 #endif
 	}
+	
+	void * MallocAllocator::AllocateDebugV(size_t size, size_t alignment, const char * format, va_list ap){
+		(void)format;
+		(void)ap;
+		return Allocate(size, alignment);
+	}
+	
 	void MallocAllocator::Free(void * memory){
 #ifdef ICK_WINDOWS
 		_aligned_free(memory);
@@ -99,15 +101,12 @@ namespace ick{
 	void * DebugAllocator::Allocate(size_t size, size_t alignment){
 		return AllocateDebug(size, alignment ,"");
 	}
-	void * DebugAllocator::AllocateDebug(size_t size, size_t alignment, const char * format,...){
+	void * DebugAllocator::AllocateDebugV(size_t size, size_t alignment, const char * format, va_list ap){
 		ICK_ASSERT(alignment > 0);
 		
-		va_list ap;
-		va_start(ap, format);
 		char * comment;
 		int r = vasprintf(allocator_, &comment, format, ap);
 		if(r<0){ ::abort(); }
-		va_end(ap);
 		
 		size_t alloc_size = sizeof(Node *) + 4 + (alignment - 1) + size + 4;
 		

@@ -20,7 +20,14 @@ namespace ick{
 	public:
 		virtual ~Allocator(){};
 		virtual void * Allocate(size_t size, size_t alignment) = 0;
-		virtual void * AllocateDebug(size_t size, size_t alignment, const char * format, ...) ICK_PRINTF_LIKE(4, 5);
+		virtual void * AllocateDebug(size_t size, size_t alignment, const char * format, ...) ICK_PRINTF_LIKE(4, 5) {
+			va_list ap;
+			va_start(ap, format);
+			void * memory = AllocateDebugV(size, alignment, format, ap);
+			va_end(ap);
+			return memory;
+		}
+		virtual void * AllocateDebugV(size_t size, size_t alignment, const char * format, va_list ap) ICK_PRINTF_LIKE(4, 0) = 0;
 		virtual void Free(void * memory) = 0;
 	};
 	
@@ -28,6 +35,7 @@ namespace ick{
 	public:
 		virtual ~MallocAllocator();
 		virtual void * Allocate(size_t size, size_t alignment);
+		virtual void * AllocateDebugV(size_t size, size_t alignment, const char * format, va_list ap) ICK_PRINTF_LIKE(4, 0);
 		virtual void Free(void * memory);
 	};
 
@@ -73,7 +81,7 @@ namespace ick{
 		DebugAllocator(Allocator * allocator);
 		virtual ~DebugAllocator();
 		virtual void * Allocate(size_t size, size_t alignment);
-		virtual void * AllocateDebug(size_t size, size_t alignment, const char * format, ...);
+		virtual void * AllocateDebugV(size_t size, size_t alignment, const char * format, va_list ap) ICK_PRINTF_LIKE(4, 0);
 		virtual void Free(void * memory);
 		
 		// 見つかった破損ノードを返す

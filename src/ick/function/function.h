@@ -94,15 +94,17 @@ namespace ick {
 	private:
 		ThisType & operator = (const ThisType & copy);
 
-		BaseFunctorHolder<R(*)()> * holder_;
+		BaseFunctorHolder<FunctionType> * holder_;
 	public:
+		BaseFunctorHolder<FunctionType> * holder() const { return holder_; }
+		
 		Function(FunctionType native_function){
 			holder_ = ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>, native_function);
 		}
-		template <typename F>
-		Function(const FunctorHolder<F, FunctionType> & functor_holder){
-			holder_ = ICK_NEW(FunctorHolder<F ICK_COMMA FunctionType>, functor_holder);
+		Function(const BaseFunctorHolder<FunctionType> & holder){
+			holder_ = holder.Clone();
 		}
+
 		Function(const ThisType & copy){
 			holder_ = copy.holder_->Clone();
 		}
@@ -124,13 +126,14 @@ namespace ick {
 
 		BaseFunctorHolder<FunctionType> * holder_;
 	public:
+		BaseFunctorHolder<FunctionType> * holder() const { return holder_; }
+
 		//暗黙
 		Function(FunctionType native_function){
 			holder_ = ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>, native_function);
 		}
-		template <typename F>
-		Function(const FunctorHolder<F, FunctionType> & functor_holder){
-			holder_ = ICK_NEW(FunctorHolder<F ICK_COMMA FunctionType>, functor_holder);
+		Function(const BaseFunctorHolder<FunctionType> & holder){
+			holder_ = holder->Clone();
 		}
 		Function(const ThisType & copy){
 			holder_ = copy.holder_->Clone();
@@ -144,21 +147,32 @@ namespace ick {
 	template <typename FP, int N> class FunctionBinder;
 	
 	template <typename R, typename A1>
-	class FunctionBinder<R(*)(A1),1> {
+	class FunctionBinder<R(*)(A1),1>{
+	public:
+		typedef FunctionBinder<R(*)(A1),1> ThisType;
+		typedef R (*FunctionType)(A1);
 	private:
-		Function<R(*)(A1)> function_;
+		BaseFunctorHolder<FunctionType> * holder_;
 		A1 a1_;
 	public:
-		FunctionBinder(Function<R(*)(A1)> function, A1 a1):
-		function_(function),a1_(a1){
+		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1):
+		a1_(a1){
+			holder_ = holder.Clone();
 		}
-		R operator() () { return function_(a1_); }
+		FunctionBinder(const FunctionBinder & copy):
+		a1_(copy.a1_){
+			holder_ = copy.holder_->Clone();
+		}
+		virtual ~FunctionBinder(){
+			ICK_DELETE(holder_);
+		}
+		virtual R operator() () { return (*holder_)(a1_); }
 	};
 	
 
 	template <typename R,typename A1>
 	Function<R(*)()> FunctionBind1(Function<R(*)(A1)> function,A1 a1){
-		return Function<R(*)()>(FunctorHolder<FunctionBinder<R(*)(A1), 1>, R(*)()>(FunctionBinder<R(*)(A1), 1>(function, a1) ));
+		return Function<R(*)()>(FunctorHolder<FunctionBinder<R(*)(A1), 1>, R(*)()>(FunctionBinder<R(*)(A1), 1>(*function.holder(), a1)));
 	}
 	
 	template <typename R, typename A1>

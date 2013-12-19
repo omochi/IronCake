@@ -30,7 +30,7 @@ namespace ick {
        native_function);
 		}
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder){
-			holder_ = holder->Clone();
+			holder_ = holder.Clone();
 		}
 		Function(const ThisType & copy){
 			holder_ = copy.holder_->Clone();
@@ -62,7 +62,7 @@ namespace ick {
        native_function);
 		}
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder){
-			holder_ = holder->Clone();
+			holder_ = holder.Clone();
 		}
 		Function(const ThisType & copy){
 			holder_ = copy.holder_->Clone();
@@ -94,7 +94,7 @@ namespace ick {
        native_function);
 		}
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder){
-			holder_ = holder->Clone();
+			holder_ = holder.Clone();
 		}
 		Function(const ThisType & copy){
 			holder_ = copy.holder_->Clone();
@@ -126,7 +126,7 @@ namespace ick {
        native_function);
 		}
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder){
-			holder_ = holder->Clone();
+			holder_ = holder.Clone();
 		}
 		Function(const ThisType & copy){
 			holder_ = copy.holder_->Clone();
@@ -158,7 +158,7 @@ namespace ick {
        native_function);
 		}
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder){
-			holder_ = holder->Clone();
+			holder_ = holder.Clone();
 		}
 		Function(const ThisType & copy){
 			holder_ = copy.holder_->Clone();
@@ -191,7 +191,7 @@ namespace ick {
        native_function);
 		}
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder){
-			holder_ = holder->Clone();
+			holder_ = holder.Clone();
 		}
 		Function(const ThisType & copy){
 			holder_ = copy.holder_->Clone();
@@ -224,7 +224,7 @@ namespace ick {
        native_function);
 		}
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder){
-			holder_ = holder->Clone();
+			holder_ = holder.Clone();
 		}
 		Function(const ThisType & copy){
 			holder_ = copy.holder_->Clone();
@@ -257,7 +257,7 @@ namespace ick {
        native_function);
 		}
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder){
-			holder_ = holder->Clone();
+			holder_ = holder.Clone();
 		}
 		Function(const ThisType & copy){
 			holder_ = copy.holder_->Clone();
@@ -290,7 +290,7 @@ namespace ick {
        native_function);
 		}
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder){
-			holder_ = holder->Clone();
+			holder_ = holder.Clone();
 		}
 		Function(const ThisType & copy){
 			holder_ = copy.holder_->Clone();

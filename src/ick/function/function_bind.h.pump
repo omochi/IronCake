@@ -2,13 +2,14 @@
 
 #include "../base/memory.h"
 
+#include "function_bind_decl.h"
 #include "functor_holder.h"
 #include "function.h"
 
 namespace ick {
 	template <typename FP, int N> class FunctionBinder;
 
-	$var an_max = 2
+	$var an_max = 8
 	$range an 0..an_max $$ args num
 	$for an [[
 	$range ai 1..an
@@ -35,7 +36,7 @@ namespace ick {
 			holder_ = holder.Clone();
 		}
 		FunctionBinder(const FunctionBinder & copy):
-		$for bi , [[a$bi[[]]_(copy.a$bi)]]
+		$for bi , [[a$bi[[]]_(copy.a$bi[[]]_)]]
 
 		{
 			holder_ = copy.holder_->Clone();
@@ -48,6 +49,31 @@ namespace ick {
 		}
 	};
 	
+	template <typename R$for ai [[, typename A$ai]]>
+	Function<R(*)($for cai , [[A$cai]])> 
+	FunctionBind$bn(Function<R(*)($for ai , [[A$ai]])> function $for bi [[, A$bi a$bi]]){
+		return Function<R(*)($for cai , [[A$cai]])>(
+			FunctorHolder<
+				FunctionBinder<R(*)($for ai , [[A$ai]]),$bn>,
+				R(*)($for cai , [[A$cai]])
+			>(
+				FunctionBinder<R(*)($for ai , [[A$ai]]),$bn>(
+					*function.holder() $for bi [[, a$bi[[]]]] 
+				)
+			)
+		);
+	}
+
+	template <typename R$for ai [[, typename A$ai]]>
+	Function<R(*)($for cai , [[A$cai]])> 
+	FunctionBind$bn(R (*function)($for ai , [[A$ai]]) $for bi [[, A$bi a$bi]]){
+		return FunctionBind$bn<R$for ai [[, A$ai]]>(
+			Function<R(*)($for ai , [[A$ai]])>(function)
+			$for bi [[, a$bi]]
+
+		);
+	}
+
 	]] $$ bind num
 	]] $$ args num
 

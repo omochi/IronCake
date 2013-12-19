@@ -25,7 +25,9 @@
 #include "base/string.h"
 #include "base/error.h"
 
+#include "function/functor_holder.h"
 #include "function/function.h"
+#include "function/function_bind.h"
 
 #include "thread/runnable.h"
 #include "thread/thread.h"

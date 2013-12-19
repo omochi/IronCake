@@ -29,7 +29,7 @@ namespace ick {
 			holder_ = ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>, native_function);
 		}
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder){
-			holder_ = holder->Clone();
+			holder_ = holder.Clone();
 		}
 		Function(const ThisType & copy){
 			holder_ = copy.holder_->Clone();

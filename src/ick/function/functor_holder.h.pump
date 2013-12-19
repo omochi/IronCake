@@ -29,6 +29,7 @@ namespace ick {
 	public:
 		typedef R (*FunctionType)($for ai , [[A$ai]]);
 		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, FunctionType> ThisType;
 	private:
 		F functor_;
 	public:

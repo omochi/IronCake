@@ -29,6 +29,7 @@ namespace ick {
 	public:
 		typedef R (*FunctionType)();
 		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, FunctionType> ThisType;
 	private:
 		F functor_;
 	public:
@@ -58,6 +59,7 @@ namespace ick {
 	public:
 		typedef R (*FunctionType)(A1);
 		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, FunctionType> ThisType;
 	private:
 		F functor_;
 	public:
@@ -87,6 +89,7 @@ namespace ick {
 	public:
 		typedef R (*FunctionType)(A1, A2);
 		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, FunctionType> ThisType;
 	private:
 		F functor_;
 	public:
@@ -116,6 +119,7 @@ namespace ick {
 	public:
 		typedef R (*FunctionType)(A1, A2, A3);
 		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, FunctionType> ThisType;
 	private:
 		F functor_;
 	public:
@@ -146,6 +150,7 @@ namespace ick {
 	public:
 		typedef R (*FunctionType)(A1, A2, A3, A4);
 		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, FunctionType> ThisType;
 	private:
 		F functor_;
 	public:
@@ -177,6 +182,7 @@ namespace ick {
 	public:
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5);
 		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, FunctionType> ThisType;
 	private:
 		F functor_;
 	public:
@@ -208,6 +214,7 @@ namespace ick {
 	public:
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6);
 		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, FunctionType> ThisType;
 	private:
 		F functor_;
 	public:
@@ -239,6 +246,7 @@ namespace ick {
 	public:
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7);
 		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, FunctionType> ThisType;
 	private:
 		F functor_;
 	public:
@@ -271,6 +279,7 @@ namespace ick {
 	public:
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7, A8);
 		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, FunctionType> ThisType;
 	private:
 		F functor_;
 	public:

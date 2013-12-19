@@ -5,58 +5,417 @@
 #pragma once
 
 namespace ick {
-	template <typename FP, int N> class FunctionBinder;
 
 
 	template <typename R, typename A1>
 	Function<R(*)()>
-	FunctionBind1(Function<R(*)(A1),1> function
-	, A1 a1){
-		return Function<R(*)()>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1),1>,
-				R(*)(A1)
-			>(
-				FunctionBinder<R(*)(A1),1>(
-					*function.holder() , a1_
-				)
-			)
-		);
-	}
+	FunctionBind1(Function<R(*)(A1)> function , A1 a1);
+
+	template <typename R, typename A1>
+	Function<R(*)()>
+	FunctionBind1(R (*function)(A1) , A1 a1);
 
 
 	template <typename R, typename A1, typename A2>
 	Function<R(*)(A2)>
-	FunctionBind1(Function<R(*)(A1, A2),1> function
-	, A1 a1){
-		return Function<R(*)(A2)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2),1>,
-				R(*)(A1, A2)
-			>(
-				FunctionBinder<R(*)(A1, A2),1>(
-					*function.holder() , a1_
-				)
-			)
-		);
-	}
+	FunctionBind1(Function<R(*)(A1, A2)> function , A1 a1);
+
+	template <typename R, typename A1, typename A2>
+	Function<R(*)(A2)>
+	FunctionBind1(R (*function)(A1, A2) , A1 a1);
 
 
 	template <typename R, typename A1, typename A2>
 	Function<R(*)()>
-	FunctionBind1(Function<R(*)(A1, A2),2> function
-	, A1 a1, A2 a2){
-		return Function<R(*)()>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2),2>,
-				R(*)(A1, A2)
-			>(
-				FunctionBinder<R(*)(A1, A2),2>(
-					*function.holder() , a1_, a2_
-				)
-			)
-		);
-	}
+	FunctionBind2(Function<R(*)(A1, A2)> function , A1 a1, A2 a2);
+
+	template <typename R, typename A1, typename A2>
+	Function<R(*)()>
+	FunctionBind2(R (*function)(A1, A2) , A1 a1, A2 a2);
+
+
+	template <typename R, typename A1, typename A2, typename A3>
+	Function<R(*)(A2, A3)>
+	FunctionBind1(Function<R(*)(A1, A2, A3)> function , A1 a1);
+
+	template <typename R, typename A1, typename A2, typename A3>
+	Function<R(*)(A2, A3)>
+	FunctionBind1(R (*function)(A1, A2, A3) , A1 a1);
+
+
+	template <typename R, typename A1, typename A2, typename A3>
+	Function<R(*)(A3)>
+	FunctionBind2(Function<R(*)(A1, A2, A3)> function , A1 a1, A2 a2);
+
+	template <typename R, typename A1, typename A2, typename A3>
+	Function<R(*)(A3)>
+	FunctionBind2(R (*function)(A1, A2, A3) , A1 a1, A2 a2);
+
+
+	template <typename R, typename A1, typename A2, typename A3>
+	Function<R(*)()>
+	FunctionBind3(Function<R(*)(A1, A2, A3)> function , A1 a1, A2 a2, A3 a3);
+
+	template <typename R, typename A1, typename A2, typename A3>
+	Function<R(*)()>
+	FunctionBind3(R (*function)(A1, A2, A3) , A1 a1, A2 a2, A3 a3);
+
+
+	template <typename R, typename A1, typename A2, typename A3, typename A4>
+	Function<R(*)(A2, A3, A4)>
+	FunctionBind1(Function<R(*)(A1, A2, A3, A4)> function , A1 a1);
+
+	template <typename R, typename A1, typename A2, typename A3, typename A4>
+	Function<R(*)(A2, A3, A4)>
+	FunctionBind1(R (*function)(A1, A2, A3, A4) , A1 a1);
+
+
+	template <typename R, typename A1, typename A2, typename A3, typename A4>
+	Function<R(*)(A3, A4)>
+	FunctionBind2(Function<R(*)(A1, A2, A3, A4)> function , A1 a1, A2 a2);
+
+	template <typename R, typename A1, typename A2, typename A3, typename A4>
+	Function<R(*)(A3, A4)>
+	FunctionBind2(R (*function)(A1, A2, A3, A4) , A1 a1, A2 a2);
+
+
+	template <typename R, typename A1, typename A2, typename A3, typename A4>
+	Function<R(*)(A4)>
+	FunctionBind3(Function<R(*)(A1, A2, A3, A4)> function , A1 a1, A2 a2, A3 a3);
+
+	template <typename R, typename A1, typename A2, typename A3, typename A4>
+	Function<R(*)(A4)>
+	FunctionBind3(R (*function)(A1, A2, A3, A4) , A1 a1, A2 a2, A3 a3);
+
+
+	template <typename R, typename A1, typename A2, typename A3, typename A4>
+	Function<R(*)()>
+ FunctionBind4(Function<R(*)(A1, A2, A3, A4)> function , A1 a1, A2 a2, A3 a3,
+     A4 a4);
+
+	template <typename R, typename A1, typename A2, typename A3, typename A4>
+	Function<R(*)()>
+	FunctionBind4(R (*function)(A1, A2, A3, A4) , A1 a1, A2 a2, A3 a3, A4 a4);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)(A2, A3, A4, A5)>
+	FunctionBind1(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)(A2, A3, A4, A5)>
+	FunctionBind1(R (*function)(A1, A2, A3, A4, A5) , A1 a1);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)(A3, A4, A5)>
+	FunctionBind2(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1, A2 a2);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)(A3, A4, A5)>
+	FunctionBind2(R (*function)(A1, A2, A3, A4, A5) , A1 a1, A2 a2);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)(A4, A5)>
+ FunctionBind3(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1, A2 a2,
+     A3 a3);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)(A4, A5)>
+	FunctionBind3(R (*function)(A1, A2, A3, A4, A5) , A1 a1, A2 a2, A3 a3);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)(A5)>
+ FunctionBind4(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1, A2 a2,
+     A3 a3, A4 a4);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)(A5)>
+	FunctionBind4(R (*function)(A1, A2, A3, A4, A5) , A1 a1, A2 a2, A3 a3, A4 a4);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)()>
+ FunctionBind5(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1, A2 a2,
+     A3 a3, A4 a4, A5 a5);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)()>
+ FunctionBind5(R (*function)(A1, A2, A3, A4, A5) , A1 a1, A2 a2, A3 a3, A4 a4,
+     A5 a5);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A2, A3, A4, A5, A6)>
+	FunctionBind1(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A2, A3, A4, A5, A6)>
+	FunctionBind1(R (*function)(A1, A2, A3, A4, A5, A6) , A1 a1);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A3, A4, A5, A6)>
+	FunctionBind2(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A3, A4, A5, A6)>
+	FunctionBind2(R (*function)(A1, A2, A3, A4, A5, A6) , A1 a1, A2 a2);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A4, A5, A6)>
+ FunctionBind3(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2,
+     A3 a3);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A4, A5, A6)>
+	FunctionBind3(R (*function)(A1, A2, A3, A4, A5, A6) , A1 a1, A2 a2, A3 a3);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A5, A6)>
+ FunctionBind4(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2,
+     A3 a3, A4 a4);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A5, A6)>
+ FunctionBind4(R (*function)(A1, A2, A3, A4, A5, A6) , A1 a1, A2 a2, A3 a3,
+     A4 a4);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A6)>
+ FunctionBind5(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2,
+     A3 a3, A4 a4, A5 a5);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A6)>
+ FunctionBind5(R (*function)(A1, A2, A3, A4, A5, A6) , A1 a1, A2 a2, A3 a3,
+     A4 a4, A5 a5);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)()>
+ FunctionBind6(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2,
+     A3 a3, A4 a4, A5 a5, A6 a6);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)()>
+ FunctionBind6(R (*function)(A1, A2, A3, A4, A5, A6) , A1 a1, A2 a2, A3 a3,
+     A4 a4, A5 a5, A6 a6);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A2, A3, A4, A5, A6, A7)>
+	FunctionBind1(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A2, A3, A4, A5, A6, A7)>
+	FunctionBind1(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A3, A4, A5, A6, A7)>
+ FunctionBind2(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
+     A2 a2);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A3, A4, A5, A6, A7)>
+	FunctionBind2(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1, A2 a2);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A4, A5, A6, A7)>
+ FunctionBind3(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
+     A2 a2, A3 a3);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A4, A5, A6, A7)>
+	FunctionBind3(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1, A2 a2, A3 a3);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A5, A6, A7)>
+ FunctionBind4(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
+     A2 a2, A3 a3, A4 a4);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A5, A6, A7)>
+ FunctionBind4(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1, A2 a2, A3 a3,
+     A4 a4);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A6, A7)>
+ FunctionBind5(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
+     A2 a2, A3 a3, A4 a4, A5 a5);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A6, A7)>
+ FunctionBind5(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1, A2 a2, A3 a3,
+     A4 a4, A5 a5);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A7)>
+ FunctionBind6(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
+     A2 a2, A3 a3, A4 a4, A5 a5, A6 a6);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A7)>
+ FunctionBind6(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1, A2 a2, A3 a3,
+     A4 a4, A5 a5, A6 a6);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)()>
+ FunctionBind7(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
+     A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)()>
+ FunctionBind7(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1, A2 a2, A3 a3,
+     A4 a4, A5 a5, A6 a6, A7 a7);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A2, A3, A4, A5, A6, A7, A8)>
+	FunctionBind1(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A2, A3, A4, A5, A6, A7, A8)>
+	FunctionBind1(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A3, A4, A5, A6, A7, A8)>
+ FunctionBind2(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
+     A2 a2);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A3, A4, A5, A6, A7, A8)>
+	FunctionBind2(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A4, A5, A6, A7, A8)>
+ FunctionBind3(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
+     A2 a2, A3 a3);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A4, A5, A6, A7, A8)>
+ FunctionBind3(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2,
+     A3 a3);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A5, A6, A7, A8)>
+ FunctionBind4(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
+     A2 a2, A3 a3, A4 a4);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A5, A6, A7, A8)>
+ FunctionBind4(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2,
+     A3 a3, A4 a4);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A6, A7, A8)>
+ FunctionBind5(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
+     A2 a2, A3 a3, A4 a4, A5 a5);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A6, A7, A8)>
+ FunctionBind5(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2,
+     A3 a3, A4 a4, A5 a5);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A7, A8)>
+ FunctionBind6(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
+     A2 a2, A3 a3, A4 a4, A5 a5, A6 a6);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A7, A8)>
+ FunctionBind6(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2,
+     A3 a3, A4 a4, A5 a5, A6 a6);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A8)>
+ FunctionBind7(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
+     A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A8)>
+ FunctionBind7(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2,
+     A3 a3, A4 a4, A5 a5, A6 a6, A7 a7);
+
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)()>
+ FunctionBind8(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
+     A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8);
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)()>
+ FunctionBind8(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2,
+     A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8);
 
 
 }

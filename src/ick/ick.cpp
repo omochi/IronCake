@@ -27,7 +27,7 @@ namespace ick{
 		}
 		
 		if(info.memory_debug){
-			set_static_allocator(ICK_NEW1(DebugAllocator, static_allocator()));
+			set_static_allocator(ICK_NEW(DebugAllocator, static_allocator()));
 		}
 		return true;
 	}

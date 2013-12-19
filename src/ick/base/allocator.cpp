@@ -93,7 +93,7 @@ namespace ick{
 	
 	DebugAllocator::DebugAllocator(Allocator * allocator):
 	allocator_(allocator){
-		info_list_ = ICK_NEW1_A(allocator, List, allocator);
+		info_list_ = ICK_NEW_A(allocator, List, allocator);
 	}
 	DebugAllocator::~DebugAllocator(){
 		ICK_DELETE_A(allocator_, info_list_);

@@ -10,7 +10,7 @@ namespace ick{
 		pthread_t thread;
 	};
 	Thread::Thread():running_(false){
-		impl_ = ICK_NEW0(ThreadImpl);
+		impl_ = ICK_NEW(ThreadImpl);
 	}
 	Thread::~Thread(){
 		if(running_){ ICK_ABORT("still running"); }

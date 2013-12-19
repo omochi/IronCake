@@ -22,7 +22,7 @@ TEST_F(AllocatorTest, test1){
 
 TEST_F(AllocatorTest, test2){
 
-	ick::DebugAllocator * allocator = ICK_NEW1(ick::DebugAllocator, ick::static_allocator());
+	ick::DebugAllocator * allocator = ICK_NEW(ick::DebugAllocator, ick::static_allocator());
 	EXPECT_EQ(0, allocator->info_list()->num());
 
 	int * a = ICK_ALLOC_A(allocator, int, 10);
@@ -50,10 +50,10 @@ TEST_F(AllocatorTest, test2){
 }
 
 TEST_F(AllocatorTest, test3){
-	ick::DebugAllocator * allocator1 = ICK_NEW1(ick::DebugAllocator, ick::static_allocator());
+	ick::DebugAllocator * allocator1 = ICK_NEW(ick::DebugAllocator, ick::static_allocator());
 	EXPECT_EQ(0, allocator1->info_list()->num());
 
-	ick::DebugAllocator * allocator2 = ICK_NEW1_A(allocator1, ick::DebugAllocator, allocator1);
+	ick::DebugAllocator * allocator2 = ICK_NEW_A(allocator1, ick::DebugAllocator, allocator1);
 	EXPECT_NE(0, allocator1->info_list()->num());
 
 	int * a = ICK_ALLOC_A(allocator2, int, 1);
@@ -69,7 +69,7 @@ TEST_F(AllocatorTest, test3){
 }
 
 TEST_F(AllocatorTest, test4){
-	ick::DebugAllocator * allocator = ICK_NEW1(ick::DebugAllocator, ick::static_allocator());
+	ick::DebugAllocator * allocator = ICK_NEW(ick::DebugAllocator, ick::static_allocator());
 
 	int * a = ICK_ALLOC_A(allocator, int, 3);
 	//わざとはみ出る

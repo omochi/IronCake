@@ -47,7 +47,7 @@ namespace ick{
 		Node * last_;
 
 		Node * CreateNode(const T & value) const {
-			return ICK_NEW1_A(allocator_, Node, value);
+			return ICK_NEW_A(allocator_, Node, value);
 		}
 		void InsertFirst(Node * new_node){
 			ICK_ASSERT_A(allocator_, !new_node->list_);

@@ -11,6 +11,8 @@
 #include "build.h"
 #include "std.h"
 
+#define ICK_COMMA ,
+
 #define ICK_ARRAY_SIZE(a) (sizeof(a)/sizeof((a)[0]))
 
 #ifdef ICK_GCC

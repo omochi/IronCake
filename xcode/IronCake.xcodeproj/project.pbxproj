@@ -91,6 +91,9 @@
 		D6B62AF41863547F00903540 /* functor_holder.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62AF31863547F00903540 /* functor_holder.h */; };
 		D6B62AF61863570700903540 /* function_bind.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62AF51863570700903540 /* function_bind.h */; };
 		D6B62AF818635E3F00903540 /* function_bind_decl.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62AF718635E3F00903540 /* function_bind_decl.h */; };
+		D6B62AFB18689ED400903540 /* function_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AF918689ED400903540 /* function_thread.cpp */; };
+		D6B62AFC18689ED400903540 /* function_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AF918689ED400903540 /* function_thread.cpp */; };
+		D6B62AFD18689ED400903540 /* function_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62AFA18689ED400903540 /* function_thread.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,6 +198,8 @@
 		D6B62AF31863547F00903540 /* functor_holder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = functor_holder.h; sourceTree = "<group>"; };
 		D6B62AF51863570700903540 /* function_bind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind.h; sourceTree = "<group>"; };
 		D6B62AF718635E3F00903540 /* function_bind_decl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind_decl.h; sourceTree = "<group>"; };
+		D6B62AF918689ED400903540 /* function_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = function_thread.cpp; sourceTree = "<group>"; };
+		D6B62AFA18689ED400903540 /* function_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_thread.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,12 +272,12 @@
 		D60284D61860B2E000CE5EC5 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				D6B62AEE1863454500903540 /* function_test.cpp */,
 				D60284D71860B2EE00CE5EC5 /* allocator_test.cpp */,
 				D60284DB1860B2EE00CE5EC5 /* test_base.h */,
 				D60284D81860B2EE00CE5EC5 /* array_test.cpp */,
 				D60284D91860B2EE00CE5EC5 /* linked_list_test.cpp */,
 				D60284DA1860B2EE00CE5EC5 /* string_test.cpp */,
+				D6B62AEE1863454500903540 /* function_test.cpp */,
 				D60285331860D4D100CE5EC5 /* thread_test.cpp */,
 			);
 			name = test;
@@ -292,6 +297,8 @@
 				D60285191860C75600CE5EC5 /* runnable.h */,
 				D60285151860C22C00CE5EC5 /* thread.h */,
 				D60285141860C22C00CE5EC5 /* thread.cpp */,
+				D6B62AFA18689ED400903540 /* function_thread.h */,
+				D6B62AF918689ED400903540 /* function_thread.cpp */,
 			);
 			path = thread;
 			sourceTree = "<group>";
@@ -428,6 +435,7 @@
 				D667FC7F184E490C00404D8D /* linked_list.h in Headers */,
 				D667FC83184E490C00404D8D /* macro.h in Headers */,
 				D667FCA4185231AE00404D8D /* math.h in Headers */,
+				D6B62AFD18689ED400903540 /* function_thread.h in Headers */,
 				D667FC87184E490C00404D8D /* platform.h in Headers */,
 				D602851A1860C75600CE5EC5 /* runnable.h in Headers */,
 				D667FC9A1852232300404D8D /* array.h in Headers */,
@@ -601,6 +609,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D667FC7D184E490C00404D8D /* linked_list.cpp in Sources */,
+				D6B62AFB18689ED400903540 /* function_thread.cpp in Sources */,
 				D667FC73184E490C00404D8D /* assert.cpp in Sources */,
 				D667FC80184E490C00404D8D /* log.cpp in Sources */,
 				D60285401861E64200CE5EC5 /* function.cpp in Sources */,
@@ -623,6 +632,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D667FC7E184E490C00404D8D /* linked_list.cpp in Sources */,
+				D6B62AFC18689ED400903540 /* function_thread.cpp in Sources */,
 				D667FC74184E490C00404D8D /* assert.cpp in Sources */,
 				D667FC81184E490C00404D8D /* log.cpp in Sources */,
 				D60285411861E64200CE5EC5 /* function.cpp in Sources */,

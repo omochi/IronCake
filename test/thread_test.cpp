@@ -31,28 +31,20 @@ TEST_F(ThreadTest, extends_thread){
 	ICK_DELETE(th1);
 }
 
-void Func1(int n, int * x){
+void Func1(int * x, int n){
 	int xt = 0;
 	for(int i = 1; i <= n; i++){ xt+=i; }
 	*x = xt;
 }
 
-
-
 TEST_F(ThreadTest, function_thread){
-
-//	
-//	struct Func1Closure {
-//		int x;
-//		int n;
-//		void operator() (void) {
-//			Func1(n,&x);
-//		};
-//	} func1Closure;
-//	func1Closure.n = 100;
-//	ick::FunctionThread<Func1Closure> * th1 = ICK_NEW1(ick::FunctionThread<Func1Closure>, func1Closure);
-//	th1->Start();
-//	th1->Join();
-//	EXPECT_EQ(5050, th1->function().x);
-//	ICK_DELETE(th1);
+	int x;
+	ick::FunctionThread * th1 = ICK_NEW(ick::FunctionThread,
+										ick::FunctionBind2(Func1, &x, 100));
+	
+	th1->Start();
+	th1->Join();
+	EXPECT_EQ(5050, x);
+	
+	ICK_DELETE(th1);
 }

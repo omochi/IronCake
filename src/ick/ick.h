@@ -31,6 +31,7 @@
 
 #include "thread/runnable.h"
 #include "thread/thread.h"
+#include "thread/function_thread.h"
 
 namespace ick{
 	struct StartupInfo {

@@ -18,14 +18,4 @@ namespace ick{
 		void Join();
 	};
 	
-	template <typename F> class FunctionThread : public Thread{
-	private:
-		F function_;
-	public:
-		FunctionThread(F function):function_(function){}
-		virtual void Run(){	function_(); }
-		
-		F function() const { return function_; }
-	};
-	
 }

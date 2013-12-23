@@ -6,6 +6,7 @@
 
 namespace ick {
 	template <typename FP> class Function;
+	template <typename F, typename FP> Function<FP> FunctionMake(const F & functor);
 
 	$var an_max = 8
 	$range an 0..an_max
@@ -43,5 +44,11 @@ namespace ick {
 	};
 
 	]]
+	
+	template <typename F, typename FP>
+	Function<FP> FunctionMake(const F & functor){
+		return Function<FP>(FunctorHolder<F, FP>(functor));
+	}
+
 }
 

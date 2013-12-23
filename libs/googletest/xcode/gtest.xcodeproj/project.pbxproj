@@ -1052,7 +1052,6 @@
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_VERSION = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;

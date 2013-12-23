@@ -10,6 +10,8 @@
 
 namespace ick {
 	template <typename FP> class Function;
+ template <typename F,
+     typename FP> Function<FP> FunctionMake(const F & functor);
 
 
 	template <typename R>
@@ -303,5 +305,11 @@ namespace ick {
 		}
 	};
 
+
+	template <typename F, typename FP>
+	Function<FP> FunctionMake(const F & functor){
+		return Function<FP>(FunctorHolder<F, FP>(functor));
 	}
+
+}
 

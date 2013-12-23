@@ -25,53 +25,36 @@ namespace ick {
 		typedef R (*FunctionType)($for ai , [[A$ai]]);
 		typedef FunctionBinder<FunctionType,$bn> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)($for ai , [[A$ai]])> function_;
 		$for bi [[A$bi a$bi[[]]_; ]]
 
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, $for bi , [[A$bi a$bi]]):
+		FunctionBinder(const Function<R(*)($for ai , [[A$ai]])> & function, $for bi , [[A$bi a$bi]]):
+		function_(function),
 		$for bi , [[a$bi[[]]_(a$bi)]]
 		
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		$for bi , [[a$bi[[]]_(copy.a$bi[[]]_)]]
+		virtual ~FunctionBinder(){}
 
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
 		virtual R operator() ($for cai , [[A$cai a$cai]]) {
-			return (*holder_)($for bi , [[a$bi[[]]_]] $if (bn * can) > 0 [[, ]] $for cai , [[a$cai]]);
+			return function_($for bi , [[a$bi[[]]_]] $if (bn * can) > 0 [[, ]] $for cai , [[a$cai]]);
 		}
 	};
 	
 	template <typename R$for ai [[, typename A$ai]]>
 	Function<R(*)($for cai , [[A$cai]])> 
 	FunctionBind$bn(Function<R(*)($for ai , [[A$ai]])> function $for bi [[, A$bi a$bi]]){
-		return Function<R(*)($for cai , [[A$cai]])>(
-			FunctorHolder<
-				FunctionBinder<R(*)($for ai , [[A$ai]]),$bn>,
-				R(*)($for cai , [[A$cai]])
-			>(
-				FunctionBinder<R(*)($for ai , [[A$ai]]),$bn>(
-					*function.holder() $for bi [[, a$bi[[]]]] 
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)($for ai , [[A$ai]]),$bn>,R(*)($for cai , [[A$cai]])>(
+			FunctionBinder<R(*)($for ai , [[A$ai]]),$bn>(function $for bi [[, a$bi]])
 		);
 	}
 
 	template <typename R$for ai [[, typename A$ai]]>
 	Function<R(*)($for cai , [[A$cai]])> 
 	FunctionBind$bn(R (*function)($for ai , [[A$ai]]) $for bi [[, A$bi a$bi]]){
-		return FunctionBind$bn<R$for ai [[, A$ai]]>(
-			Function<R(*)($for ai , [[A$ai]])>(function)
-			$for bi [[, a$bi]]
-
-		);
+		return FunctionBind$bn(Function<R(*)($for ai , [[A$ai]])>(function)
+			$for bi [[, a$bi]]);
 	}
 
 	]] $$ bind num

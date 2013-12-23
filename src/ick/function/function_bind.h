@@ -20,49 +20,34 @@ namespace ick {
 		typedef R (*FunctionType)(A1);
 		typedef FunctionBinder<FunctionType,1> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1)> function_;
 		A1 a1_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1):
+		FunctionBinder(const Function<R(*)(A1)> & function, A1 a1):
+		function_(function),
 		a1_(a1)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() () {
-			return (*holder_)(a1_ );
+			return function_(a1_ );
 		}
 	};
 
 	template <typename R, typename A1>
 	Function<R(*)()>
 	FunctionBind1(Function<R(*)(A1)> function , A1 a1){
-		return Function<R(*)()>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1),1>,
-				R(*)()
-			>(
-				FunctionBinder<R(*)(A1),1>(
-					*function.holder() , a1
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1),1>,R(*)()>(
+			FunctionBinder<R(*)(A1),1>(function , a1)
 		);
 	}
 
 	template <typename R, typename A1>
 	Function<R(*)()>
 	FunctionBind1(R (*function)(A1) , A1 a1){
-		return FunctionBind1<R, A1>(
-			Function<R(*)(A1)>(function)
-			, a1
-		);
+		return FunctionBind1(Function<R(*)(A1)>(function)
+			, a1);
 	}
 
 
@@ -72,49 +57,34 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2);
 		typedef FunctionBinder<FunctionType,1> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2)> function_;
 		A1 a1_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1):
+		FunctionBinder(const Function<R(*)(A1, A2)> & function, A1 a1):
+		function_(function),
 		a1_(a1)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A2 a2) {
-			return (*holder_)(a1_ , a2);
+			return function_(a1_ , a2);
 		}
 	};
 
 	template <typename R, typename A1, typename A2>
 	Function<R(*)(A2)>
 	FunctionBind1(Function<R(*)(A1, A2)> function , A1 a1){
-		return Function<R(*)(A2)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2),1>,
-				R(*)(A2)
-			>(
-				FunctionBinder<R(*)(A1, A2),1>(
-					*function.holder() , a1
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2),1>,R(*)(A2)>(
+			FunctionBinder<R(*)(A1, A2),1>(function , a1)
 		);
 	}
 
 	template <typename R, typename A1, typename A2>
 	Function<R(*)(A2)>
 	FunctionBind1(R (*function)(A1, A2) , A1 a1){
-		return FunctionBind1<R, A1, A2>(
-			Function<R(*)(A1, A2)>(function)
-			, a1
-		);
+		return FunctionBind1(Function<R(*)(A1, A2)>(function)
+			, a1);
 	}
 
 
@@ -124,49 +94,34 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2);
 		typedef FunctionBinder<FunctionType,2> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2)> function_;
 		A1 a1_; A2 a2_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2):
+		FunctionBinder(const Function<R(*)(A1, A2)> & function, A1 a1, A2 a2):
+		function_(function),
 		a1_(a1), a2_(a2)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() () {
-			return (*holder_)(a1_, a2_ );
+			return function_(a1_, a2_ );
 		}
 	};
 
 	template <typename R, typename A1, typename A2>
 	Function<R(*)()>
 	FunctionBind2(Function<R(*)(A1, A2)> function , A1 a1, A2 a2){
-		return Function<R(*)()>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2),2>,
-				R(*)()
-			>(
-				FunctionBinder<R(*)(A1, A2),2>(
-					*function.holder() , a1, a2
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2),2>,R(*)()>(
+			FunctionBinder<R(*)(A1, A2),2>(function , a1, a2)
 		);
 	}
 
 	template <typename R, typename A1, typename A2>
 	Function<R(*)()>
 	FunctionBind2(R (*function)(A1, A2) , A1 a1, A2 a2){
-		return FunctionBind2<R, A1, A2>(
-			Function<R(*)(A1, A2)>(function)
-			, a1, a2
-		);
+		return FunctionBind2(Function<R(*)(A1, A2)>(function)
+			, a1, a2);
 	}
 
 
@@ -176,49 +131,34 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3);
 		typedef FunctionBinder<FunctionType,1> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3)> function_;
 		A1 a1_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1):
+		FunctionBinder(const Function<R(*)(A1, A2, A3)> & function, A1 a1):
+		function_(function),
 		a1_(a1)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A2 a2, A3 a3) {
-			return (*holder_)(a1_ , a2, a3);
+			return function_(a1_ , a2, a3);
 		}
 	};
 
 	template <typename R, typename A1, typename A2, typename A3>
 	Function<R(*)(A2, A3)>
 	FunctionBind1(Function<R(*)(A1, A2, A3)> function , A1 a1){
-		return Function<R(*)(A2, A3)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3),1>,
-				R(*)(A2, A3)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3),1>(
-					*function.holder() , a1
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2, A3),1>,R(*)(A2, A3)>(
+			FunctionBinder<R(*)(A1, A2, A3),1>(function , a1)
 		);
 	}
 
 	template <typename R, typename A1, typename A2, typename A3>
 	Function<R(*)(A2, A3)>
 	FunctionBind1(R (*function)(A1, A2, A3) , A1 a1){
-		return FunctionBind1<R, A1, A2, A3>(
-			Function<R(*)(A1, A2, A3)>(function)
-			, a1
-		);
+		return FunctionBind1(Function<R(*)(A1, A2, A3)>(function)
+			, a1);
 	}
 
 
@@ -228,49 +168,34 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3);
 		typedef FunctionBinder<FunctionType,2> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3)> function_;
 		A1 a1_; A2 a2_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2):
+		FunctionBinder(const Function<R(*)(A1, A2, A3)> & function, A1 a1, A2 a2):
+		function_(function),
 		a1_(a1), a2_(a2)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A3 a3) {
-			return (*holder_)(a1_, a2_ , a3);
+			return function_(a1_, a2_ , a3);
 		}
 	};
 
 	template <typename R, typename A1, typename A2, typename A3>
 	Function<R(*)(A3)>
 	FunctionBind2(Function<R(*)(A1, A2, A3)> function , A1 a1, A2 a2){
-		return Function<R(*)(A3)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3),2>,
-				R(*)(A3)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3),2>(
-					*function.holder() , a1, a2
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2, A3),2>,R(*)(A3)>(
+			FunctionBinder<R(*)(A1, A2, A3),2>(function , a1, a2)
 		);
 	}
 
 	template <typename R, typename A1, typename A2, typename A3>
 	Function<R(*)(A3)>
 	FunctionBind2(R (*function)(A1, A2, A3) , A1 a1, A2 a2){
-		return FunctionBind2<R, A1, A2, A3>(
-			Function<R(*)(A1, A2, A3)>(function)
-			, a1, a2
-		);
+		return FunctionBind2(Function<R(*)(A1, A2, A3)>(function)
+			, a1, a2);
 	}
 
 
@@ -280,50 +205,35 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3);
 		typedef FunctionBinder<FunctionType,3> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3)> function_;
 		A1 a1_; A2 a2_; A3 a3_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
+  FunctionBinder(const Function<R(*)(A1, A2, A3)> & function, A1 a1, A2 a2,
       A3 a3):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() () {
-			return (*holder_)(a1_, a2_, a3_ );
+			return function_(a1_, a2_, a3_ );
 		}
 	};
 
 	template <typename R, typename A1, typename A2, typename A3>
 	Function<R(*)()>
 	FunctionBind3(Function<R(*)(A1, A2, A3)> function , A1 a1, A2 a2, A3 a3){
-		return Function<R(*)()>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3),3>,
-				R(*)()
-			>(
-				FunctionBinder<R(*)(A1, A2, A3),3>(
-					*function.holder() , a1, a2, a3
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2, A3),3>,R(*)()>(
+			FunctionBinder<R(*)(A1, A2, A3),3>(function , a1, a2, a3)
 		);
 	}
 
 	template <typename R, typename A1, typename A2, typename A3>
 	Function<R(*)()>
 	FunctionBind3(R (*function)(A1, A2, A3) , A1 a1, A2 a2, A3 a3){
-		return FunctionBind3<R, A1, A2, A3>(
-			Function<R(*)(A1, A2, A3)>(function)
-			, a1, a2, a3
-		);
+		return FunctionBind3(Function<R(*)(A1, A2, A3)>(function)
+			, a1, a2, a3);
 	}
 
 
@@ -333,49 +243,34 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4);
 		typedef FunctionBinder<FunctionType,1> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4)> function_;
 		A1 a1_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1):
+		FunctionBinder(const Function<R(*)(A1, A2, A3, A4)> & function, A1 a1):
+		function_(function),
 		a1_(a1)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A2 a2, A3 a3, A4 a4) {
-			return (*holder_)(a1_ , a2, a3, a4);
+			return function_(a1_ , a2, a3, a4);
 		}
 	};
 
 	template <typename R, typename A1, typename A2, typename A3, typename A4>
 	Function<R(*)(A2, A3, A4)>
 	FunctionBind1(Function<R(*)(A1, A2, A3, A4)> function , A1 a1){
-		return Function<R(*)(A2, A3, A4)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4),1>,
-				R(*)(A2, A3, A4)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4),1>(
-					*function.holder() , a1
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4),1>,R(*)(A2, A3, A4)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4),1>(function , a1)
 		);
 	}
 
 	template <typename R, typename A1, typename A2, typename A3, typename A4>
 	Function<R(*)(A2, A3, A4)>
 	FunctionBind1(R (*function)(A1, A2, A3, A4) , A1 a1){
-		return FunctionBind1<R, A1, A2, A3, A4>(
-			Function<R(*)(A1, A2, A3, A4)>(function)
-			, a1
-		);
+		return FunctionBind1(Function<R(*)(A1, A2, A3, A4)>(function)
+			, a1);
 	}
 
 
@@ -385,49 +280,34 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4);
 		typedef FunctionBinder<FunctionType,2> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4)> function_;
 		A1 a1_; A2 a2_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2):
+		FunctionBinder(const Function<R(*)(A1, A2, A3, A4)> & function, A1 a1, A2 a2):
+		function_(function),
 		a1_(a1), a2_(a2)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A3 a3, A4 a4) {
-			return (*holder_)(a1_, a2_ , a3, a4);
+			return function_(a1_, a2_ , a3, a4);
 		}
 	};
 
 	template <typename R, typename A1, typename A2, typename A3, typename A4>
 	Function<R(*)(A3, A4)>
 	FunctionBind2(Function<R(*)(A1, A2, A3, A4)> function , A1 a1, A2 a2){
-		return Function<R(*)(A3, A4)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4),2>,
-				R(*)(A3, A4)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4),2>(
-					*function.holder() , a1, a2
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4),2>,R(*)(A3, A4)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4),2>(function , a1, a2)
 		);
 	}
 
 	template <typename R, typename A1, typename A2, typename A3, typename A4>
 	Function<R(*)(A3, A4)>
 	FunctionBind2(R (*function)(A1, A2, A3, A4) , A1 a1, A2 a2){
-		return FunctionBind2<R, A1, A2, A3, A4>(
-			Function<R(*)(A1, A2, A3, A4)>(function)
-			, a1, a2
-		);
+		return FunctionBind2(Function<R(*)(A1, A2, A3, A4)>(function)
+			, a1, a2);
 	}
 
 
@@ -437,50 +317,35 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4);
 		typedef FunctionBinder<FunctionType,3> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4)> function_;
 		A1 a1_; A2 a2_; A3 a3_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4)> & function, A1 a1, A2 a2,
       A3 a3):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A4 a4) {
-			return (*holder_)(a1_, a2_, a3_ , a4);
+			return function_(a1_, a2_, a3_ , a4);
 		}
 	};
 
 	template <typename R, typename A1, typename A2, typename A3, typename A4>
 	Function<R(*)(A4)>
 	FunctionBind3(Function<R(*)(A1, A2, A3, A4)> function , A1 a1, A2 a2, A3 a3){
-		return Function<R(*)(A4)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4),3>,
-				R(*)(A4)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4),3>(
-					*function.holder() , a1, a2, a3
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4),3>,R(*)(A4)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4),3>(function , a1, a2, a3)
 		);
 	}
 
 	template <typename R, typename A1, typename A2, typename A3, typename A4>
 	Function<R(*)(A4)>
 	FunctionBind3(R (*function)(A1, A2, A3, A4) , A1 a1, A2 a2, A3 a3){
-		return FunctionBind3<R, A1, A2, A3, A4>(
-			Function<R(*)(A1, A2, A3, A4)>(function)
-			, a1, a2, a3
-		);
+		return FunctionBind3(Function<R(*)(A1, A2, A3, A4)>(function)
+			, a1, a2, a3);
 	}
 
 
@@ -490,25 +355,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4);
 		typedef FunctionBinder<FunctionType,4> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4)> & function, A1 a1, A2 a2,
       A3 a3, A4 a4):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() () {
-			return (*holder_)(a1_, a2_, a3_, a4_ );
+			return function_(a1_, a2_, a3_, a4_ );
 		}
 	};
 
@@ -516,25 +375,16 @@ namespace ick {
 	Function<R(*)()>
  FunctionBind4(Function<R(*)(A1, A2, A3, A4)> function , A1 a1, A2 a2, A3 a3,
      A4 a4){
-		return Function<R(*)()>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4),4>,
-				R(*)()
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4),4>(
-					*function.holder() , a1, a2, a3, a4
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4),4>,R(*)()>(
+			FunctionBinder<R(*)(A1, A2, A3, A4),4>(function , a1, a2, a3, a4)
 		);
 	}
 
 	template <typename R, typename A1, typename A2, typename A3, typename A4>
 	Function<R(*)()>
 	FunctionBind4(R (*function)(A1, A2, A3, A4) , A1 a1, A2 a2, A3 a3, A4 a4){
-		return FunctionBind4<R, A1, A2, A3, A4>(
-			Function<R(*)(A1, A2, A3, A4)>(function)
-			, a1, a2, a3, a4
-		);
+		return FunctionBind4(Function<R(*)(A1, A2, A3, A4)>(function)
+			, a1, a2, a3, a4);
 	}
 
 
@@ -545,24 +395,18 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5);
 		typedef FunctionBinder<FunctionType,1> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5)> function_;
 		A1 a1_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1):
+		FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5)> & function, A1 a1):
+		function_(function),
 		a1_(a1)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A2 a2, A3 a3, A4 a4, A5 a5) {
-			return (*holder_)(a1_ , a2, a3, a4, a5);
+			return function_(a1_ , a2, a3, a4, a5);
 		}
 	};
 
@@ -570,15 +414,9 @@ namespace ick {
      typename A5>
 	Function<R(*)(A2, A3, A4, A5)>
 	FunctionBind1(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1){
-		return Function<R(*)(A2, A3, A4, A5)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5),1>,
-				R(*)(A2, A3, A4, A5)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5),1>(
-					*function.holder() , a1
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5),1>,R(*)(A2, A3,
+      A4, A5)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5),1>(function , a1)
 		);
 	}
 
@@ -586,10 +424,8 @@ namespace ick {
      typename A5>
 	Function<R(*)(A2, A3, A4, A5)>
 	FunctionBind1(R (*function)(A1, A2, A3, A4, A5) , A1 a1){
-		return FunctionBind1<R, A1, A2, A3, A4, A5>(
-			Function<R(*)(A1, A2, A3, A4, A5)>(function)
-			, a1
-		);
+		return FunctionBind1(Function<R(*)(A1, A2, A3, A4, A5)>(function)
+			, a1);
 	}
 
 
@@ -600,24 +436,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5);
 		typedef FunctionBinder<FunctionType,2> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5)> function_;
 		A1 a1_; A2 a2_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5)> & function, A1 a1,
+      A2 a2):
+		function_(function),
 		a1_(a1), a2_(a2)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A3 a3, A4 a4, A5 a5) {
-			return (*holder_)(a1_, a2_ , a3, a4, a5);
+			return function_(a1_, a2_ , a3, a4, a5);
 		}
 	};
 
@@ -625,15 +456,9 @@ namespace ick {
      typename A5>
 	Function<R(*)(A3, A4, A5)>
 	FunctionBind2(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1, A2 a2){
-		return Function<R(*)(A3, A4, A5)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5),2>,
-				R(*)(A3, A4, A5)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5),2>(
-					*function.holder() , a1, a2
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5),2>,R(*)(A3, A4,
+      A5)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5),2>(function , a1, a2)
 		);
 	}
 
@@ -641,10 +466,8 @@ namespace ick {
      typename A5>
 	Function<R(*)(A3, A4, A5)>
 	FunctionBind2(R (*function)(A1, A2, A3, A4, A5) , A1 a1, A2 a2){
-		return FunctionBind2<R, A1, A2, A3, A4, A5>(
-			Function<R(*)(A1, A2, A3, A4, A5)>(function)
-			, a1, a2
-		);
+		return FunctionBind2(Function<R(*)(A1, A2, A3, A4, A5)>(function)
+			, a1, a2);
 	}
 
 
@@ -655,25 +478,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5);
 		typedef FunctionBinder<FunctionType,3> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5)> function_;
 		A1 a1_; A2 a2_; A3 a3_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5)> & function, A1 a1,
+      A2 a2, A3 a3):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A4 a4, A5 a5) {
-			return (*holder_)(a1_, a2_, a3_ , a4, a5);
+			return function_(a1_, a2_, a3_ , a4, a5);
 		}
 	};
 
@@ -682,15 +499,8 @@ namespace ick {
 	Function<R(*)(A4, A5)>
  FunctionBind3(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1, A2 a2,
      A3 a3){
-		return Function<R(*)(A4, A5)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5),3>,
-				R(*)(A4, A5)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5),3>(
-					*function.holder() , a1, a2, a3
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5),3>,R(*)(A4, A5)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5),3>(function , a1, a2, a3)
 		);
 	}
 
@@ -698,10 +508,8 @@ namespace ick {
      typename A5>
 	Function<R(*)(A4, A5)>
 	FunctionBind3(R (*function)(A1, A2, A3, A4, A5) , A1 a1, A2 a2, A3 a3){
-		return FunctionBind3<R, A1, A2, A3, A4, A5>(
-			Function<R(*)(A1, A2, A3, A4, A5)>(function)
-			, a1, a2, a3
-		);
+		return FunctionBind3(Function<R(*)(A1, A2, A3, A4, A5)>(function)
+			, a1, a2, a3);
 	}
 
 
@@ -712,25 +520,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5);
 		typedef FunctionBinder<FunctionType,4> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5)> & function, A1 a1,
+      A2 a2, A3 a3, A4 a4):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A5 a5) {
-			return (*holder_)(a1_, a2_, a3_, a4_ , a5);
+			return function_(a1_, a2_, a3_, a4_ , a5);
 		}
 	};
 
@@ -739,15 +541,8 @@ namespace ick {
 	Function<R(*)(A5)>
  FunctionBind4(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1, A2 a2,
      A3 a3, A4 a4){
-		return Function<R(*)(A5)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5),4>,
-				R(*)(A5)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5),4>(
-					*function.holder() , a1, a2, a3, a4
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5),4>,R(*)(A5)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5),4>(function , a1, a2, a3, a4)
 		);
 	}
 
@@ -755,10 +550,8 @@ namespace ick {
      typename A5>
 	Function<R(*)(A5)>
 	FunctionBind4(R (*function)(A1, A2, A3, A4, A5) , A1 a1, A2 a2, A3 a3, A4 a4){
-		return FunctionBind4<R, A1, A2, A3, A4, A5>(
-			Function<R(*)(A1, A2, A3, A4, A5)>(function)
-			, a1, a2, a3, a4
-		);
+		return FunctionBind4(Function<R(*)(A1, A2, A3, A4, A5)>(function)
+			, a1, a2, a3, a4);
 	}
 
 
@@ -769,25 +562,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5);
 		typedef FunctionBinder<FunctionType,5> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_; A5 a5_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4, A5 a5):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5)> & function, A1 a1,
+      A2 a2, A3 a3, A4 a4, A5 a5):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4), a5_(a5)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_), a5_(copy.a5_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() () {
-			return (*holder_)(a1_, a2_, a3_, a4_, a5_ );
+			return function_(a1_, a2_, a3_, a4_, a5_ );
 		}
 	};
 
@@ -796,15 +583,8 @@ namespace ick {
 	Function<R(*)()>
  FunctionBind5(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5){
-		return Function<R(*)()>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5),5>,
-				R(*)()
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5),5>(
-					*function.holder() , a1, a2, a3, a4, a5
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5),5>,R(*)()>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5),5>(function , a1, a2, a3, a4, a5)
 		);
 	}
 
@@ -813,10 +593,8 @@ namespace ick {
 	Function<R(*)()>
  FunctionBind5(R (*function)(A1, A2, A3, A4, A5) , A1 a1, A2 a2, A3 a3, A4 a4,
      A5 a5){
-		return FunctionBind5<R, A1, A2, A3, A4, A5>(
-			Function<R(*)(A1, A2, A3, A4, A5)>(function)
-			, a1, a2, a3, a4, a5
-		);
+		return FunctionBind5(Function<R(*)(A1, A2, A3, A4, A5)>(function)
+			, a1, a2, a3, a4, a5);
 	}
 
 
@@ -827,24 +605,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6);
 		typedef FunctionBinder<FunctionType,1> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6)> function_;
 		A1 a1_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6)> & function,
+      A1 a1):
+		function_(function),
 		a1_(a1)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) {
-			return (*holder_)(a1_ , a2, a3, a4, a5, a6);
+			return function_(a1_ , a2, a3, a4, a5, a6);
 		}
 	};
 
@@ -852,15 +625,9 @@ namespace ick {
      typename A5, typename A6>
 	Function<R(*)(A2, A3, A4, A5, A6)>
 	FunctionBind1(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1){
-		return Function<R(*)(A2, A3, A4, A5, A6)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),1>,
-				R(*)(A2, A3, A4, A5, A6)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),1>(
-					*function.holder() , a1
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),1>,R(*)(A2,
+      A3, A4, A5, A6)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),1>(function , a1)
 		);
 	}
 
@@ -868,10 +635,8 @@ namespace ick {
      typename A5, typename A6>
 	Function<R(*)(A2, A3, A4, A5, A6)>
 	FunctionBind1(R (*function)(A1, A2, A3, A4, A5, A6) , A1 a1){
-		return FunctionBind1<R, A1, A2, A3, A4, A5, A6>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6)>(function)
-			, a1
-		);
+		return FunctionBind1(Function<R(*)(A1, A2, A3, A4, A5, A6)>(function)
+			, a1);
 	}
 
 
@@ -882,24 +647,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6);
 		typedef FunctionBinder<FunctionType,2> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6)> function_;
 		A1 a1_; A2 a2_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6)> & function,
+      A1 a1, A2 a2):
+		function_(function),
 		a1_(a1), a2_(a2)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A3 a3, A4 a4, A5 a5, A6 a6) {
-			return (*holder_)(a1_, a2_ , a3, a4, a5, a6);
+			return function_(a1_, a2_ , a3, a4, a5, a6);
 		}
 	};
 
@@ -907,15 +667,9 @@ namespace ick {
      typename A5, typename A6>
 	Function<R(*)(A3, A4, A5, A6)>
 	FunctionBind2(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2){
-		return Function<R(*)(A3, A4, A5, A6)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),2>,
-				R(*)(A3, A4, A5, A6)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),2>(
-					*function.holder() , a1, a2
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),2>,R(*)(A3,
+      A4, A5, A6)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),2>(function , a1, a2)
 		);
 	}
 
@@ -923,10 +677,8 @@ namespace ick {
      typename A5, typename A6>
 	Function<R(*)(A3, A4, A5, A6)>
 	FunctionBind2(R (*function)(A1, A2, A3, A4, A5, A6) , A1 a1, A2 a2){
-		return FunctionBind2<R, A1, A2, A3, A4, A5, A6>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6)>(function)
-			, a1, a2
-		);
+		return FunctionBind2(Function<R(*)(A1, A2, A3, A4, A5, A6)>(function)
+			, a1, a2);
 	}
 
 
@@ -937,25 +689,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6);
 		typedef FunctionBinder<FunctionType,3> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6)> function_;
 		A1 a1_; A2 a2_; A3 a3_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6)> & function,
+      A1 a1, A2 a2, A3 a3):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A4 a4, A5 a5, A6 a6) {
-			return (*holder_)(a1_, a2_, a3_ , a4, a5, a6);
+			return function_(a1_, a2_, a3_ , a4, a5, a6);
 		}
 	};
 
@@ -964,15 +710,9 @@ namespace ick {
 	Function<R(*)(A4, A5, A6)>
  FunctionBind3(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2,
      A3 a3){
-		return Function<R(*)(A4, A5, A6)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),3>,
-				R(*)(A4, A5, A6)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),3>(
-					*function.holder() , a1, a2, a3
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),3>,R(*)(A4,
+      A5, A6)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),3>(function , a1, a2, a3)
 		);
 	}
 
@@ -980,10 +720,8 @@ namespace ick {
      typename A5, typename A6>
 	Function<R(*)(A4, A5, A6)>
 	FunctionBind3(R (*function)(A1, A2, A3, A4, A5, A6) , A1 a1, A2 a2, A3 a3){
-		return FunctionBind3<R, A1, A2, A3, A4, A5, A6>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6)>(function)
-			, a1, a2, a3
-		);
+		return FunctionBind3(Function<R(*)(A1, A2, A3, A4, A5, A6)>(function)
+			, a1, a2, a3);
 	}
 
 
@@ -994,25 +732,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6);
 		typedef FunctionBinder<FunctionType,4> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6)> & function,
+      A1 a1, A2 a2, A3 a3, A4 a4):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A5 a5, A6 a6) {
-			return (*holder_)(a1_, a2_, a3_, a4_ , a5, a6);
+			return function_(a1_, a2_, a3_, a4_ , a5, a6);
 		}
 	};
 
@@ -1021,15 +753,9 @@ namespace ick {
 	Function<R(*)(A5, A6)>
  FunctionBind4(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2,
      A3 a3, A4 a4){
-		return Function<R(*)(A5, A6)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),4>,
-				R(*)(A5, A6)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),4>(
-					*function.holder() , a1, a2, a3, a4
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),4>,R(*)(A5,
+      A6)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),4>(function , a1, a2, a3, a4)
 		);
 	}
 
@@ -1038,10 +764,8 @@ namespace ick {
 	Function<R(*)(A5, A6)>
  FunctionBind4(R (*function)(A1, A2, A3, A4, A5, A6) , A1 a1, A2 a2, A3 a3,
      A4 a4){
-		return FunctionBind4<R, A1, A2, A3, A4, A5, A6>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6)>(function)
-			, a1, a2, a3, a4
-		);
+		return FunctionBind4(Function<R(*)(A1, A2, A3, A4, A5, A6)>(function)
+			, a1, a2, a3, a4);
 	}
 
 
@@ -1052,25 +776,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6);
 		typedef FunctionBinder<FunctionType,5> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_; A5 a5_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4, A5 a5):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6)> & function,
+      A1 a1, A2 a2, A3 a3, A4 a4, A5 a5):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4), a5_(a5)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_), a5_(copy.a5_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A6 a6) {
-			return (*holder_)(a1_, a2_, a3_, a4_, a5_ , a6);
+			return function_(a1_, a2_, a3_, a4_, a5_ , a6);
 		}
 	};
 
@@ -1079,15 +797,8 @@ namespace ick {
 	Function<R(*)(A6)>
  FunctionBind5(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5){
-		return Function<R(*)(A6)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),5>,
-				R(*)(A6)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),5>(
-					*function.holder() , a1, a2, a3, a4, a5
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),5>,R(*)(A6)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),5>(function , a1, a2, a3, a4, a5)
 		);
 	}
 
@@ -1096,10 +807,8 @@ namespace ick {
 	Function<R(*)(A6)>
  FunctionBind5(R (*function)(A1, A2, A3, A4, A5, A6) , A1 a1, A2 a2, A3 a3,
      A4 a4, A5 a5){
-		return FunctionBind5<R, A1, A2, A3, A4, A5, A6>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6)>(function)
-			, a1, a2, a3, a4, a5
-		);
+		return FunctionBind5(Function<R(*)(A1, A2, A3, A4, A5, A6)>(function)
+			, a1, a2, a3, a4, a5);
 	}
 
 
@@ -1110,26 +819,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6);
 		typedef FunctionBinder<FunctionType,6> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_; A5 a5_; A6 a6_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4, A5 a5, A6 a6):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6)> & function,
+      A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4), a5_(a5), a6_(a6)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-  a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_), a5_(copy.a5_),
-      a6_(copy.a6_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() () {
-			return (*holder_)(a1_, a2_, a3_, a4_, a5_, a6_ );
+			return function_(a1_, a2_, a3_, a4_, a5_, a6_ );
 		}
 	};
 
@@ -1138,15 +840,9 @@ namespace ick {
 	Function<R(*)()>
  FunctionBind6(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5, A6 a6){
-		return Function<R(*)()>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),6>,
-				R(*)()
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),6>(
-					*function.holder() , a1, a2, a3, a4, a5, a6
-				)
-			)
+		return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),6>,R(*)()>(
+   FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6),6>(function , a1, a2, a3, a4,
+       a5, a6)
 		);
 	}
 
@@ -1155,10 +851,8 @@ namespace ick {
 	Function<R(*)()>
  FunctionBind6(R (*function)(A1, A2, A3, A4, A5, A6) , A1 a1, A2 a2, A3 a3,
      A4 a4, A5 a5, A6 a6){
-		return FunctionBind6<R, A1, A2, A3, A4, A5, A6>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6)>(function)
-			, a1, a2, a3, a4, a5, a6
-		);
+		return FunctionBind6(Function<R(*)(A1, A2, A3, A4, A5, A6)>(function)
+			, a1, a2, a3, a4, a5, a6);
 	}
 
 
@@ -1169,24 +863,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7);
 		typedef FunctionBinder<FunctionType,1> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function_;
 		A1 a1_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> & function,
+      A1 a1):
+		function_(function),
 		a1_(a1)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) {
-			return (*holder_)(a1_ , a2, a3, a4, a5, a6, a7);
+			return function_(a1_ , a2, a3, a4, a5, a6, a7);
 		}
 	};
 
@@ -1194,15 +883,9 @@ namespace ick {
      typename A5, typename A6, typename A7>
 	Function<R(*)(A2, A3, A4, A5, A6, A7)>
 	FunctionBind1(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1){
-		return Function<R(*)(A2, A3, A4, A5, A6, A7)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),1>,
-				R(*)(A2, A3, A4, A5, A6, A7)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),1>(
-					*function.holder() , a1
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),1>,
+      R(*)(A2, A3, A4, A5, A6, A7)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),1>(function , a1)
 		);
 	}
 
@@ -1210,10 +893,8 @@ namespace ick {
      typename A5, typename A6, typename A7>
 	Function<R(*)(A2, A3, A4, A5, A6, A7)>
 	FunctionBind1(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1){
-		return FunctionBind1<R, A1, A2, A3, A4, A5, A6, A7>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
-			, a1
-		);
+		return FunctionBind1(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
+			, a1);
 	}
 
 
@@ -1224,24 +905,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7);
 		typedef FunctionBinder<FunctionType,2> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function_;
 		A1 a1_; A2 a2_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> & function,
+      A1 a1, A2 a2):
+		function_(function),
 		a1_(a1), a2_(a2)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) {
-			return (*holder_)(a1_, a2_ , a3, a4, a5, a6, a7);
+			return function_(a1_, a2_ , a3, a4, a5, a6, a7);
 		}
 	};
 
@@ -1250,15 +926,9 @@ namespace ick {
 	Function<R(*)(A3, A4, A5, A6, A7)>
  FunctionBind2(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
      A2 a2){
-		return Function<R(*)(A3, A4, A5, A6, A7)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),2>,
-				R(*)(A3, A4, A5, A6, A7)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),2>(
-					*function.holder() , a1, a2
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),2>,
+      R(*)(A3, A4, A5, A6, A7)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),2>(function , a1, a2)
 		);
 	}
 
@@ -1266,10 +936,8 @@ namespace ick {
      typename A5, typename A6, typename A7>
 	Function<R(*)(A3, A4, A5, A6, A7)>
 	FunctionBind2(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1, A2 a2){
-		return FunctionBind2<R, A1, A2, A3, A4, A5, A6, A7>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
-			, a1, a2
-		);
+		return FunctionBind2(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
+			, a1, a2);
 	}
 
 
@@ -1280,25 +948,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7);
 		typedef FunctionBinder<FunctionType,3> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function_;
 		A1 a1_; A2 a2_; A3 a3_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> & function,
+      A1 a1, A2 a2, A3 a3):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A4 a4, A5 a5, A6 a6, A7 a7) {
-			return (*holder_)(a1_, a2_, a3_ , a4, a5, a6, a7);
+			return function_(a1_, a2_, a3_ , a4, a5, a6, a7);
 		}
 	};
 
@@ -1307,15 +969,9 @@ namespace ick {
 	Function<R(*)(A4, A5, A6, A7)>
  FunctionBind3(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
      A2 a2, A3 a3){
-		return Function<R(*)(A4, A5, A6, A7)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),3>,
-				R(*)(A4, A5, A6, A7)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),3>(
-					*function.holder() , a1, a2, a3
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),3>,
+      R(*)(A4, A5, A6, A7)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),3>(function , a1, a2, a3)
 		);
 	}
 
@@ -1323,10 +979,8 @@ namespace ick {
      typename A5, typename A6, typename A7>
 	Function<R(*)(A4, A5, A6, A7)>
 	FunctionBind3(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1, A2 a2, A3 a3){
-		return FunctionBind3<R, A1, A2, A3, A4, A5, A6, A7>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
-			, a1, a2, a3
-		);
+		return FunctionBind3(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
+			, a1, a2, a3);
 	}
 
 
@@ -1337,25 +991,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7);
 		typedef FunctionBinder<FunctionType,4> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> & function,
+      A1 a1, A2 a2, A3 a3, A4 a4):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A5 a5, A6 a6, A7 a7) {
-			return (*holder_)(a1_, a2_, a3_, a4_ , a5, a6, a7);
+			return function_(a1_, a2_, a3_, a4_ , a5, a6, a7);
 		}
 	};
 
@@ -1364,15 +1012,9 @@ namespace ick {
 	Function<R(*)(A5, A6, A7)>
  FunctionBind4(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
      A2 a2, A3 a3, A4 a4){
-		return Function<R(*)(A5, A6, A7)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),4>,
-				R(*)(A5, A6, A7)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),4>(
-					*function.holder() , a1, a2, a3, a4
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),4>,
+      R(*)(A5, A6, A7)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),4>(function , a1, a2, a3, a4)
 		);
 	}
 
@@ -1381,10 +1023,8 @@ namespace ick {
 	Function<R(*)(A5, A6, A7)>
  FunctionBind4(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1, A2 a2, A3 a3,
      A4 a4){
-		return FunctionBind4<R, A1, A2, A3, A4, A5, A6, A7>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
-			, a1, a2, a3, a4
-		);
+		return FunctionBind4(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
+			, a1, a2, a3, a4);
 	}
 
 
@@ -1395,25 +1035,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7);
 		typedef FunctionBinder<FunctionType,5> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_; A5 a5_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4, A5 a5):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> & function,
+      A1 a1, A2 a2, A3 a3, A4 a4, A5 a5):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4), a5_(a5)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_), a5_(copy.a5_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A6 a6, A7 a7) {
-			return (*holder_)(a1_, a2_, a3_, a4_, a5_ , a6, a7);
+			return function_(a1_, a2_, a3_, a4_, a5_ , a6, a7);
 		}
 	};
 
@@ -1422,15 +1056,10 @@ namespace ick {
 	Function<R(*)(A6, A7)>
  FunctionBind5(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5){
-		return Function<R(*)(A6, A7)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),5>,
-				R(*)(A6, A7)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),5>(
-					*function.holder() , a1, a2, a3, a4, a5
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),5>,
+      R(*)(A6, A7)>(
+   FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),5>(function , a1, a2, a3,
+       a4, a5)
 		);
 	}
 
@@ -1439,10 +1068,8 @@ namespace ick {
 	Function<R(*)(A6, A7)>
  FunctionBind5(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1, A2 a2, A3 a3,
      A4 a4, A5 a5){
-		return FunctionBind5<R, A1, A2, A3, A4, A5, A6, A7>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
-			, a1, a2, a3, a4, a5
-		);
+		return FunctionBind5(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
+			, a1, a2, a3, a4, a5);
 	}
 
 
@@ -1453,26 +1080,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7);
 		typedef FunctionBinder<FunctionType,6> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_; A5 a5_; A6 a6_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4, A5 a5, A6 a6):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> & function,
+      A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4), a5_(a5), a6_(a6)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-  a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_), a5_(copy.a5_),
-      a6_(copy.a6_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A7 a7) {
-			return (*holder_)(a1_, a2_, a3_, a4_, a5_, a6_ , a7);
+			return function_(a1_, a2_, a3_, a4_, a5_, a6_ , a7);
 		}
 	};
 
@@ -1481,15 +1101,10 @@ namespace ick {
 	Function<R(*)(A7)>
  FunctionBind6(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6){
-		return Function<R(*)(A7)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),6>,
-				R(*)(A7)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),6>(
-					*function.holder() , a1, a2, a3, a4, a5, a6
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),6>,
+      R(*)(A7)>(
+   FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),6>(function , a1, a2, a3,
+       a4, a5, a6)
 		);
 	}
 
@@ -1498,10 +1113,8 @@ namespace ick {
 	Function<R(*)(A7)>
  FunctionBind6(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1, A2 a2, A3 a3,
      A4 a4, A5 a5, A6 a6){
-		return FunctionBind6<R, A1, A2, A3, A4, A5, A6, A7>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
-			, a1, a2, a3, a4, a5, a6
-		);
+		return FunctionBind6(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
+			, a1, a2, a3, a4, a5, a6);
 	}
 
 
@@ -1512,26 +1125,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7);
 		typedef FunctionBinder<FunctionType,7> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_; A5 a5_; A6 a6_; A7 a7_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4, A5 a5, A6 a6, A7 a7):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> & function,
+      A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4), a5_(a5), a6_(a6), a7_(a7)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-  a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_), a5_(copy.a5_),
-      a6_(copy.a6_), a7_(copy.a7_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() () {
-			return (*holder_)(a1_, a2_, a3_, a4_, a5_, a6_, a7_ );
+			return function_(a1_, a2_, a3_, a4_, a5_, a6_, a7_ );
 		}
 	};
 
@@ -1540,15 +1146,10 @@ namespace ick {
 	Function<R(*)()>
  FunctionBind7(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7){
-		return Function<R(*)()>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),7>,
-				R(*)()
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),7>(
-					*function.holder() , a1, a2, a3, a4, a5, a6, a7
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),7>,
+      R(*)()>(
+   FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7),7>(function , a1, a2, a3,
+       a4, a5, a6, a7)
 		);
 	}
 
@@ -1557,10 +1158,8 @@ namespace ick {
 	Function<R(*)()>
  FunctionBind7(R (*function)(A1, A2, A3, A4, A5, A6, A7) , A1 a1, A2 a2, A3 a3,
      A4 a4, A5 a5, A6 a6, A7 a7){
-		return FunctionBind7<R, A1, A2, A3, A4, A5, A6, A7>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
-			, a1, a2, a3, a4, a5, a6, a7
-		);
+		return FunctionBind7(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>(function)
+			, a1, a2, a3, a4, a5, a6, a7);
 	}
 
 
@@ -1571,24 +1170,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7, A8);
 		typedef FunctionBinder<FunctionType,1> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function_;
 		A1 a1_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7,
+      A8)> & function, A1 a1):
+		function_(function),
 		a1_(a1)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8) {
-			return (*holder_)(a1_ , a2, a3, a4, a5, a6, a7, a8);
+			return function_(a1_ , a2, a3, a4, a5, a6, a7, a8);
 		}
 	};
 
@@ -1596,15 +1190,9 @@ namespace ick {
      typename A5, typename A6, typename A7, typename A8>
 	Function<R(*)(A2, A3, A4, A5, A6, A7, A8)>
 	FunctionBind1(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1){
-		return Function<R(*)(A2, A3, A4, A5, A6, A7, A8)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),1>,
-				R(*)(A2, A3, A4, A5, A6, A7, A8)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),1>(
-					*function.holder() , a1
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),1>,
+      R(*)(A2, A3, A4, A5, A6, A7, A8)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),1>(function , a1)
 		);
 	}
 
@@ -1612,10 +1200,8 @@ namespace ick {
      typename A5, typename A6, typename A7, typename A8>
 	Function<R(*)(A2, A3, A4, A5, A6, A7, A8)>
 	FunctionBind1(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1){
-		return FunctionBind1<R, A1, A2, A3, A4, A5, A6, A7, A8>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
-			, a1
-		);
+		return FunctionBind1(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
+			, a1);
 	}
 
 
@@ -1626,24 +1212,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7, A8);
 		typedef FunctionBinder<FunctionType,2> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function_;
 		A1 a1_; A2 a2_;
 	public:
-		FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7,
+      A8)> & function, A1 a1, A2 a2):
+		function_(function),
 		a1_(a1), a2_(a2)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8) {
-			return (*holder_)(a1_, a2_ , a3, a4, a5, a6, a7, a8);
+			return function_(a1_, a2_ , a3, a4, a5, a6, a7, a8);
 		}
 	};
 
@@ -1652,15 +1233,9 @@ namespace ick {
 	Function<R(*)(A3, A4, A5, A6, A7, A8)>
  FunctionBind2(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2){
-		return Function<R(*)(A3, A4, A5, A6, A7, A8)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),2>,
-				R(*)(A3, A4, A5, A6, A7, A8)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),2>(
-					*function.holder() , a1, a2
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),2>,
+      R(*)(A3, A4, A5, A6, A7, A8)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),2>(function , a1, a2)
 		);
 	}
 
@@ -1668,10 +1243,8 @@ namespace ick {
      typename A5, typename A6, typename A7, typename A8>
 	Function<R(*)(A3, A4, A5, A6, A7, A8)>
 	FunctionBind2(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2){
-		return FunctionBind2<R, A1, A2, A3, A4, A5, A6, A7, A8>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
-			, a1, a2
-		);
+		return FunctionBind2(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
+			, a1, a2);
 	}
 
 
@@ -1682,25 +1255,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7, A8);
 		typedef FunctionBinder<FunctionType,3> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function_;
 		A1 a1_; A2 a2_; A3 a3_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7,
+      A8)> & function, A1 a1, A2 a2, A3 a3):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A4 a4, A5 a5, A6 a6, A7 a7, A8 a8) {
-			return (*holder_)(a1_, a2_, a3_ , a4, a5, a6, a7, a8);
+			return function_(a1_, a2_, a3_ , a4, a5, a6, a7, a8);
 		}
 	};
 
@@ -1709,15 +1276,9 @@ namespace ick {
 	Function<R(*)(A4, A5, A6, A7, A8)>
  FunctionBind3(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2, A3 a3){
-		return Function<R(*)(A4, A5, A6, A7, A8)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),3>,
-				R(*)(A4, A5, A6, A7, A8)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),3>(
-					*function.holder() , a1, a2, a3
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),3>,
+      R(*)(A4, A5, A6, A7, A8)>(
+			FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),3>(function , a1, a2, a3)
 		);
 	}
 
@@ -1726,10 +1287,8 @@ namespace ick {
 	Function<R(*)(A4, A5, A6, A7, A8)>
  FunctionBind3(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2,
      A3 a3){
-		return FunctionBind3<R, A1, A2, A3, A4, A5, A6, A7, A8>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
-			, a1, a2, a3
-		);
+		return FunctionBind3(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
+			, a1, a2, a3);
 	}
 
 
@@ -1740,25 +1299,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7, A8);
 		typedef FunctionBinder<FunctionType,4> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7,
+      A8)> & function, A1 a1, A2 a2, A3 a3, A4 a4):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A5 a5, A6 a6, A7 a7, A8 a8) {
-			return (*holder_)(a1_, a2_, a3_, a4_ , a5, a6, a7, a8);
+			return function_(a1_, a2_, a3_, a4_ , a5, a6, a7, a8);
 		}
 	};
 
@@ -1767,15 +1320,10 @@ namespace ick {
 	Function<R(*)(A5, A6, A7, A8)>
  FunctionBind4(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2, A3 a3, A4 a4){
-		return Function<R(*)(A5, A6, A7, A8)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),4>,
-				R(*)(A5, A6, A7, A8)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),4>(
-					*function.holder() , a1, a2, a3, a4
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),4>,
+      R(*)(A5, A6, A7, A8)>(
+   FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),4>(function , a1, a2,
+       a3, a4)
 		);
 	}
 
@@ -1784,10 +1332,8 @@ namespace ick {
 	Function<R(*)(A5, A6, A7, A8)>
  FunctionBind4(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2,
      A3 a3, A4 a4){
-		return FunctionBind4<R, A1, A2, A3, A4, A5, A6, A7, A8>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
-			, a1, a2, a3, a4
-		);
+		return FunctionBind4(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
+			, a1, a2, a3, a4);
 	}
 
 
@@ -1798,25 +1344,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7, A8);
 		typedef FunctionBinder<FunctionType,5> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_; A5 a5_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4, A5 a5):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7,
+      A8)> & function, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4), a5_(a5)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-		a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_), a5_(copy.a5_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A6 a6, A7 a7, A8 a8) {
-			return (*holder_)(a1_, a2_, a3_, a4_, a5_ , a6, a7, a8);
+			return function_(a1_, a2_, a3_, a4_, a5_ , a6, a7, a8);
 		}
 	};
 
@@ -1825,15 +1365,10 @@ namespace ick {
 	Function<R(*)(A6, A7, A8)>
  FunctionBind5(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5){
-		return Function<R(*)(A6, A7, A8)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),5>,
-				R(*)(A6, A7, A8)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),5>(
-					*function.holder() , a1, a2, a3, a4, a5
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),5>,
+      R(*)(A6, A7, A8)>(
+   FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),5>(function , a1, a2,
+       a3, a4, a5)
 		);
 	}
 
@@ -1842,10 +1377,8 @@ namespace ick {
 	Function<R(*)(A6, A7, A8)>
  FunctionBind5(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5){
-		return FunctionBind5<R, A1, A2, A3, A4, A5, A6, A7, A8>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
-			, a1, a2, a3, a4, a5
-		);
+		return FunctionBind5(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
+			, a1, a2, a3, a4, a5);
 	}
 
 
@@ -1856,26 +1389,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7, A8);
 		typedef FunctionBinder<FunctionType,6> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_; A5 a5_; A6 a6_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4, A5 a5, A6 a6):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7,
+      A8)> & function, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4), a5_(a5), a6_(a6)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-  a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_), a5_(copy.a5_),
-      a6_(copy.a6_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A7 a7, A8 a8) {
-			return (*holder_)(a1_, a2_, a3_, a4_, a5_, a6_ , a7, a8);
+			return function_(a1_, a2_, a3_, a4_, a5_, a6_ , a7, a8);
 		}
 	};
 
@@ -1884,15 +1410,10 @@ namespace ick {
 	Function<R(*)(A7, A8)>
  FunctionBind6(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6){
-		return Function<R(*)(A7, A8)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),6>,
-				R(*)(A7, A8)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),6>(
-					*function.holder() , a1, a2, a3, a4, a5, a6
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),6>,
+      R(*)(A7, A8)>(
+   FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),6>(function , a1, a2,
+       a3, a4, a5, a6)
 		);
 	}
 
@@ -1901,10 +1422,8 @@ namespace ick {
 	Function<R(*)(A7, A8)>
  FunctionBind6(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5, A6 a6){
-		return FunctionBind6<R, A1, A2, A3, A4, A5, A6, A7, A8>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
-			, a1, a2, a3, a4, a5, a6
-		);
+		return FunctionBind6(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
+			, a1, a2, a3, a4, a5, a6);
 	}
 
 
@@ -1915,26 +1434,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7, A8);
 		typedef FunctionBinder<FunctionType,7> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_; A5 a5_; A6 a6_; A7 a7_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4, A5 a5, A6 a6, A7 a7):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7,
+      A8)> & function, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4), a5_(a5), a6_(a6), a7_(a7)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-  a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_), a5_(copy.a5_),
-      a6_(copy.a6_), a7_(copy.a7_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() (A8 a8) {
-			return (*holder_)(a1_, a2_, a3_, a4_, a5_, a6_, a7_ , a8);
+			return function_(a1_, a2_, a3_, a4_, a5_, a6_, a7_ , a8);
 		}
 	};
 
@@ -1943,15 +1455,10 @@ namespace ick {
 	Function<R(*)(A8)>
  FunctionBind7(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7){
-		return Function<R(*)(A8)>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),7>,
-				R(*)(A8)
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),7>(
-					*function.holder() , a1, a2, a3, a4, a5, a6, a7
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),7>,
+      R(*)(A8)>(
+   FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),7>(function , a1, a2,
+       a3, a4, a5, a6, a7)
 		);
 	}
 
@@ -1960,10 +1467,8 @@ namespace ick {
 	Function<R(*)(A8)>
  FunctionBind7(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5, A6 a6, A7 a7){
-		return FunctionBind7<R, A1, A2, A3, A4, A5, A6, A7, A8>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
-			, a1, a2, a3, a4, a5, a6, a7
-		);
+		return FunctionBind7(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
+			, a1, a2, a3, a4, a5, a6, a7);
 	}
 
 
@@ -1974,26 +1479,19 @@ namespace ick {
 		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7, A8);
 		typedef FunctionBinder<FunctionType,8> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function_;
 		A1 a1_; A2 a2_; A3 a3_; A4 a4_; A5 a5_; A6 a6_; A7 a7_; A8 a8_;
 	public:
-  FunctionBinder(const BaseFunctorHolder<FunctionType> & holder, A1 a1, A2 a2,
-      A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8):
+  FunctionBinder(const Function<R(*)(A1, A2, A3, A4, A5, A6, A7,
+      A8)> & function, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8):
+		function_(function),
 		a1_(a1), a2_(a2), a3_(a3), a4_(a4), a5_(a5), a6_(a6), a7_(a7), a8_(a8)
 		{
-			holder_ = holder.Clone();
 		}
-		FunctionBinder(const FunctionBinder & copy):
-  a1_(copy.a1_), a2_(copy.a2_), a3_(copy.a3_), a4_(copy.a4_), a5_(copy.a5_),
-      a6_(copy.a6_), a7_(copy.a7_), a8_(copy.a8_)
-		{
-			holder_ = copy.holder_->Clone();
-		}
-		virtual ~FunctionBinder(){
-			ICK_DELETE(holder_);
-		}
+		virtual ~FunctionBinder(){}
+
 		virtual R operator() () {
-			return (*holder_)(a1_, a2_, a3_, a4_, a5_, a6_, a7_, a8_ );
+			return function_(a1_, a2_, a3_, a4_, a5_, a6_, a7_, a8_ );
 		}
 	};
 
@@ -2002,15 +1500,10 @@ namespace ick {
 	Function<R(*)()>
  FunctionBind8(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8){
-		return Function<R(*)()>(
-			FunctorHolder<
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),8>,
-				R(*)()
-			>(
-				FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),8>(
-					*function.holder() , a1, a2, a3, a4, a5, a6, a7, a8
-				)
-			)
+  return FunctionMake<FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),8>,
+      R(*)()>(
+   FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8),8>(function , a1, a2,
+       a3, a4, a5, a6, a7, a8)
 		);
 	}
 
@@ -2019,10 +1512,8 @@ namespace ick {
 	Function<R(*)()>
  FunctionBind8(R (*function)(A1, A2, A3, A4, A5, A6, A7, A8) , A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8){
-		return FunctionBind8<R, A1, A2, A3, A4, A5, A6, A7, A8>(
-			Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
-			, a1, a2, a3, a4, a5, a6, a7, a8
-		);
+		return FunctionBind8(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>(function)
+			, a1, a2, a3, a4, a5, a6, a7, a8);
 	}
 
 

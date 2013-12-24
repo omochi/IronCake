@@ -3,41 +3,41 @@
 #include "../base/abort.h"
 
 namespace ick{
-	TCHAR * WindowsAStrToTStr(const char * cstr, UINT code_page){
-		return WindowsAStrToTStr(const_cast<char *>(cstr), code_page, false);
+	TCHAR * WindowsAStrToTStr(const CHAR * astr, UINT code_page){
+		return WindowsAStrToTStr(const_cast<CHAR *>(astr), code_page, false);
 	}
-	TCHAR * WindowsAStrToTStr(char * cstr, UINT code_page, bool release){
+	TCHAR * WindowsAStrToTStr(CHAR * astr, UINT code_page, bool release){
 #ifdef UNICODE
-		return WindowsAStrToWStr(cstr, code_page, release);
+		return WindowsAStrToWStr(astr, code_page, release);
 #else
-		return WindowsAStrToAStr(cstr, code_page, release, CP_ACP);
+		return WindowsAStrToAStr(astr, code_page, release, CP_ACP);
 #endif
 	}
 
-	WCHAR * WindowsAStrToWStr(const char * cstr, UINT code_page){
-		return WindowsAStrToWStr(const_cast<char *>(cstr), code_page, false);
+	WCHAR * WindowsAStrToWStr(const CHAR * astr, UINT code_page){
+		return WindowsAStrToWStr(const_cast<CHAR *>(astr), code_page, false);
 	}
-	WCHAR * WindowsAStrToWStr(char * cstr, UINT code_page, bool release){
-		int num = MultiByteToWideChar(code_page, 0, cstr, -1, NULL, 0);
+	WCHAR * WindowsAStrToWStr(CHAR * astr, UINT code_page, bool release){
+		int num = MultiByteToWideChar(code_page, 0, astr, -1, NULL, 0);
 		if (num == 0){
 			DWORD error = GetLastError();
 			ICK_ABORT("MultiByteToWideChar: %d", error);
 		}
 		WCHAR * buf = ICK_ALLOC(WCHAR, num);
-		num = MultiByteToWideChar(code_page, 0, cstr, -1, buf, num);
+		num = MultiByteToWideChar(code_page, 0, astr, -1, buf, num);
 		if (num == 0){
 			DWORD error = GetLastError();
 			ICK_ABORT("MultiByteToWideChar: %d", error);
 		}
-		if (release) { ICK_FREE(cstr); }
+		if (release) { ICK_FREE(astr); }
 		return buf;
 	}
 
-	CHAR * WindowsAStrToAStr(const char * cstr, UINT code_page, UINT dest_code_page){
-		return WindowsAStrToAStr(const_cast<char *>(cstr), code_page, false, dest_code_page);
+	CHAR * WindowsAStrToAStr(const CHAR * astr, UINT code_page, UINT dest_code_page){
+		return WindowsAStrToAStr(const_cast<CHAR *>(astr), code_page, false, dest_code_page);
 	}
-	CHAR * WindowsAStrToAStr(char * cstr, UINT code_page, bool release, UINT dest_code_page){
-		WCHAR * wstr = WindowsAStrToWStr(cstr, code_page, release);
+	CHAR * WindowsAStrToAStr(CHAR * astr, UINT code_page, bool release, UINT dest_code_page){
+		WCHAR * wstr = WindowsAStrToWStr(astr, code_page, release);
 		return WindowsWStrToAStr(wstr, true, dest_code_page);
 	}
 
@@ -119,5 +119,46 @@ namespace ick{
 #endif
 	}
 
+	TCHAR * StringToWindowsTStr(const String & string){
+		return WindowsAStrToTStr(string.cstr(), CP_UTF8);
+	}
+
+	WCHAR * StringToWindowsWStr(const String & string){
+		return WindowsAStrToWStr(string.cstr(), CP_UTF8);
+	}
+
+	CHAR * StringToWindowsAStr(const String & string, UINT dest_code_page){
+		return WindowsAStrToAStr(string.cstr(), CP_UTF8, dest_code_page);
+	}
+
+	String WindowsTStrToString(const TCHAR * tstr){
+		return WindowsTStrToString(const_cast<TCHAR *>(tstr), false);
+	}
+	String WindowsTStrToString(TCHAR * tstr, bool release){
+		char * cstr = WindowsTStrToAStr(tstr, release, CP_UTF8);
+		String str(cstr);
+		ICK_FREE(cstr);
+		return str;
+	}
+
+	String WindowsWStrToString(const WCHAR * wstr){
+		return WindowsWStrToString(const_cast<WCHAR *>(wstr), false);
+	}
+	String WindowsWStrToString(WCHAR * wstr, bool release){
+		char * cstr = WindowsWStrToAStr(wstr, release, CP_UTF8);
+		String str(cstr);
+		ICK_FREE(cstr);
+		return str;
+	}
+
+	String WindowsAStrToString(const CHAR * astr, UINT code_page){
+		return WindowsAStrToString(const_cast<CHAR *>(astr), code_page, false);
+	}
+	String WindowsAStrToString(CHAR * astr, UINT code_page, bool release){
+		char * cstr = WindowsAStrToAStr(astr, code_page, release, CP_UTF8);
+		String str(cstr);
+		ICK_FREE(cstr);
+		return str;
+	}
 }
 

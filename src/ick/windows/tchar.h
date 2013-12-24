@@ -10,17 +10,17 @@
 
 namespace ick{
 	//AtoT
-	TCHAR * WindowsAStrToTStr(const char * cstr, UINT code_page);
-	TCHAR * WindowsAStrToTStr(char * cstr, UINT code_page, bool release);
+	TCHAR * WindowsAStrToTStr(const CHAR * astr, UINT code_page);
+	TCHAR * WindowsAStrToTStr(CHAR * astr, UINT code_page, bool release);
 
 	//AtoW
-	WCHAR * WindowsAStrToWStr(const char * cstr, UINT code_page);
-	WCHAR * WindowsAStrToWStr(char * cstr, UINT code_page, bool release);
+	WCHAR * WindowsAStrToWStr(const CHAR * astr, UINT code_page);
+	WCHAR * WindowsAStrToWStr(CHAR * astr, UINT code_page, bool release);
 
 	//AtoAはencoding変換
 	//CopyはCStrCopyでできる
-	CHAR * WindowsAStrToAStr(const char * cstr, UINT code_page, UINT dest_code_page);
-	CHAR * WindowsAStrToAStr(char * cstr, UINT code_page, bool release, UINT dest_code_page);
+	CHAR * WindowsAStrToAStr(const CHAR * astr, UINT code_page, UINT dest_code_page);
+	CHAR * WindowsAStrToAStr(CHAR * astr, UINT code_page, bool release, UINT dest_code_page);
 
 	//WtoT
 	TCHAR * WindowsWStrToTStr(const WCHAR * wstr);
@@ -46,11 +46,24 @@ namespace ick{
 	CHAR * WindowsTStrToAStr(const TCHAR * tstr, UINT dest_code_page);
 	CHAR * WindowsTStrToAStr(TCHAR * tstr, bool release, UINT dest_code_page);
 
-	//TCHAR * StringToWindowsTChar(const String & string);
-	//WCHAR * StringToWindowsWChar(const String & string);
+	//StringToT
+	TCHAR * StringToWindowsTStr(const String & string);
+	//StringToW
+	WCHAR * StringToWindowsWStr(const String & string);
+	//StringToA
+	CHAR * StringToWindowsAStr(const String & string, UINT dest_code_page);
 
-	//String WindowsTCharToString(TCHAR * tstr, bool release);
-	//String WindowsWCharToString(TCHAR * wstr, bool release);
+	//TtoString
+	String WindowsTStrToString(const TCHAR * tstr);
+	String WindowsTStrToString(TCHAR * tstr, bool release);
+
+	//WtoString
+	String WindowsWStrToString(const WCHAR * wstr);
+	String WindowsWStrToString(WCHAR * wstr, bool release);
+
+	//AtoString
+	String WindowsAStrToString(const CHAR * astr, UINT code_page);
+	String WindowsAStrToString(CHAR * astr, UINT code_page, bool release);
 
 }
 

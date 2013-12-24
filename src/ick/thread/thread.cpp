@@ -1,4 +1,4 @@
-#include "thread.h"
+﻿#include "thread.h"
 
 #include "../base/memory.h"
 #include "../base/error.h"

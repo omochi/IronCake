@@ -17,12 +17,17 @@
     <ClCompile Include="..\..\src\ick\base\assert.cpp" />
     <ClCompile Include="..\..\src\ick\base\crt.cpp" />
     <ClCompile Include="..\..\src\ick\base\cstr.cpp" />
+    <ClCompile Include="..\..\src\ick\base\error.cpp" />
     <ClCompile Include="..\..\src\ick\base\linked_list.cpp" />
     <ClCompile Include="..\..\src\ick\base\log.cpp" />
     <ClCompile Include="..\..\src\ick\base\math.cpp" />
     <ClCompile Include="..\..\src\ick\base\memory.cpp" />
     <ClCompile Include="..\..\src\ick\base\string.cpp" />
+    <ClCompile Include="..\..\src\ick\function\function.cpp" />
     <ClCompile Include="..\..\src\ick\ick.cpp" />
+    <ClCompile Include="..\..\src\ick\thread\function_thread.cpp" />
+    <ClCompile Include="..\..\src\ick\thread\mutex.cpp" />
+    <ClCompile Include="..\..\src\ick\thread\thread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\ick\base\abort.h" />
@@ -34,6 +39,7 @@
     <ClInclude Include="..\..\src\ick\base\compiler.h" />
     <ClInclude Include="..\..\src\ick\base\crt.h" />
     <ClInclude Include="..\..\src\ick\base\cstr.h" />
+    <ClInclude Include="..\..\src\ick\base\error.h" />
     <ClInclude Include="..\..\src\ick\base\linked_list.h" />
     <ClInclude Include="..\..\src\ick\base\log.h" />
     <ClInclude Include="..\..\src\ick\base\macro.h" />
@@ -42,7 +48,15 @@
     <ClInclude Include="..\..\src\ick\base\platform.h" />
     <ClInclude Include="..\..\src\ick\base\std.h" />
     <ClInclude Include="..\..\src\ick\base\string.h" />
+    <ClInclude Include="..\..\src\ick\function\function.h" />
+    <ClInclude Include="..\..\src\ick\function\function_bind.h" />
+    <ClInclude Include="..\..\src\ick\function\function_bind_decl.h" />
+    <ClInclude Include="..\..\src\ick\function\functor_holder.h" />
     <ClInclude Include="..\..\src\ick\ick.h" />
+    <ClInclude Include="..\..\src\ick\thread\function_thread.h" />
+    <ClInclude Include="..\..\src\ick\thread\mutex.h" />
+    <ClInclude Include="..\..\src\ick\thread\runnable.h" />
+    <ClInclude Include="..\..\src\ick\thread\thread.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{041F6C9E-A855-4A8F-829F-7E776271DC3F}</ProjectGuid>

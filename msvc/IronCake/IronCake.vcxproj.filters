@@ -7,6 +7,12 @@
     <Filter Include="ick\base">
       <UniqueIdentifier>{f6286743-8feb-4e55-8317-1c38365bc0f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ick\function">
+      <UniqueIdentifier>{8d7299f1-e32f-4a11-badb-3864ee5ab75b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ick\thread">
+      <UniqueIdentifier>{1de0a02b-c67a-417d-9f7e-00dc4b9f26f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\ick\ick.cpp">
@@ -44,6 +50,21 @@
     </ClCompile>
     <ClCompile Include="..\..\src\ick\base\string.cpp">
       <Filter>ick\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\error.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\function\function.cpp">
+      <Filter>ick\function</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\thread\function_thread.cpp">
+      <Filter>ick\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\thread\mutex.cpp">
+      <Filter>ick\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\thread\thread.cpp">
+      <Filter>ick\thread</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +121,33 @@
     </ClInclude>
     <ClInclude Include="..\..\src\ick\base\string.h">
       <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\error.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\function\function.h">
+      <Filter>ick\function</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\function\function_bind.h">
+      <Filter>ick\function</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\function\function_bind_decl.h">
+      <Filter>ick\function</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\function\functor_holder.h">
+      <Filter>ick\function</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\thread\function_thread.h">
+      <Filter>ick\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\thread\mutex.h">
+      <Filter>ick\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\thread\runnable.h">
+      <Filter>ick\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\thread\thread.h">
+      <Filter>ick\thread</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

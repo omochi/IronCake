@@ -73,3 +73,44 @@ TEST_F(ThreadTest, mutex){
 		ICK_DELETE(ths[i]);
 	}
 }
+
+void f3_wait(ick::Mutex * mutex, int * x){
+	mutex->Lock();
+	while(true){
+		if(*x == 16){ break; }
+		mutex->Wait();
+	}
+	EXPECT_EQ(16, *x);
+	mutex->Unlock();
+}
+
+void f3_notify(ick::Mutex * mutex, int * x){
+	mutex->Lock();
+	*x = *x + 1;
+	mutex->Notify();
+	mutex->Unlock();
+}
+
+TEST_F(ThreadTest, cond){
+	ick::Array<ick::Thread *> ws(16);
+	ick::Array<ick::Thread *> ns(16);
+	ick::Mutex mutex;
+	int x = 0;
+	for(int i = 0; i < ws.num(); i++){
+		ws[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind2(f3_wait, &mutex, &x));
+		ws[i]->Start();
+	}
+	usleep(10*1000);
+	for(int i = 0; i< ns.num(); i++){
+		ns[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind2(f3_notify, &mutex, &x));
+		ns[i]->Start();
+	}
+	for(int i = 0; i< ns.num(); i++){
+		ns[i]->Join();
+		ICK_DELETE(ns[i]);
+	}
+	for(int i = 0; i < ws.num(); i++){
+		ws[i]->Join();
+		ICK_DELETE(ws[i]);
+	}
+}

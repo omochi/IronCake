@@ -13,7 +13,7 @@ namespace ick{
 		impl_ = ICK_NEW(ThreadImpl);
 	}
 	Thread::~Thread(){
-		if(running_){ ICK_ABORT("still running"); }
+		if(running_){ ICK_ABORT("still running\n"); }
 		ICK_DELETE(impl_);
 	}
 	
@@ -25,7 +25,7 @@ namespace ick{
 	}
 	
 	void Thread::Start(){
-		if(running_){ ICK_ABORT("already running"); }
+		if(running_){ ICK_ABORT("already running\n"); }
 		running_ = true;
 		ICK_EN_CALL(pthread_create(&impl_->thread, NULL, &ThreadRun, this));
 	}

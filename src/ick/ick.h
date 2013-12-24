@@ -29,6 +29,7 @@
 #include "function/function.h"
 #include "function/function_bind.h"
 
+#include "thread/mutex.h"
 #include "thread/runnable.h"
 #include "thread/thread.h"
 #include "thread/function_thread.h"

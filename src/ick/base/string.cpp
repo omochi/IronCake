@@ -140,7 +140,7 @@ namespace ick{
 	String String::FormatAV(Allocator * allocator, const char *format, va_list ap){
 		char * cstr;
 		int st = ick::vasprintf(allocator, &cstr, format, ap);
-		if(st < 0){ ICK_ABORT_A(allocator, "vasprintf failed"); }
+		if(st < 0){ ICK_ABORT_A(allocator, "vasprintf failed\n"); }
 		String s = String(allocator);
 		s.Set(cstr, CStrLen(cstr));
 		ICK_FREE_A(allocator, cstr);

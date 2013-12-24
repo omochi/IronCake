@@ -9,7 +9,7 @@ namespace ick{
 	String ErrorNumberGetDescription(ErrorNumber error_number){
 		char buf[1024];
 		int error_number2 = strerror_r(error_number, buf, sizeof(buf));
-		if(error_number2){ ICK_ABORT("strerror_r: %d", error_number2); }
+		if(error_number2){ ICK_ABORT("strerror_r: %d\n", error_number2); }
 		return String(buf);
 	}
 	
@@ -21,7 +21,7 @@ namespace ick{
 	}
 	
 	void ErrorNumberAbortV(ErrorNumber error_number, const char * format, va_list ap){
-		String format2 = String::Format("%s: %d",format, error_number);
+		String format2 = String::Format("%s: %d\n",format, error_number);
 		AbortV(format2.cstr(), ap);
 	}
 }

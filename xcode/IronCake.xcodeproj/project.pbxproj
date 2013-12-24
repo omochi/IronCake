@@ -94,6 +94,9 @@
 		D6B62AFB18689ED400903540 /* function_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AF918689ED400903540 /* function_thread.cpp */; };
 		D6B62AFC18689ED400903540 /* function_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AF918689ED400903540 /* function_thread.cpp */; };
 		D6B62AFD18689ED400903540 /* function_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62AFA18689ED400903540 /* function_thread.h */; };
+		D6B62B001869B64200903540 /* mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AFE1869B64200903540 /* mutex.cpp */; };
+		D6B62B011869B64200903540 /* mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AFE1869B64200903540 /* mutex.cpp */; };
+		D6B62B021869B64200903540 /* mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62AFF1869B64200903540 /* mutex.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +203,8 @@
 		D6B62AF718635E3F00903540 /* function_bind_decl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind_decl.h; sourceTree = "<group>"; };
 		D6B62AF918689ED400903540 /* function_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = function_thread.cpp; sourceTree = "<group>"; };
 		D6B62AFA18689ED400903540 /* function_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_thread.h; sourceTree = "<group>"; };
+		D6B62AFE1869B64200903540 /* mutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mutex.cpp; sourceTree = "<group>"; };
+		D6B62AFF1869B64200903540 /* mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mutex.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +299,8 @@
 		D60285131860BF9F00CE5EC5 /* thread */ = {
 			isa = PBXGroup;
 			children = (
+				D6B62AFF1869B64200903540 /* mutex.h */,
+				D6B62AFE1869B64200903540 /* mutex.cpp */,
 				D60285191860C75600CE5EC5 /* runnable.h */,
 				D60285151860C22C00CE5EC5 /* thread.h */,
 				D60285141860C22C00CE5EC5 /* thread.cpp */,
@@ -435,6 +442,7 @@
 				D667FC7F184E490C00404D8D /* linked_list.h in Headers */,
 				D667FC83184E490C00404D8D /* macro.h in Headers */,
 				D667FCA4185231AE00404D8D /* math.h in Headers */,
+				D6B62B021869B64200903540 /* mutex.h in Headers */,
 				D6B62AFD18689ED400903540 /* function_thread.h in Headers */,
 				D667FC87184E490C00404D8D /* platform.h in Headers */,
 				D602851A1860C75600CE5EC5 /* runnable.h in Headers */,
@@ -621,6 +629,7 @@
 				D667FCA2185231AE00404D8D /* math.cpp in Sources */,
 				D667FC6D184E490C00404D8D /* abort.cpp in Sources */,
 				D667FC981852232300404D8D /* array.cpp in Sources */,
+				D6B62B001869B64200903540 /* mutex.cpp in Sources */,
 				D667FC7A184E490C00404D8D /* cstr.cpp in Sources */,
 				D602851D1860C9F500CE5EC5 /* error.cpp in Sources */,
 				D667FC70184E490C00404D8D /* allocator.cpp in Sources */,
@@ -644,6 +653,7 @@
 				D667FCA3185231AE00404D8D /* math.cpp in Sources */,
 				D667FC6E184E490C00404D8D /* abort.cpp in Sources */,
 				D667FC991852232300404D8D /* array.cpp in Sources */,
+				D6B62B011869B64200903540 /* mutex.cpp in Sources */,
 				D667FC7B184E490C00404D8D /* cstr.cpp in Sources */,
 				D602851E1860C9F500CE5EC5 /* error.cpp in Sources */,
 				D667FC71184E490C00404D8D /* allocator.cpp in Sources */,

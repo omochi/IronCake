@@ -17,16 +17,23 @@ namespace ick{
 		while(p[0] != '\0'){ len++; p++; }
 		return len;
 	}
+	char * CStrCopy(const char * str){
+		return CStrCopy(const_cast<char *>(str), false);
+	}
+	char * CStrCopy(char * str, bool release){
+		return CStrCopyA(static_allocator(), str, release);
+	}
 	char * CStrCopyA(Allocator * allocator, const char * str){
-		int len = CStrLen(str);
-		char * ret_str = ICK_ALLOC_A(allocator, char, len + 1);
-		for(int i = 0; i < len; i++){ ret_str[i] = str[i]; }
-		ret_str[len] = '\0';
+		return CStrCopyA(allocator, const_cast<char *>(str), false);
+	}
+	char * CStrCopyA(Allocator * allocator, char * str, bool release){
+		int n = CStrLen(str) + 1;
+		char * ret_str = ICK_ALLOC_A(allocator, char, n);
+		for (int i = 0; i < n; i++){ ret_str[i] = str[i]; }
+		if (release) { ICK_FREE_A(allocator, str); }
 		return ret_str;
 	}
-	char * CStrCopy(const char * str){
-		return CStrCopyA(static_allocator(), str);
-	}
+
 	char * CStrAppendA(Allocator * allocator, const char * str1, const char * str2){
 		int len1 = CStrLen(str1);
 		int len2 = CStrLen(str2);

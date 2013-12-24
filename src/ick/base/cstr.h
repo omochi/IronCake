@@ -15,8 +15,10 @@ namespace ick{
 	
 	//free
 	char * CStrCopy(const char * str);
+	char * CStrCopy(char * str, bool release);
 	char * CStrCopyA(Allocator * allocator, const char * str);
-	
+	char * CStrCopyA(Allocator * allocator, char * str, bool release);
+
 	char * CStrAppend(const char * str1, const char * str2);
 	char * CStrAppendA(Allocator * allocator, const char * str1, const char * str2);
 

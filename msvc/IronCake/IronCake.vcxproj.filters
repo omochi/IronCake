@@ -72,8 +72,14 @@
     <ClCompile Include="..\..\src\ick\windows\tchar.cpp">
       <Filter>ick\windows</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ick\windows\windows.cpp">
+    <ClCompile Include="..\..\src\ick\windows\error.cpp">
       <Filter>ick\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\time.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\debug_allocator.cpp">
+      <Filter>ick\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,8 +167,14 @@
     <ClInclude Include="..\..\src\ick\windows\tchar.h">
       <Filter>ick\windows</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\ick\windows\windows.h">
+    <ClInclude Include="..\..\src\ick\windows\error.h">
       <Filter>ick\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\time.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\debug_allocator.h">
+      <Filter>ick\base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

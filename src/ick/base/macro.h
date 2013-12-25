@@ -17,8 +17,10 @@
 
 #ifdef ICK_GCC
 #	define ICK_FUNC __PRETTY_FUNCTION__
+#	define ICK_PRI_SIZE_T "%zd"
 #elif defined ICK_MSVC
 #	define ICK_FUNC __FUNCSIG__
+#	define ICK_PRI_SIZE_T "%Iu"
 #endif
 
 #ifdef ICK_MAC

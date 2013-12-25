@@ -12,20 +12,35 @@
 #include "crt.h"
 #include "cstr.h"
 
+#ifdef ICK_WINDOWS
+#	include "../windows/tchar.h"
+#endif
+
 namespace ick{
 	
 	void LogPut(enum LogLevel level, const char * str){
+		FILE * stream = NULL;
+		if (level == LogLevelInfo){
+			stream = stdout;
+		}else if (level == LogLevelError){
+			stream = stderr;
+		}
+
 		switch (level) {
-			case LogLevelInfo:{
-				int status = fputs(str, stdout);
-				if(status == EOF){ ::abort(); }
-			}
-				break;
+			case LogLevelInfo:
 			case LogLevelError:{
-				int status = fputs(str, stderr);
-				if(status == EOF){ ::abort(); }
-			}
+#ifdef ICK_WINDOWS
+				char * strSjis = WindowsAStrToAStr(str, CP_UTF8, 932);
+				str = strSjis;
+#endif
+
+				int status = fputs(str, stream);
+				if (status == EOF){ ::abort(); }
+#ifdef ICK_WINDOWS
+				ICK_FREE(strSjis);
+#endif
 				break;
+			}
 		}
 	}
 	void LogPrint(enum LogLevel level, const char * format, ...){

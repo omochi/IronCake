@@ -26,17 +26,20 @@ namespace ick{
 	String WindowsWaitResultGetDescription(DWORD result){
 		String text;
 		switch (result){
-		case WAIT_FAILED:
-			text = String::Format("WAIT_FAILED: %s", WindowsLastErrorGetDescription().cstr());
+		case WAIT_ABANDONED:
+			text = String("WAIT_ABANDONED");
+			break;
+		case WAIT_IO_COMPLETION:
+			text = String("WAIT_IO_COMPLETION");
 			break;
 		case WAIT_OBJECT_0:
 			text = String::Format("WAIT_OBJECT_0");
 			break;
-		case WAIT_ABANDONED:
-			text = String("WAIT_ABANDONED");
-			break;
 		case WAIT_TIMEOUT:
 			text = String("WAIT_TIMEOUT");
+			break;
+		case WAIT_FAILED:
+			text = String::Format("WAIT_FAILED: %s", WindowsLastErrorGetDescription().cstr());
 			break;
 		}
 		text = String::Format("WaitForSingleObject: %s", text.cstr());

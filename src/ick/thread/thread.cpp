@@ -5,8 +5,9 @@
 #include "../base/error.h"
 
 #ifdef ICK_WINDOWS
+#	include <Windows.h>
 #	include <process.h>
-#	include "../windows/windows.h"
+#	include "../windows/error.h"
 #else
 #	include <pthread.h>
 #endif

@@ -50,6 +50,8 @@ namespace ick{
 		void Splice(int index, int remove_num, const String & insert_str);
 		void Append(const char * chars, int num);
 		void Append(const String & str);
+		void AppendFormat(const char * format, ...) ICK_PRINTF_LIKE(2, 3);
+		void AppendFormatV(const char * format, va_list ap) ICK_PRINTF_LIKE(2, 0);
 		
 		void Insert(int index, const char * chars, int num);
 		void Insert(int index, const String & str);

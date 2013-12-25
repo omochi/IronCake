@@ -107,6 +107,15 @@ namespace ick{
 	void String::Append(const String & str){
 		Splice(num(), 0, str);
 	}
+	void String::AppendFormat(const char * format, ...) {
+		va_list ap;
+		va_start(ap, format);
+		AppendFormatV(format, ap);
+		va_end(ap);
+	}
+	void String::AppendFormatV(const char * format, va_list ap){
+		Append(String::FormatAV(allocator(), format, ap));
+	}
 	void String::Insert(int index, const char * chars, int num){
 		Splice(index, 0, chars, num);
 	}

@@ -109,7 +109,7 @@ namespace ick{
 	}
 
 	CHAR * WindowsTStrToAStr(const TCHAR * tstr, UINT dest_code_page){
-		return WindowsTStrToAStr(const_cast<TCHAR *>(tstr), dest_code_page);
+		return WindowsTStrToAStr(const_cast<TCHAR *>(tstr), false, dest_code_page);
 	}
 	CHAR * WindowsTStrToAStr(TCHAR * tstr, bool release, UINT dest_code_page){
 #ifdef UNICODE

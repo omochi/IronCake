@@ -101,8 +101,18 @@
   <ItemGroup>
     <ClCompile Include="..\..\test\allocator_test.cpp" />
     <ClCompile Include="..\..\test\array_test.cpp" />
+    <ClCompile Include="..\..\test\function_test.cpp" />
     <ClCompile Include="..\..\test\linked_list_test.cpp" />
+    <ClCompile Include="..\..\test\mutex_test.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\test\string_test.cpp" />
+    <ClCompile Include="..\..\test\test_base.cpp" />
+    <ClCompile Include="..\..\test\thread_test.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,9 @@
     <Filter Include="ick\thread">
       <UniqueIdentifier>{1de0a02b-c67a-417d-9f7e-00dc4b9f26f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ick\windows">
+      <UniqueIdentifier>{7818fad9-1a09-4d88-838f-9b96f4b50ce7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\ick\ick.cpp">
@@ -65,6 +68,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\ick\thread\thread.cpp">
       <Filter>ick\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\windows\tchar.cpp">
+      <Filter>ick\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\windows\windows.cpp">
+      <Filter>ick\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\ick\thread\thread.h">
       <Filter>ick\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\windows\tchar.h">
+      <Filter>ick\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\windows\windows.h">
+      <Filter>ick\windows</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

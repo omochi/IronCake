@@ -7,6 +7,7 @@
 #ifdef ICK_WINDOWS
 #	include <Windows.h>
 #	include <process.h>
+#	include "../windows/windows.h"
 #else
 #	include <pthread.h>
 #endif
@@ -19,6 +20,14 @@ namespace ick{
 		pthread_t thread;
 #endif
 	};
+
+#ifdef ICK_WINDOWS
+	static HANDLE ThreadImplGetHandle(ThreadImpl * impl){
+		return reinterpret_cast<HANDLE>(impl->thread);
+	}
+#endif
+
+
 	Thread::Thread():running_(false){
 		impl_ = ICK_NEW(ThreadImpl);
 	}
@@ -49,7 +58,7 @@ namespace ick{
 
 #ifdef ICK_WINDOWS
 		impl_->thread = _beginthreadex(NULL, 0, &ThreadRun, this, 0, NULL);
-		if(impl_->thread == 0){
+		if(!impl_->thread){
 			ICK_EN_ABORT(errno, "_beginthreadex");
 		}
 #else
@@ -60,14 +69,12 @@ namespace ick{
 		if (running_){
 			running_ = false;
 #ifdef ICK_WINDOWS
-			DWORD wait_ret = WaitForSingleObject(reinterpret_cast<HANDLE>(impl_->thread), INFINITE);
+			DWORD wait_ret = WaitForSingleObject(ThreadImplGetHandle(impl_), INFINITE);
 			if(wait_ret != WAIT_OBJECT_0){
-				if(wait_ret == WAIT_FAILED){
-					DWORD windows_error = GetLastError();
-
-				}else{
-					ICK_ABORT("WaitForSingleObject: 0x%08x", wait_ret);
-				}
+				ICK_ABORT("%s",WindowsWaitResultGetDescription(wait_ret).cstr());
+			}
+			if (!CloseHandle(ThreadImplGetHandle(impl_))){
+				ICK_ABORT("CloseHandle: %s", WindowsLastErrorGetDescription().cstr());
 			}
 #else
 			ICK_EN_CALL(pthread_join(impl_->thread, NULL));

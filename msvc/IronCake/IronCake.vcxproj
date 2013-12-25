@@ -28,6 +28,8 @@
     <ClCompile Include="..\..\src\ick\thread\function_thread.cpp" />
     <ClCompile Include="..\..\src\ick\thread\mutex.cpp" />
     <ClCompile Include="..\..\src\ick\thread\thread.cpp" />
+    <ClCompile Include="..\..\src\ick\windows\tchar.cpp" />
+    <ClCompile Include="..\..\src\ick\windows\windows.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\ick\base\abort.h" />
@@ -57,6 +59,8 @@
     <ClInclude Include="..\..\src\ick\thread\mutex.h" />
     <ClInclude Include="..\..\src\ick\thread\runnable.h" />
     <ClInclude Include="..\..\src\ick\thread\thread.h" />
+    <ClInclude Include="..\..\src\ick\windows\tchar.h" />
+    <ClInclude Include="..\..\src\ick\windows\windows.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{041F6C9E-A855-4A8F-829F-7E776271DC3F}</ProjectGuid>

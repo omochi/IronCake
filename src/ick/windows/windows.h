@@ -9,7 +9,8 @@
 
 namespace ick{
 	String WindowsErrorGetDescription(DWORD error);
-
+	String WindowsLastErrorGetDescription();
+	String WindowsWaitResultGetDescription(DWORD result);
 
 }
 

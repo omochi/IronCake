@@ -42,6 +42,7 @@
 		D60285401861E64200CE5EC5 /* function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D602853E1861E64200CE5EC5 /* function.cpp */; };
 		D60285411861E64200CE5EC5 /* function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D602853E1861E64200CE5EC5 /* function.cpp */; };
 		D60285421861E64200CE5EC5 /* function.h in Headers */ = {isa = PBXBuildFile; fileRef = D602853F1861E64200CE5EC5 /* function.h */; };
+		D625B03A186C7B6800DF7CCF /* libIronCakeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE3184CE84600404D8D /* libIronCakeMac.a */; };
 		D63ABDC91855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
 		D63ABDCA1855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
 		D63ABDCB1855FCAC004349F8 /* string.h in Headers */ = {isa = PBXBuildFile; fileRef = D63ABDC81855FCAC004349F8 /* string.h */; };
@@ -303,6 +304,7 @@
 				D6B62B34186C71DD00903540 /* AppKit.framework in Frameworks */,
 				D6B62B35186C720300903540 /* OpenGL.framework in Frameworks */,
 				D6B62B37186C721700903540 /* IOKit.framework in Frameworks */,
+				D625B03A186C7B6800DF7CCF /* libIronCakeMac.a in Frameworks */,
 				D6B62B28186C715900903540 /* libglfw3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -939,7 +941,6 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
@@ -1007,7 +1008,6 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
@@ -1093,6 +1093,7 @@
 		D6B62B23186C6B5B00903540 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1119,6 +1120,7 @@
 		D6B62B24186C6B5B00903540 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1192,6 +1194,7 @@
 				D6B62B24186C6B5B00903540 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

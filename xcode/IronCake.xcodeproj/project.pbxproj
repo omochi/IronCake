@@ -110,6 +110,11 @@
 		D6B62B15186C672000903540 /* scoped_lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62B13186C672000903540 /* scoped_lock.cpp */; };
 		D6B62B16186C672000903540 /* scoped_lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62B13186C672000903540 /* scoped_lock.cpp */; };
 		D6B62B17186C672000903540 /* scoped_lock.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62B14186C672000903540 /* scoped_lock.h */; };
+		D6B62B1F186C6B5B00903540 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62B1E186C6B5B00903540 /* main.cpp */; };
+		D6B62B28186C715900903540 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B27186C715900903540 /* libglfw3.a */; };
+		D6B62B34186C71DD00903540 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B33186C71DD00903540 /* AppKit.framework */; };
+		D6B62B35186C720300903540 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B31186C71D000903540 /* OpenGL.framework */; };
+		D6B62B37186C721700903540 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B2B186C71A600903540 /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +132,13 @@
 			remoteGlobalIDString = D667FBB5184CE7AC00404D8D;
 			remoteInfo = IronCakeiOS;
 		};
+		D6B62B25186C6BDF00903540 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D667FBAE184CE7AC00404D8D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D667FBE2184CE84600404D8D;
+			remoteInfo = IronCakeMac;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -138,6 +150,15 @@
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6B62B1A186C6B5B00903540 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -226,6 +247,15 @@
 		D6B62B0C186C657D00903540 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
 		D6B62B13186C672000903540 /* scoped_lock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scoped_lock.cpp; sourceTree = "<group>"; };
 		D6B62B14186C672000903540 /* scoped_lock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scoped_lock.h; sourceTree = "<group>"; };
+		D6B62B1C186C6B5B00903540 /* GLTestMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GLTestMac; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6B62B1E186C6B5B00903540 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D6B62B27186C715900903540 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = ../libs/glfw/src/libglfw3.a; sourceTree = "<group>"; };
+		D6B62B29186C719700903540 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		D6B62B2B186C71A600903540 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
+		D6B62B2D186C71AF00903540 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		D6B62B2F186C71C700903540 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D6B62B31186C71D000903540 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
+		D6B62B33186C71DD00903540 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,19 +296,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6B62B19186C6B5B00903540 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6B62B34186C71DD00903540 /* AppKit.framework in Frameworks */,
+				D6B62B35186C720300903540 /* OpenGL.framework in Frameworks */,
+				D6B62B37186C721700903540 /* IOKit.framework in Frameworks */,
+				D6B62B28186C715900903540 /* libglfw3.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D602849A1858CC0900CE5EC5 /* MacTest */ = {
+		D602849A1858CC0900CE5EC5 /* TestMac */ = {
 			isa = PBXGroup;
 			children = (
 				D60285051860BA7700CE5EC5 /* main.cpp */,
 			);
-			name = MacTest;
 			path = TestMac;
 			sourceTree = "<group>";
 		};
-		D60284A71858CD6B00CE5EC5 /* iOSTest */ = {
+		D60284A71858CD6B00CE5EC5 /* TestiOS */ = {
 			isa = PBXGroup;
 			children = (
 				D602850F1860BAF300CE5EC5 /* Images.xcassets */,
@@ -291,7 +331,6 @@
 				D60284D2185A119300CE5EC5 /* ICKTestAppMainViewController.mm */,
 				D60284D3185A119300CE5EC5 /* ICKTestAppMainViewController.xib */,
 			);
-			name = iOSTest;
 			path = TestiOS;
 			sourceTree = "<group>";
 		};
@@ -352,8 +391,9 @@
 			children = (
 				D667FC09184CE8D500404D8D /* src */,
 				D60284D61860B2E000CE5EC5 /* test */,
-				D602849A1858CC0900CE5EC5 /* MacTest */,
-				D60284A71858CD6B00CE5EC5 /* iOSTest */,
+				D602849A1858CC0900CE5EC5 /* TestMac */,
+				D60284A71858CD6B00CE5EC5 /* TestiOS */,
+				D6B62B1D186C6B5B00903540 /* GLTestMac */,
 				D667FBB8184CE7AC00404D8D /* Frameworks */,
 				D667FBB7184CE7AC00404D8D /* Products */,
 			);
@@ -366,6 +406,7 @@
 				D667FBE3184CE84600404D8D /* libIronCakeMac.a */,
 				D6079B7E1858C01600DFDEAA /* TestMac */,
 				D60284A21858CD6B00CE5EC5 /* TestiOS.app */,
+				D6B62B1C186C6B5B00903540 /* GLTestMac */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -373,6 +414,13 @@
 		D667FBB8184CE7AC00404D8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6B62B33186C71DD00903540 /* AppKit.framework */,
+				D6B62B31186C71D000903540 /* OpenGL.framework */,
+				D6B62B2F186C71C700903540 /* Foundation.framework */,
+				D6B62B2D186C71AF00903540 /* CoreGraphics.framework */,
+				D6B62B2B186C71A600903540 /* IOKit.framework */,
+				D6B62B29186C719700903540 /* CoreFoundation.framework */,
+				D6B62B27186C715900903540 /* libglfw3.a */,
 				D60285111860BBB400CE5EC5 /* libgtest-ios.a */,
 				D60284FC1860B70000CE5EC5 /* libgtest_main.a */,
 				D60284971858CBE200CE5EC5 /* libgtest.a */,
@@ -456,6 +504,14 @@
 				D6B62B0B186C657D00903540 /* time.cpp */,
 			);
 			path = base;
+			sourceTree = "<group>";
+		};
+		D6B62B1D186C6B5B00903540 /* GLTestMac */ = {
+			isa = PBXGroup;
+			children = (
+				D6B62B1E186C6B5B00903540 /* main.cpp */,
+			);
+			path = GLTestMac;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -570,6 +626,24 @@
 			productReference = D667FBE3184CE84600404D8D /* libIronCakeMac.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		D6B62B1B186C6B5B00903540 /* GLTestMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6B62B22186C6B5B00903540 /* Build configuration list for PBXNativeTarget "GLTestMac" */;
+			buildPhases = (
+				D6B62B18186C6B5B00903540 /* Sources */,
+				D6B62B19186C6B5B00903540 /* Frameworks */,
+				D6B62B1A186C6B5B00903540 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D6B62B26186C6BDF00903540 /* PBXTargetDependency */,
+			);
+			name = GLTestMac;
+			productName = GLTestMac;
+			productReference = D6B62B1C186C6B5B00903540 /* GLTestMac */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -595,6 +669,7 @@
 				D667FBE2184CE84600404D8D /* IronCakeMac */,
 				D6079B7D1858C01600DFDEAA /* TestMac */,
 				D60284A11858CD6B00CE5EC5 /* TestiOS */,
+				D6B62B1B186C6B5B00903540 /* GLTestMac */,
 			);
 		};
 /* End PBXProject section */
@@ -702,6 +777,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D6B62B18186C6B5B00903540 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6B62B1F186C6B5B00903540 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -714,6 +797,11 @@
 			isa = PBXTargetDependency;
 			target = D667FBB5184CE7AC00404D8D /* IronCakeiOS */;
 			targetProxy = D60284EF1860B35300CE5EC5 /* PBXContainerItemProxy */;
+		};
+		D6B62B26186C6BDF00903540 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D667FBE2184CE84600404D8D /* IronCakeMac */;
+			targetProxy = D6B62B25186C6BDF00903540 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1002,6 +1090,53 @@
 			};
 			name = Release;
 		};
+		D6B62B23186C6B5B00903540 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../src,
+					../libs/glfw/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/omochi/work/github/omochi/IronCake/libs/glfw/src,
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D6B62B24186C6B5B00903540 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../src,
+					../libs/glfw/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/omochi/work/github/omochi/IronCake/libs/glfw/src,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1049,6 +1184,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D6B62B22186C6B5B00903540 /* Build configuration list for PBXNativeTarget "GLTestMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6B62B23186C6B5B00903540 /* Debug */,
+				D6B62B24186C6B5B00903540 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,6 +1,7 @@
 ﻿#include "time.h"
 
 #include "../base/platform.h"
+#include "../base/error.h"
 
 #include <math.h>
 
@@ -19,7 +20,7 @@ namespace ick{
 		double time_nano = floor((time - time_sec) * 1000.0 * 1000.0 * 1000.0);
 		timespec ts;
 		ts.tv_sec = static_cast<time_t>(time_sec);
-		ts.tc_nsec = static_cast<long>(time_nano);
+		ts.tv_nsec = static_cast<long>(time_nano);
 		int ret = nanosleep(&ts, NULL);
 		if(ret){
 			//シグナル割り込みの場合だが・・・？

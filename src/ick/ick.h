@@ -32,6 +32,7 @@
 #include "function/function_bind.h"
 
 #include "thread/mutex.h"
+#include "thread/scoped_lock.h"
 #include "thread/runnable.h"
 #include "thread/thread.h"
 #include "thread/function_thread.h"

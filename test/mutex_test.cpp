@@ -36,13 +36,13 @@ TEST_F(MutexTest, mutex){
 	}
 }
 
-void f3_wait(ick::Mutex * mutex, int * x){
+void f3_wait(ick::Mutex * mutex, int * x, int n){
 	mutex->Lock();
 	while (true){
-		if (*x == 16){ break; }
+		if (*x == n){ break; }
 		mutex->Wait();
 	}
-	EXPECT_EQ(16, *x);
+	EXPECT_EQ(n, *x);
 	mutex->Unlock();
 }
 
@@ -54,12 +54,12 @@ void f3_notify(ick::Mutex * mutex, int * x){
 }
 
 TEST_F(MutexTest, cond){
-	ick::Array<ick::Thread *> ws(2);
-	ick::Array<ick::Thread *> ns(2);
+	ick::Array<ick::Thread *> ws(16);
+	ick::Array<ick::Thread *> ns(ws.num());
 	ick::Mutex mutex;
 	int x = 0;
 	for(int i = 0; i < ws.num(); i++){
-		ws[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind2(f3_wait, &mutex, &x));
+		ws[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind3(f3_wait, &mutex, &x, ws.num()));
 		ws[i]->Start();
 	}
 	ick::Sleep(0.010);

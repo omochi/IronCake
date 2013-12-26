@@ -78,10 +78,11 @@ namespace ick{
 	
 	void Mutex::Wait(){
 #ifdef ICK_WINDOWS
-		if (!ResetEvent(impl_->event)){
-			ICK_ABORT("ResetEvent: %s", WindowsLastErrorGetDescription().cstr());
-		}
 		DWORD ret = SignalObjectAndWait(impl_->mutex, impl_->event, INFINITE, FALSE);
+		if (ret != WAIT_OBJECT_0){
+			ICK_ABORT("%s", WindowsWaitResultGetDescription(ret).cstr());
+		}
+		ret = WaitForSingleObject(impl_->mutex, INFINITE);
 		if(ret != WAIT_OBJECT_0){
 			ICK_ABORT("%s", WindowsWaitResultGetDescription(ret).cstr());
 		}
@@ -95,7 +96,9 @@ namespace ick{
 		if (!SetEvent(impl_->event)){
 			ICK_ABORT("SetEvent: %s",WindowsLastErrorGetDescription().cstr());
 		}
-
+		if (!ResetEvent(impl_->event)){
+			ICK_ABORT("ResetEvent: %s", WindowsLastErrorGetDescription().cstr());
+		}
 #else
 		ICK_EN_CALL(pthread_cond_broadcast(&impl_->cond));
 #endif

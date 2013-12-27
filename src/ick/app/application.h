@@ -55,9 +55,15 @@ namespace ick{
 		void Launch();
 		void Terminate();
 		
+
+	private:
 		//thread: any
 		void SignalUpdateTime();
-	private:
-		void BeginUpdate();
+		
+		//thread: any, UpdateをマスタースレッドにPostする
+		void PostUpdate();
+		
+		void Update();
+		void UpdateEnd();
 	};
 }

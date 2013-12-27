@@ -8,8 +8,14 @@ namespace ick{
 													 CVOptionFlags flagsIn,
 													 CVOptionFlags *flagsOut,
 													 void *displayLinkContext){
+		(void)displayLink;
+		(void)inNow;
+		(void)inOutputTime;
+		(void)flagsIn;
+		(void)flagsOut;
 		Application * thiz = static_cast<Application *>(displayLinkContext);
-		return 0;
+		thiz->SignalUpdateTime();
+		return kCVReturnSuccess;
 	}
 	
 	void Application::set_mac_window(NSWindow *mac_window){

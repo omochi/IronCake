@@ -9,6 +9,8 @@
 #include <ick/ick.h>
 #include <GLFW/glfw3.h>
 
+ick::Application * g_application;
+
 bool ickMain();
 bool glfwMain();
 
@@ -44,6 +46,9 @@ bool glfwMain(){
 		return false;
     }
 	
+	g_application = ICK_NEW(ick::Application);
+	g_application->Launch();
+	
     glfwMakeContextCurrent(window);
 	glfwSwapInterval(0);
 	
@@ -64,6 +69,9 @@ bool glfwMain(){
         glfwSwapBuffers(window);
 		glfwWaitEvents();
     }
+	
+	g_application->Terminate();
+	ICK_DELETE(g_application);
 	
 	return true;
 }

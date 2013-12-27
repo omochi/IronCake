@@ -1,9 +1,11 @@
-﻿#include "windows.h"
+﻿#include "error.h"
 
 #include "../base/abort.h"
 #include "tchar.h"
 
 namespace ick{
+#ifdef ICK_WINDOWS
+	
 	String WindowsErrorGetDescription(DWORD error){
 		TCHAR * buf;
 		DWORD ret = FormatMessage(
@@ -45,4 +47,6 @@ namespace ick{
 		text = String::Format("WaitForSingleObject: %s", text.cstr());
 		return text;
 	}
+	
+#endif
 }

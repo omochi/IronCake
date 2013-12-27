@@ -9,6 +9,7 @@
 #endif
 
 namespace ick{
+#ifdef ICK_WINDOWS
 	//AtoT
 	TCHAR * WindowsAStrToTStr(const CHAR * astr, UINT code_page);
 	TCHAR * WindowsAStrToTStr(CHAR * astr, UINT code_page, bool release);
@@ -65,5 +66,6 @@ namespace ick{
 	String WindowsAStrToString(const CHAR * astr, UINT code_page);
 	String WindowsAStrToString(CHAR * astr, UINT code_page, bool release);
 
+#endif
 }
 

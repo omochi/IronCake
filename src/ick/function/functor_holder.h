@@ -23,6 +23,7 @@ namespace ick {
 		virtual R operator() () = 0;
 	};
 
+	//ネイティブ関数やFunctionのホルダ
 	template <typename F, typename R>
 	class FunctorHolder<F, R(*)()> :
 	public BaseFunctorHolder<R(*)()> {
@@ -40,6 +41,30 @@ namespace ick {
 		}
 	};
 
+	//インスタンス関数のホルダ
+	template <typename F, class T, typename R>
+	class FunctorHolder<F, R(T::*)()> :
+	public BaseFunctorHolder<R(*)()> {
+	public:
+		typedef R (*FunctionType)();
+		typedef R (T::*MethodType)();
+		typedef T ClassType;
+		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, MethodType> ThisType;
+	private:
+		T * instance_;
+		F functor_;
+	public:
+		FunctorHolder(T * instance, F functor):
+		instance_(instance),
+		functor_(functor){}
+		SuperType * Clone() const { return ICK_NEW(ThisType, instance_, functor_); }
+		virtual R operator() () {
+			return (instance_->*functor_)();
+		}
+	};
+
+
 	template <typename R, typename A1>
 	class BaseFunctorHolder<R(*)(A1)> {
 	public:
@@ -53,6 +78,7 @@ namespace ick {
 		virtual R operator() (A1 a1) = 0;
 	};
 
+	//ネイティブ関数やFunctionのホルダ
 	template <typename F, typename R, typename A1>
 	class FunctorHolder<F, R(*)(A1)> :
 	public BaseFunctorHolder<R(*)(A1)> {
@@ -70,6 +96,30 @@ namespace ick {
 		}
 	};
 
+	//インスタンス関数のホルダ
+	template <typename F, class T, typename R, typename A1>
+	class FunctorHolder<F, R(T::*)(A1)> :
+	public BaseFunctorHolder<R(*)(A1)> {
+	public:
+		typedef R (*FunctionType)(A1);
+		typedef R (T::*MethodType)(A1);
+		typedef T ClassType;
+		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, MethodType> ThisType;
+	private:
+		T * instance_;
+		F functor_;
+	public:
+		FunctorHolder(T * instance, F functor):
+		instance_(instance),
+		functor_(functor){}
+		SuperType * Clone() const { return ICK_NEW(ThisType, instance_, functor_); }
+		virtual R operator() (A1 a1) {
+			return (instance_->*functor_)(a1);
+		}
+	};
+
+
 	template <typename R, typename A1, typename A2>
 	class BaseFunctorHolder<R(*)(A1, A2)> {
 	public:
@@ -83,6 +133,7 @@ namespace ick {
 		virtual R operator() (A1 a1, A2 a2) = 0;
 	};
 
+	//ネイティブ関数やFunctionのホルダ
 	template <typename F, typename R, typename A1, typename A2>
 	class FunctorHolder<F, R(*)(A1, A2)> :
 	public BaseFunctorHolder<R(*)(A1, A2)> {
@@ -100,6 +151,30 @@ namespace ick {
 		}
 	};
 
+	//インスタンス関数のホルダ
+	template <typename F, class T, typename R, typename A1, typename A2>
+	class FunctorHolder<F, R(T::*)(A1, A2)> :
+	public BaseFunctorHolder<R(*)(A1, A2)> {
+	public:
+		typedef R (*FunctionType)(A1, A2);
+		typedef R (T::*MethodType)(A1, A2);
+		typedef T ClassType;
+		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, MethodType> ThisType;
+	private:
+		T * instance_;
+		F functor_;
+	public:
+		FunctorHolder(T * instance, F functor):
+		instance_(instance),
+		functor_(functor){}
+		SuperType * Clone() const { return ICK_NEW(ThisType, instance_, functor_); }
+		virtual R operator() (A1 a1, A2 a2) {
+			return (instance_->*functor_)(a1, a2);
+		}
+	};
+
+
 	template <typename R, typename A1, typename A2, typename A3>
 	class BaseFunctorHolder<R(*)(A1, A2, A3)> {
 	public:
@@ -113,6 +188,7 @@ namespace ick {
 		virtual R operator() (A1 a1, A2 a2, A3 a3) = 0;
 	};
 
+	//ネイティブ関数やFunctionのホルダ
 	template <typename F, typename R, typename A1, typename A2, typename A3>
 	class FunctorHolder<F, R(*)(A1, A2, A3)> :
 	public BaseFunctorHolder<R(*)(A1, A2, A3)> {
@@ -130,6 +206,31 @@ namespace ick {
 		}
 	};
 
+	//インスタンス関数のホルダ
+ template <typename F, class T, typename R, typename A1, typename A2,
+     typename A3>
+	class FunctorHolder<F, R(T::*)(A1, A2, A3)> :
+	public BaseFunctorHolder<R(*)(A1, A2, A3)> {
+	public:
+		typedef R (*FunctionType)(A1, A2, A3);
+		typedef R (T::*MethodType)(A1, A2, A3);
+		typedef T ClassType;
+		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, MethodType> ThisType;
+	private:
+		T * instance_;
+		F functor_;
+	public:
+		FunctorHolder(T * instance, F functor):
+		instance_(instance),
+		functor_(functor){}
+		SuperType * Clone() const { return ICK_NEW(ThisType, instance_, functor_); }
+		virtual R operator() (A1 a1, A2 a2, A3 a3) {
+			return (instance_->*functor_)(a1, a2, a3);
+		}
+	};
+
+
 	template <typename R, typename A1, typename A2, typename A3, typename A4>
 	class BaseFunctorHolder<R(*)(A1, A2, A3, A4)> {
 	public:
@@ -143,6 +244,7 @@ namespace ick {
 		virtual R operator() (A1 a1, A2 a2, A3 a3, A4 a4) = 0;
 	};
 
+	//ネイティブ関数やFunctionのホルダ
  template <typename F, typename R, typename A1, typename A2, typename A3,
      typename A4>
 	class FunctorHolder<F, R(*)(A1, A2, A3, A4)> :
@@ -161,6 +263,31 @@ namespace ick {
 		}
 	};
 
+	//インスタンス関数のホルダ
+ template <typename F, class T, typename R, typename A1, typename A2,
+     typename A3, typename A4>
+	class FunctorHolder<F, R(T::*)(A1, A2, A3, A4)> :
+	public BaseFunctorHolder<R(*)(A1, A2, A3, A4)> {
+	public:
+		typedef R (*FunctionType)(A1, A2, A3, A4);
+		typedef R (T::*MethodType)(A1, A2, A3, A4);
+		typedef T ClassType;
+		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, MethodType> ThisType;
+	private:
+		T * instance_;
+		F functor_;
+	public:
+		FunctorHolder(T * instance, F functor):
+		instance_(instance),
+		functor_(functor){}
+		SuperType * Clone() const { return ICK_NEW(ThisType, instance_, functor_); }
+		virtual R operator() (A1 a1, A2 a2, A3 a3, A4 a4) {
+			return (instance_->*functor_)(a1, a2, a3, a4);
+		}
+	};
+
+
  template <typename R, typename A1, typename A2, typename A3, typename A4,
      typename A5>
 	class BaseFunctorHolder<R(*)(A1, A2, A3, A4, A5)> {
@@ -175,6 +302,7 @@ namespace ick {
 		virtual R operator() (A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) = 0;
 	};
 
+	//ネイティブ関数やFunctionのホルダ
  template <typename F, typename R, typename A1, typename A2, typename A3,
      typename A4, typename A5>
 	class FunctorHolder<F, R(*)(A1, A2, A3, A4, A5)> :
@@ -193,6 +321,31 @@ namespace ick {
 		}
 	};
 
+	//インスタンス関数のホルダ
+ template <typename F, class T, typename R, typename A1, typename A2,
+     typename A3, typename A4, typename A5>
+	class FunctorHolder<F, R(T::*)(A1, A2, A3, A4, A5)> :
+	public BaseFunctorHolder<R(*)(A1, A2, A3, A4, A5)> {
+	public:
+		typedef R (*FunctionType)(A1, A2, A3, A4, A5);
+		typedef R (T::*MethodType)(A1, A2, A3, A4, A5);
+		typedef T ClassType;
+		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, MethodType> ThisType;
+	private:
+		T * instance_;
+		F functor_;
+	public:
+		FunctorHolder(T * instance, F functor):
+		instance_(instance),
+		functor_(functor){}
+		SuperType * Clone() const { return ICK_NEW(ThisType, instance_, functor_); }
+		virtual R operator() (A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) {
+			return (instance_->*functor_)(a1, a2, a3, a4, a5);
+		}
+	};
+
+
  template <typename R, typename A1, typename A2, typename A3, typename A4,
      typename A5, typename A6>
 	class BaseFunctorHolder<R(*)(A1, A2, A3, A4, A5, A6)> {
@@ -207,6 +360,7 @@ namespace ick {
 		virtual R operator() (A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) = 0;
 	};
 
+	//ネイティブ関数やFunctionのホルダ
  template <typename F, typename R, typename A1, typename A2, typename A3,
      typename A4, typename A5, typename A6>
 	class FunctorHolder<F, R(*)(A1, A2, A3, A4, A5, A6)> :
@@ -225,6 +379,31 @@ namespace ick {
 		}
 	};
 
+	//インスタンス関数のホルダ
+ template <typename F, class T, typename R, typename A1, typename A2,
+     typename A3, typename A4, typename A5, typename A6>
+	class FunctorHolder<F, R(T::*)(A1, A2, A3, A4, A5, A6)> :
+	public BaseFunctorHolder<R(*)(A1, A2, A3, A4, A5, A6)> {
+	public:
+		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6);
+		typedef R (T::*MethodType)(A1, A2, A3, A4, A5, A6);
+		typedef T ClassType;
+		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, MethodType> ThisType;
+	private:
+		T * instance_;
+		F functor_;
+	public:
+		FunctorHolder(T * instance, F functor):
+		instance_(instance),
+		functor_(functor){}
+		SuperType * Clone() const { return ICK_NEW(ThisType, instance_, functor_); }
+		virtual R operator() (A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) {
+			return (instance_->*functor_)(a1, a2, a3, a4, a5, a6);
+		}
+	};
+
+
  template <typename R, typename A1, typename A2, typename A3, typename A4,
      typename A5, typename A6, typename A7>
 	class BaseFunctorHolder<R(*)(A1, A2, A3, A4, A5, A6, A7)> {
@@ -239,6 +418,7 @@ namespace ick {
 		virtual R operator() (A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) = 0;
 	};
 
+	//ネイティブ関数やFunctionのホルダ
  template <typename F, typename R, typename A1, typename A2, typename A3,
      typename A4, typename A5, typename A6, typename A7>
 	class FunctorHolder<F, R(*)(A1, A2, A3, A4, A5, A6, A7)> :
@@ -257,6 +437,31 @@ namespace ick {
 		}
 	};
 
+	//インスタンス関数のホルダ
+ template <typename F, class T, typename R, typename A1, typename A2,
+     typename A3, typename A4, typename A5, typename A6, typename A7>
+	class FunctorHolder<F, R(T::*)(A1, A2, A3, A4, A5, A6, A7)> :
+	public BaseFunctorHolder<R(*)(A1, A2, A3, A4, A5, A6, A7)> {
+	public:
+		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7);
+		typedef R (T::*MethodType)(A1, A2, A3, A4, A5, A6, A7);
+		typedef T ClassType;
+		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, MethodType> ThisType;
+	private:
+		T * instance_;
+		F functor_;
+	public:
+		FunctorHolder(T * instance, F functor):
+		instance_(instance),
+		functor_(functor){}
+		SuperType * Clone() const { return ICK_NEW(ThisType, instance_, functor_); }
+		virtual R operator() (A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) {
+			return (instance_->*functor_)(a1, a2, a3, a4, a5, a6, a7);
+		}
+	};
+
+
  template <typename R, typename A1, typename A2, typename A3, typename A4,
      typename A5, typename A6, typename A7, typename A8>
 	class BaseFunctorHolder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> {
@@ -272,6 +477,7 @@ namespace ick {
       A8 a8) = 0;
 	};
 
+	//ネイティブ関数やFunctionのホルダ
  template <typename F, typename R, typename A1, typename A2, typename A3,
      typename A4, typename A5, typename A6, typename A7, typename A8>
 	class FunctorHolder<F, R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> :
@@ -290,6 +496,33 @@ namespace ick {
 			return functor_(a1, a2, a3, a4, a5, a6, a7, a8);
 		}
 	};
+
+	//インスタンス関数のホルダ
+ template <typename F, class T, typename R, typename A1, typename A2,
+     typename A3, typename A4, typename A5, typename A6, typename A7,
+     typename A8>
+	class FunctorHolder<F, R(T::*)(A1, A2, A3, A4, A5, A6, A7, A8)> :
+	public BaseFunctorHolder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> {
+	public:
+		typedef R (*FunctionType)(A1, A2, A3, A4, A5, A6, A7, A8);
+		typedef R (T::*MethodType)(A1, A2, A3, A4, A5, A6, A7, A8);
+		typedef T ClassType;
+		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, MethodType> ThisType;
+	private:
+		T * instance_;
+		F functor_;
+	public:
+		FunctorHolder(T * instance, F functor):
+		instance_(instance),
+		functor_(functor){}
+		SuperType * Clone() const { return ICK_NEW(ThisType, instance_, functor_); }
+  virtual R operator() (A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7,
+      A8 a8) {
+			return (instance_->*functor_)(a1, a2, a3, a4, a5, a6, a7, a8);
+		}
+	};
+
 
 
 }

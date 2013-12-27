@@ -9,7 +9,7 @@ namespace ick{
 													 CVOptionFlags *flagsOut,
 													 void *displayLinkContext){
 		Application * thiz = static_cast<Application *>(displayLinkContext);
-		
+		return 0;
 	}
 	
 	void Application::set_mac_window(NSWindow *mac_window){

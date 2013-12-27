@@ -11,8 +11,14 @@
 
 namespace ick {
 	template <typename FP> class Function;
- template <typename F,
-     typename FP> Function<FP> FunctionMake(const F & functor);
+
+	template <typename F, typename FP>
+	Function<FP> FunctionMake(const F & functor);
+
+	template <typename FP>
+	Function<typename FunctorHolder<FP, FP>::FunctionType>
+ FunctionMake(typename FunctorHolder<FP, FP>::ClassType * instance,
+     const FP & functor);
 
 
 	template <typename R>
@@ -28,7 +34,7 @@ namespace ick {
 		Function():
 		holder_(NULL){
 		}
-		//暗黙変換
+		//ネイティブ関数の暗黙変換
 		Function(FunctionType native_function):
 		holder_(
 			ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>,
@@ -37,6 +43,7 @@ namespace ick {
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder):
 		holder_(holder.Clone()){
 		}
+
 		Function(const ThisType & copy):
 		holder_(NULL){
 			*this = copy;
@@ -67,7 +74,7 @@ namespace ick {
 		Function():
 		holder_(NULL){
 		}
-		//暗黙変換
+		//ネイティブ関数の暗黙変換
 		Function(FunctionType native_function):
 		holder_(
 			ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>,
@@ -76,6 +83,7 @@ namespace ick {
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder):
 		holder_(holder.Clone()){
 		}
+
 		Function(const ThisType & copy):
 		holder_(NULL){
 			*this = copy;
@@ -106,7 +114,7 @@ namespace ick {
 		Function():
 		holder_(NULL){
 		}
-		//暗黙変換
+		//ネイティブ関数の暗黙変換
 		Function(FunctionType native_function):
 		holder_(
 			ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>,
@@ -115,6 +123,7 @@ namespace ick {
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder):
 		holder_(holder.Clone()){
 		}
+
 		Function(const ThisType & copy):
 		holder_(NULL){
 			*this = copy;
@@ -145,7 +154,7 @@ namespace ick {
 		Function():
 		holder_(NULL){
 		}
-		//暗黙変換
+		//ネイティブ関数の暗黙変換
 		Function(FunctionType native_function):
 		holder_(
 			ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>,
@@ -154,6 +163,7 @@ namespace ick {
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder):
 		holder_(holder.Clone()){
 		}
+
 		Function(const ThisType & copy):
 		holder_(NULL){
 			*this = copy;
@@ -184,7 +194,7 @@ namespace ick {
 		Function():
 		holder_(NULL){
 		}
-		//暗黙変換
+		//ネイティブ関数の暗黙変換
 		Function(FunctionType native_function):
 		holder_(
 			ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>,
@@ -193,6 +203,7 @@ namespace ick {
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder):
 		holder_(holder.Clone()){
 		}
+
 		Function(const ThisType & copy):
 		holder_(NULL){
 			*this = copy;
@@ -224,7 +235,7 @@ namespace ick {
 		Function():
 		holder_(NULL){
 		}
-		//暗黙変換
+		//ネイティブ関数の暗黙変換
 		Function(FunctionType native_function):
 		holder_(
 			ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>,
@@ -233,6 +244,7 @@ namespace ick {
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder):
 		holder_(holder.Clone()){
 		}
+
 		Function(const ThisType & copy):
 		holder_(NULL){
 			*this = copy;
@@ -264,7 +276,7 @@ namespace ick {
 		Function():
 		holder_(NULL){
 		}
-		//暗黙変換
+		//ネイティブ関数の暗黙変換
 		Function(FunctionType native_function):
 		holder_(
 			ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>,
@@ -273,6 +285,7 @@ namespace ick {
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder):
 		holder_(holder.Clone()){
 		}
+
 		Function(const ThisType & copy):
 		holder_(NULL){
 			*this = copy;
@@ -304,7 +317,7 @@ namespace ick {
 		Function():
 		holder_(NULL){
 		}
-		//暗黙変換
+		//ネイティブ関数の暗黙変換
 		Function(FunctionType native_function):
 		holder_(
 			ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>,
@@ -313,6 +326,7 @@ namespace ick {
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder):
 		holder_(holder.Clone()){
 		}
+
 		Function(const ThisType & copy):
 		holder_(NULL){
 			*this = copy;
@@ -344,7 +358,7 @@ namespace ick {
 		Function():
 		holder_(NULL){
 		}
-		//暗黙変換
+		//ネイティブ関数の暗黙変換
 		Function(FunctionType native_function):
 		holder_(
 			ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>,
@@ -353,6 +367,7 @@ namespace ick {
 		explicit Function(const BaseFunctorHolder<FunctionType> & holder):
 		holder_(holder.Clone()){
 		}
+
 		Function(const ThisType & copy):
 		holder_(NULL){
 			*this = copy;
@@ -373,6 +388,15 @@ namespace ick {
 	template <typename F, typename FP>
 	Function<FP> FunctionMake(const F & functor){
 		return Function<FP>(FunctorHolder<F, FP>(functor));
+	}
+
+	template <typename FP>
+	Function<typename FunctorHolder<FP, FP>::FunctionType>
+ FunctionMake(typename FunctorHolder<FP, FP>::ClassType * instance,
+     const FP & functor){
+		return Function<typename FunctorHolder<FP, FP>::FunctionType>(
+			FunctorHolder<FP, FP>(instance, functor)
+		);
 	}
 
 }

@@ -65,3 +65,30 @@ TEST_F(FunctionTest, bind3){
 	
 }
 
+class A{
+public:
+	int a;
+	int b;
+	int mth(){
+		return a+b;
+	}
+	int mth2(int c){
+		return mth() + c;
+	}
+};
+
+TEST_F(FunctionTest, method){
+	A a;
+	a.a = 1;
+	a.b = 2;
+	ick::Function<int (*)()> g1 = ick::FunctionMake(&a, &A::mth);
+	EXPECT_EQ(3, g1());
+	ick::Function<int (*)(int)> g2 = ick::FunctionMake(&a, &A::mth2);
+	EXPECT_EQ(6, g2(3));
+	ick::Function<int (*)()> g3 = ick::FunctionBind1(g2, 3);
+	EXPECT_EQ(6, g3());
+	ick::Function<int (*)()> g4 = ick::FunctionBind1(ick::FunctionMake(&a, &A::mth2),3);
+	EXPECT_EQ(6, g4());
+	
+}
+

@@ -22,7 +22,8 @@ namespace ick {
 		virtual ThisType * Clone() const = 0;
 		virtual R operator() ($for ai , [[A$ai a$ai]]) = 0;
 	};
-
+	
+	//ネイティブ関数やFunctionのホルダ
 	template <typename F, typename R$for ai [[, typename A$ai]]>
 	class FunctorHolder<F, R(*)($for ai , [[A$ai]])> : 
 	public BaseFunctorHolder<R(*)($for ai , [[A$ai]])> {
@@ -39,6 +40,30 @@ namespace ick {
 			return functor_($for ai , [[a$ai]]); 
 		}
 	};
+	
+	//インスタンス関数のホルダ
+	template <typename F, class T, typename R$for ai [[, typename A$ai]]>
+	class FunctorHolder<F, R(T::*)($for ai , [[A$ai]])> :
+	public BaseFunctorHolder<R(*)($for ai , [[A$ai]])> {
+	public:
+		typedef R (*FunctionType)($for ai , [[A$ai]]);
+		typedef R (T::*MethodType)($for ai , [[A$ai]]);
+		typedef T ClassType;
+		typedef BaseFunctorHolder<FunctionType> SuperType;
+		typedef FunctorHolder<F, MethodType> ThisType;
+	private:
+		T * instance_;
+		F functor_;
+	public:
+		FunctorHolder(T * instance, F functor):
+		instance_(instance),
+		functor_(functor){}
+		SuperType * Clone() const { return ICK_NEW(ThisType, instance_, functor_); }
+		virtual R operator() ($for ai , [[A$ai a$ai]]) { 
+			return (instance_->*functor_)($for ai , [[a$ai]]); 
+		}
+	};
+
 	]]
 
 

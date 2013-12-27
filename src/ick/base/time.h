@@ -6,3 +6,4 @@ namespace ick{
 	//windowsでは50日で0に戻る
 	double ClockGet();
 }
+

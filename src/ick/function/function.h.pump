@@ -1,6 +1,7 @@
-﻿#pragma once
+#pragma once
 
 #include "../base/memory.h"
+#include "../base/property.h"
 
 #include "functor_holder.h"
 
@@ -19,24 +20,32 @@ namespace ick {
 		typedef R (*FunctionType)($for ai , [[A$ai]]);
 		typedef Function<FunctionType> ThisType;
 	private:
-		ThisType & operator = (const ThisType & copy);
-
 		BaseFunctorHolder<FunctionType> * holder_;
 	public:
 		BaseFunctorHolder<FunctionType> * holder() const { return holder_; }
 
-		//暗黙
-		Function(FunctionType native_function){
-			holder_ = ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>, native_function);
+		Function():
+		holder_(NULL){
 		}
-		explicit Function(const BaseFunctorHolder<FunctionType> & holder){
-			holder_ = holder.Clone();
+		//暗黙変換
+		Function(FunctionType native_function):
+		holder_(
+			ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>, 
+				native_function)){
 		}
-		Function(const ThisType & copy){
-			holder_ = copy.holder_->Clone();
+		explicit Function(const BaseFunctorHolder<FunctionType> & holder):
+		holder_(holder.Clone()){
+		}
+		Function(const ThisType & copy):
+		holder_(NULL){
+			*this = copy;
 		}
 		virtual ~Function(){
-			ICK_DELETE(holder_);
+			PropertyClear(holder_);
+		}
+		ThisType & operator = (const ThisType & copy){
+			PropertySet(holder_, copy.holder_->Clone());
+			return * this;
 		}
 		R operator() ($for ai , [[A$ai a$ai]]) { 
 			return (*holder_)($for ai , [[a$ai]]); 

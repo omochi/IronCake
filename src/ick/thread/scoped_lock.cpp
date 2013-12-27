@@ -1,4 +1,4 @@
-#include "scoped_lock.h"
+﻿#include "scoped_lock.h"
 
 namespace ick{
 	ScopedLock::ScopedLock(Mutex & mutex):

@@ -14,12 +14,6 @@ static int f1(int x){
 	return x * 2;
 }
 
-
-
-static int f3(int x){
-	return x * 2;
-}
-
 TEST_F(FunctionTest, bind1){
 	ick::Function<int (*)(int)> g1 = f1;
 	ick::Function<int (*)()> g2 = ick::FunctionBind1(g1, 2);

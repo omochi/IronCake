@@ -22,9 +22,15 @@ namespace ick{
 #endif
 	};
 	
-	Mutex::Mutex(){
-		impl_ = ICK_NEW(MutexImpl);
-		
+	Mutex::Mutex():allocator_(static_allocator()){
+		Init();
+	}
+	Mutex::Mutex(Allocator * allocator):allocator_(allocator){
+		Init();
+	}
+	
+	void Mutex::Init(){
+		impl_ = ICK_NEW_A(allocator_, MutexImpl);
 #ifdef ICK_WINDOWS
 		impl_->mutex = CreateMutex(NULL, FALSE, NULL);
 		if (!impl_->mutex){
@@ -39,6 +45,7 @@ namespace ick{
 		impl_->cond = PTHREAD_COND_INITIALIZER;
 #endif
 	}
+	
 	Mutex::~Mutex(){
 #ifdef ICK_WINDOWS
 		if (!CloseHandle(impl_->mutex)){
@@ -52,7 +59,7 @@ namespace ick{
 		ICK_EN_CALL(pthread_mutex_destroy(&impl_->mutex));
 #endif
 
-		ICK_DELETE(impl_);
+		ICK_DELETE_A(allocator_, impl_);
 	}
 	
 	void Mutex::Lock(){

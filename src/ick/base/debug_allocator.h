@@ -7,7 +7,8 @@ namespace ick{
 	template <typename T> class LinkedListNode;
 
 	class String;
-
+	class Mutex;
+	
 	struct DebugAllocatorBlockInfo {
 		//アロケータから取ってきたアドレス
 		void * block;
@@ -27,6 +28,7 @@ namespace ick{
 	private:
 		Allocator * allocator_;
 		List * info_list_;
+		Mutex * mutex_;
 	public:
 		Allocator * allocator() const { return allocator_; }
 		List * info_list() const { return info_list_; }

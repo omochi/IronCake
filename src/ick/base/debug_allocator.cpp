@@ -5,6 +5,9 @@
 #include "log.h"
 #include "linked_list.h"
 
+#include "../thread/mutex.h"
+#include "../thread/scoped_lock.h"
+
 namespace ick{
 
 	const uint32_t DebugAllocator::kHeadSignature = 0xBADDCAFE;
@@ -44,16 +47,22 @@ namespace ick{
 	}
 
 	DebugAllocator::DebugAllocator(Allocator * allocator) :
-		allocator_(allocator){
-		info_list_ = ICK_NEW_A(allocator, List, allocator);
+	allocator_(allocator){
+		info_list_ = ICK_NEW_A(allocator_, List, allocator_);
+		mutex_ = ICK_NEW_A(allocator_, Mutex, allocator_);
 	}
 	DebugAllocator::~DebugAllocator(){
 		ICK_DELETE_A(allocator_, info_list_);
+		ICK_DELETE_A(allocator_, mutex_);
 	}
 	void * DebugAllocator::Allocate(size_t size, size_t alignment){
 		return AllocateDebug(size, alignment, "");
 	}
-	void * DebugAllocator::AllocateDebugV(size_t size, size_t alignment, const char * format, va_list ap){
+	void * DebugAllocator::AllocateDebugV(size_t size, size_t alignment,
+										  const char * format, va_list ap)
+	{
+		ScopedLock sl(*mutex_);
+		
 		ICK_ASSERT(alignment > 0);
 
 		char * comment;
@@ -77,6 +86,8 @@ namespace ick{
 		return info.user;
 	}
 	void DebugAllocator::Free(void * memory){
+		ScopedLock sl(*mutex_);
+		
 		Node * node = NodeFromUserAddress(memory);
 		ICK_FREE_A(allocator_, node->value().comment);
 		ICK_FREE_A(allocator_, node->value().block);
@@ -84,6 +95,8 @@ namespace ick{
 	}
 
 	bool DebugAllocator::CheckSignatures(Node ** node){
+		ScopedLock sl(*mutex_);
+		
 		for (Node * n = info_list_->first(); n; n = n->next()){
 			if (!NodeCheckSignature(n)){
 				if (node){ *node = n; }
@@ -94,6 +107,8 @@ namespace ick{
 	}
 
 	String DebugAllocator::Dump(){
+		ScopedLock sl(*mutex_);
+		
 		String dump(allocator_);
 		for (Node * node = info_list_->first(); node; node = node->next()){
 			dump.AppendFormat(

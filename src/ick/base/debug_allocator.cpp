@@ -61,7 +61,7 @@ namespace ick{
 	void * DebugAllocator::AllocateDebugV(size_t size, size_t alignment,
 										  const char * format, va_list ap)
 	{
-		ScopedLock sl(*mutex_);
+		ICK_SCOPED_LOCK(*mutex_);
 		
 		ICK_ASSERT(alignment > 0);
 
@@ -86,7 +86,7 @@ namespace ick{
 		return info.user;
 	}
 	void DebugAllocator::Free(void * memory){
-		ScopedLock sl(*mutex_);
+		ICK_SCOPED_LOCK(*mutex_);
 		
 		Node * node = NodeFromUserAddress(memory);
 		ICK_FREE_A(allocator_, node->value().comment);
@@ -95,7 +95,7 @@ namespace ick{
 	}
 
 	bool DebugAllocator::CheckSignatures(Node ** node){
-		ScopedLock sl(*mutex_);
+		ICK_SCOPED_LOCK(*mutex_);
 		
 		for (Node * n = info_list_->first(); n; n = n->next()){
 			if (!NodeCheckSignature(n)){
@@ -107,7 +107,7 @@ namespace ick{
 	}
 
 	String DebugAllocator::Dump(){
-		ScopedLock sl(*mutex_);
+		ICK_SCOPED_LOCK(*mutex_);
 		
 		String dump(allocator_);
 		for (Node * node = info_list_->first(); node; node = node->next()){

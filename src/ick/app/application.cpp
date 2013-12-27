@@ -2,14 +2,8 @@
 
 #include "../base/memory.h"
 #include "../base/abort.h"
+#include "../thread/scoped_lock.h"
 #include "../thread/loop_thread.h"
-
-#ifdef ICK_IOS
-#elif defined ICK_MAC
-#	ifdef __OBJC__
-#		import <AppKit/AppKit.h>
-#	endif
-#endif
 
 #ifdef ICK_OBJCPP_GUARD
 
@@ -23,14 +17,15 @@ namespace ick{
 	}
 	
 #ifdef ICK_MAC
-	void Application::set_ns_window(NSWindow *ns_window){
-		ns_window_ = ns_window;
-	}
+
 #endif
 	
 	void Application::Launch(){
 		if(running_){ ICK_ABORT("already launched"); }
 		running_ = true;
+		
+		update_running_ = false;
+		update_deadline_missed_ = false;
 		
 		master_thread_ = ICK_NEW(LoopThread);
 		master_thread_->Start();
@@ -39,13 +34,17 @@ namespace ick{
 		rendering_thread_->Start();
 		
 #ifdef ICK_MAC
-		ApplicationSetupNSWindow(this);
+		MacSetupDisplayLink();
 #endif
 	}
 	void Application::Terminate(){
 		if(!running_){ ICK_ABORT("has not launched"); }
 		running_ = false;
 		
+#ifdef ICK_MAC
+		MacTeardownDisplayLink();
+		mac_window_ = nil;
+#endif
 		
 		master_thread_->PostQuit();
 		master_thread_->Join();
@@ -55,6 +54,24 @@ namespace ick{
 		rendering_thread_->Join();
 		ICK_DELETE(rendering_thread_);
 	}
+	
+	void Application::SignalUpdateTime(){
+		ICK_SCOPED_LOCK(update_mutex_);
+		
+		if(update_running_){
+			update_deadline_missed_ = true;
+		}else{
+			BeginUpdate();
+		}
+	}
+	
+	void Application::BeginUpdate(){
+		ICK_SCOPED_LOCK(update_mutex_);
+		update_running_ = true;
+		update_deadline_missed_ = false;
+		
+	}
+	
 }
 
 #endif

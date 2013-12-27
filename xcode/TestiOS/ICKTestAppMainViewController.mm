@@ -35,6 +35,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
+	self.textView.text = @"test running...";
 	if(!_testStarted){
 		_testStarted = YES;
 		
@@ -44,12 +45,19 @@
 			(void)test->Run();
 			
 			NSString * report = [NSString stringWithFormat:
-								 @"test count: %d\n"
-								 @"succeeded : %d\n"
-								 @"failed    : %d",
+								 @"test case count: %d\n"
+								 @"    succeeded  : %d\n"
+								 @"    failed     : %d\n"
+								 @"test count     : %d\n"
+								 @"    succeeded  : %d\n"
+								 @"    failed     : %d",
 								 test->total_test_case_count(),
 								 test->successful_test_case_count(),
-								 test->failed_test_case_count()];
+								 test->failed_test_case_count(),
+								 test->total_test_count(),
+								 test->successful_test_count(),
+								 test->failed_test_count()
+								 ];
 			
 			self.textView.text = report;
 		});

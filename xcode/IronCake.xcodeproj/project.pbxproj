@@ -54,6 +54,15 @@
 		D63ABDCB1855FCAC004349F8 /* string.h in Headers */ = {isa = PBXBuildFile; fileRef = D63ABDC81855FCAC004349F8 /* string.h */; };
 		D66297EF186DE4C0004060B9 /* loop_thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297EE186DE4C0004060B9 /* loop_thread_test.cpp */; };
 		D66297F0186DE4C0004060B9 /* loop_thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297EE186DE4C0004060B9 /* loop_thread_test.cpp */; };
+		D66297F4186DECD9004060B9 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F2186DECD9004060B9 /* application.cpp */; };
+		D66297F5186DECD9004060B9 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F2186DECD9004060B9 /* application.cpp */; };
+		D66297F6186DECD9004060B9 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = D66297F3186DECD9004060B9 /* application.h */; };
+		D66297FC186DECF0004060B9 /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F8186DECF0004060B9 /* error.cpp */; };
+		D66297FD186DECF0004060B9 /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F8186DECF0004060B9 /* error.cpp */; };
+		D66297FE186DECF0004060B9 /* error.h in Headers */ = {isa = PBXBuildFile; fileRef = D66297F9186DECF0004060B9 /* error.h */; };
+		D66297FF186DECF0004060B9 /* tchar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297FA186DECF0004060B9 /* tchar.cpp */; };
+		D6629800186DECF0004060B9 /* tchar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297FA186DECF0004060B9 /* tchar.cpp */; };
+		D6629801186DECF0004060B9 /* tchar.h in Headers */ = {isa = PBXBuildFile; fileRef = D66297FB186DECF0004060B9 /* tchar.h */; };
 		D667FBBA184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
 		D667FBE5184CE84600404D8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE4184CE84600404D8D /* Cocoa.framework */; };
 		D667FC6D184E490C00404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5A184E490C00404D8D /* abort.cpp */; };
@@ -208,6 +217,12 @@
 		D63ABDC71855FCAC004349F8 /* string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string.cpp; sourceTree = "<group>"; };
 		D63ABDC81855FCAC004349F8 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
 		D66297EE186DE4C0004060B9 /* loop_thread_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = loop_thread_test.cpp; path = ../test/loop_thread_test.cpp; sourceTree = "<group>"; };
+		D66297F2186DECD9004060B9 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
+		D66297F3186DECD9004060B9 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
+		D66297F8186DECF0004060B9 /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error.cpp; sourceTree = "<group>"; };
+		D66297F9186DECF0004060B9 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
+		D66297FA186DECF0004060B9 /* tchar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tchar.cpp; sourceTree = "<group>"; };
+		D66297FB186DECF0004060B9 /* tchar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tchar.h; sourceTree = "<group>"; };
 		D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBB9184CE7AC00404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D667FBC7184CE7AC00404D8D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -404,6 +419,26 @@
 			path = function;
 			sourceTree = "<group>";
 		};
+		D66297F1186DECD9004060B9 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				D66297F3186DECD9004060B9 /* application.h */,
+				D66297F2186DECD9004060B9 /* application.cpp */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		D66297F7186DECF0004060B9 /* windows */ = {
+			isa = PBXGroup;
+			children = (
+				D66297F8186DECF0004060B9 /* error.cpp */,
+				D66297F9186DECF0004060B9 /* error.h */,
+				D66297FA186DECF0004060B9 /* tchar.cpp */,
+				D66297FB186DECF0004060B9 /* tchar.h */,
+			);
+			path = windows;
+			sourceTree = "<group>";
+		};
 		D667FBAD184CE7AC00404D8D = {
 			isa = PBXGroup;
 			children = (
@@ -477,6 +512,8 @@
 				D667FC59184E490C00404D8D /* base */,
 				D602853D1861E64200CE5EC5 /* function */,
 				D60285131860BF9F00CE5EC5 /* thread */,
+				D66297F7186DECF0004060B9 /* windows */,
+				D66297F1186DECD9004060B9 /* app */,
 				D667FC8C184E512300404D8D /* ick.h */,
 				D667FC8B184E512300404D8D /* ick.cpp */,
 			);
@@ -542,8 +579,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D667FC91184F95DD00404D8D /* std.h in Headers */,
+				D6629801186DECF0004060B9 /* tchar.h in Headers */,
 				D667FC7C184E490C00404D8D /* cstr.h in Headers */,
 				D667FC72184E490C00404D8D /* allocator.h in Headers */,
+				D66297FE186DECF0004060B9 /* error.h in Headers */,
 				D667FC7F184E490C00404D8D /* linked_list.h in Headers */,
 				D667FC83184E490C00404D8D /* macro.h in Headers */,
 				D625B044186DD25800DF7CCF /* property.h in Headers */,
@@ -554,6 +593,7 @@
 				D6B62B17186C672000903540 /* scoped_lock.h in Headers */,
 				D602851A1860C75600CE5EC5 /* runnable.h in Headers */,
 				D667FC9A1852232300404D8D /* array.h in Headers */,
+				D66297F6186DECD9004060B9 /* application.h in Headers */,
 				D667FC75184E490C00404D8D /* assert.h in Headers */,
 				D667FC8F184E512300404D8D /* ick.h in Headers */,
 				D667FC6F184E490C00404D8D /* abort.h in Headers */,
@@ -762,14 +802,17 @@
 				D667FC77184E490C00404D8D /* crt.cpp in Sources */,
 				D60285161860C22C00CE5EC5 /* thread.cpp in Sources */,
 				D667FC84184E490C00404D8D /* memory.cpp in Sources */,
+				D66297F4186DECD9004060B9 /* application.cpp in Sources */,
 				D63ABDC91855FCAC004349F8 /* string.cpp in Sources */,
 				D667FCA2185231AE00404D8D /* math.cpp in Sources */,
 				D667FC6D184E490C00404D8D /* abort.cpp in Sources */,
 				D625B03D186C96AC00DF7CCF /* loop_thread.cpp in Sources */,
+				D66297FF186DECF0004060B9 /* tchar.cpp in Sources */,
 				D667FC981852232300404D8D /* array.cpp in Sources */,
 				D6B62B10186C657D00903540 /* time.cpp in Sources */,
 				D6B62B0D186C657D00903540 /* debug_allocator.cpp in Sources */,
 				D6B62B001869B64200903540 /* mutex.cpp in Sources */,
+				D66297FC186DECF0004060B9 /* error.cpp in Sources */,
 				D667FC7A184E490C00404D8D /* cstr.cpp in Sources */,
 				D602851D1860C9F500CE5EC5 /* error.cpp in Sources */,
 				D667FC70184E490C00404D8D /* allocator.cpp in Sources */,
@@ -791,14 +834,17 @@
 				D667FC78184E490C00404D8D /* crt.cpp in Sources */,
 				D60285171860C22C00CE5EC5 /* thread.cpp in Sources */,
 				D667FC85184E490C00404D8D /* memory.cpp in Sources */,
+				D66297F5186DECD9004060B9 /* application.cpp in Sources */,
 				D63ABDCA1855FCAC004349F8 /* string.cpp in Sources */,
 				D667FCA3185231AE00404D8D /* math.cpp in Sources */,
 				D667FC6E184E490C00404D8D /* abort.cpp in Sources */,
 				D625B03E186C96AC00DF7CCF /* loop_thread.cpp in Sources */,
+				D6629800186DECF0004060B9 /* tchar.cpp in Sources */,
 				D667FC991852232300404D8D /* array.cpp in Sources */,
 				D6B62B11186C657D00903540 /* time.cpp in Sources */,
 				D6B62B0E186C657D00903540 /* debug_allocator.cpp in Sources */,
 				D6B62B011869B64200903540 /* mutex.cpp in Sources */,
+				D66297FD186DECF0004060B9 /* error.cpp in Sources */,
 				D667FC7B184E490C00404D8D /* cstr.cpp in Sources */,
 				D602851E1860C9F500CE5EC5 /* error.cpp in Sources */,
 				D667FC71184E490C00404D8D /* allocator.cpp in Sources */,

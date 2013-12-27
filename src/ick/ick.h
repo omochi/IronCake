@@ -43,6 +43,8 @@
 #	include "windows/error.h"
 #endif
 
+#include "app/application.h"
+
 namespace ick{
 	struct StartupInfo {
 		Allocator * allocator;

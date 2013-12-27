@@ -54,8 +54,6 @@
 		D63ABDCB1855FCAC004349F8 /* string.h in Headers */ = {isa = PBXBuildFile; fileRef = D63ABDC81855FCAC004349F8 /* string.h */; };
 		D66297EF186DE4C0004060B9 /* loop_thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297EE186DE4C0004060B9 /* loop_thread_test.cpp */; };
 		D66297F0186DE4C0004060B9 /* loop_thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297EE186DE4C0004060B9 /* loop_thread_test.cpp */; };
-		D66297F4186DECD9004060B9 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F2186DECD9004060B9 /* application.cpp */; };
-		D66297F5186DECD9004060B9 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F2186DECD9004060B9 /* application.cpp */; };
 		D66297F6186DECD9004060B9 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = D66297F3186DECD9004060B9 /* application.h */; };
 		D66297FC186DECF0004060B9 /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F8186DECF0004060B9 /* error.cpp */; };
 		D66297FD186DECF0004060B9 /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F8186DECF0004060B9 /* error.cpp */; };
@@ -63,6 +61,11 @@
 		D66297FF186DECF0004060B9 /* tchar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297FA186DECF0004060B9 /* tchar.cpp */; };
 		D6629800186DECF0004060B9 /* tchar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297FA186DECF0004060B9 /* tchar.cpp */; };
 		D6629801186DECF0004060B9 /* tchar.h in Headers */ = {isa = PBXBuildFile; fileRef = D66297FB186DECF0004060B9 /* tchar.h */; };
+		D6629803186DFA37004060B9 /* application.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6629802186DFA37004060B9 /* application.mm */; };
+		D6629804186DFA37004060B9 /* application.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6629802186DFA37004060B9 /* application.mm */; };
+		D6629805186DFAA6004060B9 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F2186DECD9004060B9 /* application.cpp */; };
+		D6629806186DFAA7004060B9 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F2186DECD9004060B9 /* application.cpp */; };
+		D6629807186DFE25004060B9 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B33186C71DD00903540 /* AppKit.framework */; };
 		D667FBBA184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
 		D667FBE5184CE84600404D8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE4184CE84600404D8D /* Cocoa.framework */; };
 		D667FC6D184E490C00404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5A184E490C00404D8D /* abort.cpp */; };
@@ -223,6 +226,7 @@
 		D66297F9186DECF0004060B9 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
 		D66297FA186DECF0004060B9 /* tchar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tchar.cpp; sourceTree = "<group>"; };
 		D66297FB186DECF0004060B9 /* tchar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tchar.h; sourceTree = "<group>"; };
+		D6629802186DFA37004060B9 /* application.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = application.mm; sourceTree = "<group>"; };
 		D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBB9184CE7AC00404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D667FBC7184CE7AC00404D8D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -321,6 +325,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6629807186DFE25004060B9 /* AppKit.framework in Frameworks */,
 				D667FBE5184CE84600404D8D /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +429,7 @@
 			children = (
 				D66297F3186DECD9004060B9 /* application.h */,
 				D66297F2186DECD9004060B9 /* application.cpp */,
+				D6629802186DFA37004060B9 /* application.mm */,
 			);
 			path = app;
 			sourceTree = "<group>";
@@ -727,8 +733,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D667FBB5184CE7AC00404D8D /* IronCakeiOS */,
 				D667FBE2184CE84600404D8D /* IronCakeMac */,
+				D667FBB5184CE7AC00404D8D /* IronCakeiOS */,
 				D6079B7D1858C01600DFDEAA /* TestMac */,
 				D60284A11858CD6B00CE5EC5 /* TestiOS */,
 				D6B62B1B186C6B5B00903540 /* GLTestMac */,
@@ -795,6 +801,7 @@
 				D6B62AFB18689ED400903540 /* function_thread.cpp in Sources */,
 				D625B042186DD25800DF7CCF /* property.cpp in Sources */,
 				D667FC73184E490C00404D8D /* assert.cpp in Sources */,
+				D6629803186DFA37004060B9 /* application.mm in Sources */,
 				D667FC80184E490C00404D8D /* log.cpp in Sources */,
 				D60285401861E64200CE5EC5 /* function.cpp in Sources */,
 				D667FC8D184E512300404D8D /* ick.cpp in Sources */,
@@ -802,13 +809,13 @@
 				D667FC77184E490C00404D8D /* crt.cpp in Sources */,
 				D60285161860C22C00CE5EC5 /* thread.cpp in Sources */,
 				D667FC84184E490C00404D8D /* memory.cpp in Sources */,
-				D66297F4186DECD9004060B9 /* application.cpp in Sources */,
 				D63ABDC91855FCAC004349F8 /* string.cpp in Sources */,
 				D667FCA2185231AE00404D8D /* math.cpp in Sources */,
 				D667FC6D184E490C00404D8D /* abort.cpp in Sources */,
 				D625B03D186C96AC00DF7CCF /* loop_thread.cpp in Sources */,
 				D66297FF186DECF0004060B9 /* tchar.cpp in Sources */,
 				D667FC981852232300404D8D /* array.cpp in Sources */,
+				D6629806186DFAA7004060B9 /* application.cpp in Sources */,
 				D6B62B10186C657D00903540 /* time.cpp in Sources */,
 				D6B62B0D186C657D00903540 /* debug_allocator.cpp in Sources */,
 				D6B62B001869B64200903540 /* mutex.cpp in Sources */,
@@ -827,6 +834,7 @@
 				D6B62AFC18689ED400903540 /* function_thread.cpp in Sources */,
 				D625B043186DD25800DF7CCF /* property.cpp in Sources */,
 				D667FC74184E490C00404D8D /* assert.cpp in Sources */,
+				D6629804186DFA37004060B9 /* application.mm in Sources */,
 				D667FC81184E490C00404D8D /* log.cpp in Sources */,
 				D60285411861E64200CE5EC5 /* function.cpp in Sources */,
 				D667FC8E184E512300404D8D /* ick.cpp in Sources */,
@@ -834,13 +842,13 @@
 				D667FC78184E490C00404D8D /* crt.cpp in Sources */,
 				D60285171860C22C00CE5EC5 /* thread.cpp in Sources */,
 				D667FC85184E490C00404D8D /* memory.cpp in Sources */,
-				D66297F5186DECD9004060B9 /* application.cpp in Sources */,
 				D63ABDCA1855FCAC004349F8 /* string.cpp in Sources */,
 				D667FCA3185231AE00404D8D /* math.cpp in Sources */,
 				D667FC6E184E490C00404D8D /* abort.cpp in Sources */,
 				D625B03E186C96AC00DF7CCF /* loop_thread.cpp in Sources */,
 				D6629800186DECF0004060B9 /* tchar.cpp in Sources */,
 				D667FC991852232300404D8D /* array.cpp in Sources */,
+				D6629805186DFAA6004060B9 /* application.cpp in Sources */,
 				D6B62B11186C657D00903540 /* time.cpp in Sources */,
 				D6B62B0E186C657D00903540 /* debug_allocator.cpp in Sources */,
 				D6B62B011869B64200903540 /* mutex.cpp in Sources */,
@@ -961,7 +969,7 @@
 		D6079B841858C01600DFDEAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -981,7 +989,7 @@
 		D6079B851858C01600DFDEAA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -1147,7 +1155,7 @@
 		D667FC03184CE84600404D8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -1156,7 +1164,7 @@
 		D667FC04184CE84600404D8D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -1165,7 +1173,7 @@
 		D6B62B23186C6B5B00903540 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1192,7 +1200,7 @@
 		D6B62B24186C6B5B00903540 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;

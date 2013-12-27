@@ -10,10 +10,10 @@
 
 #ifdef __APPLE__
 #	include <TargetConditionals.h>
-#	ifdef TARGET_OS_IPHONE
+#	if TARGET_OS_IPHONE
 #		define ICK_IOS
 #	endif
-#	ifdef TARGET_OS_MAC
+#	if TARGET_OS_MAC
 #		define ICK_MAC
 #	endif
 #endif
@@ -22,3 +22,7 @@
 #	define ICK_WINDOWS
 #endif
 
+
+#if ( ! defined ICK_MAC ) || ( defined __OBJC__ )
+#	define ICK_OBJCPP_GUARD
+#endif

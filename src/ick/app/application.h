@@ -17,6 +17,8 @@
 namespace ick{
 	class LoopThread;
 	
+	class ApplicationDelegate;
+	
 	class Application {
 		bool running_;
 		
@@ -57,6 +59,9 @@ namespace ick{
 		
 
 	private:
+		void DoLaunch();
+		void DoTerminate();
+		
 		//thread: any
 		void SignalUpdateTime();
 		

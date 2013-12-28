@@ -66,6 +66,7 @@
 		D6629805186DFAA6004060B9 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F2186DECD9004060B9 /* application.cpp */; };
 		D6629806186DFAA7004060B9 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F2186DECD9004060B9 /* application.cpp */; };
 		D6629807186DFE25004060B9 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B33186C71DD00903540 /* AppKit.framework */; };
+		D6629809186E9D02004060B9 /* application_delegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D6629808186E9D02004060B9 /* application_delegate.h */; };
 		D667FBBA184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
 		D667FBE5184CE84600404D8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE4184CE84600404D8D /* Cocoa.framework */; };
 		D667FC6D184E490C00404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5A184E490C00404D8D /* abort.cpp */; };
@@ -227,6 +228,7 @@
 		D66297FA186DECF0004060B9 /* tchar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tchar.cpp; sourceTree = "<group>"; };
 		D66297FB186DECF0004060B9 /* tchar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tchar.h; sourceTree = "<group>"; };
 		D6629802186DFA37004060B9 /* application.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = application.mm; sourceTree = "<group>"; };
+		D6629808186E9D02004060B9 /* application_delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application_delegate.h; sourceTree = "<group>"; };
 		D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBB9184CE7AC00404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D667FBC7184CE7AC00404D8D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -427,6 +429,7 @@
 		D66297F1186DECD9004060B9 /* app */ = {
 			isa = PBXGroup;
 			children = (
+				D6629808186E9D02004060B9 /* application_delegate.h */,
 				D66297F3186DECD9004060B9 /* application.h */,
 				D66297F2186DECD9004060B9 /* application.cpp */,
 				D6629802186DFA37004060B9 /* application.mm */,
@@ -602,6 +605,7 @@
 				D66297F6186DECD9004060B9 /* application.h in Headers */,
 				D667FC75184E490C00404D8D /* assert.h in Headers */,
 				D667FC8F184E512300404D8D /* ick.h in Headers */,
+				D6629809186E9D02004060B9 /* application_delegate.h in Headers */,
 				D667FC6F184E490C00404D8D /* abort.h in Headers */,
 				D60285421861E64200CE5EC5 /* function.h in Headers */,
 				D6B62AF818635E3F00903540 /* function_bind_decl.h in Headers */,

@@ -11,10 +11,16 @@
 namespace ick{
 	Application::Application():
 	running_(false){
-		
+		master_thread_ = ICK_NEW(LoopThread);
+		master_thread_->Start();
+
 	}
 	Application::~Application(){
 		if(running_){ ICK_ABORT("has not terminated"); }
+		
+		master_thread_->PostQuit();
+		master_thread_->Join();
+		ICK_DELETE(master_thread_);
 	}
 	
 #ifdef ICK_MAC
@@ -22,17 +28,7 @@ namespace ick{
 #endif
 	
 	void Application::Launch(){
-		if(running_){ ICK_ABORT("already launched"); }
-		running_ = true;
-		
-		update_running_ = false;
-		update_deadline_missed_ = false;
-		
-		master_thread_ = ICK_NEW(LoopThread);
-		master_thread_->Start();
-		
-		rendering_thread_ = ICK_NEW(LoopThread);
-		rendering_thread_->Start();
+
 		
 #ifdef ICK_MAC
 		MacSetupDisplayLink();
@@ -47,13 +43,24 @@ namespace ick{
 		mac_window_ = nil;
 #endif
 		
-		master_thread_->PostQuit();
-		master_thread_->Join();
-		ICK_DELETE(master_thread_);
-		
 		rendering_thread_->PostQuit();
 		rendering_thread_->Join();
 		ICK_DELETE(rendering_thread_);
+	}
+	
+	void Application::DoLaunch(){
+		if(running_){ ICK_ABORT("already launched"); }
+		running_ = true;
+		
+		update_running_ = false;
+		update_deadline_missed_ = false;
+		
+		rendering_thread_ = ICK_NEW(LoopThread);
+		rendering_thread_->Start();
+	}
+	
+	void Application::DoTerminate(){
+		
 	}
 	
 	void Application::SignalUpdateTime(){

@@ -14,7 +14,6 @@ protected:
 void f1(int * x){
 	int ox = *x;
 	*x = *x + 1;
-	ick::Sleep(0.001);
 	EXPECT_EQ(ox + 1, *x);
 }
 

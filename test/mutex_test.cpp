@@ -15,7 +15,7 @@ void f2(ick::Mutex * mutex, int * x){
 	mutex->Lock();
 	EXPECT_EQ(0, *x);
 	*x = *x + 1;
-	ick::Sleep(0.010);
+	ick::Sleep(0.001);
 	EXPECT_EQ(1, *x);
 	*x = *x - 1;
 	EXPECT_EQ(0, *x);
@@ -40,7 +40,7 @@ void f2_2(ick::Mutex * mutex, int * x){
 	ICK_SCOPED_LOCK(*mutex);
 	EXPECT_EQ(0, *x);
 	*x = *x + 1;
-	ick::Sleep(0.010);
+	ick::Sleep(0.001);
 	EXPECT_EQ(1, *x);
 	*x = *x - 1;
 	EXPECT_EQ(0, *x);
@@ -86,7 +86,7 @@ TEST_F(MutexTest, cond){
 		ws[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind3(f3_wait, &mutex, &x, ws.num()));
 		ws[i]->Start();
 	}
-	ick::Sleep(0.010);
+	ick::Sleep(0.001);
 	for(int i = 0; i< ns.num(); i++){
 		ns[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind2(f3_notify, &mutex, &x));
 		ns[i]->Start();

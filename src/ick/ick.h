@@ -41,6 +41,7 @@
 #ifdef ICK_WINDOWS
 #	include "windows/tchar.h"
 #	include "windows/error.h"
+#	include "windows/wait.h"
 #endif
 
 #include "app/application.h"

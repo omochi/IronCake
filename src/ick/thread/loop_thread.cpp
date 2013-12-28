@@ -1,4 +1,4 @@
-#include "loop_thread.h"
+﻿#include "loop_thread.h"
 
 #include "../function/function_bind.h"
 

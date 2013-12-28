@@ -1,4 +1,4 @@
-#include "application.h"
+﻿#include "application.h"
 
 #include "../base/memory.h"
 #include "../base/abort.h"

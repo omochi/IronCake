@@ -81,6 +81,9 @@
     <ClCompile Include="..\..\src\ick\base\debug_allocator.cpp">
       <Filter>ick\base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\ick\base\property.cpp">
+      <Filter>ick\base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\ick\ick.h">
@@ -174,6 +177,9 @@
       <Filter>ick\base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\ick\base\debug_allocator.h">
+      <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\base\property.h">
       <Filter>ick\base</Filter>
     </ClInclude>
   </ItemGroup>

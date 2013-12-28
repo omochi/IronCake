@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "../base/linked_list.h"
 #include "../function/function.h"

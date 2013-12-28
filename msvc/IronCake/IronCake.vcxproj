@@ -23,6 +23,7 @@
     <ClCompile Include="..\..\src\ick\base\log.cpp" />
     <ClCompile Include="..\..\src\ick\base\math.cpp" />
     <ClCompile Include="..\..\src\ick\base\memory.cpp" />
+    <ClCompile Include="..\..\src\ick\base\property.cpp" />
     <ClCompile Include="..\..\src\ick\base\string.cpp" />
     <ClCompile Include="..\..\src\ick\base\time.cpp" />
     <ClCompile Include="..\..\src\ick\function\function.cpp" />
@@ -51,6 +52,7 @@
     <ClInclude Include="..\..\src\ick\base\math.h" />
     <ClInclude Include="..\..\src\ick\base\memory.h" />
     <ClInclude Include="..\..\src\ick\base\platform.h" />
+    <ClInclude Include="..\..\src\ick\base\property.h" />
     <ClInclude Include="..\..\src\ick\base\std.h" />
     <ClInclude Include="..\..\src\ick\base\string.h" />
     <ClInclude Include="..\..\src\ick\base\time.h" />

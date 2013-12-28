@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //	Macの場合
 //		DisplayLinkでフレームを同期する。

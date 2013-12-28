@@ -66,7 +66,7 @@
 		D6629805186DFAA6004060B9 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F2186DECD9004060B9 /* application.cpp */; };
 		D6629806186DFAA7004060B9 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F2186DECD9004060B9 /* application.cpp */; };
 		D6629807186DFE25004060B9 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B33186C71DD00903540 /* AppKit.framework */; };
-		D6629809186E9D02004060B9 /* application_delegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D6629808186E9D02004060B9 /* application_delegate.h */; };
+		D6629809186E9D02004060B9 /* application_controller.h in Headers */ = {isa = PBXBuildFile; fileRef = D6629808186E9D02004060B9 /* application_controller.h */; };
 		D662980C186F1B70004060B9 /* wait.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D662980A186F1B70004060B9 /* wait.cpp */; };
 		D662980D186F1B70004060B9 /* wait.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D662980A186F1B70004060B9 /* wait.cpp */; };
 		D662980E186F1B70004060B9 /* wait.h in Headers */ = {isa = PBXBuildFile; fileRef = D662980B186F1B70004060B9 /* wait.h */; };
@@ -229,7 +229,7 @@
 		D66297FA186DECF0004060B9 /* tchar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tchar.cpp; sourceTree = "<group>"; };
 		D66297FB186DECF0004060B9 /* tchar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tchar.h; sourceTree = "<group>"; };
 		D6629802186DFA37004060B9 /* application.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = application.mm; sourceTree = "<group>"; };
-		D6629808186E9D02004060B9 /* application_delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application_delegate.h; sourceTree = "<group>"; };
+		D6629808186E9D02004060B9 /* application_controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application_controller.h; sourceTree = "<group>"; };
 		D662980A186F1B70004060B9 /* wait.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wait.cpp; sourceTree = "<group>"; };
 		D662980B186F1B70004060B9 /* wait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wait.h; sourceTree = "<group>"; };
 		D6629811186F2314004060B9 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreVideo.framework; sourceTree = DEVELOPER_DIR; };
@@ -442,7 +442,7 @@
 			isa = PBXGroup;
 			children = (
 				D662981A186F3462004060B9 /* application_platform.h */,
-				D6629808186E9D02004060B9 /* application_delegate.h */,
+				D6629808186E9D02004060B9 /* application_controller.h */,
 				D66297F3186DECD9004060B9 /* application.h */,
 				D66297F2186DECD9004060B9 /* application.cpp */,
 				D6629802186DFA37004060B9 /* application.mm */,
@@ -624,7 +624,7 @@
 				D66297F6186DECD9004060B9 /* application.h in Headers */,
 				D667FC75184E490C00404D8D /* assert.h in Headers */,
 				D667FC8F184E512300404D8D /* ick.h in Headers */,
-				D6629809186E9D02004060B9 /* application_delegate.h in Headers */,
+				D6629809186E9D02004060B9 /* application_controller.h in Headers */,
 				D667FC6F184E490C00404D8D /* abort.h in Headers */,
 				D60285421861E64200CE5EC5 /* function.h in Headers */,
 				D6B62AF818635E3F00903540 /* function_bind_decl.h in Headers */,

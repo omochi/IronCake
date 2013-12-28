@@ -7,15 +7,16 @@
 #include "../thread/scoped_lock.h"
 #include "../thread/loop_thread.h"
 
-#include "application_delegate.h"
+#include "application_controller.h"
 
 #ifdef ICK_OBJCPP_GUARD
 
 namespace ick{
-	Application::Application():
-	delegate_(NULL),
+	Application::Application(ApplicationController * controller):
+	controller_(controller),
 	running_(false)
 	{
+		ICK_ASSERT(controller);
 		glfw_window_ = NULL;
 		
 		master_thread_ = ICK_NEW(LoopThread);
@@ -30,16 +31,12 @@ namespace ick{
 		ICK_DELETE(master_thread_);
 	}
 	
-	ApplicationDelegate * Application::delegate() const{
-		return delegate_;
+	ApplicationController * Application::controller() const{
+		return controller_;
 	}
-	
-	void Application::set_delegate(ApplicationDelegate * delegate){
-		delegate_ = delegate;
-	}
-	
+		
 #ifdef ICK_APP_GLFW
-	
+
 	GLFWwindow * Application::glfw_window() const{
 		return glfw_window_;
 	}
@@ -84,13 +81,13 @@ namespace ick{
 		running_mutex_.Broadcast();
 		running_mutex_.Unlock();
 		
-		if(delegate_){ delegate_->ApplicationDidLaunch(this); }
+		controller_->ApplicationDidLaunch(this);
 	}
 	
 	void Application::DoTerminate(){
 		if(!running_){ ICK_ABORT("has not launched"); }
 		
-		if(delegate_){ delegate_->ApplicationWillTerminate(this); }
+		controller_->ApplicationWillTerminate(this);
 		
 		rendering_thread_->PostQuit();
 		rendering_thread_->Join();
@@ -122,7 +119,7 @@ namespace ick{
 	
 	void Application::Update(){
 		
-		if(delegate_){ delegate_->ApplicationOnUpdate(this); }
+		controller_->ApplicationOnUpdate(this);
 		
 		UpdateEnd();
 	}

@@ -8,17 +8,17 @@
 
 #include "GLTestApp.h"
 
-GLTestAppDelegate::~GLTestAppDelegate(){
+GLTestAppController::~GLTestAppController(){
 }
-void GLTestAppDelegate::ApplicationDidLaunch(ick::Application * application){
+void GLTestAppController::ApplicationDidLaunch(ick::Application * application){
 	(void)application;
 	sec_frame_count_ = 0;
 	prev_sec_clock_ = ick::ClockGet();
 }
-void GLTestAppDelegate::ApplicationWillTerminate(ick::Application * application){
+void GLTestAppController::ApplicationWillTerminate(ick::Application * application){
 	(void)application;
 }
-void GLTestAppDelegate::ApplicationOnUpdate(ick::Application * application){
+void GLTestAppController::ApplicationOnUpdate(ick::Application * application){
 	(void)application;
 	
 	sec_frame_count_++;

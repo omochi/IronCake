@@ -45,7 +45,7 @@
 #endif
 
 #include "app/application_platform.h"
-#include "app/application_delegate.h"
+#include "app/application_controller.h"
 #include "app/application.h"
 
 namespace ick{

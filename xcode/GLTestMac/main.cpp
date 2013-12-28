@@ -13,6 +13,8 @@ ick::Application * g_application;
 bool AppMain();
 
 int main(int argc, const char * argv[]){
+	(void)argc;
+	(void)argv;
 	ick::g_startup_config.memory_debug = true;
 	if(!ick::Startup()){
 		printf("ick::Startup failed");
@@ -27,8 +29,7 @@ int main(int argc, const char * argv[]){
 }
 
 bool AppMain(){
-	g_application = ICK_NEW(ick::Application);
-	g_application->set_delegate(ICK_NEW(GLTestAppDelegate));
+	g_application = ICK_NEW(ick::Application, ICK_NEW(GLTestAppController));
 	
 	glfwWindowHint(GLFW_RESIZABLE, 0);
     GLFWwindow * window = glfwCreateWindow(640, 480, "IronCake GL Test", NULL, NULL);
@@ -54,7 +55,7 @@ bool AppMain(){
 	
 	g_application->Terminate();
 	
-	ICK_DELETE(g_application->delegate());
+	ICK_DELETE(g_application->controller());
 	ICK_DELETE(g_application);
 	
 	return true;

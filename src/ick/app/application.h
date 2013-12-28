@@ -10,10 +10,10 @@
 
 namespace ick{
 	class LoopThread;
-	class ApplicationDelegate;
+	class ApplicationController;
 	
 	class Application {
-		ApplicationDelegate * delegate_;
+		ApplicationController * controller_;
 		
 		Mutex running_mutex_;
 		bool running_;
@@ -44,12 +44,11 @@ namespace ick{
 												void *displayLinkContext);
 #endif
 	public:
-		Application();
+		Application(ApplicationController * controller);
 		virtual ~Application();
 	
 		//thread: main
-		ApplicationDelegate * delegate() const;
-		void set_delegate(ApplicationDelegate * delagete);
+		ApplicationController * controller() const;
 		
 #ifdef ICK_APP_GLFW
 		//thread: main

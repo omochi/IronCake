@@ -8,14 +8,14 @@
 
 #include <ick/ick.h>
 
-class GLTestAppDelegate : public ick::ApplicationDelegate {
+class GLTestAppController : public ick::ApplicationController {
 	
 	int sec_frame_count_;
 	double prev_sec_clock_;
 
 	
 public:
-	virtual ~GLTestAppDelegate();
+	virtual ~GLTestAppController();
 	virtual void ApplicationDidLaunch(ick::Application * application);
 	virtual void ApplicationWillTerminate(ick::Application * application);
 	virtual void ApplicationOnUpdate(ick::Application * application);

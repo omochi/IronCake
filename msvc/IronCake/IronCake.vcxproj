@@ -29,7 +29,9 @@
     <ClCompile Include="..\..\src\ick\function\function.cpp" />
     <ClCompile Include="..\..\src\ick\ick.cpp" />
     <ClCompile Include="..\..\src\ick\thread\function_thread.cpp" />
+    <ClCompile Include="..\..\src\ick\thread\loop_thread.cpp" />
     <ClCompile Include="..\..\src\ick\thread\mutex.cpp" />
+    <ClCompile Include="..\..\src\ick\thread\scoped_lock.cpp" />
     <ClCompile Include="..\..\src\ick\thread\thread.cpp" />
     <ClCompile Include="..\..\src\ick\windows\tchar.cpp" />
     <ClCompile Include="..\..\src\ick\windows\error.cpp" />
@@ -62,8 +64,10 @@
     <ClInclude Include="..\..\src\ick\function\functor_holder.h" />
     <ClInclude Include="..\..\src\ick\ick.h" />
     <ClInclude Include="..\..\src\ick\thread\function_thread.h" />
+    <ClInclude Include="..\..\src\ick\thread\loop_thread.h" />
     <ClInclude Include="..\..\src\ick\thread\mutex.h" />
     <ClInclude Include="..\..\src\ick\thread\runnable.h" />
+    <ClInclude Include="..\..\src\ick\thread\scoped_lock.h" />
     <ClInclude Include="..\..\src\ick\thread\thread.h" />
     <ClInclude Include="..\..\src\ick\windows\tchar.h" />
     <ClInclude Include="..\..\src\ick\windows\error.h" />
@@ -106,6 +110,8 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;ICK_MEMORY_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)\_\_\%(RelativeDir)</ObjectFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -122,6 +128,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)\_\_\%(RelativeDir)</ObjectFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

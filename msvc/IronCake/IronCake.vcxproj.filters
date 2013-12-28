@@ -84,6 +84,12 @@
     <ClCompile Include="..\..\src\ick\base\property.cpp">
       <Filter>ick\base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\ick\thread\loop_thread.cpp">
+      <Filter>ick\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\thread\scoped_lock.cpp">
+      <Filter>ick\thread</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\ick\ick.h">
@@ -181,6 +187,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\ick\base\property.h">
       <Filter>ick\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\thread\loop_thread.h">
+      <Filter>ick\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\thread\scoped_lock.h">
+      <Filter>ick\thread</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,6 +7,8 @@
 
 #ifdef ICK_WINDOWS
 #	include <Windows.h>
+#	include <mmsystem.h>
+#	pragma comment(lib, "winmm.lib")
 #else
 #	include <sys/time.h>
 #	include <time.h>
@@ -29,8 +31,23 @@ namespace ick{
 		}
 #endif
 	}
+
+	void ClockInit(){
+		if (timeBeginPeriod(1)){
+			ICK_ABORT("timeBeginPeriod");
+		}
+	}
+	void ClockFinal(){
+		if (timeEndPeriod(1)){
+			ICK_ABORT("timeEndPeriod");
+		}
+	}
 	
 	double ClockGet(){
+#ifdef ICK_WINDOWS
+		DWORD time = timeGetTime();
+		return static_cast<double>(time) / 1000.0;
+#else
 		timeval tv;
 		if(gettimeofday(&tv, NULL)){
 			ICK_EN_ABORT(errno, "gettiemofday");
@@ -38,5 +55,6 @@ namespace ick{
 		double clock = static_cast<double>(tv.tv_sec) +
 		static_cast<double>(tv.tv_usec) / 1000000000.0;
 		return clock;
+#endif
 	}
 }

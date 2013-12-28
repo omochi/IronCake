@@ -14,14 +14,14 @@ protected:
 void f1(int * x){
 	int ox = *x;
 	*x = *x + 1;
-	ick::Sleep(0.010);
+	ick::Sleep(0.001);
 	EXPECT_EQ(ox + 1, *x);
 }
 
 void f1_post(ick::LoopThread * lp, int * x, int n){
 	for(int i=0;i<n;i++){
 		lp->Post(ick::FunctionBind1(f1, x));
-		ick::Sleep(0.010);
+		ick::Sleep(0.001);
 	}
 }
 

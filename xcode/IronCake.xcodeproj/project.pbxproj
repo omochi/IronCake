@@ -80,6 +80,7 @@
 		D662981D186F5FFC004060B9 /* application_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D662981C186F5FFC004060B9 /* application_controller.cpp */; };
 		D662981E186F5FFC004060B9 /* application_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D662981C186F5FFC004060B9 /* application_controller.cpp */; };
 		D6629822186F64D1004060B9 /* sample_app_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6629820186F64D1004060B9 /* sample_app_controller.cpp */; };
+		D6629825186F660F004060B9 /* sample_glfw_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6629823186F660F004060B9 /* sample_glfw_main.cpp */; };
 		D667FBBA184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
 		D667FBE5184CE84600404D8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE4184CE84600404D8D /* Cocoa.framework */; };
 		D667FC6D184E490C00404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5A184E490C00404D8D /* abort.cpp */; };
@@ -239,6 +240,8 @@
 		D662981C186F5FFC004060B9 /* application_controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_controller.cpp; sourceTree = "<group>"; };
 		D6629820186F64D1004060B9 /* sample_app_controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sample_app_controller.cpp; path = ../sample/sample_app_controller.cpp; sourceTree = "<group>"; };
 		D6629821186F64D1004060B9 /* sample_app_controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sample_app_controller.h; path = ../sample/sample_app_controller.h; sourceTree = "<group>"; };
+		D6629823186F660F004060B9 /* sample_glfw_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sample_glfw_main.cpp; path = ../sample/sample_glfw_main.cpp; sourceTree = "<group>"; };
+		D6629824186F660F004060B9 /* sample_glfw_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sample_glfw_main.h; path = ../sample/sample_glfw_main.h; sourceTree = "<group>"; };
 		D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBB9184CE7AC00404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D667FBC7184CE7AC00404D8D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -470,6 +473,8 @@
 		D662981F186F64C3004060B9 /* sample */ = {
 			isa = PBXGroup;
 			children = (
+				D6629824186F660F004060B9 /* sample_glfw_main.h */,
+				D6629823186F660F004060B9 /* sample_glfw_main.cpp */,
 				D6629821186F64D1004060B9 /* sample_app_controller.h */,
 				D6629820186F64D1004060B9 /* sample_app_controller.cpp */,
 			);
@@ -903,6 +908,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6B62B1F186C6B5B00903540 /* main.cpp in Sources */,
+				D6629825186F660F004060B9 /* sample_glfw_main.cpp in Sources */,
 				D6629822186F64D1004060B9 /* sample_app_controller.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

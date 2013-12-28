@@ -17,6 +17,8 @@ namespace ick{
 	running_(false)
 	{
 		ICK_ASSERT(controller);
+		controller_->application_ = this;
+		
 		glfw_window_ = NULL;
 		
 		master_thread_ = ICK_NEW(LoopThread);
@@ -50,60 +52,17 @@ namespace ick{
 	
 	void Application::Launch(){
 		master_thread_->Post(FunctionMake(this, &Application::DoLaunch));
-#ifdef ICK_MAC
-		MacSetupDisplayLink();
-#endif
-		
-		running_mutex_.Lock();
-		while(!running_){ running_mutex_.Wait(); }
-		running_mutex_.Unlock();
+		{
+			ICK_SCOPED_LOCK(running_mutex_);
+			while(!running_){ running_mutex_.Wait(); }
+		}
 	}
 	void Application::Terminate(){
-#ifdef ICK_MAC
-		MacTeardownDisplayLink();
-#endif
 		master_thread_->Post(FunctionMake(this, &Application::DoTerminate));
-		
-		running_mutex_.Lock();
-		while(running_){ running_mutex_.Wait(); }
-		running_mutex_.Unlock();
-	}
-	
-	void Application::DoLaunch(){
-		if(running_){ ICK_ABORT("already launched"); }
-		update_running_ = false;
-		update_deadline_missed_ = false;
-		
-		rendering_thread_ = ICK_NEW(LoopThread);
-		rendering_thread_->set_name(String("rendering"));
-		rendering_thread_->Start();
-		
-#ifdef ICK_APP_GLFW
-		glfwSwapInterval(0);
-		glfwMakeContextCurrent(glfw_window_);
-#endif
-		
-		running_mutex_.Lock();
-		running_ = true;
-		running_mutex_.Broadcast();
-		running_mutex_.Unlock();
-		
-		controller_->ApplicationDidLaunch(this);
-	}
-	
-	void Application::DoTerminate(){
-		if(!running_){ ICK_ABORT("has not launched"); }
-		
-		controller_->ApplicationWillTerminate(this);
-		
-		rendering_thread_->PostQuit();
-		rendering_thread_->Join();
-		ICK_DELETE(rendering_thread_);
-		
-		running_mutex_.Lock();
-		running_ = false;
-		running_mutex_.Broadcast();
-		running_mutex_.Unlock();
+		{
+			ICK_SCOPED_LOCK(running_mutex_);
+			while(running_){ running_mutex_.Wait(); }
+		}
 	}
 	
 	void Application::SignalUpdateTime(){
@@ -112,11 +71,11 @@ namespace ick{
 		if(update_running_){
 			update_deadline_missed_ = true;
 		}else{
-			PostUpdate();
+			RequestUpdate();
 		}
 	}
 	
-	void Application::PostUpdate(){
+	void Application::RequestUpdate(){
 		ICK_SCOPED_LOCK(update_mutex_);
 		update_running_ = true;
 		update_deadline_missed_ = false;
@@ -124,21 +83,98 @@ namespace ick{
 		master_thread_->Post(FunctionMake(this, &Application::Update));
 	}
 	
-	void Application::Update(){
+	void Application::RequestRender(){
+		ICK_SCOPED_LOCK(render_mutex_);
+		render_running_ = true;
+	
+		render_thread_->Post(FunctionMake(this, &Application::Render));
+	}
+	
+	void Application::DoLaunch(){
+		if(running_){ ICK_ABORT("already launched"); }
+		update_running_ = false;
+		update_deadline_missed_ = false;
+		render_running_ = false;
 		
-		controller_->ApplicationOnUpdate(this);
+		render_thread_ = ICK_NEW(LoopThread);
+		render_thread_->set_name(String("render"));
+		render_thread_->Start();
+		render_thread_->Post(FunctionMake(this, &Application::InitRender));
+		
+#ifdef ICK_MAC
+		MacSetupDisplayLink();
+#endif
+		
+		{
+			ICK_SCOPED_LOCK(running_mutex_);
+			running_ = true;
+			running_mutex_.Broadcast();
+		}
+		
+		controller_->ApplicationDidLaunch();
+	}
+	
+	void Application::DoTerminate(){
+		if(!running_){ ICK_ABORT("has not launched"); }
+		
+		controller_->ApplicationWillTerminate();
+		
+#ifdef ICK_MAC
+		MacTeardownDisplayLink();
+#endif
+		
+		render_thread_->PostQuit();
+		render_thread_->Join();
+		ICK_DELETE(render_thread_);
+		
+		{
+			ICK_SCOPED_LOCK(running_mutex_);
+			running_ = false;
+			running_mutex_.Broadcast();
+		}
+	}
+	
+	void Application::Update(){
+		{
+			ICK_SCOPED_LOCK(running_mutex_);
+			if(!running_){ return; }
+		}
+		
+		controller_->ApplicationOnUpdate();
+		
+		{
+			ICK_SCOPED_LOCK(render_mutex_);
+			RequestRender();
+			while(render_running_){ render_mutex_.Wait(); }
+		}
+
+		{
+			ICK_SCOPED_LOCK(update_mutex_);
+			if(update_deadline_missed_){
+				RequestUpdate();
+			}else{
+				update_running_ = false;
+			}
+		}
+	}
+	
+	void Application::InitRender(){
+#ifdef ICK_APP_GLFW
+		glfwSwapInterval(0);
+		glfwMakeContextCurrent(glfw_window_);
+#endif
+	}
+	
+	void Application::Render(){
+		controller_->ApplicationOnRender();
+		
 #ifdef ICK_APP_GLFW
 		glfwSwapBuffers(glfw_window_);
 #endif
-		UpdateEnd();
-	}
-	
-	void Application::UpdateEnd(){
-		ICK_SCOPED_LOCK(update_mutex_);
-		if(update_deadline_missed_){
-			PostUpdate();
-		}else{
-			update_running_ = false;
+		{
+			ICK_SCOPED_LOCK(render_mutex_);
+			render_running_ = false;
+			render_mutex_.Broadcast();
 		}
 	}
 	

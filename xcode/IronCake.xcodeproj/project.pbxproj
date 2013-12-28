@@ -78,6 +78,8 @@
 		D6629818186F3344004060B9 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B2B186C71A600903540 /* IOKit.framework */; };
 		D6629819186F334C004060B9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B31186C71D000903540 /* OpenGL.framework */; };
 		D662981B186F3462004060B9 /* application_platform.h in Headers */ = {isa = PBXBuildFile; fileRef = D662981A186F3462004060B9 /* application_platform.h */; };
+		D662981D186F5FFC004060B9 /* application_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D662981C186F5FFC004060B9 /* application_controller.cpp */; };
+		D662981E186F5FFC004060B9 /* application_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D662981C186F5FFC004060B9 /* application_controller.cpp */; };
 		D667FBBA184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
 		D667FBE5184CE84600404D8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE4184CE84600404D8D /* Cocoa.framework */; };
 		D667FC6D184E490C00404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5A184E490C00404D8D /* abort.cpp */; };
@@ -236,6 +238,7 @@
 		D6629813186F23EB004060B9 /* GLTestApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLTestApp.cpp; sourceTree = "<group>"; };
 		D6629814186F23EB004060B9 /* GLTestApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLTestApp.h; sourceTree = "<group>"; };
 		D662981A186F3462004060B9 /* application_platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application_platform.h; sourceTree = "<group>"; };
+		D662981C186F5FFC004060B9 /* application_controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_controller.cpp; sourceTree = "<group>"; };
 		D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBB9184CE7AC00404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D667FBC7184CE7AC00404D8D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -443,6 +446,7 @@
 			children = (
 				D662981A186F3462004060B9 /* application_platform.h */,
 				D6629808186E9D02004060B9 /* application_controller.h */,
+				D662981C186F5FFC004060B9 /* application_controller.cpp */,
 				D66297F3186DECD9004060B9 /* application.h */,
 				D66297F2186DECD9004060B9 /* application.cpp */,
 				D6629802186DFA37004060B9 /* application.mm */,
@@ -822,6 +826,7 @@
 			files = (
 				D667FC7D184E490C00404D8D /* linked_list.cpp in Sources */,
 				D6B62AFB18689ED400903540 /* function_thread.cpp in Sources */,
+				D662981E186F5FFC004060B9 /* application_controller.cpp in Sources */,
 				D662980D186F1B70004060B9 /* wait.cpp in Sources */,
 				D625B042186DD25800DF7CCF /* property.cpp in Sources */,
 				D667FC73184E490C00404D8D /* assert.cpp in Sources */,
@@ -856,6 +861,7 @@
 			files = (
 				D667FC7E184E490C00404D8D /* linked_list.cpp in Sources */,
 				D6B62AFC18689ED400903540 /* function_thread.cpp in Sources */,
+				D662981D186F5FFC004060B9 /* application_controller.cpp in Sources */,
 				D662980C186F1B70004060B9 /* wait.cpp in Sources */,
 				D625B043186DD25800DF7CCF /* property.cpp in Sources */,
 				D667FC74184E490C00404D8D /* assert.cpp in Sources */,

@@ -6,17 +6,16 @@ namespace ick{
 	class Application;
 	
 	class ApplicationController {
+		friend Application;
+		Application * application_;
 	public:
-		virtual ~ApplicationController(){}
-		virtual void ApplicationDidLaunch(Application * application){
-			(void)application;
-		}
-		virtual void ApplicationWillTerminate(Application * application){
-			(void)application;
-		}
-		virtual void ApplicationOnUpdate(Application * application){
-			(void)application;
-		}
+		virtual ~ApplicationController();
+		//thread: master
+		virtual void ApplicationDidLaunch();
+		virtual void ApplicationWillTerminate();
+		virtual void ApplicationOnUpdate();
+		//thread: render
+		virtual void ApplicationOnRender();
 	};
 	
 }

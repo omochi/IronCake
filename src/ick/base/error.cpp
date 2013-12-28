@@ -26,7 +26,7 @@ namespace ick{
 	}
 	
 	void ErrorNumberAbortV(int error_number, const char * format, va_list ap){
-		String format2 = String::Format("%s: %d\n",format, error_number);
+		String format2 = String::Format("%s: %d(%s)\n",format, error_number, ErrorNumberGetDescription(error_number).cstr());
 		AbortV(format2.cstr(), ap);
 	}
 }

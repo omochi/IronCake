@@ -19,11 +19,15 @@ namespace ick{
 		bool running_;
 		
 		LoopThread * master_thread_;
-		LoopThread * rendering_thread_;
 		
 		Mutex update_mutex_;
 		bool update_running_;
 		bool update_deadline_missed_;
+		
+		LoopThread * render_thread_;
+		
+		Mutex render_mutex_;
+		bool render_running_;
 		
 #ifdef ICK_APP_GLFW
 		GLFWwindow * glfw_window_;
@@ -44,34 +48,34 @@ namespace ick{
 												void *displayLinkContext);
 #endif
 	public:
+		//thread: main
 		Application(ApplicationController * controller);
 		virtual ~Application();
 	
-		//thread: main
 		ApplicationController * controller() const;
 		
 #ifdef ICK_APP_GLFW
-		//thread: main
 		GLFWwindow * glfw_window() const;
 		void set_glfw_window(GLFWwindow * glfw_window);
 #endif
 		
-		//thread: main
 		void Launch();
 		void Terminate();
-
 	private:
-		void DoLaunch();
-		void DoTerminate();
-		
 		//thread: any
 		void SignalUpdateTime();
+		void RequestUpdate();
+		void RequestRender();
 		
-		//thread: any, UpdateをマスタースレッドにPostする
-		void PostUpdate();
-		
+		//thread: master
+		void DoLaunch();
+		void DoTerminate();
 		void Update();
-		void UpdateEnd();
+		
+		//thread: render
+		void InitRender();
+		void Render();
+
 	};
 }
 

@@ -14,7 +14,8 @@ class GLTestAppController : public ick::ApplicationController {
 	int frame_count_;
 public:
 	virtual ~GLTestAppController();
-	virtual void ApplicationDidLaunch(ick::Application * application);
-	virtual void ApplicationWillTerminate(ick::Application * application);
-	virtual void ApplicationOnUpdate(ick::Application * application);
+	virtual void ApplicationDidLaunch();
+	virtual void ApplicationWillTerminate();
+	virtual void ApplicationOnUpdate();
+	virtual void ApplicationOnRender();
 };

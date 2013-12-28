@@ -10,18 +10,14 @@
 
 GLTestAppController::~GLTestAppController(){
 }
-void GLTestAppController::ApplicationDidLaunch(ick::Application * application){
-	(void)application;
+void GLTestAppController::ApplicationDidLaunch(){
 	sec_frame_count_ = 0;
 	prev_sec_clock_ = ick::ClockGet();
 	frame_count_ = 0;
 }
-void GLTestAppController::ApplicationWillTerminate(ick::Application * application){
-	(void)application;
+void GLTestAppController::ApplicationWillTerminate(){
 }
-void GLTestAppController::ApplicationOnUpdate(ick::Application * application){
-	(void)application;
-	
+void GLTestAppController::ApplicationOnUpdate(){
 	sec_frame_count_++;
 	double clock = ick::ClockGet();
 	if(clock - prev_sec_clock_ >= 1.0){
@@ -30,6 +26,9 @@ void GLTestAppController::ApplicationOnUpdate(ick::Application * application){
 		sec_frame_count_ = 0;
 	}
 	
+	frame_count_++;
+}
+void GLTestAppController::ApplicationOnRender(){
 	int mod_fc = frame_count_ % 6;
 	if(mod_fc == 0){
 		glClearColor(1, 0, 0, 1);
@@ -46,7 +45,5 @@ void GLTestAppController::ApplicationOnUpdate(ick::Application * application){
 	}
 	
 	glClear(GL_COLOR_BUFFER_BIT);
-	
-	frame_count_++;
 }
 

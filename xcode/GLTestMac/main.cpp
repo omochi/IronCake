@@ -42,14 +42,9 @@ bool AppMain(){
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	g_application->set_glfw_window(window);
-		
 	g_application->Launch();
 	
-
-
-	
-    while (!glfwWindowShouldClose(window)){		
-
+    while (!glfwWindowShouldClose(window)){
 		glfwWaitEvents();
     }
 	

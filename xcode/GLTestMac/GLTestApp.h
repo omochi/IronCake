@@ -9,11 +9,9 @@
 #include <ick/ick.h>
 
 class GLTestAppController : public ick::ApplicationController {
-	
 	int sec_frame_count_;
 	double prev_sec_clock_;
-
-	
+	int frame_count_;
 public:
 	virtual ~GLTestAppController();
 	virtual void ApplicationDidLaunch(ick::Application * application);

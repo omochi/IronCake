@@ -20,6 +20,7 @@ namespace ick{
 		glfw_window_ = NULL;
 		
 		master_thread_ = ICK_NEW(LoopThread);
+		master_thread_->set_name(String("master"));
 		master_thread_->Start();
 	}
 	
@@ -74,6 +75,7 @@ namespace ick{
 		update_deadline_missed_ = false;
 		
 		rendering_thread_ = ICK_NEW(LoopThread);
+		rendering_thread_->set_name(String("rendering"));
 		rendering_thread_->Start();
 		
 #ifdef ICK_APP_GLFW

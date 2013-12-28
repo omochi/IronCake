@@ -28,8 +28,9 @@ namespace ick{
 	}
 #endif
 
-
-	Thread::Thread():running_(false){
+	Thread::Thread():
+	running_(false),
+	name_("ick::Thread"){
 		impl_ = ICK_NEW(ThreadImpl);
 	}
 	Thread::~Thread(){
@@ -37,13 +38,28 @@ namespace ick{
 		ICK_DELETE(impl_);
 	}
 	
+	bool Thread::running() const{
+		return running_;
+	}
+	String Thread::name() const{
+		return name_;
+	}
+	void Thread::set_name(const String & name){
+		name_ = name;
+	}
+
 #ifdef ICK_WINDOWS
 	static unsigned int __stdcall ThreadRun(void * context)  {
 #else
 	static void * ThreadRun(void * context) {
 #endif
-		Thread * thread;
-		thread = static_cast<Thread *>(context);
+		Thread * thread = static_cast<Thread *>(context);
+		
+#ifdef ICK_WINDOWS
+#else
+		ICK_EN_CALL(pthread_setname_np(thread->name().cstr()));
+#endif
+		
 		thread->Run();
 #ifdef ICK_WINDOWS
 		return 0;

@@ -30,5 +30,9 @@ void GLTestAppController::ApplicationOnUpdate(ick::Application * application){
 
 	}
 	
+	glClearColor(0, 1, 0, 1);
+	glClear(GL_COLOR_BUFFER_BIT);
+	
+
 }
 

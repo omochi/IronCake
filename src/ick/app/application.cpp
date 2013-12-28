@@ -76,6 +76,11 @@ namespace ick{
 		rendering_thread_ = ICK_NEW(LoopThread);
 		rendering_thread_->Start();
 		
+#ifdef ICK_APP_GLFW
+		glfwSwapInterval(0);
+		glfwMakeContextCurrent(glfw_window_);
+#endif
+		
 		running_mutex_.Lock();
 		running_ = true;
 		running_mutex_.Broadcast();
@@ -120,7 +125,9 @@ namespace ick{
 	void Application::Update(){
 		
 		controller_->ApplicationOnUpdate(this);
-		
+#ifdef ICK_APP_GLFW
+		glfwSwapBuffers(glfw_window_);
+#endif
 		UpdateEnd();
 	}
 	

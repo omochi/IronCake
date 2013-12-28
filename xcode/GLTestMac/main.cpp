@@ -37,19 +37,19 @@ bool AppMain(){
 		ICK_LOG_ERROR("glfwCreateWindow failed");
 		return false;
     }
+	glfwMakeContextCurrent(window);
+	glClearColor(0, 0, 0, 1);
+	glClear(GL_COLOR_BUFFER_BIT);
 	
 	g_application->set_glfw_window(window);
 		
 	g_application->Launch();
 	
-    glfwMakeContextCurrent(window);
-	glfwSwapInterval(0);
+
+
 	
     while (!glfwWindowShouldClose(window)){		
-		glClearColor(0, 1, 0, 1);
-		glClear(GL_COLOR_BUFFER_BIT);
-		
-        glfwSwapBuffers(window);
+
 		glfwWaitEvents();
     }
 	

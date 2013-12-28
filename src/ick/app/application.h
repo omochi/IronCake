@@ -62,10 +62,12 @@ namespace ick{
 		virtual ~Application();
 	
 		//thread: main
+		ApplicationDelegate * delegate() const;
 		void set_delegate(ApplicationDelegate * delagete);
 		
 #ifdef ICK_APP_GLFW
 		//thread: main
+		GLFWwindow * glfw_window() const;
 		void set_glfw_window(GLFWwindow * glfw_window);
 #endif
 		

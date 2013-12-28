@@ -4,8 +4,7 @@
 class AllocatorTest : public testing::Test {
 protected:
 	virtual void SetUp(){
-		struct ick::StartupInfo info = { NULL, false };
-		ick::Startup(info);
+		ick::Startup();
 	}
 	virtual void TearDown(){
 		ick::Shutdown();

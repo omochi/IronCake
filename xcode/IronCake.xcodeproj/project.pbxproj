@@ -72,6 +72,7 @@
 		D662980E186F1B70004060B9 /* wait.h in Headers */ = {isa = PBXBuildFile; fileRef = D662980B186F1B70004060B9 /* wait.h */; };
 		D6629810186F219B004060B9 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B27186C715900903540 /* libglfw3.a */; };
 		D6629812186F2314004060B9 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6629811186F2314004060B9 /* CoreVideo.framework */; };
+		D6629815186F23EB004060B9 /* GLTestApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6629813186F23EB004060B9 /* GLTestApp.cpp */; };
 		D667FBBA184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
 		D667FBE5184CE84600404D8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE4184CE84600404D8D /* Cocoa.framework */; };
 		D667FC6D184E490C00404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5A184E490C00404D8D /* abort.cpp */; };
@@ -236,6 +237,8 @@
 		D662980A186F1B70004060B9 /* wait.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wait.cpp; sourceTree = "<group>"; };
 		D662980B186F1B70004060B9 /* wait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wait.h; sourceTree = "<group>"; };
 		D6629811186F2314004060B9 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreVideo.framework; sourceTree = DEVELOPER_DIR; };
+		D6629813186F23EB004060B9 /* GLTestApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLTestApp.cpp; sourceTree = "<group>"; };
+		D6629814186F23EB004060B9 /* GLTestApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLTestApp.h; sourceTree = "<group>"; };
 		D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBB9184CE7AC00404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D667FBC7184CE7AC00404D8D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -586,6 +589,8 @@
 		D6B62B1D186C6B5B00903540 /* GLTestMac */ = {
 			isa = PBXGroup;
 			children = (
+				D6629814186F23EB004060B9 /* GLTestApp.h */,
+				D6629813186F23EB004060B9 /* GLTestApp.cpp */,
 				D6B62B1E186C6B5B00903540 /* main.cpp */,
 			);
 			path = GLTestMac;
@@ -881,6 +886,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6629815186F23EB004060B9 /* GLTestApp.cpp in Sources */,
 				D6B62B1F186C6B5B00903540 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

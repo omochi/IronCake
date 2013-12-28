@@ -3,6 +3,8 @@
 //	ユーザコンテンツのつなぎ込みのルート
 
 namespace ick{
+	class Application;
+	
 	class ApplicationDelegate {
 	public:
 		virtual ~ApplicationDelegate(){}

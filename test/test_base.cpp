@@ -2,8 +2,8 @@
 
 
 void TestBase::SetUp(){
-	struct ick::StartupInfo info = { NULL, true };
-	ick::Startup(info);
+	ick::g_startup_config.memory_debug = true;
+	ick::Startup();
 }
 void TestBase::TearDown(){
 	if (ick::static_debug_allocator()->info_list()->num() > 0){

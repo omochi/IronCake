@@ -6,8 +6,7 @@
 //  Copyright (c) 2013年 omochimetaru. All rights reserved.
 //
 
-#include <ick/ick.h>
-#include <GLFW/glfw3.h>
+#include "GLTestApp.h"
 
 ick::Application * g_application;
 
@@ -15,8 +14,8 @@ bool ickMain();
 bool glfwMain();
 
 int main(int argc, const char * argv[]){
-	ick::StartupInfo info = {NULL,true};
-	if(!ick::Startup(info)){
+	ick::g_startup_config.memory_debug = true;
+	if(!ick::Startup()){
 		printf("ick::Startup failed");
 		return EXIT_FAILURE;
 	}
@@ -38,7 +37,10 @@ bool ickMain(){
 	return ok;
 }
 
-bool glfwMain(){
+bool glfwMain(){	
+	g_application = ICK_NEW(ick::Application);
+	g_application->set_delegate(ICK_NEW(GLTestAppDelegate));
+	
 	glfwWindowHint(GLFW_RESIZABLE, 0);
     GLFWwindow * window = glfwCreateWindow(640, 480, "IronCake GL Test", NULL, NULL);
     if (!window){
@@ -46,23 +48,15 @@ bool glfwMain(){
 		return false;
     }
 	
-	g_application = ICK_NEW(ick::Application);
+	g_application->set_glfw_window(window);
+		
 	g_application->Launch();
 	
     glfwMakeContextCurrent(window);
 	glfwSwapInterval(0);
 	
-	double prev_sec_clock = ick::ClockGet();
-	int sec_frame_count = 0;
-    while (!glfwWindowShouldClose(window)){
-		sec_frame_count++;
-		double sec_clock = ick::ClockGet();
-		if(sec_clock - prev_sec_clock >= 1.0){
-			ICK_LOG_INFO("fps: %d\n",sec_frame_count);
-			sec_frame_count = 0;
-			prev_sec_clock = sec_clock;
-		}
-		
+
+    while (!glfwWindowShouldClose(window)){		
 		glClearColor(0, 1, 0, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
@@ -71,6 +65,8 @@ bool glfwMain(){
     }
 	
 	g_application->Terminate();
+	
+	ICK_DELETE(g_application->delegate());
 	ICK_DELETE(g_application);
 	
 	return true;

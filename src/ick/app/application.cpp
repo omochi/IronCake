@@ -2,6 +2,7 @@
 
 #include "../base/memory.h"
 #include "../base/abort.h"
+#include "../base/time.h"
 #include "../function/function.h"
 #include "../thread/scoped_lock.h"
 #include "../thread/loop_thread.h"
@@ -13,21 +14,28 @@
 namespace ick{
 	Application::Application():
 	delegate_(NULL),
-	running_(false){
-#ifdef ICK_APP_GLFW
+	running_(false)
+	{
 		glfw_window_ = NULL;
-#endif
+
+		ClockInit();
 		
 		master_thread_ = ICK_NEW(LoopThread);
 		master_thread_->Start();
-
 	}
+	
 	Application::~Application(){
 		if(running_){ ICK_ABORT("has not terminated"); }
 		
 		master_thread_->PostQuit();
 		master_thread_->Join();
 		ICK_DELETE(master_thread_);
+		
+		ClockFinal();
+	}
+	
+	ApplicationDelegate * Application::delegate() const{
+		return delegate_;
 	}
 	
 	void Application::set_delegate(ApplicationDelegate * delegate){
@@ -35,6 +43,11 @@ namespace ick{
 	}
 	
 #ifdef ICK_APP_GLFW
+	
+	GLFWwindow * Application::glfw_window() const{
+		return glfw_window_;
+	}
+	
 	void Application::set_glfw_window(GLFWwindow *glfw_window){
 		glfw_window_ = glfw_window;
 	}

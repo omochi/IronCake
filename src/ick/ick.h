@@ -44,14 +44,17 @@
 #	include "windows/wait.h"
 #endif
 
+#include "app/application_delegate.h"
 #include "app/application.h"
 
 namespace ick{
-	struct StartupInfo {
+	struct StartupConfig {
 		Allocator * allocator;
 		bool memory_debug;
 	};
-	bool Startup(const struct StartupInfo & info);
+	//デフォルト値で初期化済み
+	extern struct StartupConfig g_startup_config;
+	bool Startup();
 	bool IsStartedup();
 	bool Shutdown();
 }

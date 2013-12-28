@@ -32,21 +32,6 @@ namespace ick{
 #endif
 	}
 
-	void ClockInit(){
-#ifdef ICK_WINDOWS
-		if (timeBeginPeriod(1)){
-			ICK_ABORT("timeBeginPeriod");
-		}
-#endif
-	}
-	void ClockFinal(){
-#ifdef ICK_WINDOWS
-		if (timeEndPeriod(1)){
-			ICK_ABORT("timeEndPeriod");
-		}
-#endif
-	}
-	
 	double ClockGet(){
 #ifdef ICK_WINDOWS
 		DWORD time = timeGetTime();

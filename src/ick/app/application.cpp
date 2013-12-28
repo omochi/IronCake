@@ -17,8 +17,6 @@ namespace ick{
 	running_(false)
 	{
 		glfw_window_ = NULL;
-
-		ClockInit();
 		
 		master_thread_ = ICK_NEW(LoopThread);
 		master_thread_->Start();
@@ -30,8 +28,6 @@ namespace ick{
 		master_thread_->PostQuit();
 		master_thread_->Join();
 		ICK_DELETE(master_thread_);
-		
-		ClockFinal();
 	}
 	
 	ApplicationDelegate * Application::delegate() const{

@@ -10,8 +10,7 @@
 
 ick::Application * g_application;
 
-bool ickMain();
-bool glfwMain();
+bool AppMain();
 
 int main(int argc, const char * argv[]){
 	ick::g_startup_config.memory_debug = true;
@@ -19,7 +18,7 @@ int main(int argc, const char * argv[]){
 		printf("ick::Startup failed");
 		return EXIT_FAILURE;
 	}
-	bool ok = ickMain();
+	bool ok = AppMain();
 	if(!ick::Shutdown()){
 		printf("ick::Shutdown failed");
 		return EXIT_FAILURE;
@@ -27,17 +26,7 @@ int main(int argc, const char * argv[]){
 	return ok ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
-bool ickMain(){
-	if (!glfwInit()) {
-		ICK_LOG_ERROR("glfwInit failed");
-		return false;
-	}
-	bool ok = glfwMain();
-	glfwTerminate();
-	return ok;
-}
-
-bool glfwMain(){	
+bool AppMain(){
 	g_application = ICK_NEW(ick::Application);
 	g_application->set_delegate(ICK_NEW(GLTestAppDelegate));
 	
@@ -55,7 +44,6 @@ bool glfwMain(){
     glfwMakeContextCurrent(window);
 	glfwSwapInterval(0);
 	
-
     while (!glfwWindowShouldClose(window)){		
 		glClearColor(0, 1, 0, 1);
 		glClear(GL_COLOR_BUFFER_BIT);

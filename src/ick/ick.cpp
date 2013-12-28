@@ -8,14 +8,25 @@
 
 #include "ick.h"
 
+#ifdef ICK_WINDOWS
+#	include <mmsystem.h>
+#endif
+
 namespace ick{
 	bool g_startedup = false;
 
-	struct StartupConfig g_startup_config = {
-		NULL,
-		false
-	};
-	struct StartupConfig g_used_startup_config;
+	StartupConfig::StartupConfig(){
+		allocator = NULL;
+		memory_debug = false;
+#ifdef ICK_APP_GLFW
+		init_glfw = true;
+#endif
+#ifdef ICK_WINDOWS
+		do_timeBeginPeriod = true;
+#endif
+	}
+	StartupConfig g_startup_config;
+	StartupConfig g_used_startup_config;
 	
 	bool Startup(){
 		if(g_startedup){
@@ -38,6 +49,23 @@ namespace ick{
 			set_static_allocator(ICK_NEW(DebugAllocator, static_allocator()));
 		}
 		
+#ifdef ICK_APP_GLFW
+		if(config.init_glfw){
+			if (!glfwInit()) {
+				ICK_LOG_ERROR("glfwInit");
+				return false;
+			}
+		}
+#endif
+#ifdef ICK_WINDOWS
+		if(config.do_timeBeginPeriod){
+			if (timeBeginPeriod(1)){
+				ICK_LOG_ERROR("timeBeginPeriod");
+				return false;
+			}
+		}
+#endif
+		
 		g_startedup = true;
 		return true;
 	}
@@ -49,9 +77,22 @@ namespace ick{
 			ICK_LOG_ERROR("has not startedup");
 			return false;
 		}
-		
 		StartupConfig & config = g_used_startup_config;
 		
+#ifdef ICK_WINDOWS
+		if(config.do_timeBeginPeriod){
+			if (timeEndPeriod(1)){
+				ICK_LOG_ERROR("timeEndPeriod");
+				return false;
+			}
+		}
+#endif
+#ifdef ICK_APP_GLFW
+		if(config.init_glfw){
+			glfwTerminate();
+		}
+#endif
+	
 		if(config.memory_debug){
 			DebugAllocator * debug_allocator = static_debug_allocator();
 			set_static_allocator(debug_allocator->allocator());
@@ -67,3 +108,4 @@ namespace ick{
 		return true;
 	}
 }
+

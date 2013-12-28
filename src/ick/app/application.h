@@ -5,22 +5,8 @@
 //		遅延する場合は全速で回す。
 //		間に合う場合、次の開始をDisplayLinkが来るまで待機する。
 
-#include "../base/platform.h"
+#include "application_platform.h"
 #include "../thread/mutex.h"
-
-#ifdef ICK_IOS
-#elif defined ICK_MAC && defined __OBJC__
-#	import <AppKit/AppKit.h>
-#	import <CoreVideo/CoreVideo.h>
-#endif
-
-#if ( ! defined ICK_IOS && defined ICK_MAC )
-#	define ICK_APP_GLFW
-#endif
-
-#ifdef ICK_APP_GLFW
-#	include <GLFW/glfw3.h>
-#endif
 
 namespace ick{
 	class LoopThread;
@@ -89,3 +75,4 @@ namespace ick{
 		void UpdateEnd();
 	};
 }
+

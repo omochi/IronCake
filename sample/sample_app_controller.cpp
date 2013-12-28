@@ -6,18 +6,18 @@
 //  Copyright (c) 2013年 omochimetaru. All rights reserved.
 //
 
-#include "GLTestApp.h"
+#include "sample_app_controller.h"
 
-GLTestAppController::~GLTestAppController(){
+SampleAppController::~SampleAppController(){
 }
-void GLTestAppController::ApplicationDidLaunch(){
+void SampleAppController::ApplicationDidLaunch(){
 	sec_frame_count_ = 0;
 	prev_sec_clock_ = ick::ClockGet();
 	frame_count_ = 0;
 }
-void GLTestAppController::ApplicationWillTerminate(){
+void SampleAppController::ApplicationWillTerminate(){
 }
-void GLTestAppController::ApplicationOnUpdate(){
+void SampleAppController::ApplicationOnUpdate(){
 	sec_frame_count_++;
 	double clock = ick::ClockGet();
 	if(clock - prev_sec_clock_ >= 1.0){
@@ -28,7 +28,7 @@ void GLTestAppController::ApplicationOnUpdate(){
 	
 	frame_count_++;
 }
-void GLTestAppController::ApplicationOnRender(){
+void SampleAppController::ApplicationOnRender(){
 	int mod_fc = frame_count_ % 6;
 	if(mod_fc == 0){
 		glClearColor(1, 0, 0, 1);

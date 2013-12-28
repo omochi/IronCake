@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 omochimetaru. All rights reserved.
 //
 
-#include "GLTestApp.h"
+#include "sample_app_controller.h"
 
 ick::Application * g_application;
 
@@ -29,7 +29,7 @@ int main(int argc, const char * argv[]){
 }
 
 bool AppMain(){
-	g_application = ICK_NEW(ick::Application, ICK_NEW(GLTestAppController));
+	g_application = ICK_NEW(ick::Application, ICK_NEW(SampleAppController));
 	
 	glfwWindowHint(GLFW_RESIZABLE, 0);
     GLFWwindow * window = glfwCreateWindow(640, 480, "IronCake GL Test", NULL, NULL);

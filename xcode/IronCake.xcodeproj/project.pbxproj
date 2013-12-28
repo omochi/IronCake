@@ -67,6 +67,11 @@
 		D6629806186DFAA7004060B9 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297F2186DECD9004060B9 /* application.cpp */; };
 		D6629807186DFE25004060B9 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B33186C71DD00903540 /* AppKit.framework */; };
 		D6629809186E9D02004060B9 /* application_delegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D6629808186E9D02004060B9 /* application_delegate.h */; };
+		D662980C186F1B70004060B9 /* wait.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D662980A186F1B70004060B9 /* wait.cpp */; };
+		D662980D186F1B70004060B9 /* wait.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D662980A186F1B70004060B9 /* wait.cpp */; };
+		D662980E186F1B70004060B9 /* wait.h in Headers */ = {isa = PBXBuildFile; fileRef = D662980B186F1B70004060B9 /* wait.h */; };
+		D6629810186F219B004060B9 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B27186C715900903540 /* libglfw3.a */; };
+		D6629812186F2314004060B9 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6629811186F2314004060B9 /* CoreVideo.framework */; };
 		D667FBBA184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
 		D667FBE5184CE84600404D8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE4184CE84600404D8D /* Cocoa.framework */; };
 		D667FC6D184E490C00404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5A184E490C00404D8D /* abort.cpp */; };
@@ -133,7 +138,6 @@
 		D6B62B16186C672000903540 /* scoped_lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62B13186C672000903540 /* scoped_lock.cpp */; };
 		D6B62B17186C672000903540 /* scoped_lock.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62B14186C672000903540 /* scoped_lock.h */; };
 		D6B62B1F186C6B5B00903540 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62B1E186C6B5B00903540 /* main.cpp */; };
-		D6B62B28186C715900903540 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B27186C715900903540 /* libglfw3.a */; };
 		D6B62B34186C71DD00903540 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B33186C71DD00903540 /* AppKit.framework */; };
 		D6B62B35186C720300903540 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B31186C71D000903540 /* OpenGL.framework */; };
 		D6B62B37186C721700903540 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B2B186C71A600903540 /* IOKit.framework */; };
@@ -229,6 +233,9 @@
 		D66297FB186DECF0004060B9 /* tchar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tchar.h; sourceTree = "<group>"; };
 		D6629802186DFA37004060B9 /* application.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = application.mm; sourceTree = "<group>"; };
 		D6629808186E9D02004060B9 /* application_delegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application_delegate.h; sourceTree = "<group>"; };
+		D662980A186F1B70004060B9 /* wait.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wait.cpp; sourceTree = "<group>"; };
+		D662980B186F1B70004060B9 /* wait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wait.h; sourceTree = "<group>"; };
+		D6629811186F2314004060B9 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreVideo.framework; sourceTree = DEVELOPER_DIR; };
 		D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBB9184CE7AC00404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D667FBC7184CE7AC00404D8D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -339,8 +346,9 @@
 				D6B62B34186C71DD00903540 /* AppKit.framework in Frameworks */,
 				D6B62B35186C720300903540 /* OpenGL.framework in Frameworks */,
 				D6B62B37186C721700903540 /* IOKit.framework in Frameworks */,
+				D6629812186F2314004060B9 /* CoreVideo.framework in Frameworks */,
+				D6629810186F219B004060B9 /* libglfw3.a in Frameworks */,
 				D625B03A186C7B6800DF7CCF /* libIronCakeMac.a in Frameworks */,
-				D6B62B28186C715900903540 /* libglfw3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +448,8 @@
 		D66297F7186DECF0004060B9 /* windows */ = {
 			isa = PBXGroup;
 			children = (
+				D662980A186F1B70004060B9 /* wait.cpp */,
+				D662980B186F1B70004060B9 /* wait.h */,
 				D66297F8186DECF0004060B9 /* error.cpp */,
 				D66297F9186DECF0004060B9 /* error.h */,
 				D66297FA186DECF0004060B9 /* tchar.cpp */,
@@ -476,6 +486,7 @@
 		D667FBB8184CE7AC00404D8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6629811186F2314004060B9 /* CoreVideo.framework */,
 				D6B62B33186C71DD00903540 /* AppKit.framework */,
 				D6B62B31186C71D000903540 /* OpenGL.framework */,
 				D6B62B2F186C71C700903540 /* Foundation.framework */,
@@ -615,6 +626,7 @@
 				D6B62B0F186C657D00903540 /* debug_allocator.h in Headers */,
 				D6B62AF61863570700903540 /* function_bind.h in Headers */,
 				D63ABDCB1855FCAC004349F8 /* string.h in Headers */,
+				D662980E186F1B70004060B9 /* wait.h in Headers */,
 				D667FC86184E490C00404D8D /* memory.h in Headers */,
 				D667FCA918523C9600404D8D /* build.h in Headers */,
 				D60285181860C22C00CE5EC5 /* thread.h in Headers */,
@@ -803,6 +815,7 @@
 			files = (
 				D667FC7D184E490C00404D8D /* linked_list.cpp in Sources */,
 				D6B62AFB18689ED400903540 /* function_thread.cpp in Sources */,
+				D662980D186F1B70004060B9 /* wait.cpp in Sources */,
 				D625B042186DD25800DF7CCF /* property.cpp in Sources */,
 				D667FC73184E490C00404D8D /* assert.cpp in Sources */,
 				D6629803186DFA37004060B9 /* application.mm in Sources */,
@@ -836,6 +849,7 @@
 			files = (
 				D667FC7E184E490C00404D8D /* linked_list.cpp in Sources */,
 				D6B62AFC18689ED400903540 /* function_thread.cpp in Sources */,
+				D662980C186F1B70004060B9 /* wait.cpp in Sources */,
 				D625B043186DD25800DF7CCF /* property.cpp in Sources */,
 				D667FC74184E490C00404D8D /* assert.cpp in Sources */,
 				D6629804186DFA37004060B9 /* application.mm in Sources */,
@@ -1068,8 +1082,10 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../src,
+					../libs/glfw/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = /Users/omochi/work/github/omochi/IronCake/libs/glfw/src;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
@@ -1128,8 +1144,10 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					../src,
+					../libs/glfw/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = /Users/omochi/work/github/omochi/IronCake/libs/glfw/src;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
@@ -1160,6 +1178,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/omochi/work/github/omochi/IronCake/libs/glfw/src,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -1169,6 +1191,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/omochi/work/github/omochi/IronCake/libs/glfw/src,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -1184,12 +1210,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					../src,
-					../libs/glfw/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1208,12 +1228,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					../src,
-					../libs/glfw/include,
-				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/omochi/work/github/omochi/IronCake/libs/glfw/src,

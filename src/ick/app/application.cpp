@@ -6,11 +6,18 @@
 #include "../thread/scoped_lock.h"
 #include "../thread/loop_thread.h"
 
+#include "application_delegate.h"
+
 #ifdef ICK_OBJCPP_GUARD
 
 namespace ick{
 	Application::Application():
+	delegate_(NULL),
 	running_(false){
+#ifdef ICK_APP_GLFW
+		glfw_window_ = NULL;
+#endif
+		
 		master_thread_ = ICK_NEW(LoopThread);
 		master_thread_->Start();
 
@@ -23,44 +30,67 @@ namespace ick{
 		ICK_DELETE(master_thread_);
 	}
 	
-#ifdef ICK_MAC
+	void Application::set_delegate(ApplicationDelegate * delegate){
+		delegate_ = delegate;
+	}
+	
+#ifdef ICK_APP_GLFW
+	void Application::set_glfw_window(GLFWwindow *glfw_window){
+		glfw_window_ = glfw_window;
+	}
 
 #endif
 	
 	void Application::Launch(){
-
-		
+		master_thread_->Post(FunctionMake(this, &Application::DoLaunch));
 #ifdef ICK_MAC
 		MacSetupDisplayLink();
 #endif
+		
+		running_mutex_.Lock();
+		while(!running_){ running_mutex_.Wait(); }
+		running_mutex_.Unlock();
 	}
 	void Application::Terminate(){
-		if(!running_){ ICK_ABORT("has not launched"); }
-		running_ = false;
-		
 #ifdef ICK_MAC
 		MacTeardownDisplayLink();
-		mac_window_ = nil;
 #endif
+		master_thread_->Post(FunctionMake(this, &Application::DoTerminate));
 		
-		rendering_thread_->PostQuit();
-		rendering_thread_->Join();
-		ICK_DELETE(rendering_thread_);
+		running_mutex_.Lock();
+		while(running_){ running_mutex_.Wait(); }
+		running_mutex_.Unlock();
 	}
 	
 	void Application::DoLaunch(){
 		if(running_){ ICK_ABORT("already launched"); }
-		running_ = true;
-		
 		update_running_ = false;
 		update_deadline_missed_ = false;
 		
 		rendering_thread_ = ICK_NEW(LoopThread);
 		rendering_thread_->Start();
+		
+		running_mutex_.Lock();
+		running_ = true;
+		running_mutex_.Broadcast();
+		running_mutex_.Unlock();
+		
+		if(delegate_){ delegate_->ApplicationDidLaunch(this); }
 	}
 	
 	void Application::DoTerminate(){
+		if(!running_){ ICK_ABORT("has not launched"); }
 		
+		if(delegate_){ delegate_->ApplicationWillTerminate(this); }
+		
+		rendering_thread_->PostQuit();
+		rendering_thread_->Join();
+		ICK_DELETE(rendering_thread_);
+		
+		running_mutex_.Lock();
+		running_ = false;
+		running_mutex_.Broadcast();
+		running_mutex_.Unlock();
 	}
 	
 	void Application::SignalUpdateTime(){
@@ -82,6 +112,8 @@ namespace ick{
 	}
 	
 	void Application::Update(){
+		
+		if(delegate_){ delegate_->ApplicationOnUpdate(this); }
 		
 		UpdateEnd();
 	}

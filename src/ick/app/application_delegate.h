@@ -5,7 +5,7 @@
 namespace ick{
 	class ApplicationDelegate {
 	public:
-		virtual ~ApplicationDeleagte(){}
+		virtual ~ApplicationDelegate(){}
 		virtual void ApplicationDidLaunch(Application * application){
 			(void)application;
 		}

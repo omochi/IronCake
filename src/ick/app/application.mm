@@ -1,5 +1,13 @@
 #include "application.cpp"
 
+#ifdef ICK_APP_GLFW
+#	ifdef ICK_MAC
+#		define GLFW_EXPOSE_NATIVE_COCOA
+#		define GLFW_EXPOSE_NATIVE_NSGL
+#	endif
+#	include <GLFW/glfw3native.h>
+#endif
+
 namespace ick{
 	
 	CVReturn ApplicationMacDisplayLinkOutputCallback(CVDisplayLinkRef displayLink,
@@ -17,12 +25,10 @@ namespace ick{
 		thiz->SignalUpdateTime();
 		return kCVReturnSuccess;
 	}
-	
-	void Application::set_mac_window(NSWindow *mac_window){
-		mac_window_ = mac_window;
-	}
+
 	void Application::MacSetupDisplayLink(){
-		NSScreen * screen = [mac_window_ screen];
+		NSWindow * mac_window = glfwGetCocoaWindow(glfw_window_);
+		NSScreen * screen = [mac_window screen];
 		NSDictionary * desc = [screen deviceDescription];
 		CGDirectDisplayID displayId = static_cast<CGDirectDisplayID>([desc[@"NSScreenNumber"] intValue]);
 		CVReturn ret = CVDisplayLinkCreateWithCGDisplay(displayId, &mac_display_link_);

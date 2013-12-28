@@ -14,12 +14,22 @@
 #	import <CoreVideo/CoreVideo.h>
 #endif
 
+#if ( ! defined ICK_IOS && defined ICK_MAC )
+#	define ICK_APP_GLFW
+#endif
+
+#ifdef ICK_APP_GLFW
+#	include <GLFW/glfw3.h>
+#endif
+
 namespace ick{
 	class LoopThread;
-	
 	class ApplicationDelegate;
 	
 	class Application {
+		ApplicationDelegate * delegate_;
+		
+		Mutex running_mutex_;
 		bool running_;
 		
 		LoopThread * master_thread_;
@@ -28,9 +38,12 @@ namespace ick{
 		Mutex update_mutex_;
 		bool update_running_;
 		bool update_deadline_missed_;
-				
+		
+#ifdef ICK_APP_GLFW
+		GLFWwindow * glfw_window_;
+#endif
+		
 #if defined ICK_MAC && defined __OBJC__
-		NSWindow * mac_window_;
 		CVDisplayLinkRef mac_display_link_;
 		
 		void MacSetupDisplayLink();
@@ -47,16 +60,18 @@ namespace ick{
 	public:
 		Application();
 		virtual ~Application();
-		
-#if defined ICK_MAC && defined __OBJC__
+	
 		//thread: main
-		void set_mac_window(NSWindow * mac_window);
+		void set_delegate(ApplicationDelegate * delagete);
+		
+#ifdef ICK_APP_GLFW
+		//thread: main
+		void set_glfw_window(GLFWwindow * glfw_window);
 #endif
 		
 		//thread: main
 		void Launch();
 		void Terminate();
-		
 
 	private:
 		void DoLaunch();

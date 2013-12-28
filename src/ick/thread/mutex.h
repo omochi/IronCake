@@ -19,7 +19,8 @@ namespace ick{
 		void Unlock();
 		
 		void Wait();
-		void Notify();//All
+		void Signal();
+		void Broadcast();
 	};
 }
 

@@ -40,7 +40,7 @@ namespace ick{
 	void LoopThread::Post(const Function<void (*)()> & task){
 		mutex_.Lock();
 		task_queue_.InsertLast(task);
-		mutex_.Notify();
+		mutex_.Signal();
 		mutex_.Unlock();
 	}
 	

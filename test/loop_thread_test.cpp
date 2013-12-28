@@ -29,24 +29,24 @@ TEST_F(LoopThreadTest, test1){
 	ick::LoopThread * loop_thread = ICK_NEW(ick::LoopThread);
 	loop_thread->Start();
 	
-	ick::Array<ick::Thread *> ws(16);
+	ick::Array<ick::Thread *> ps(16);
 	int x = 0;
 	
 	//インクリメントを1つのスレッドから10個投げ込む
-	for(int i = 0; i < ws.num(); i++){
-		ws[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind3(f1_post, loop_thread, &x, 10));
-		ws[i]->Start();
+	for (int i = 0; i < ps.num(); i++){
+		ps[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind3(f1_post, loop_thread, &x, 10));
+		ps[i]->Start();
 	}
 	
-	for(int i = 0; i < ws.num(); i++){
-		ws[i]->Join();
-		ICK_DELETE(ws[i]);
+	for (int i = 0; i < ps.num(); i++){
+		ps[i]->Join();
+		ICK_DELETE(ps[i]);
 	}
 	
 	loop_thread->PostQuit();
 	loop_thread->Join();
 	ICK_DELETE(loop_thread);
 	
-	EXPECT_EQ(ws.num() * 10, x);
+	EXPECT_EQ(ps.num() * 10, x);
 
 }

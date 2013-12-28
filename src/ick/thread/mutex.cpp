@@ -7,6 +7,7 @@
 #	include <Windows.h>
 #	include <process.h>
 #	include "../windows/error.h"
+#	include "../windows/wait.h"
 #else
 #	include <pthread.h>
 #endif
@@ -14,8 +15,14 @@
 namespace ick{
 	struct MutexImpl{
 #ifdef ICK_WINDOWS
-		HANDLE mutex;
-		HANDLE event;
+//		HANDLE mutex;
+//		HANDLE event;
+		CRITICAL_SECTION mutex_lock;
+
+		int wait_count;
+		CRITICAL_SECTION wait_count_lock;
+		HANDLE signal_event;
+		HANDLE broadcast_event;
 #else
 		pthread_mutex_t mutex;
 		pthread_cond_t cond;
@@ -32,14 +39,25 @@ namespace ick{
 	void Mutex::Init(){
 		impl_ = ICK_NEW_A(allocator_, MutexImpl);
 #ifdef ICK_WINDOWS
-		impl_->mutex = CreateMutex(NULL, FALSE, NULL);
-		if (!impl_->mutex){
-			ICK_ABORT("CreateMutex: %s",WindowsLastErrorGetDescription().cstr());
+		InitializeCriticalSection(&impl_->mutex_lock);
+		impl_->wait_count = 0;
+		InitializeCriticalSection(&impl_->wait_count_lock);
+		impl_->signal_event = CreateEvent(NULL, FALSE, FALSE, NULL);
+		if (!impl_->signal_event){
+			ICK_ABORT("CreateEvent: %s", WindowsLastErrorGetDescription().cstr());
 		}
-		impl_->event = CreateEvent(NULL, TRUE, FALSE, NULL);
-		if (!impl_->event){
-			ICK_ABORT("CreateEvent: %s",WindowsLastErrorGetDescription().cstr());
+		impl_->broadcast_event = CreateEvent(NULL, TRUE, FALSE, NULL);
+		if (!impl_->broadcast_event){
+			ICK_ABORT("CreateEvent: %s", WindowsLastErrorGetDescription().cstr());
 		}
+		//impl_->mutex = CreateMutex(NULL, FALSE, NULL);
+		//if (!impl_->mutex){
+		//	ICK_ABORT("CreateMutex: %s",WindowsLastErrorGetDescription().cstr());
+		//}
+		//impl_->event = CreateEvent(NULL, TRUE, FALSE, NULL);
+		//if (!impl_->event){
+		//	ICK_ABORT("CreateEvent: %s",WindowsLastErrorGetDescription().cstr());
+		//}
 #else
 		impl_->mutex = PTHREAD_RECURSIVE_MUTEX_INITIALIZER;
 		impl_->cond = PTHREAD_COND_INITIALIZER;
@@ -48,12 +66,22 @@ namespace ick{
 	
 	Mutex::~Mutex(){
 #ifdef ICK_WINDOWS
-		if (!CloseHandle(impl_->mutex)){
-			ICK_ABORT("CloseHandle(mutex): %s",WindowsLastErrorGetDescription().cstr());
+		
+		DeleteCriticalSection(&impl_->mutex_lock);
+		DeleteCriticalSection(&impl_->wait_count_lock);
+		if (!CloseHandle(impl_->signal_event)){
+			ICK_ABORT("CloseHandle(signal_event): %s", WindowsLastErrorGetDescription().cstr());
 		}
-		if (!CloseHandle(impl_->event)){
-			ICK_ABORT("CloseHandle(event): %s", WindowsLastErrorGetDescription().cstr());
+		if (!CloseHandle(impl_->broadcast_event)){
+			ICK_ABORT("CloseHandle(broadcast_event): %s", WindowsLastErrorGetDescription().cstr());
 		}
+
+		//if (!CloseHandle(impl_->mutex)){
+		//	ICK_ABORT("CloseHandle(mutex): %s",WindowsLastErrorGetDescription().cstr());
+		//}
+		//if (!CloseHandle(impl_->event)){
+		//	ICK_ABORT("CloseHandle(event): %s", WindowsLastErrorGetDescription().cstr());
+		//}
 #else
 		ICK_EN_CALL(pthread_cond_destroy(&impl_->cond));
 		ICK_EN_CALL(pthread_mutex_destroy(&impl_->mutex));
@@ -64,10 +92,11 @@ namespace ick{
 	
 	void Mutex::Lock(){
 #ifdef ICK_WINDOWS
-		DWORD ret = WaitForSingleObject(impl_->mutex, INFINITE);
-		if(ret != WAIT_OBJECT_0){
-			ICK_ABORT("%s", WindowsWaitResultGetDescription(ret).cstr());
-		}
+		EnterCriticalSection(&impl_->mutex_lock);
+		//DWORD ret = WaitForSingleObject(impl_->mutex, INFINITE);
+		//if(ret != WAIT_OBJECT_0){
+		//	ICK_ABORT("%s", WindowsWaitResultGetDescription(ret).cstr());
+		//}
 #else
 		ICK_EN_CALL(pthread_mutex_lock(&impl_->mutex));
 #endif
@@ -75,9 +104,10 @@ namespace ick{
 	
 	void Mutex::Unlock(){
 #ifdef ICK_WINDOWS
-		if (!ReleaseMutex(impl_->mutex)){
-			ICK_ABORT("ReleaseMutex: %s",WindowsLastErrorGetDescription().cstr());
-		}
+		LeaveCriticalSection(&impl_->mutex_lock);
+		//if (!ReleaseMutex(impl_->mutex)){
+		//	ICK_ABORT("ReleaseMutex: %s",WindowsLastErrorGetDescription().cstr());
+		//}
 #else
 		ICK_EN_CALL(pthread_mutex_unlock(&impl_->mutex));
 #endif
@@ -85,27 +115,72 @@ namespace ick{
 	
 	void Mutex::Wait(){
 #ifdef ICK_WINDOWS
-		DWORD ret = SignalObjectAndWait(impl_->mutex, impl_->event, INFINITE, FALSE);
-		if (ret != WAIT_OBJECT_0){
-			ICK_ABORT("%s", WindowsWaitResultGetDescription(ret).cstr());
+		EnterCriticalSection(&impl_->wait_count_lock);
+		impl_->wait_count++;
+		LeaveCriticalSection(&impl_->wait_count_lock);
+		Unlock();
+
+		HANDLE wait_events[] = { impl_->signal_event, impl_->broadcast_event };
+		DWORD ret = WaitForMultipleObjects(ICK_ARRAY_SIZE(wait_events), wait_events, FALSE, INFINITE);
+		int wait_object_index = WindowsWaitResultGetObjectIndex(ret, ICK_ARRAY_SIZE(wait_events));
+		if (wait_object_index == -1){
+			ICK_ABORT("%s", WindowsWaitResultGetDescription(ret, ICK_ARRAY_SIZE(wait_events)).cstr());
 		}
-		ret = WaitForSingleObject(impl_->mutex, INFINITE);
-		if(ret != WAIT_OBJECT_0){
-			ICK_ABORT("%s", WindowsWaitResultGetDescription(ret).cstr());
+
+		EnterCriticalSection(&impl_->wait_count_lock);
+		impl_->wait_count--;
+		if (impl_->wait_count == 0){
+			if (!ResetEvent(impl_->broadcast_event)){
+				ICK_ABORT("ResetEvent: %s", WindowsLastErrorGetDescription().cstr());
+			}
 		}
+		LeaveCriticalSection(&impl_->wait_count_lock);
+
+		Lock();
+
+		//DWORD ret = SignalObjectAndWait(impl_->mutex, impl_->event, INFINITE, FALSE);
+		//if (ret != WAIT_OBJECT_0){
+		//	ICK_ABORT("%s", WindowsWaitResultGetDescription(ret).cstr());
+		//}
+		//ret = WaitForSingleObject(impl_->mutex, INFINITE);
+		//if(ret != WAIT_OBJECT_0){
+		//	ICK_ABORT("%s", WindowsWaitResultGetDescription(ret).cstr());
+		//}
 #else
 		ICK_EN_CALL(pthread_cond_wait(&impl_->cond, &impl_->mutex));
 #endif
 	}
 	
-	void Mutex::Notify(){
+	void Mutex::Signal(){
 #ifdef ICK_WINDOWS
-		if (!SetEvent(impl_->event)){
-			ICK_ABORT("SetEvent: %s",WindowsLastErrorGetDescription().cstr());
+		EnterCriticalSection(&impl_->wait_count_lock);
+		if (impl_->wait_count > 0){
+			if (!SetEvent(impl_->signal_event)){
+				ICK_ABORT("SetEvent(signal_event): %s", WindowsLastErrorGetDescription().cstr());
+			}
 		}
-		if (!ResetEvent(impl_->event)){
-			ICK_ABORT("ResetEvent: %s", WindowsLastErrorGetDescription().cstr());
+		LeaveCriticalSection(&impl_->wait_count_lock);
+
+		//if (!SetEvent(impl_->event)){
+		//	ICK_ABORT("SetEvent: %s",WindowsLastErrorGetDescription().cstr());
+		//}
+		//if (!ResetEvent(impl_->event)){
+		//	ICK_ABORT("ResetEvent: %s", WindowsLastErrorGetDescription().cstr());
+		//}
+#else
+		ICK_EN_CALL(pthread_cond_signal(&impl_->cond));
+#endif
+	}
+
+	void Mutex::Broadcast(){
+#ifdef ICK_WINDOWS
+		EnterCriticalSection(&impl_->wait_count_lock);
+		if (impl_->wait_count > 0){
+			if (!SetEvent(impl_->broadcast_event)){
+				ICK_ABORT("SetEvent(broadcast_event): %s", WindowsLastErrorGetDescription().cstr());
+			}
 		}
+		LeaveCriticalSection(&impl_->wait_count_lock);
 #else
 		ICK_EN_CALL(pthread_cond_broadcast(&impl_->cond));
 #endif

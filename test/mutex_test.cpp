@@ -37,7 +37,7 @@ TEST_F(MutexTest, mutex){
 }
 
 void f2_2(ick::Mutex * mutex, int * x){
-	ick::ScopedLock slk(*mutex);
+	ICK_SCOPED_LOCK(*mutex);
 	EXPECT_EQ(0, *x);
 	*x = *x + 1;
 	ick::Sleep(0.010);
@@ -73,7 +73,7 @@ void f3_wait(ick::Mutex * mutex, int * x, int n){
 void f3_notify(ick::Mutex * mutex, int * x){
 	mutex->Lock();
 	*x = *x + 1;
-	mutex->Notify();
+	mutex->Broadcast();
 	mutex->Unlock();
 }
 

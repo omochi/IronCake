@@ -12,7 +12,6 @@ namespace ick{
 #ifdef ICK_WINDOWS
 	String WindowsErrorGetDescription(DWORD error);
 	String WindowsLastErrorGetDescription();
-	String WindowsWaitResultGetDescription(DWORD result);
 #endif 
 	
 }

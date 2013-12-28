@@ -90,6 +90,9 @@
     <ClCompile Include="..\..\src\ick\thread\scoped_lock.cpp">
       <Filter>ick\thread</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\ick\windows\wait.cpp">
+      <Filter>ick\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\ick\ick.h">
@@ -193,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\ick\thread\scoped_lock.h">
       <Filter>ick\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\windows\wait.h">
+      <Filter>ick\windows</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

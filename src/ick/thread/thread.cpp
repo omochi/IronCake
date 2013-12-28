@@ -8,6 +8,7 @@
 #	include <Windows.h>
 #	include <process.h>
 #	include "../windows/error.h"
+#	include "../windows/wait.h"
 #else
 #	include <pthread.h>
 #endif
@@ -70,8 +71,8 @@ namespace ick{
 			running_ = false;
 #ifdef ICK_WINDOWS
 			DWORD wait_ret = WaitForSingleObject(ThreadImplGetHandle(impl_), INFINITE);
-			if(wait_ret != WAIT_OBJECT_0){
-				ICK_ABORT("%s",WindowsWaitResultGetDescription(wait_ret).cstr());
+			if (WindowsWaitResultGetObjectIndex(wait_ret, 1) == -1){
+				ICK_ABORT("%s",WindowsWaitResultGetDescription(wait_ret, 1).cstr());
 			}
 			if (!CloseHandle(ThreadImplGetHandle(impl_))){
 				ICK_ABORT("CloseHandle: %s", WindowsLastErrorGetDescription().cstr());

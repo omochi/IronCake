@@ -9,6 +9,7 @@
 
 #ifdef ICK_WINDOWS
 #	include "../windows/error.h"
+#	include "../windows/wait.h"
 #endif
 
 #include "application_controller.h"
@@ -34,11 +35,25 @@ namespace ick{
 		}
 	}
 	void Application::WinTeardownUpdateTimer(){
+		HANDLE wait_event = CreateEvent(NULL, FALSE, FALSE, NULL);
+		if (!wait_event){
+			ICK_ABORT("CreateEvent(timer wait): %s", WindowsLastErrorGetDescription().cstr());
+		}
+
 		//第三引数に対応して待機すべき
-		if (!DeleteTimerQueueTimer(win_update_timer_queue_, win_update_timer_,
-			NULL)){
+		if (!DeleteTimerQueueTimer(win_update_timer_queue_, win_update_timer_,wait_event)){
 			ICK_ABORT("DeleteTimerQueueTimer: %s", WindowsLastErrorGetDescription().cstr());
 		}
+
+		DWORD wait_ret = WaitForSingleObject(wait_event, INFINITE);
+		if (WindowsWaitResultGetObjectIndex(wait_ret, 1) == -1){
+			ICK_ABORT("Wait: %s",WindowsWaitResultGetDescription(wait_ret, 1).cstr());
+		}
+
+		if (!CloseHandle(wait_event)){
+			ICK_ABORT("CloseHandle(timer wait): %s", WindowsLastErrorGetDescription().cstr());
+		}
+
 		if (!DeleteTimerQueue(win_update_timer_queue_)){
 			ICK_ABORT("DeleteTimerQueue: %s", WindowsLastErrorGetDescription().cstr());
 		}

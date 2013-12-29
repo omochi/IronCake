@@ -88,7 +88,7 @@ namespace ick{
 #ifdef ICK_WINDOWS
 			DWORD wait_ret = WaitForSingleObject(ThreadImplGetHandle(impl_), INFINITE);
 			if (WindowsWaitResultGetObjectIndex(wait_ret, 1) == -1){
-				ICK_ABORT("%s",WindowsWaitResultGetDescription(wait_ret, 1).cstr());
+				ICK_ABORT("Wait: %s",WindowsWaitResultGetDescription(wait_ret, 1).cstr());
 			}
 			if (!CloseHandle(ThreadImplGetHandle(impl_))){
 				ICK_ABORT("CloseHandle: %s", WindowsLastErrorGetDescription().cstr());

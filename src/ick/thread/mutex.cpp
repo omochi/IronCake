@@ -100,7 +100,7 @@ namespace ick{
 		DWORD ret = WaitForMultipleObjects(ICK_ARRAY_SIZE(wait_events), wait_events, FALSE, INFINITE);
 		int wait_object_index = WindowsWaitResultGetObjectIndex(ret, ICK_ARRAY_SIZE(wait_events));
 		if (wait_object_index == -1){
-			ICK_ABORT("%s", WindowsWaitResultGetDescription(ret, ICK_ARRAY_SIZE(wait_events)).cstr());
+			ICK_ABORT("Wait: %s", WindowsWaitResultGetDescription(ret, ICK_ARRAY_SIZE(wait_events)).cstr());
 		}
 
 		EnterCriticalSection(&impl_->wait_count_lock);

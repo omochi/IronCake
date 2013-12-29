@@ -42,7 +42,6 @@ namespace ick{
 
 			text = String("0x%08x", result);
 		}
-		text = String::Format("WaitForSingleObject: %s", text.cstr());
 		return text;
 	}
 #endif

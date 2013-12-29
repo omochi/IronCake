@@ -70,7 +70,6 @@
 		D662980C186F1B70004060B9 /* wait.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D662980A186F1B70004060B9 /* wait.cpp */; };
 		D662980D186F1B70004060B9 /* wait.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D662980A186F1B70004060B9 /* wait.cpp */; };
 		D662980E186F1B70004060B9 /* wait.h in Headers */ = {isa = PBXBuildFile; fileRef = D662980B186F1B70004060B9 /* wait.h */; };
-		D6629810186F219B004060B9 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B27186C715900903540 /* libglfw3.a */; };
 		D6629812186F2314004060B9 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6629811186F2314004060B9 /* CoreVideo.framework */; };
 		D6629816186F331B004060B9 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B27186C715900903540 /* libglfw3.a */; };
 		D6629817186F333C004060B9 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B62B33186C71DD00903540 /* AppKit.framework */; };
@@ -81,6 +80,7 @@
 		D662981E186F5FFC004060B9 /* application_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D662981C186F5FFC004060B9 /* application_controller.cpp */; };
 		D6629822186F64D1004060B9 /* sample_app_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6629820186F64D1004060B9 /* sample_app_controller.cpp */; };
 		D6629825186F660F004060B9 /* sample_glfw_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6629823186F660F004060B9 /* sample_glfw_main.cpp */; };
+		D662982718706A98004060B9 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D662982618706A98004060B9 /* libglfw3.a */; };
 		D667FBBA184CE7AC00404D8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB9184CE7AC00404D8D /* Foundation.framework */; };
 		D667FBE5184CE84600404D8D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE4184CE84600404D8D /* Cocoa.framework */; };
 		D667FC6D184E490C00404D8D /* abort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D667FC5A184E490C00404D8D /* abort.cpp */; };
@@ -242,6 +242,7 @@
 		D6629821186F64D1004060B9 /* sample_app_controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sample_app_controller.h; path = ../sample/sample_app_controller.h; sourceTree = "<group>"; };
 		D6629823186F660F004060B9 /* sample_glfw_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sample_glfw_main.cpp; path = ../sample/sample_glfw_main.cpp; sourceTree = "<group>"; };
 		D6629824186F660F004060B9 /* sample_glfw_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sample_glfw_main.h; path = ../sample/sample_glfw_main.h; sourceTree = "<group>"; };
+		D662982618706A98004060B9 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = "../libs/glfw-bin/MacOSX/libglfw3.a"; sourceTree = "<group>"; };
 		D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIronCakeiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D667FBB9184CE7AC00404D8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D667FBC7184CE7AC00404D8D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -295,7 +296,7 @@
 		D6B62B0C186C657D00903540 /* time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
 		D6B62B13186C672000903540 /* scoped_lock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scoped_lock.cpp; sourceTree = "<group>"; };
 		D6B62B14186C672000903540 /* scoped_lock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scoped_lock.h; sourceTree = "<group>"; };
-		D6B62B1C186C6B5B00903540 /* GLTestMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GLTestMac; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6B62B1C186C6B5B00903540 /* SampleMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SampleMac; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6B62B1E186C6B5B00903540 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		D6B62B27186C715900903540 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = ../libs/glfw/src/libglfw3.a; sourceTree = "<group>"; };
 		D6B62B29186C719700903540 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -357,7 +358,7 @@
 				D6B62B37186C721700903540 /* IOKit.framework in Frameworks */,
 				D6B62B35186C720300903540 /* OpenGL.framework in Frameworks */,
 				D6629812186F2314004060B9 /* CoreVideo.framework in Frameworks */,
-				D6629810186F219B004060B9 /* libglfw3.a in Frameworks */,
+				D662982718706A98004060B9 /* libglfw3.a in Frameworks */,
 				D625B03A186C7B6800DF7CCF /* libIronCakeMac.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,7 +503,7 @@
 				D667FBE3184CE84600404D8D /* libIronCakeMac.a */,
 				D6079B7E1858C01600DFDEAA /* TestMac */,
 				D60284A21858CD6B00CE5EC5 /* TestiOS.app */,
-				D6B62B1C186C6B5B00903540 /* GLTestMac */,
+				D6B62B1C186C6B5B00903540 /* SampleMac */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -510,6 +511,7 @@
 		D667FBB8184CE7AC00404D8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D662982618706A98004060B9 /* libglfw3.a */,
 				D6629811186F2314004060B9 /* CoreVideo.framework */,
 				D6B62B33186C71DD00903540 /* AppKit.framework */,
 				D6B62B31186C71D000903540 /* OpenGL.framework */,
@@ -749,7 +751,7 @@
 			);
 			name = SampleMac;
 			productName = GLTestMac;
-			productReference = D6B62B1C186C6B5B00903540 /* GLTestMac */;
+			productReference = D6B62B1C186C6B5B00903540 /* SampleMac */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -1243,7 +1245,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/omochi/work/github/omochi/IronCake/libs/glfw/src,
+					"/Users/omochi/work/github/omochi/IronCake/libs/glfw-bin/MacOSX",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1260,7 +1262,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/omochi/work/github/omochi/IronCake/libs/glfw/src,
+					"/Users/omochi/work/github/omochi/IronCake/libs/glfw-bin/MacOSX",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

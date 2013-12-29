@@ -7,11 +7,50 @@
 #include "../thread/scoped_lock.h"
 #include "../thread/loop_thread.h"
 
+#ifdef ICK_WINDOWS
+#	include "../windows/error.h"
+#endif
+
 #include "application_controller.h"
 
 #ifdef ICK_OBJCPP_GUARD
 
 namespace ick{
+
+#ifdef ICK_WINDOWS
+
+	void Application::WinSetupUpdateTimer(){
+		win_update_timer_queue_ = CreateTimerQueue();
+		if (!win_update_timer_queue_){
+			ICK_ABORT("CreateTimerQueue: %s", WindowsLastErrorGetDescription().cstr());
+		}
+		if (!CreateTimerQueueTimer(&win_update_timer_,
+			win_update_timer_queue_,
+			ApplicationWinUpdateTimerCallback,
+			static_cast<VOID *>(this),
+			0, 16,
+			WT_EXECUTEDEFAULT)){
+			ICK_ABORT("CreateTimerQueueTimer: %s", WindowsLastErrorGetDescription().cstr());
+		}
+	}
+	void Application::WinTeardownUpdateTimer(){
+		//第三引数に対応して待機すべき
+		if (!DeleteTimerQueueTimer(win_update_timer_queue_, win_update_timer_,
+			NULL)){
+			ICK_ABORT("DeleteTimerQueueTimer: %s", WindowsLastErrorGetDescription().cstr());
+		}
+		if (!DeleteTimerQueue(win_update_timer_queue_)){
+			ICK_ABORT("DeleteTimerQueue: %s", WindowsLastErrorGetDescription().cstr());
+		}
+	}
+
+	VOID NTAPI ApplicationWinUpdateTimerCallback(PVOID lpParameter, BOOLEAN TimerOrWaitFired){
+		Application * thiz = static_cast<Application *>(lpParameter);
+		thiz->SignalUpdateTime();
+	}
+
+#endif
+
 	Application::Application(ApplicationController * controller):
 	controller_(controller),
 	running_(false)
@@ -104,6 +143,9 @@ namespace ick{
 #ifdef ICK_MAC
 		MacSetupDisplayLink();
 #endif
+#ifdef ICK_WINDOWS
+		WinSetupUpdateTimer();
+#endif
 		
 		{
 			ICK_SCOPED_LOCK(running_mutex_);
@@ -121,6 +163,9 @@ namespace ick{
 		
 #ifdef ICK_MAC
 		MacTeardownDisplayLink();
+#endif
+#ifdef ICK_WINDOWS
+		WinTeardownUpdateTimer();
 #endif
 		
 		render_thread_->PostQuit();

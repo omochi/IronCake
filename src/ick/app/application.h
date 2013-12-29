@@ -47,6 +47,19 @@ namespace ick{
 												CVOptionFlags *flagsOut,
 												void *displayLinkContext);
 #endif
+
+#if defined ICK_WINDOWS
+		HANDLE win_update_timer_queue_;
+		HANDLE win_update_timer_;
+
+		void WinSetupUpdateTimer();
+		void WinTeardownUpdateTimer();
+
+		friend VOID NTAPI 
+			ApplicationWinUpdateTimerCallback(
+				PVOID lpParameter, BOOLEAN TimerOrWaitFired);
+#endif
+
 	public:
 		//thread: main
 		Application(ApplicationController * controller);

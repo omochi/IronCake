@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\ick\app\application.cpp" />
+    <ClCompile Include="..\..\src\ick\app\application_controller.cpp" />
     <ClCompile Include="..\..\src\ick\base\abort.cpp" />
     <ClCompile Include="..\..\src\ick\base\allocator.cpp" />
     <ClCompile Include="..\..\src\ick\base\array.cpp" />
@@ -38,6 +40,9 @@
     <ClCompile Include="..\..\src\ick\windows\wait.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\ick\app\application.h" />
+    <ClInclude Include="..\..\src\ick\app\application_controller.h" />
+    <ClInclude Include="..\..\src\ick\app\application_platform.h" />
     <ClInclude Include="..\..\src\ick\base\abort.h" />
     <ClInclude Include="..\..\src\ick\base\allocator.h" />
     <ClInclude Include="..\..\src\ick\base\array.h" />
@@ -114,11 +119,15 @@
       <ObjectFileName>$(IntDir)\_\_\%(RelativeDir)</ObjectFileName>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
+      <AdditionalIncludeDirectories>..\..\libs\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -131,6 +140,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)\_\_\%(RelativeDir)</ObjectFileName>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>..\..\libs\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -138,6 +148,9 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <Lib>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

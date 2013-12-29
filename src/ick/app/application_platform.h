@@ -2,7 +2,8 @@
 
 #include "../base/platform.h"
 
-#if ( ! defined ICK_IOS && defined ICK_MAC )
+#if ( ! defined ICK_IOS && defined ICK_MAC ) || \
+	( defined ICK_WINDOWS )
 #	define ICK_APP_GLFW
 #endif
 

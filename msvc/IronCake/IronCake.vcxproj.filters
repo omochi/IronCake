@@ -16,6 +16,9 @@
     <Filter Include="ick\windows">
       <UniqueIdentifier>{7818fad9-1a09-4d88-838f-9b96f4b50ce7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ick\app">
+      <UniqueIdentifier>{0aadf1c9-30aa-4ed2-8773-d3651709def8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\ick\ick.cpp">
@@ -92,6 +95,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\ick\windows\wait.cpp">
       <Filter>ick\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\app\application.cpp">
+      <Filter>ick\app</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ick\app\application_controller.cpp">
+      <Filter>ick\app</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +208,15 @@
     </ClInclude>
     <ClInclude Include="..\..\src\ick\windows\wait.h">
       <Filter>ick\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\app\application.h">
+      <Filter>ick\app</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\app\application_controller.h">
+      <Filter>ick\app</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ick\app\application_platform.h">
+      <Filter>ick\app</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

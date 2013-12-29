@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="project">
+      <UniqueIdentifier>{f7f0334b-19f2-4ab7-a4eb-1f7d56485414}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sample">
+      <UniqueIdentifier>{ba58dd8f-1fc6-40f8-b244-cafb4a6dd6c9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sample\sample_app_controller.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\sample\sample_glfw_main.h">
+      <Filter>sample</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>project</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>project</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sample\sample_app_controller.cpp">
+      <Filter>sample</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sample\sample_glfw_main.cpp">
+      <Filter>sample</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

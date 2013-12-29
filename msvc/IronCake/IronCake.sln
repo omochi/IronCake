@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtest", "..\..\libs\googlet
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IronCakeTest", "..\IronCakeTest\IronCakeTest.vcxproj", "{9189D3DB-249F-480C-83CF-809B5721FE31}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IronCakeSample", "..\IronCakeSample\IronCakeSample.vcxproj", "{6C89607F-2A22-4041-8353-74E40B5A404D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -27,6 +29,10 @@ Global
 		{9189D3DB-249F-480C-83CF-809B5721FE31}.Debug|Win32.Build.0 = Debug|Win32
 		{9189D3DB-249F-480C-83CF-809B5721FE31}.Release|Win32.ActiveCfg = Release|Win32
 		{9189D3DB-249F-480C-83CF-809B5721FE31}.Release|Win32.Build.0 = Release|Win32
+		{6C89607F-2A22-4041-8353-74E40B5A404D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6C89607F-2A22-4041-8353-74E40B5A404D}.Debug|Win32.Build.0 = Debug|Win32
+		{6C89607F-2A22-4041-8353-74E40B5A404D}.Release|Win32.ActiveCfg = Release|Win32
+		{6C89607F-2A22-4041-8353-74E40B5A404D}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

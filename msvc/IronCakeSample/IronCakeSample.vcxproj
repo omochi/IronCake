@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9189D3DB-249F-480C-83CF-809B5721FE31}</ProjectGuid>
+    <ProjectGuid>{6C89607F-2A22-4041-8353-74E40B5A404D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>IronCakeTest</RootNamespace>
+    <RootNamespace>IronCakeSample</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -52,8 +52,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\libs\glfw\include;..\..\src;..\..\libs\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeaderFile />
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\libs\glfw\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
@@ -61,10 +62,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>OpenGl32.lib;..\..\libs\glfw-bin\Win32\$(Configuration)\glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <ProjectReference>
-      <UseLibraryDependencyInputs>
-      </UseLibraryDependencyInputs>
-    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -75,8 +72,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\libs\glfw\include;..\..\src;..\..\libs\googletest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeaderFile />
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\..\libs\glfw\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -85,48 +83,26 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>OpenGl32.lib;..\..\libs\glfw-bin\Win32\$(Configuration)\glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <ProjectReference>
-      <UseLibraryDependencyInputs>
-      </UseLibraryDependencyInputs>
-    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\googletest\msvc\gtest.vcxproj">
-      <Project>{c8f6c172-56f2-4e76-b5fa-c3b423b31be7}</Project>
-    </ProjectReference>
+    <ClInclude Include="..\..\sample\sample_app_controller.h" />
+    <ClInclude Include="..\..\sample\sample_glfw_main.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\sample\sample_app_controller.cpp" />
+    <ClCompile Include="..\..\sample\sample_glfw_main.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\IronCake\IronCake.vcxproj">
       <Project>{041f6c9e-a855-4a8f-829f-7e776271dc3f}</Project>
-      <Private>false</Private>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\test\allocator_test.cpp" />
-    <ClCompile Include="..\..\test\array_test.cpp" />
-    <ClCompile Include="..\..\test\function_test.cpp" />
-    <ClCompile Include="..\..\test\linked_list_test.cpp" />
-    <ClCompile Include="..\..\test\loop_thread_test.cpp" />
-    <ClCompile Include="..\..\test\mutex_test.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\test\string_test.cpp" />
-    <ClCompile Include="..\..\test\test_base.cpp" />
-    <ClCompile Include="..\..\test\thread_test.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\test\wait_test.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\test\test_base.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

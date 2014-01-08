@@ -16,33 +16,52 @@
 #	include "../windows/tchar.h"
 #endif
 
+#ifdef ICK_ANDROID
+#	include <android/log.h>
+#endif
+
 namespace ick{
 	
+#ifdef ICK_ANDROID
+	void LogPut(enum LogLevel level, const char * str){
+		int prio;
+		switch (level) {
+			case LogLevelInfo:
+				prio = ANDROID_LOG_INFO;
+				break;
+			case LogLevelError:
+				prio = ANDROID_LOG_ERROR;
+				break;
+		}
+		__android_log_write(prio, "IronCake", str);
+	}
+#else
 	void LogPut(enum LogLevel level, const char * str){
 		FILE * stream = NULL;
-		if (level == LogLevelInfo){
-			stream = stdout;
-		}else if (level == LogLevelError){
-			stream = stderr;
-		}
 
 		switch (level) {
 			case LogLevelInfo:
-			case LogLevelError:{
-#ifdef ICK_WINDOWS
-				char * strSjis = WindowsAStrToAStr(str, CP_UTF8, 932);
-				str = strSjis;
-#endif
-
-				int status = fputs(str, stream);
-				if (status == EOF){ ::abort(); }
-#ifdef ICK_WINDOWS
-				ICK_FREE(strSjis);
-#endif
+				stream = stdout;
 				break;
-			}
+			case LogLevelError:
+				stream = stderr;
+				break;
 		}
+
+#ifdef ICK_WINDOWS
+		char * strSjis = WindowsAStrToAStr(str, CP_UTF8, 932);
+		str = strSjis;
+#endif
+		
+		int status = fputs(str, stream);
+		if (status == EOF){ ::abort(); }
+		
+#ifdef ICK_WINDOWS
+		ICK_FREE(strSjis);
+#endif
 	}
+#endif
+	
 	void LogPrint(enum LogLevel level, const char * format, ...){
 		va_list ap;
 		va_start(ap, format);

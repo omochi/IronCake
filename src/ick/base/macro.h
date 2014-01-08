@@ -15,16 +15,5 @@
 
 #define ICK_ARRAY_SIZE(a) (sizeof(a)/sizeof((a)[0]))
 
-#ifdef ICK_GCC
-#	define ICK_FUNC __PRETTY_FUNCTION__
-#	define ICK_PRI_SIZE_T "%zd"
-#elif defined ICK_MSVC
-#	define ICK_FUNC __FUNCSIG__
-#	define ICK_PRI_SIZE_T "%Iu"
-#endif
 
-#ifdef ICK_MAC
-#	define ICK_PRINTF_LIKE(f,a) __printflike(f,a)
-#else
-#	define ICK_PRINTF_LIKE(f,a)
-#endif
+

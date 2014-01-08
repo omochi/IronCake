@@ -17,7 +17,7 @@ namespace ick{
 	
 	template <typename T> class LinkedListNode {
 		typedef LinkedList<T> List;
-		friend List;
+		friend class LinkedList<T>;
 	private:
 		const List * list_;
 		T value_;

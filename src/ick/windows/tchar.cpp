@@ -3,8 +3,6 @@
 #include "../base/abort.h"
 
 namespace ick{
-#ifdef ICK_WINDOWS
-	
 	TCHAR * WindowsAStrToTStr(const CHAR * astr, UINT code_page){
 		return WindowsAStrToTStr(const_cast<CHAR *>(astr), code_page, false);
 	}
@@ -162,7 +160,6 @@ namespace ick{
 		ICK_FREE(cstr);
 		return str;
 	}
-	
-#endif
+
 }
 

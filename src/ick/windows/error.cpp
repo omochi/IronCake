@@ -4,8 +4,6 @@
 #include "tchar.h"
 
 namespace ick{
-#ifdef ICK_WINDOWS
-	
 	String WindowsErrorGetDescription(DWORD error){
 		TCHAR * buf;
 		DWORD ret = FormatMessage(
@@ -25,7 +23,4 @@ namespace ick{
 	String WindowsLastErrorGetDescription(){
 		return WindowsErrorGetDescription(GetLastError());
 	}
-	
-	
-#endif
 }

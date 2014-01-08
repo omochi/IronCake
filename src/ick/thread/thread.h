@@ -14,6 +14,8 @@ namespace ick{
 		Thread();
 		virtual ~Thread();
 		
+		ThreadImpl * impl() const;
+		
 		bool running() const;
 		String name() const;
 		//	Startまでにする事

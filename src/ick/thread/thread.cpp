@@ -38,6 +38,10 @@ namespace ick{
 		ICK_DELETE(impl_);
 	}
 	
+	ThreadImpl * Thread::impl() const{
+		return impl_;
+	}
+	
 	bool Thread::running() const{
 		return running_;
 	}
@@ -53,14 +57,16 @@ namespace ick{
 #else
 	static void * ThreadRun(void * context) {
 #endif
-		Thread * thread = static_cast<Thread *>(context);
+		Thread * thiz = static_cast<Thread *>(context);
 		
 #ifdef ICK_WINDOWS
+#elif defined ICK_MAC
+		ICK_EN_CALL(pthread_setname_np(thiz->name().cstr()));
 #else
-		ICK_EN_CALL(pthread_setname_np(thread->name().cstr()));
+		ICK_EN_CALL(pthread_setname_np(thiz->impl()->thread, thiz->name().cstr()));
 #endif
 		
-		thread->Run();
+		thiz->Run();
 #ifdef ICK_WINDOWS
 		return 0;
 #else

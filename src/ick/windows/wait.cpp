@@ -3,7 +3,6 @@
 #include "error.h"
 
 namespace ick{
-#ifdef ICK_WINDOWS
 	int WindowsWaitResultGetObjectIndex(DWORD result, int num){
 		if (WAIT_OBJECT_0 <= result && result < WAIT_OBJECT_0 + num){
 			return result - WAIT_OBJECT_0;
@@ -44,5 +43,4 @@ namespace ick{
 		}
 		return text;
 	}
-#endif
 }

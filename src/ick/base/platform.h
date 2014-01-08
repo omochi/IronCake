@@ -22,6 +22,13 @@
 #	define ICK_WINDOWS
 #endif
 
+#ifdef __linux
+#	define ICK_LINUX
+#endif
+
+#ifdef __ANDROID__
+#	define ICK_ANDROID
+#endif
 
 #if ( ! defined ICK_MAC ) || ( defined __OBJC__ )
 #	define ICK_OBJCPP_GUARD

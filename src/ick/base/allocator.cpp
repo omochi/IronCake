@@ -8,7 +8,7 @@
 
 #include "allocator.h"
 
-#ifdef ICK_WINDOWS
+#if defined ICK_WINDOWS || defined ICK_ANDROID
 #	include <malloc.h>
 #endif
 
@@ -28,14 +28,18 @@ namespace ick{
 		
 	}
 	void * MallocAllocator::Allocate(size_t size, size_t alignment){
-#ifdef ICK_WINDOWS
-		return _aligned_malloc(size, alignment);
-#else
 		void * memory;
+#ifdef ICK_WINDOWS
+		memory = _aligned_malloc(size, alignment);
+		if(!memory){ abort(); }
+#elif defined ICK_ANDROID
+		memory = memalign(alignment, size);
+		if(!memory){ abort(); }
+#else
 		if(alignment < sizeof(void *)){ alignment = sizeof(void *); }
 		if (posix_memalign(&memory, alignment, size)){ abort(); }
-		return memory;
 #endif
+		return memory;
 	}
 	
 	void * MallocAllocator::AllocateDebugV(size_t size, size_t alignment, const char * format, va_list ap){

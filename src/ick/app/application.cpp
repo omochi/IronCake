@@ -40,7 +40,6 @@ namespace ick{
 			ICK_ABORT("CreateEvent(timer wait): %s", WindowsLastErrorGetDescription().cstr());
 		}
 
-		//第三引数に対応して待機すべき
 		if (!DeleteTimerQueueTimer(win_update_timer_queue_, win_update_timer_,wait_event)){
 			ICK_ABORT("DeleteTimerQueueTimer: %s", WindowsLastErrorGetDescription().cstr());
 		}

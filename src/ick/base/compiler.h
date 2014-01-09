@@ -20,7 +20,7 @@
 
 #ifdef ICK_CLANG
 #	define ICK_PRINTF_LIKE(f,a) __attribute__((__format__ (__printf__, f, a)))
-#elif ICK_GCC
+#elif defined ICK_GCC
 #	define ICK_PRINTF_LIKE(f,a) __attribute__((format(printf, f, a)))
 #else
 #	define ICK_PRINTF_LIKE(f,a)

@@ -91,10 +91,9 @@ namespace ick{
 	void String::Set(const String & value){ Set(&value.chars_[0], value.num()); }
 	
 	void String::Splice(int index, int remove_num, const char * insert_chars, int insert_num){
-		int num = this->num();
-		ICK_ASSERT_A(allocator(), 0 <= index && index <= num);
+		ICK_ASSERT_A(allocator(), 0 <= index && index <= num());
 		ICK_ASSERT_A(allocator(), 0 <= remove_num);
-		ICK_ASSERT_A(allocator(), index + remove_num <= num);
+		ICK_ASSERT_A(allocator(), index + remove_num <= num());
 		chars_.Splice(index, remove_num, insert_chars, insert_num);
 	}
 	

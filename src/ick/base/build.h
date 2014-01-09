@@ -10,6 +10,14 @@
 
 #include "platform.h"
 
-#if defined DEBUG || defined _DEBUG
-#	define ICK_DEBUG
+#ifndef ICK_DEBUG
+#	if defined ICK_ANDROID && ! defined NDEBUG
+#		define ICK_DEBUG
+#	endif
+#endif
+
+#ifndef ICK_DEBUG
+#	if defined DEBUG || defined _DEBUG
+#		define ICK_DEBUG
+#	endif
 #endif

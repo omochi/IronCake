@@ -1,9 +1,10 @@
-LOCAL_PATH := $(call my-dir)
+MY_DIR := $(call my-dir)
+LOCAL_PATH := .
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := IronCake
 
-MY_SRC_DIR := ../../src
+MY_SRC_DIR := $(MY_DIR)/../../src
 
 LOCAL_CFLAGS += -Wall
 LOCAL_CPPFLAGS += -std=gnu++11

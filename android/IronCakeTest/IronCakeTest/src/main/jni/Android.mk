@@ -3,7 +3,6 @@ LOCAL_PATH := .
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := IronCakeTest
-NDK_APP_DST_DIR  := $(NDK_PROJECT_PATH)/jniLibs/$(TARGET_ARCH_ABI)
 
 MY_IRONCAKE_ROOT_DIR := $(MY_DIR)/../../../../../..
 MY_SRC_DIR := $(MY_IRONCAKE_ROOT_DIR)/test
@@ -11,6 +10,7 @@ MY_SRC_DIR := $(MY_IRONCAKE_ROOT_DIR)/test
 LOCAL_CFLAGS += -Wall
 LOCAL_CPPFLAGS += -std=gnu++11
 
+LOCAL_SRC_FILES += $(MY_DIR)/com_omochimetaru_ironcaketest_MainActivity.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/allocator_test.cpp
 
 LOCAL_STATIC_LIBRARIES += IronCake

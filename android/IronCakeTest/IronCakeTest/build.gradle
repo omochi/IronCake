@@ -16,24 +16,6 @@ android {
         }
     }
 
-    productFlavors {
-        x86 {
-            ndk {
-                abiFilter "x86"
-            }
-        }
-        arm {
-            ndk {
-                abiFilters "armeabi-v7a", "armeabi"
-            }
-        }
-        mips {
-            ndk {
-                abiFilter "mips"
-            }
-        }
-    }
-
 }
 
 dependencies {

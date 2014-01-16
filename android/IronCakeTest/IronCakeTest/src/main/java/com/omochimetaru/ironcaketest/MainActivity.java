@@ -16,6 +16,10 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+    static {
+        System.loadLibrary("IronCakeTest");
+    }
+
     private boolean testStarted = false;
     private Thread testThread;
 

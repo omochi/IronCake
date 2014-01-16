@@ -20,6 +20,8 @@ public class MainActivity extends Activity {
         System.loadLibrary("IronCakeTest");
     }
 
+    private TextView textView;
+
     private boolean testStarted = false;
     private Thread testThread;
 
@@ -27,13 +29,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textView = (TextView) findViewById(R.id.textview);
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        TextView textView = (TextView) findViewById(R.id.textview);
-        textView.setText("test");
 
         if(!testStarted){
             testStarted = true;
@@ -43,9 +44,26 @@ public class MainActivity extends Activity {
 
                     doTest();
 
+                    final String report = String.format(
+                            "test case count: %d\n" +
+                            "    succeeded  : %d\n" +
+                            "    failed     : %d\n" +
+                            "test count     : %d\n" +
+                            "    succeeded  : %d\n" +
+                            "    failed     : %d",
+                            getTotalTestCaseCount(),
+                            getSuccessfulTestCaseCount(),
+                            getFailedTestCaseCount(),
+                            getTotalTestCount(),
+                            getSuccessfulTestCount(),
+                            getFailedTestCount()
+                    );
+
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
+                            textView.setText(report);
+
                             try {
                                 testThread.join();
                             } catch (InterruptedException e) {
@@ -61,5 +79,12 @@ public class MainActivity extends Activity {
     }
 
     private native void doTest();
+
+    private native int getTotalTestCaseCount();
+    private native int getSuccessfulTestCaseCount();
+    private native int getFailedTestCaseCount();
+    private native int getTotalTestCount();
+    private native int getSuccessfulTestCount();
+    private native int getFailedTestCount();
 
 }

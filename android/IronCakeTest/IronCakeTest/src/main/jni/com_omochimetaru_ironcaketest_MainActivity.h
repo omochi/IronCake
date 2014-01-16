@@ -65,6 +65,54 @@ extern "C" {
 JNIEXPORT void JNICALL Java_com_omochimetaru_ironcaketest_MainActivity_doTest
   (JNIEnv *, jobject);
 
+/*
+ * Class:     com_omochimetaru_ironcaketest_MainActivity
+ * Method:    getTotalTestCaseCount
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_com_omochimetaru_ironcaketest_MainActivity_getTotalTestCaseCount
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     com_omochimetaru_ironcaketest_MainActivity
+ * Method:    getSuccessfulTestCaseCount
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_com_omochimetaru_ironcaketest_MainActivity_getSuccessfulTestCaseCount
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     com_omochimetaru_ironcaketest_MainActivity
+ * Method:    getFailedTestCaseCount
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_com_omochimetaru_ironcaketest_MainActivity_getFailedTestCaseCount
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     com_omochimetaru_ironcaketest_MainActivity
+ * Method:    getTotalTestCount
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_com_omochimetaru_ironcaketest_MainActivity_getTotalTestCount
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     com_omochimetaru_ironcaketest_MainActivity
+ * Method:    getSuccessfulTestCount
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_com_omochimetaru_ironcaketest_MainActivity_getSuccessfulTestCount
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     com_omochimetaru_ironcaketest_MainActivity
+ * Method:    getFailedTestCount
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_com_omochimetaru_ironcaketest_MainActivity_getFailedTestCount
+  (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif

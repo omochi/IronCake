@@ -9,7 +9,7 @@ MY_SRC_DIR := $(MY_DIR)/../../src
 LOCAL_CFLAGS += -Wall
 LOCAL_CPPFLAGS += -std=gnu++11
 
-# LOCAL_EXPORT_C_INCLUDES += $(MY_SRC_DIR)
+LOCAL_EXPORT_C_INCLUDES += $(MY_SRC_DIR)
 
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/base/allocator.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/base/debug_allocator.cpp
@@ -32,6 +32,8 @@ LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/function/function.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/mutex.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/scoped_lock.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/thread.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/function_thread.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/loop_thread.cpp
 
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/ick.cpp
 

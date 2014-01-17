@@ -378,9 +378,9 @@
 		D60284D61860B2E000CE5EC5 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				D6B62B04186C655A00903540 /* test_base.cpp */,
 				D60284D71860B2EE00CE5EC5 /* allocator_test.cpp */,
 				D60284DB1860B2EE00CE5EC5 /* test_base.h */,
+				D6B62B04186C655A00903540 /* test_base.cpp */,
 				D60284D81860B2EE00CE5EC5 /* array_test.cpp */,
 				D60284D91860B2EE00CE5EC5 /* linked_list_test.cpp */,
 				D60284DA1860B2EE00CE5EC5 /* string_test.cpp */,

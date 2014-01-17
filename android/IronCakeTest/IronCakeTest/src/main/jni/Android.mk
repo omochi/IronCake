@@ -12,8 +12,15 @@ LOCAL_CPPFLAGS += -std=gnu++11
 
 LOCAL_SRC_FILES += $(MY_DIR)/com_omochimetaru_ironcaketest_MainActivity.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/allocator_test.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/test_base.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/array_test.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/linked_list_test.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/string_test.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/function_test.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/thread_test.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/mutex_test.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/loop_thread_test.cpp
 
-LOCAL_C_INCLUDES += $(MY_IRONCAKE_ROOT_DIR)/src
 LOCAL_STATIC_LIBRARIES += IronCake
 LOCAL_STATIC_LIBRARIES += gtest
 

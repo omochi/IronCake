@@ -1,41 +1,24 @@
 ﻿#include "sample_glfw_main.h"
 
-#ifdef ICK_APP_GLFW
-
-ick::Application * g_application;
-
-bool SampleAppMain(){
+int SampleAppMain(int argc, const char * argv[]){
+	(void)argc; (void)argv;
+	
 	ick::g_startup_config.memory_debug = true;
 	if(!ick::Startup()){
-		printf("ick::Startup failed");
-		return false;
+		fprintf(stderr,"ick::Startup failed");
+		return EXIT_SUCCESS;
 	}
 	
-	g_application = ICK_NEW(ick::Application, ICK_NEW(SampleAppController));
-	
-	glfwWindowHint(GLFW_RESIZABLE, 0);
-    GLFWwindow * window = glfwCreateWindow(640, 480, "IronCake GL Test", NULL, NULL);
-    if (!window){ ICK_ABORT("glfwCreateWindow"); }
-	
-	g_application->set_glfw_window(window);
-	g_application->Launch();
-	
-    while (!glfwWindowShouldClose(window)){
-		glfwWaitEvents();
-    }
-	
-	g_application->Terminate();
-	
-	ICK_DELETE(g_application->controller());
-	ICK_DELETE(g_application);
+	ick::Application * app = ICK_NEW(ick::Application, ICK_NEW(SampleAppController), true);
+	app->GLFWMain();
+	ICK_DELETE(app);
 	
 	if(!ick::Shutdown()){
-		printf("ick::Shutdown failed");
-		return false;
+		fprintf(stderr, "ick::Shutdown failed");
+		return EXIT_FAILURE;
 	}
 	
-	return true;
+	return EXIT_SUCCESS;
 }
 
-#endif
 

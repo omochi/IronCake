@@ -14,8 +14,8 @@ class SampleAppController : public ick::ApplicationController {
 	int frame_count_;
 public:
 	virtual ~SampleAppController();
-	virtual void ApplicationDidLaunch();
-	virtual void ApplicationWillTerminate();
-	virtual void ApplicationOnUpdate();
-	virtual void ApplicationOnRender();
+	virtual void DidLaunch();
+	virtual void WillTerminate();
+	virtual void OnUpdate();
+	virtual void OnRender();
 };

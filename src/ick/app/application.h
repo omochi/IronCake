@@ -14,6 +14,7 @@ namespace ick{
 	
 	class Application {
 		ApplicationController * controller_;
+		bool controller_release_;
 		
 		Mutex running_mutex_;
 		bool running_;
@@ -30,6 +31,7 @@ namespace ick{
 		bool render_running_;
 		
 #ifdef ICK_APP_GLFW
+		bool glfw_do_window_create_;
 		GLFWwindow * glfw_window_;
 #endif
 		
@@ -61,16 +63,18 @@ namespace ick{
 #endif
 
 	public:
-		//thread: main
-		Application(ApplicationController * controller);
+		Application(ApplicationController * controller, bool controller_release);
 		virtual ~Application();
 	
 		ApplicationController * controller() const;
 		
 #ifdef ICK_APP_GLFW
 		GLFWwindow * glfw_window() const;
-		void set_glfw_window(GLFWwindow * glfw_window);
+		void GLFWMain();
+		
 #endif
+		void RequestGLInit();
+		void RequestGLRelease();
 		
 		void Launch();
 		void Terminate();

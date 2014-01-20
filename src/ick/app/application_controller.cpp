@@ -3,13 +3,20 @@
 namespace ick{
 
 	ApplicationController::~ApplicationController(){}
-	void ApplicationController::ApplicationDidLaunch(){
+	Application * ApplicationController::application() const{
+		return application_;
 	}
-	void ApplicationController::ApplicationWillTerminate(){
+	void ApplicationController::DidLaunch(){
 	}
-	void ApplicationController::ApplicationOnUpdate(){
+	void ApplicationController::WillTerminate(){
 	}
-	void ApplicationController::ApplicationOnRender(){
+	void ApplicationController::DidInitGL(){
+	}
+	void ApplicationController::WillReleaseGL(){
+	}
+	void ApplicationController::OnUpdate(){
+	}
+	void ApplicationController::OnRender(){
 	}
 	
 }

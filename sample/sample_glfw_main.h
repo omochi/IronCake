@@ -4,8 +4,4 @@
 
 #include "sample_app_controller.h"
 
-#ifdef ICK_APP_GLFW
-
-bool SampleAppMain();
-
-#endif
+int SampleAppMain(int argc, const char * argv[]);

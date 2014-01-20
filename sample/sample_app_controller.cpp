@@ -10,14 +10,17 @@
 
 SampleAppController::~SampleAppController(){
 }
-void SampleAppController::ApplicationDidLaunch(){
+void SampleAppController::DidLaunch(){
 	sec_frame_count_ = 0;
 	prev_sec_clock_ = ick::ClockGet();
 	frame_count_ = 0;
+
+	application()->RequestGLInit();
 }
-void SampleAppController::ApplicationWillTerminate(){
+void SampleAppController::WillTerminate(){
 }
-void SampleAppController::ApplicationOnUpdate(){
+
+void SampleAppController::OnUpdate(){
 	sec_frame_count_++;
 	double clock = ick::ClockGet();
 	if(clock - prev_sec_clock_ >= 1.0){
@@ -28,7 +31,7 @@ void SampleAppController::ApplicationOnUpdate(){
 	
 	frame_count_++;
 }
-void SampleAppController::ApplicationOnRender(){
+void SampleAppController::OnRender(){
 	int mod_fc = frame_count_ % 6;
 	if(mod_fc == 0){
 		glClearColor(1, 0, 0, 1);

@@ -21,7 +21,7 @@ namespace ick{
 	}
 	template <typename T>
 	void PropertyClear(T * & property){
-		PropertySet<T>(property, NULL);
+		PropertySet<T>(property, static_cast<T *>(NULL));
 	}
 	
 	//	解放するかどうかのフラグも持つ
@@ -37,7 +37,7 @@ namespace ick{
 	
 	template <typename T>
 	void PropertyClear(T * & property, bool & property_release){
-		PropertySet(property, property_release, NULL, false);
+		PropertySet(property, property_release, static_cast<T *>(NULL), false);
 	}
 }
 

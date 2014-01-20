@@ -65,14 +65,17 @@ namespace ick{
 
 #endif
 
-	Application::Application(ApplicationController * controller):
-	controller_(controller),
+	Application::Application(ApplicationController * controller, bool controller_release):
+	controller_(controller),controller_release_(controller_release),
 	running_(false)
 	{
 		ICK_ASSERT(controller);
 		controller_->application_ = this;
 		
+#ifdef ICK_APP_GLFW
+		glfw_do_window_create_ = false;
 		glfw_window_ = NULL;
+#endif
 		
 		master_thread_ = ICK_NEW(LoopThread);
 		master_thread_->set_name(String("master"));
@@ -85,6 +88,8 @@ namespace ick{
 		master_thread_->PostQuit();
 		master_thread_->Join();
 		ICK_DELETE(master_thread_);
+		
+		ick::PropertyClear(controller_, controller_release_);
 	}
 	
 	ApplicationController * Application::controller() const{
@@ -97,11 +102,56 @@ namespace ick{
 		return glfw_window_;
 	}
 	
-	void Application::set_glfw_window(GLFWwindow *glfw_window){
-		glfw_window_ = glfw_window;
+	void Application::GLFWMain(){
+		
+		controller_->DidLaunch();
+		
+		while(true){
+			
+			if(glfw_do_window_create_){
+				glfw_do_window_create_ = false;
+				
+				glfwWindowHint(GLFW_RESIZABLE, 0);
+				glfw_window_ = glfwCreateWindow(640, 480, "IronCake GL Test", NULL, NULL);
+				if (!glfw_window_){ ICK_ABORT("glfwCreateWindow"); }
+				
+				glfwMakeContextCurrent(glfw_window_);
+				controller_->DidInitGL();
+			}
+			
+			if(!glfw_window_){ break; }
+			
+			while (!glfwWindowShouldClose(glfw_window_)){
+				glfwPollEvents();
+				
+				controller_->OnUpdate();
+				controller_->OnRender();
+				
+				glfwSwapBuffers(glfw_window_);
+			}
+			
+			controller_->WillReleaseGL();
+			glfwDestroyWindow(glfw_window_);
+			glfw_window_ = NULL;
+		}
+		
+		controller_->WillTerminate();
+		
 	}
 
+
 #endif
+	
+	void Application::RequestGLInit(){
+#ifdef ICK_APP_GLFW
+		glfw_do_window_create_ = true;
+#endif
+	}
+	void Application::RequestGLRelease(){
+#ifdef ICK_APP_GLFW
+		glfwSetWindowShouldClose(glfw_window_, 1);
+#endif
+	}
 	
 	void Application::Launch(){
 		master_thread_->Post(FunctionMake(this, &Application::DoLaunch));
@@ -167,13 +217,13 @@ namespace ick{
 			running_mutex_.Broadcast();
 		}
 		
-		controller_->ApplicationDidLaunch();
+		controller_->DidLaunch();
 	}
 	
 	void Application::DoTerminate(){
 		if(!running_){ ICK_ABORT("has not launched"); }
 		
-		controller_->ApplicationWillTerminate();
+		controller_->WillTerminate();
 		
 #ifdef ICK_MAC
 		MacTeardownDisplayLink();
@@ -199,7 +249,7 @@ namespace ick{
 			if(!running_){ return; }
 		}
 		
-		controller_->ApplicationOnUpdate();
+		controller_->OnUpdate();
 		
 		{
 			ICK_SCOPED_LOCK(render_mutex_);
@@ -225,7 +275,7 @@ namespace ick{
 	}
 	
 	void Application::Render(){
-		controller_->ApplicationOnRender();
+		controller_->OnRender();
 		
 #ifdef ICK_APP_GLFW
 		glfwSwapBuffers(glfw_window_);

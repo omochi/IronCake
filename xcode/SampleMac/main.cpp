@@ -9,13 +9,6 @@
 #include "sample_glfw_main.h"
 
 int main(int argc, const char * argv[]){
-	(void)argc;
-	(void)argv;
-	
-	if(SampleAppMain()){
-		return EXIT_SUCCESS;
-	}else{
-		return EXIT_FAILURE;
-	}
+	return SampleAppMain(argc, argv);
 }
 

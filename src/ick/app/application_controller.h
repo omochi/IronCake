@@ -10,12 +10,17 @@ namespace ick{
 		Application * application_;
 	public:
 		virtual ~ApplicationController();
-		//thread: master
-		virtual void ApplicationDidLaunch();
-		virtual void ApplicationWillTerminate();
-		virtual void ApplicationOnUpdate();
-		//thread: render
-		virtual void ApplicationOnRender();
+		
+		Application * application() const;
+		
+		virtual void DidLaunch();
+		virtual void WillTerminate();
+		
+		virtual void DidInitGL();
+		virtual void WillReleaseGL();
+		
+		virtual void OnUpdate();
+		virtual void OnRender();
 	};
 	
 }

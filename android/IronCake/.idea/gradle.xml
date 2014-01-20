@@ -7,9 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/../IronCake/IronCake" />
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/IronCakeTest" />
+            <option value="$PROJECT_DIR$/IronCake" />
           </set>
         </option>
       </GradleProjectSettings>

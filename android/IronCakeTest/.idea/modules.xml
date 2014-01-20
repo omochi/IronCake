@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../src/IronCake/IronCake/IronCake.iml" filepath="$PROJECT_DIR$/../src/IronCake/IronCake/IronCake.iml" />
       <module fileurl="file://$PROJECT_DIR$/IronCakeTest.iml" filepath="$PROJECT_DIR$/IronCakeTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/IronCakeTest/IronCakeTest-IronCakeTest.iml" filepath="$PROJECT_DIR$/IronCakeTest/IronCakeTest-IronCakeTest.iml" />
     </modules>

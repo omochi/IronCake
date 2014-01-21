@@ -2,7 +2,8 @@ apply plugin: 'android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '19.0.1'
+    buildToolsVersion "19.0.1"
+
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 19
@@ -15,15 +16,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
-
-    sourceSets.main {
-        java.srcDirs = ['src/main/java', '../../IronCake/IronCake/src/main/java']
-        jni.srcDirs = []
-        jniLibs.srcDir 'src/main/libs'
-    }
-
 }
 
 dependencies {
-//    compile project(':IronCake')
 }

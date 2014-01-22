@@ -1,0 +1,1 @@
+../../../android/IronCake/IronCake/proguard-rules.txt

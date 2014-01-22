@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/IronCake.iml" filepath="$PROJECT_DIR$/IronCake.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IronCake/IronCake.iml" filepath="$PROJECT_DIR$/IronCake/IronCake.iml" />
       <module fileurl="file://$PROJECT_DIR$/IronCake/IronCake-IronCake.iml" filepath="$PROJECT_DIR$/IronCake/IronCake-IronCake.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IronCakeTest/IronCakeTest.iml" filepath="$PROJECT_DIR$/IronCakeTest/IronCakeTest.iml" />
     </modules>
   </component>
 </project>

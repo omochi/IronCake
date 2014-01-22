@@ -4,7 +4,8 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := IronCake
 
-MY_SRC_DIR := $(MY_DIR)/../../src
+MY_IRONCAKE_ROOT_DIR := $(MY_DIR)/../../../../../..
+MY_SRC_DIR := $(MY_IRONCAKE_ROOT_DIR)/src
 
 LOCAL_CFLAGS += -Wall
 LOCAL_CPPFLAGS += -std=gnu++11

@@ -1,4 +1,0 @@
-include ':IronCakeTest'
-
-//include ':IronCake'
-//project(':IronCake').projectDir = new File(settingsDir, "../IronCake/IronCake")

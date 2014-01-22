@@ -1,4 +1,2 @@
 include ':IronCake'
-
-include ':IronCake'
-project(':IronCake').projectDir = new File(settingsDir, '../IronCake/IronCake')
+include ':IronCakeTest'

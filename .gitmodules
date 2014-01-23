@@ -1,3 +1,6 @@
 [submodule "libs/glfw"]
 	path = libs/glfw
 	url = https://github.com/glfw/glfw.git
+[submodule "android/IronCakeTest/IronCake"]
+	path = android/IronCakeTest/IronCake
+	url = git@github.com:omochi/IronCake-Android-Module.git

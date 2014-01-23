@@ -1,1 +1,3 @@
 include ':IronCakeTest'
+
+include ':IronCake'

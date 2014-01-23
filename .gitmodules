@@ -4,3 +4,6 @@
 [submodule "android/IronCakeTest/IronCake"]
 	path = android/IronCakeTest/IronCake
 	url = git@github.com:omochi/IronCake-Android-Module.git
+[submodule "android/IronCakeSample/IronCake"]
+	path = android/IronCakeSample/IronCake
+	url = git@github.com:omochi/IronCake-Android-Module.git

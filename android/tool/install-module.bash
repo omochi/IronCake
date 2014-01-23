@@ -28,6 +28,9 @@ is_ick_root(){
 }
 
 main(){
+	echo "このスクリプトは廃止されました。"
+	return 1
+
 	if [[ "$(is_studio_root ".")" == 0 ]] ; then
 		echo "[$(pwd)]はAndroid Studioのプロジェクトディレクトリではありません。"
 		echo "インストール先のAndroid Studioのプロジェクトディレクトリで実行してください。"

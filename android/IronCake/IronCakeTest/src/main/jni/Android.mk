@@ -26,5 +26,5 @@ LOCAL_STATIC_LIBRARIES += gtest
 
 include $(BUILD_SHARED_LIBRARY)
 
-include $(MY_IRONCAKE_ROOT_DIR)/android/IronCake-jni/Android.mk
+include $(MY_IRONCAKE_ROOT_DIR)/android/IronCake-mk/Android.mk
 include $(MY_IRONCAKE_ROOT_DIR)/android/gtest/Android.mk

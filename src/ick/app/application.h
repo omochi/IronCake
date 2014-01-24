@@ -12,6 +12,10 @@ namespace ick{
 	class LoopThread;
 	class ApplicationController;
 	
+#ifdef ICK_APP_GLFW
+	int ApplicationGLFWMain(int argc, const char * argv [], ApplicationController * (*controller_constructor)() );
+#endif
+
 	class Application {
 		ApplicationController * controller_;
 		bool controller_release_;
@@ -71,8 +75,8 @@ namespace ick{
 #ifdef ICK_APP_GLFW
 		GLFWwindow * glfw_window() const;
 		void GLFWMain();
-		
 #endif
+		
 		void RequestGLInit();
 		void RequestGLRelease();
 		

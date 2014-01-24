@@ -14,9 +14,32 @@
 
 #include "application_controller.h"
 
+#include "../startup.h"
+
 #ifdef ICK_OBJCPP_GUARD
 
 namespace ick{
+	
+	int ApplicationGLFWMain(int argc, const char * argv [], ApplicationController * (*controller_constructor)() )
+	{
+		(void)argc; (void)argv;
+		
+		if(!ick::Startup()){
+			::fprintf(stderr,"ick::Startup failed");
+			return EXIT_FAILURE;
+		}
+		
+		ick::Application * app = ICK_NEW(ick::Application, controller_constructor(), true);
+		app->GLFWMain();
+		ICK_DELETE(app);
+		
+		if(!ick::Shutdown()){
+			::fprintf(stderr, "ick::Shutdown failed");
+			return EXIT_FAILURE;
+		}
+		
+		return EXIT_SUCCESS;
+	}
 
 #ifdef ICK_WINDOWS
 
@@ -103,6 +126,7 @@ namespace ick{
 	}
 	
 	void Application::GLFWMain(){
+		if (!glfwInit()){ ICK_ABORT("glfwInit"); }
 		
 		controller_->DidLaunch();
 		
@@ -137,6 +161,7 @@ namespace ick{
 		
 		controller_->WillTerminate();
 		
+		glfwTerminate();
 	}
 
 

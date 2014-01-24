@@ -4,6 +4,7 @@
 #include "base/debug_allocator.h"
 #include "base/memory.h"
 #include "base/log.h"
+#include "base/string.h"
 
 #ifdef ICK_WINDOWS
 #	include <mmsystem.h>
@@ -41,6 +42,7 @@ namespace ick{
 		
 		if(config.memory_debug){
 			set_static_allocator(ICK_NEW(DebugAllocator, static_allocator()));
+			ICK_LOG_INFO("debug allocator enabled\n");
 		}
 		
 #ifdef ICK_WINDOWS
@@ -76,6 +78,14 @@ namespace ick{
 
 		if(config.memory_debug){
 			DebugAllocator * debug_allocator = static_debug_allocator();
+			
+			if (debug_allocator->info_list_num() > 0){
+				ick::String dump = debug_allocator->Dump();
+				ICK_LOG_ERROR("memory leak:\n%s", dump.cstr());
+			}else{
+				ICK_LOG_INFO("no memory leak\n");
+			}
+			
 			set_static_allocator(debug_allocator->allocator());
 			ICK_DELETE(debug_allocator);
 		}
@@ -86,6 +96,7 @@ namespace ick{
 		set_static_allocator(NULL);
 		
 		g_startedup = false;
+		g_startup_config = ick::StartupConfig();
 		return true;
 	}
 }

@@ -32,6 +32,8 @@ namespace ick{
 	public:
 		Allocator * allocator() const { return allocator_; }
 		List * info_list() const { return info_list_; }
+		//要素数
+		int info_list_num() const;
 
 		static const uint32_t kHeadSignature;
 		static const uint32_t kFootSignature;

@@ -10,6 +10,10 @@
 
 namespace ick{
 
+	int DebugAllocator::info_list_num() const{
+		return info_list_->num();
+	}
+	
 	const uint32_t DebugAllocator::kHeadSignature = 0xBADDCAFE;
 	const uint32_t DebugAllocator::kFootSignature = 0xDEADBEEF;
 

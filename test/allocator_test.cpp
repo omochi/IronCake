@@ -83,5 +83,7 @@ TEST_F(AllocatorTest, test4){
 	//オーバーフロー検出
 	EXPECT_EQ((void *)a, node->value().user);
 	
+	ICK_FREE_A(allocator, a);
+	
 	ICK_DELETE(allocator);
 }

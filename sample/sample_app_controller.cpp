@@ -32,6 +32,8 @@ void SampleAppController::OnUpdate(){
 	frame_count_++;
 }
 void SampleAppController::OnRender(){
+#ifdef ICK_APP_GLFW
+	
 	int mod_fc = frame_count_ % 6;
 	if(mod_fc == 0){
 		glClearColor(1, 0, 0, 1);
@@ -48,5 +50,7 @@ void SampleAppController::OnRender(){
 	}
 	
 	glClear(GL_COLOR_BUFFER_BIT);
+	
+#endif
 }
 

@@ -15,8 +15,13 @@ namespace ick{
 #ifdef ICK_APP_GLFW
 	int ApplicationGLFWMain(int argc, const char * argv [], ApplicationController * (*controller_constructor)() );
 #endif
-
+	
 	class Application {
+	public:
+#ifdef ICK_APP_GLFW
+		friend int ApplicationGLFWMain(int argc, const char * argv [], ApplicationController * (*controller_constructor)() );
+#endif
+	private:
 		ApplicationController * controller_;
 		bool controller_release_;
 		
@@ -74,7 +79,6 @@ namespace ick{
 		
 #ifdef ICK_APP_GLFW
 		GLFWwindow * glfw_window() const;
-		void GLFWMain();
 #endif
 		
 		void RequestGLInit();
@@ -83,6 +87,10 @@ namespace ick{
 		void Launch();
 		void Terminate();
 	private:
+#ifdef ICK_APP_GLFW
+		void GLFWMain();
+#endif
+		
 		//thread: any
 		void SignalUpdateTime();
 		void RequestUpdate();

@@ -5,7 +5,6 @@
 #include "base/memory.h"
 #include "base/log.h"
 
-
 #ifdef ICK_WINDOWS
 #	include <mmsystem.h>
 #endif
@@ -16,9 +15,6 @@ namespace ick{
 	StartupConfig::StartupConfig(){
 		allocator = NULL;
 		memory_debug = false;
-#ifdef ICK_APP_GLFW
-		init_glfw = true;
-#endif
 #ifdef ICK_WINDOWS
 		do_timeBeginPeriod = true;
 #endif
@@ -47,14 +43,6 @@ namespace ick{
 			set_static_allocator(ICK_NEW(DebugAllocator, static_allocator()));
 		}
 		
-#ifdef ICK_APP_GLFW
-		if(config.init_glfw){
-			if (!glfwInit()) {
-				ICK_LOG_ERROR("glfwInit");
-				return false;
-			}
-		}
-#endif
 #ifdef ICK_WINDOWS
 		if(config.do_timeBeginPeriod){
 			if (timeBeginPeriod(1)){
@@ -85,12 +73,7 @@ namespace ick{
 			}
 		}
 #endif
-#ifdef ICK_APP_GLFW
-		if(config.init_glfw){
-			glfwTerminate();
-		}
-#endif
-		
+
 		if(config.memory_debug){
 			DebugAllocator * debug_allocator = static_debug_allocator();
 			set_static_allocator(debug_allocator->allocator());

@@ -1,14 +1,13 @@
 #pragma once
 
+#include "base/platform.h"
+
 namespace ick{
 	class Allocator;
 	
 	struct StartupConfig {
 		Allocator * allocator; // = NULL
 		bool memory_debug; // = false
-#ifdef ICK_APP_GLFW
-		bool init_glfw; // = true
-#endif
 #ifdef ICK_WINDOWS
 		bool do_timeBeginPeriod; // = true
 #endif

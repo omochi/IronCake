@@ -20,6 +20,7 @@
 
 namespace ick{
 	
+#ifdef ICK_APP_GLFW
 	int ApplicationGLFWMain(int argc, const char * argv [], ApplicationController * (*controller_constructor)() )
 	{
 		(void)argc; (void)argv;
@@ -40,6 +41,7 @@ namespace ick{
 		
 		return EXIT_SUCCESS;
 	}
+#endif
 
 #ifdef ICK_WINDOWS
 
@@ -124,7 +126,38 @@ namespace ick{
 	GLFWwindow * Application::glfw_window() const{
 		return glfw_window_;
 	}
+
+
+
+#endif
 	
+	void Application::RequestGLInit(){
+#ifdef ICK_APP_GLFW
+		glfw_do_window_create_ = true;
+#endif
+	}
+	void Application::RequestGLRelease(){
+#ifdef ICK_APP_GLFW
+		glfwSetWindowShouldClose(glfw_window_, 1);
+#endif
+	}
+	
+	void Application::Launch(){
+		master_thread_->Post(FunctionMake(this, &Application::DoLaunch));
+		{
+			ICK_SCOPED_LOCK(running_mutex_);
+			while(!running_){ running_mutex_.Wait(); }
+		}
+	}
+	void Application::Terminate(){
+		master_thread_->Post(FunctionMake(this, &Application::DoTerminate));
+		{
+			ICK_SCOPED_LOCK(running_mutex_);
+			while(running_){ running_mutex_.Wait(); }
+		}
+	}
+	
+#ifdef ICK_APP_GLFW
 	void Application::GLFWMain(){
 		if (!glfwInit()){ ICK_ABORT("glfwInit"); }
 		
@@ -163,35 +196,7 @@ namespace ick{
 		
 		glfwTerminate();
 	}
-
-
 #endif
-	
-	void Application::RequestGLInit(){
-#ifdef ICK_APP_GLFW
-		glfw_do_window_create_ = true;
-#endif
-	}
-	void Application::RequestGLRelease(){
-#ifdef ICK_APP_GLFW
-		glfwSetWindowShouldClose(glfw_window_, 1);
-#endif
-	}
-	
-	void Application::Launch(){
-		master_thread_->Post(FunctionMake(this, &Application::DoLaunch));
-		{
-			ICK_SCOPED_LOCK(running_mutex_);
-			while(!running_){ running_mutex_.Wait(); }
-		}
-	}
-	void Application::Terminate(){
-		master_thread_->Post(FunctionMake(this, &Application::DoTerminate));
-		{
-			ICK_SCOPED_LOCK(running_mutex_);
-			while(running_){ running_mutex_.Wait(); }
-		}
-	}
 	
 	void Application::SignalUpdateTime(){
 		ICK_SCOPED_LOCK(update_mutex_);

@@ -10,6 +10,7 @@ LOCAL_CFLAGS += -Wall
 LOCAL_CPPFLAGS += -std=gnu++11
 
 LOCAL_EXPORT_C_INCLUDES += $(MY_SRC_DIR)
+LOCAL_LDLIBS += -llog
 
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/base/allocator.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/base/debug_allocator.cpp
@@ -35,6 +36,13 @@ LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/thread.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/function_thread.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/loop_thread.cpp
 
-LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/ick.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/app/application.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/app/application_controller.cpp
 
-include $(BUILD_STATIC_LIBRARY)
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/android/com_omochimetaru_ironcake_Activity.cpp
+
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/ick.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/startup.cpp
+
+include $(BUILD_SHARED_LIBRARY)
+

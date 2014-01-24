@@ -20,6 +20,7 @@ import com.omochimetaru.ironcake.IronCake;
 public class MainActivity extends Activity {
 
     static {
+        System.loadLibrary("IronCake");
         System.loadLibrary("IronCakeTest");
     }
 

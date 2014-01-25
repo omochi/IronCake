@@ -8,7 +8,7 @@ extern "C" {
 
 	jint JNI_OnLoad(JavaVM *vm, void *reserved){
 		ick::g_startup_config.memory_debug = true;
-		return JNI_VERSION_1_4;
+		return JNI_VERSION_1_6;
 	}
 	
 	JNIEXPORT jlong JNICALL Java_com_omochimetaru_ironcakesample_MainActivity_controllerConstruct

@@ -11,6 +11,7 @@ LOCAL_CPPFLAGS += -std=gnu++11
 
 LOCAL_EXPORT_C_INCLUDES += $(MY_SRC_DIR)
 LOCAL_LDLIBS += -llog
+LOCAL_LDLIBS += -lEGL
 
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/base/allocator.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/base/debug_allocator.cpp

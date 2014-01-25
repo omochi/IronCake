@@ -20,3 +20,8 @@
 #ifdef ICK_APP_GLFW
 #	include <GLFW/glfw3.h>
 #endif
+
+#ifdef ICK_ANDROID
+#	include <jni.h>
+#	include <EGL/egl.h>
+#endif

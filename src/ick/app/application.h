@@ -17,10 +17,6 @@ namespace ick{
 #endif
 	
 	class Application {
-	public:
-#ifdef ICK_APP_GLFW
-		friend int ApplicationGLFWMain(int argc, const char * argv [], ApplicationController * (*controller_constructor)() );
-#endif
 	private:
 		ApplicationController * controller_;
 		bool controller_release_;
@@ -42,6 +38,12 @@ namespace ick{
 #ifdef ICK_APP_GLFW
 		bool glfw_do_window_create_;
 		GLFWwindow * glfw_window_;
+#endif
+		
+#ifdef ICK_ANDROID
+		EGLDisplay android_egl_display_;
+		EGLContext android_egl_context_;
+		EGLSurface android_egl_surface_;
 #endif
 		
 #if defined ICK_MAC && defined __OBJC__
@@ -79,6 +81,16 @@ namespace ick{
 		
 #ifdef ICK_APP_GLFW
 		GLFWwindow * glfw_window() const;
+		void GLFWMain();
+#endif
+#ifdef ICK_ANDROID
+		void AndroidOnCreate();
+		void AndroidOnDestroy();
+		void AndroidOnResume();
+		void AndroidOnPause();
+		void AndroidOnSurfaceAvailable(jobject surface_texture, int width, int height);
+		void AndroidOnSurfaceSizeChanged(jobject surface_texture, int width, int height);
+		void AndroidOnSurfaceDestroyed(jobject surface_texture);
 #endif
 		
 		void RequestGLInit();
@@ -87,10 +99,10 @@ namespace ick{
 		void Launch();
 		void Terminate();
 	private:
-#ifdef ICK_APP_GLFW
-		void GLFWMain();
+#ifdef ICK_ANDROID
+		void AndroidReleaseEGL();
 #endif
-		
+
 		//thread: any
 		void SignalUpdateTime();
 		void RequestUpdate();

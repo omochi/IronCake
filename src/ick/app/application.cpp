@@ -102,6 +102,12 @@ namespace ick{
 		glfw_window_ = NULL;
 #endif
 		
+#ifdef ICK_ANDROID
+		android_egl_display_ = NULL;
+		android_egl_context_ = NULL;
+		android_egl_surface_ = NULL;
+#endif
+		
 		master_thread_ = ICK_NEW(LoopThread);
 		master_thread_->set_name(String("master"));
 		master_thread_->Start();
@@ -126,38 +132,7 @@ namespace ick{
 	GLFWwindow * Application::glfw_window() const{
 		return glfw_window_;
 	}
-
-
-
-#endif
 	
-	void Application::RequestGLInit(){
-#ifdef ICK_APP_GLFW
-		glfw_do_window_create_ = true;
-#endif
-	}
-	void Application::RequestGLRelease(){
-#ifdef ICK_APP_GLFW
-		glfwSetWindowShouldClose(glfw_window_, 1);
-#endif
-	}
-	
-	void Application::Launch(){
-		master_thread_->Post(FunctionMake(this, &Application::DoLaunch));
-		{
-			ICK_SCOPED_LOCK(running_mutex_);
-			while(!running_){ running_mutex_.Wait(); }
-		}
-	}
-	void Application::Terminate(){
-		master_thread_->Post(FunctionMake(this, &Application::DoTerminate));
-		{
-			ICK_SCOPED_LOCK(running_mutex_);
-			while(running_){ running_mutex_.Wait(); }
-		}
-	}
-	
-#ifdef ICK_APP_GLFW
 	void Application::GLFWMain(){
 		if (!glfwInit()){ ICK_ABORT("glfwInit"); }
 		
@@ -196,7 +171,83 @@ namespace ick{
 		
 		glfwTerminate();
 	}
+
 #endif
+	
+#ifdef ICK_ANDROID
+	void Application::AndroidOnCreate(){
+		if(android_egl_display_){ ICK_ABORT("egl already initialized\n"); }
+		
+		EGLDisplay egl_display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+		if(egl_display == EGL_NO_DISPLAY){
+			ICK_ABORT("eglGetDisplay failed\n");
+		}
+		EGLint major, minor;
+		if(eglInitialize(egl_display, & major, & minor) == EGL_FALSE){
+			ICK_ABORT("eglInitialize failed\n");
+		}
+		ICK_LOG_INFO("egl initialized. version: %d.%d\n", major, minor);
+		
+		android_egl_display_ = egl_display;
+	}
+	void Application::AndroidOnDestroy(){
+		if(android_egl_context_){
+			
+		}
+		
+		if(!android_egl_display_){ ICK_ABORT("egl has not been initialized\n"); }
+		if(eglTerminate(android_egl_display_) == EGL_FALSE){
+			ICK_ABORT("eglTerminate failed\n");
+		}
+		android_egl_display_ = NULL;
+	}
+	void Application::AndroidOnResume(){
+		
+	}
+	void Application::AndroidOnPause(){
+		
+	}
+	void Application::AndroidOnSurfaceAvailable(jobject surface_texture, int width, int height){
+		if(android_egl_surface_){
+			ICK_ABORT("surface already available");
+		}
+		//EGL初期化
+	}
+	void Application::AndroidOnSurfaceSizeChanged(jobject surface_texture, int width, int height){
+		//EGLSurface交換
+	}
+	void Application::AndroidOnSurfaceDestroyed(jobject surface_texture){
+		if(android_egl_context_){
+			
+		}
+	}
+#endif
+	
+	void Application::RequestGLInit(){
+#ifdef ICK_APP_GLFW
+		glfw_do_window_create_ = true;
+#endif
+	}
+	void Application::RequestGLRelease(){
+#ifdef ICK_APP_GLFW
+		glfwSetWindowShouldClose(glfw_window_, 1);
+#endif
+	}
+	
+	void Application::Launch(){
+		master_thread_->Post(FunctionMake(this, &Application::DoLaunch));
+		{
+			ICK_SCOPED_LOCK(running_mutex_);
+			while(!running_){ running_mutex_.Wait(); }
+		}
+	}
+	void Application::Terminate(){
+		master_thread_->Post(FunctionMake(this, &Application::DoTerminate));
+		{
+			ICK_SCOPED_LOCK(running_mutex_);
+			while(running_){ running_mutex_.Wait(); }
+		}
+	}
 	
 	void Application::SignalUpdateTime(){
 		ICK_SCOPED_LOCK(update_mutex_);

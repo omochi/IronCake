@@ -59,6 +59,14 @@ extern "C" {
 #define com_omochimetaru_ironcake_Activity_DEFAULT_KEYS_SEARCH_GLOBAL 4L
 /*
  * Class:     com_omochimetaru_ironcake_Activity
+ * Method:    nativeStaticInit
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeStaticInit
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_omochimetaru_ironcake_Activity
  * Method:    nativeOnCreate
  * Signature: ()V
  */

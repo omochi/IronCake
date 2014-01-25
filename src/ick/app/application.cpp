@@ -177,7 +177,6 @@ namespace ick{
 	
 #ifdef ICK_ANDROID
 	void Application::AndroidOnCreate(){
-		
 		//ユーザinit
 		
 		if(android_egl_display_){ ICK_ABORT("egl display already initialized\n"); }
@@ -226,6 +225,10 @@ namespace ick{
 	void Application::AndroidOnDestroy(){
 		if(!android_egl_display_){ ICK_ABORT("egl display has not been initialized\n"); }
 		
+		if(android_egl_surface_){
+			AndroidReleaseEGLSurface();
+		}
+		
 		if(!android_egl_context_){ ICK_ABORT("egl context has not been created\n"); }
 		if(eglDestroyContext(android_egl_display_, android_egl_context_) == EGL_FALSE){
 			ICK_ABORT("eglDestroyContext failed\n");
@@ -240,24 +243,33 @@ namespace ick{
 		
 	}
 	void Application::AndroidOnPause(){
-		
 	}
-	void Application::AndroidOnSurfaceAvailable(jobject surface_texture, int width, int height){
+	void Application::AndroidOnSurfaceCreated(ANativeWindow * surface){
 		if(android_egl_surface_){ ICK_ABORT("surface already available\n"); }
 		
-		eglCreateWindowSurface(android_egl_display_,
-							   android_egl_config_,
-							   NativeWindowType  native_window,
-							   EGLint const *  attrib_list)
-		
-	}
-	void Application::AndroidOnSurfaceSizeChanged(jobject surface_texture, int width, int height){
-		//EGLSurface交換
-	}
-	void Application::AndroidOnSurfaceDestroyed(jobject surface_texture){
-		if(android_egl_context_){
-			
+		EGLSurface egl_surface = eglCreateWindowSurface(android_egl_display_,
+														android_egl_config_,
+														surface,
+														NULL);
+		if(egl_surface == EGL_NO_SURFACE){
+			ICK_ABORT("eglCreateWindowSurface failed\n");
 		}
+		android_egl_surface_ = egl_surface;
+	}
+	void Application::AndroidOnSurfaceChanged(ANativeWindow * surface, int format, int width, int height){
+		ICK_LOG_INFO("SurfaceChanged: %d x %d", width, height);
+	}
+	void Application::AndroidOnSurfaceDestroyed(ANativeWindow * surface){
+		if(android_egl_surface_){
+			AndroidReleaseEGLSurface();
+		}
+	}
+	
+	void Application::AndroidReleaseEGLSurface(){
+		if(eglDestroySurface(android_egl_display_, android_egl_surface_) == EGL_FALSE){
+			ICK_ABORT("eglDestroySurface failed\n");
+		}
+		android_egl_surface_ = NULL;
 	}
 #endif
 	

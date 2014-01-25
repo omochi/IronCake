@@ -99,26 +99,26 @@ JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnPause
 
 /*
  * Class:     com_omochimetaru_ironcake_Activity
- * Method:    nativeOnSurfaceTextureAvailable
- * Signature: (Landroid/graphics/SurfaceTexture;II)V
+ * Method:    surfaceCreated
+ * Signature: (Landroid/view/SurfaceHolder;)V
  */
-JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnSurfaceTextureAvailable
-  (JNIEnv *, jobject, jobject, jint, jint);
+JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_surfaceCreated
+  (JNIEnv *, jobject, jobject);
 
 /*
  * Class:     com_omochimetaru_ironcake_Activity
- * Method:    nativeOnSurfaceTextureSizeChanged
- * Signature: (Landroid/graphics/SurfaceTexture;II)V
+ * Method:    surfaceChanged
+ * Signature: (Landroid/view/SurfaceHolder;III)V
  */
-JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnSurfaceTextureSizeChanged
-  (JNIEnv *, jobject, jobject, jint, jint);
+JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_surfaceChanged
+  (JNIEnv *, jobject, jobject, jint, jint, jint);
 
 /*
  * Class:     com_omochimetaru_ironcake_Activity
- * Method:    nativeOnSurfaceTextureDestroyed
- * Signature: (Landroid/graphics/SurfaceTexture;)V
+ * Method:    surfaceDestroyed
+ * Signature: (Landroid/view/SurfaceHolder;)V
  */
-JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnSurfaceTextureDestroyed
+JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_surfaceDestroyed
   (JNIEnv *, jobject, jobject);
 
 #ifdef __cplusplus

@@ -8,10 +8,14 @@
 #include "application_platform.h"
 #include "../thread/mutex.h"
 
+#ifdef ICK_ANDROID
+struct ANativeWindow;
+#endif
+
 namespace ick{
 	class LoopThread;
 	class ApplicationController;
-	
+		
 #ifdef ICK_APP_GLFW
 	int ApplicationGLFWMain(int argc, const char * argv [], ApplicationController * (*controller_constructor)() );
 #endif
@@ -89,9 +93,10 @@ namespace ick{
 		void AndroidOnDestroy();
 		void AndroidOnResume();
 		void AndroidOnPause();
-		void AndroidOnSurfaceAvailable(jobject surface_texture, int width, int height);
-		void AndroidOnSurfaceSizeChanged(jobject surface_texture, int width, int height);
-		void AndroidOnSurfaceDestroyed(jobject surface_texture);
+		void AndroidOnSurfaceCreated(ANativeWindow * surface);
+		void AndroidOnSurfaceChanged(ANativeWindow * surface, int format, int width, int height);
+		void AndroidOnSurfaceDestroyed(ANativeWindow * surface);
+		void AndroidReleaseEGLSurface();
 #endif
 		
 		void RequestGLInit();

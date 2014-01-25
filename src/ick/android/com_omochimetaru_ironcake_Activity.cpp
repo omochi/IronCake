@@ -1,6 +1,8 @@
 #include "com_omochimetaru_ironcake_Activity.h"
 
+#include <stdint.h>
 #include <android/log.h>
+#include <android/native_window_jni.h>
 
 #include "../base/memory.h"
 #include "../base/log.h"
@@ -11,6 +13,8 @@ namespace ick{
 	namespace jni{
 		jmethodID activity_controller_construct_method;
 		jfieldID activity_application_field;
+		
+		jmethodID surface_holder_get_surface_method;
 	}
 }
 
@@ -26,10 +30,16 @@ extern "C" {
 		env->GetMethodID(activity_class, "controllerConstruct", "()J");
 		ick::jni::activity_application_field =
 		env->GetFieldID(activity_class, "application", "J");
+		
+		jclass surface_class = env->FindClass("android/view/SurfaceHolder");
+		ick::jni::surface_holder_get_surface_method =
+		env->GetMethodID(surface_class, "getSurface", "()Landroid/view/Surface;");
 	}
 	
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnCreate
 	(JNIEnv * env, jobject thiz){
+		__android_log_print(ANDROID_LOG_INFO, "IronCake", "%s", __func__);
+		
 		if(ick::IsStartedup()){
 			__android_log_print(ANDROID_LOG_ERROR, "IronCake", "IronCake already startedup. 2 Activities may be created.");
 			::abort();
@@ -44,13 +54,11 @@ extern "C" {
 		env->SetLongField(thiz, ick::jni::activity_application_field, reinterpret_cast<jlong>(app));
 		
 		app->AndroidOnCreate();
-		
-		ICK_LOG_INFO("nativeOnCreate\n");
 	}
 	
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnDestroy
 	(JNIEnv * env, jobject thiz){
-		ICK_LOG_INFO("nativeOnDestroy\n");
+		__android_log_print(ANDROID_LOG_INFO, "IronCake", "%s", __func__);
 		
 		ick::Application * app = reinterpret_cast<ick::Application *>(env->GetLongField(thiz, ick::jni::activity_application_field));
 		
@@ -68,7 +76,7 @@ extern "C" {
 	
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnResume
 	(JNIEnv * env, jobject thiz){
-		ICK_LOG_INFO("nativeOnResume\n");
+		__android_log_print(ANDROID_LOG_INFO, "IronCake", "%s", __func__);
 		
 		ick::Application * app = reinterpret_cast<ick::Application *>(env->GetLongField(thiz, ick::jni::activity_application_field));
 		app->AndroidOnResume();
@@ -76,41 +84,43 @@ extern "C" {
 	
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnPause
 	(JNIEnv * env, jobject thiz){
-		ICK_LOG_INFO("nativeOnPause\n");
+		__android_log_print(ANDROID_LOG_INFO, "IronCake", "%s", __func__);
 		
 		ick::Application * app = reinterpret_cast<ick::Application *>(env->GetLongField(thiz, ick::jni::activity_application_field));
 		app->AndroidOnPause();
 	}
 	
-	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnSurfaceTextureAvailable
-	(JNIEnv * env, jobject thiz, jobject surfaceTexture, jint width, jint height){
-		__android_log_print(ANDROID_LOG_INFO, "IronCake", "nativeOnSurfaceTextureAvailable: %p, %d x %d", surfaceTexture, width, height);
+	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_surfaceCreated
+	(JNIEnv * env, jobject thiz, jobject surface_holder){
+		__android_log_print(ANDROID_LOG_INFO, "IronCake", "%s", __func__);
 		
 		ick::Application * app = reinterpret_cast<ick::Application *>(env->GetLongField(thiz, ick::jni::activity_application_field));
 		if(app){
-			app->AndroidOnSurfaceAvailable(surfaceTexture, width, height);
+			jobject surface = env->CallObjectMethod(surface_holder, ick::jni::surface_holder_get_surface_method);
+			app->AndroidOnSurfaceCreated(ANativeWindow_fromSurface(env, surface));
 		}
 	}
 	
-	
-	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnSurfaceTextureSizeChanged
-	(JNIEnv * env, jobject thiz, jobject surfaceTexture, jint width, jint height){
-		__android_log_print(ANDROID_LOG_INFO, "IronCake", "nativeOnSurfaceTextureSizeChanged: %p, %d x %d", surfaceTexture, width, height);
+	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_surfaceChanged
+	(JNIEnv * env, jobject thiz, jobject surface_holder, jint format, jint width, jint height){
+		__android_log_print(ANDROID_LOG_INFO, "IronCake", "%s", __func__);
 		
 		ick::Application * app = reinterpret_cast<ick::Application *>(env->GetLongField(thiz, ick::jni::activity_application_field));
 		if(app){
-			app->AndroidOnSurfaceSizeChanged(surfaceTexture, width, height);
+			jobject surface = env->CallObjectMethod(surface_holder, ick::jni::surface_holder_get_surface_method);
+			app->AndroidOnSurfaceChanged(ANativeWindow_fromSurface(env, surface), format, width, height);
 		}
 	}
 	
-	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnSurfaceTextureDestroyed
-	(JNIEnv * env, jobject thiz, jobject surfaceTexture){
-		__android_log_print(ANDROID_LOG_INFO, "IronCake", "nativeOnSurfaceTextureDestroyed: %p", surfaceTexture);
+	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_surfaceDestroyed
+	(JNIEnv * env, jobject thiz, jobject surface_holder){
+		__android_log_print(ANDROID_LOG_INFO, "IronCake", "%s", __func__);
 		
 		ick::Application * app = reinterpret_cast<ick::Application *>(env->GetLongField(thiz, ick::jni::activity_application_field));
 		if(app){
 			//Activity.onDestroyが済んでいる場合がある
-			app->AndroidOnSurfaceDestroyed(surfaceTexture);
+			jobject surface = env->CallObjectMethod(surface_holder, ick::jni::surface_holder_get_surface_method);
+			app->AndroidOnSurfaceDestroyed(ANativeWindow_fromSurface(env, surface));
 		}
 	}
 	

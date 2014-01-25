@@ -25,7 +25,7 @@ namespace ick{
 	
 	bool Startup(){
 		if(g_startedup){
-			ICK_LOG_ERROR("already startedup");
+			ICK_LOG_ERROR("already startedup\n");
 			return false;
 		}
 		
@@ -48,7 +48,7 @@ namespace ick{
 #ifdef ICK_WINDOWS
 		if(config.do_timeBeginPeriod){
 			if (timeBeginPeriod(1)){
-				ICK_LOG_ERROR("timeBeginPeriod");
+				ICK_LOG_ERROR("timeBeginPeriod failed\n");
 				return false;
 			}
 		}
@@ -62,7 +62,7 @@ namespace ick{
 	}
 	bool Shutdown(){
 		if(!g_startedup){
-			ICK_LOG_ERROR("has not startedup");
+			ICK_LOG_ERROR("has not startedup\n");
 			return false;
 		}
 		StartupConfig & config = g_used_startup_config;
@@ -70,7 +70,7 @@ namespace ick{
 #ifdef ICK_WINDOWS
 		if(config.do_timeBeginPeriod){
 			if (timeEndPeriod(1)){
-				ICK_LOG_ERROR("timeEndPeriod");
+				ICK_LOG_ERROR("timeEndPeriod failed\n");
 				return false;
 			}
 		}

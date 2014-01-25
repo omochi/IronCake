@@ -42,11 +42,11 @@ namespace ick{
 		InitializeCriticalSection(&impl_->wait_count_lock);
 		impl_->signal_event = CreateEvent(NULL, FALSE, FALSE, NULL);
 		if (!impl_->signal_event){
-			ICK_ABORT("CreateEvent: %s", WindowsLastErrorGetDescription().cstr());
+			ICK_ABORT("CreateEvent: %s\n", WindowsLastErrorGetDescription().cstr());
 		}
 		impl_->broadcast_event = CreateEvent(NULL, TRUE, FALSE, NULL);
 		if (!impl_->broadcast_event){
-			ICK_ABORT("CreateEvent: %s", WindowsLastErrorGetDescription().cstr());
+			ICK_ABORT("CreateEvent: %s\n", WindowsLastErrorGetDescription().cstr());
 		}
 #else
 		impl_->mutex = PTHREAD_RECURSIVE_MUTEX_INITIALIZER;
@@ -60,10 +60,10 @@ namespace ick{
 		DeleteCriticalSection(&impl_->mutex_lock);
 		DeleteCriticalSection(&impl_->wait_count_lock);
 		if (!CloseHandle(impl_->signal_event)){
-			ICK_ABORT("CloseHandle(signal_event): %s", WindowsLastErrorGetDescription().cstr());
+			ICK_ABORT("CloseHandle(signal_event): %s\n", WindowsLastErrorGetDescription().cstr());
 		}
 		if (!CloseHandle(impl_->broadcast_event)){
-			ICK_ABORT("CloseHandle(broadcast_event): %s", WindowsLastErrorGetDescription().cstr());
+			ICK_ABORT("CloseHandle(broadcast_event): %s\n", WindowsLastErrorGetDescription().cstr());
 		}
 #else
 		ICK_EN_CALL(pthread_cond_destroy(&impl_->cond));
@@ -100,14 +100,14 @@ namespace ick{
 		DWORD ret = WaitForMultipleObjects(ICK_ARRAY_SIZE(wait_events), wait_events, FALSE, INFINITE);
 		int wait_object_index = WindowsWaitResultGetObjectIndex(ret, ICK_ARRAY_SIZE(wait_events));
 		if (wait_object_index == -1){
-			ICK_ABORT("Wait: %s", WindowsWaitResultGetDescription(ret, ICK_ARRAY_SIZE(wait_events)).cstr());
+			ICK_ABORT("Wait: %s\n", WindowsWaitResultGetDescription(ret, ICK_ARRAY_SIZE(wait_events)).cstr());
 		}
 
 		EnterCriticalSection(&impl_->wait_count_lock);
 		impl_->wait_count--;
 		if (impl_->wait_count == 0){
 			if (!ResetEvent(impl_->broadcast_event)){
-				ICK_ABORT("ResetEvent: %s", WindowsLastErrorGetDescription().cstr());
+				ICK_ABORT("ResetEvent: %s\n", WindowsLastErrorGetDescription().cstr());
 			}
 		}
 		LeaveCriticalSection(&impl_->wait_count_lock);
@@ -123,7 +123,7 @@ namespace ick{
 		EnterCriticalSection(&impl_->wait_count_lock);
 		if (impl_->wait_count > 0){
 			if (!SetEvent(impl_->signal_event)){
-				ICK_ABORT("SetEvent(signal_event): %s", WindowsLastErrorGetDescription().cstr());
+				ICK_ABORT("SetEvent(signal_event): %s\n", WindowsLastErrorGetDescription().cstr());
 			}
 		}
 		LeaveCriticalSection(&impl_->wait_count_lock);
@@ -137,7 +137,7 @@ namespace ick{
 		EnterCriticalSection(&impl_->wait_count_lock);
 		if (impl_->wait_count > 0){
 			if (!SetEvent(impl_->broadcast_event)){
-				ICK_ABORT("SetEvent(broadcast_event): %s", WindowsLastErrorGetDescription().cstr());
+				ICK_ABORT("SetEvent(broadcast_event): %s\n", WindowsLastErrorGetDescription().cstr());
 			}
 		}
 		LeaveCriticalSection(&impl_->wait_count_lock);

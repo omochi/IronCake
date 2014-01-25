@@ -82,7 +82,7 @@ namespace ick{
 #ifdef ICK_WINDOWS
 		impl_->thread = _beginthreadex(NULL, 0, &ThreadRun, this, 0, NULL);
 		if(!impl_->thread){
-			ICK_EN_ABORT(errno, "_beginthreadex");
+			ICK_EN_ABORT(errno, "_beginthreadex\n");
 		}
 #else
 		ICK_EN_CALL(pthread_create(&impl_->thread, NULL, &ThreadRun, this));
@@ -94,10 +94,10 @@ namespace ick{
 #ifdef ICK_WINDOWS
 			DWORD wait_ret = WaitForSingleObject(ThreadImplGetHandle(impl_), INFINITE);
 			if (WindowsWaitResultGetObjectIndex(wait_ret, 1) == -1){
-				ICK_ABORT("Wait: %s",WindowsWaitResultGetDescription(wait_ret, 1).cstr());
+				ICK_ABORT("Wait: %s\n",WindowsWaitResultGetDescription(wait_ret, 1).cstr());
 			}
 			if (!CloseHandle(ThreadImplGetHandle(impl_))){
-				ICK_ABORT("CloseHandle: %s", WindowsLastErrorGetDescription().cstr());
+				ICK_ABORT("CloseHandle: %s\n", WindowsLastErrorGetDescription().cstr());
 			}
 #else
 			ICK_EN_CALL(pthread_join(impl_->thread, NULL));

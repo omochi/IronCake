@@ -26,7 +26,7 @@ namespace ick{
 		(void)argc; (void)argv;
 		
 		if(!ick::Startup()){
-			::fprintf(stderr,"ick::Startup failed");
+			::fprintf(stderr,"ick::Startup failed\n");
 			return EXIT_FAILURE;
 		}
 		
@@ -35,7 +35,7 @@ namespace ick{
 		ICK_DELETE(app);
 		
 		if(!ick::Shutdown()){
-			::fprintf(stderr, "ick::Shutdown failed");
+			::fprintf(stderr, "ick::Shutdown failed\n");
 			return EXIT_FAILURE;
 		}
 		
@@ -48,7 +48,7 @@ namespace ick{
 	void Application::WinSetupUpdateTimer(){
 		win_update_timer_queue_ = CreateTimerQueue();
 		if (!win_update_timer_queue_){
-			ICK_ABORT("CreateTimerQueue: %s", WindowsLastErrorGetDescription().cstr());
+			ICK_ABORT("CreateTimerQueue: %s\n", WindowsLastErrorGetDescription().cstr());
 		}
 		if (!CreateTimerQueueTimer(&win_update_timer_,
 			win_update_timer_queue_,
@@ -56,30 +56,30 @@ namespace ick{
 			static_cast<VOID *>(this),
 			0, 16,
 			WT_EXECUTEDEFAULT)){
-			ICK_ABORT("CreateTimerQueueTimer: %s", WindowsLastErrorGetDescription().cstr());
+			ICK_ABORT("CreateTimerQueueTimer: %s\n", WindowsLastErrorGetDescription().cstr());
 		}
 	}
 	void Application::WinTeardownUpdateTimer(){
 		HANDLE wait_event = CreateEvent(NULL, FALSE, FALSE, NULL);
 		if (!wait_event){
-			ICK_ABORT("CreateEvent(timer wait): %s", WindowsLastErrorGetDescription().cstr());
+			ICK_ABORT("CreateEvent(timer wait): %s\n", WindowsLastErrorGetDescription().cstr());
 		}
 
 		if (!DeleteTimerQueueTimer(win_update_timer_queue_, win_update_timer_,wait_event)){
-			ICK_ABORT("DeleteTimerQueueTimer: %s", WindowsLastErrorGetDescription().cstr());
+			ICK_ABORT("DeleteTimerQueueTimer: %s\n", WindowsLastErrorGetDescription().cstr());
 		}
 
 		DWORD wait_ret = WaitForSingleObject(wait_event, INFINITE);
 		if (WindowsWaitResultGetObjectIndex(wait_ret, 1) == -1){
-			ICK_ABORT("Wait: %s",WindowsWaitResultGetDescription(wait_ret, 1).cstr());
+			ICK_ABORT("Wait: %s\n",WindowsWaitResultGetDescription(wait_ret, 1).cstr());
 		}
 
 		if (!CloseHandle(wait_event)){
-			ICK_ABORT("CloseHandle(timer wait): %s", WindowsLastErrorGetDescription().cstr());
+			ICK_ABORT("CloseHandle(timer wait): %s\n", WindowsLastErrorGetDescription().cstr());
 		}
 
 		if (!DeleteTimerQueue(win_update_timer_queue_)){
-			ICK_ABORT("DeleteTimerQueue: %s", WindowsLastErrorGetDescription().cstr());
+			ICK_ABORT("DeleteTimerQueue: %s\n", WindowsLastErrorGetDescription().cstr());
 		}
 	}
 
@@ -114,7 +114,7 @@ namespace ick{
 	}
 	
 	Application::~Application(){
-		if(running_){ ICK_ABORT("has not terminated"); }
+		if(running_){ ICK_ABORT("has not terminated\n"); }
 		
 		master_thread_->PostQuit();
 		master_thread_->Join();
@@ -134,7 +134,7 @@ namespace ick{
 	}
 	
 	void Application::GLFWMain(){
-		if (!glfwInit()){ ICK_ABORT("glfwInit"); }
+		if (!glfwInit()){ ICK_ABORT("glfwInit\n"); }
 		
 		controller_->DidLaunch();
 		
@@ -145,7 +145,7 @@ namespace ick{
 				
 				glfwWindowHint(GLFW_RESIZABLE, 0);
 				glfw_window_ = glfwCreateWindow(640, 480, "IronCake GL Test", NULL, NULL);
-				if (!glfw_window_){ ICK_ABORT("glfwCreateWindow"); }
+				if (!glfw_window_){ ICK_ABORT("glfwCreateWindow\n"); }
 				
 				glfwMakeContextCurrent(glfw_window_);
 				controller_->DidInitGL();
@@ -208,9 +208,7 @@ namespace ick{
 		
 	}
 	void Application::AndroidOnSurfaceAvailable(jobject surface_texture, int width, int height){
-		if(android_egl_surface_){
-			ICK_ABORT("surface already available");
-		}
+		if(android_egl_surface_){ ICK_ABORT("surface already available\n"); }
 		//EGL初期化
 	}
 	void Application::AndroidOnSurfaceSizeChanged(jobject surface_texture, int width, int height){
@@ -275,7 +273,7 @@ namespace ick{
 	}
 	
 	void Application::DoLaunch(){
-		if(running_){ ICK_ABORT("already launched"); }
+		if(running_){ ICK_ABORT("already launched\n"); }
 		update_running_ = false;
 		update_deadline_missed_ = false;
 		render_running_ = false;
@@ -302,7 +300,7 @@ namespace ick{
 	}
 	
 	void Application::DoTerminate(){
-		if(!running_){ ICK_ABORT("has not launched"); }
+		if(!running_){ ICK_ABORT("has not launched\n"); }
 		
 		controller_->WillTerminate();
 		

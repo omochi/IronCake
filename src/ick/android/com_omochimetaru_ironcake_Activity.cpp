@@ -45,12 +45,12 @@ extern "C" {
 		
 		app->AndroidOnCreate();
 		
-		ICK_LOG_INFO("nativeOnCreate");
+		ICK_LOG_INFO("nativeOnCreate\n");
 	}
 	
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnDestroy
 	(JNIEnv * env, jobject thiz){
-		ICK_LOG_INFO("nativeOnDestroy");
+		ICK_LOG_INFO("nativeOnDestroy\n");
 		
 		ick::Application * app = reinterpret_cast<ick::Application *>(env->GetLongField(thiz, ick::jni::activity_application_field));
 		
@@ -68,7 +68,7 @@ extern "C" {
 	
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnResume
 	(JNIEnv * env, jobject thiz){
-		ICK_LOG_INFO("nativeOnResume");
+		ICK_LOG_INFO("nativeOnResume\n");
 		
 		ick::Application * app = reinterpret_cast<ick::Application *>(env->GetLongField(thiz, ick::jni::activity_application_field));
 		app->AndroidOnResume();
@@ -76,7 +76,7 @@ extern "C" {
 	
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnPause
 	(JNIEnv * env, jobject thiz){
-		ICK_LOG_INFO("nativeOnPause");
+		ICK_LOG_INFO("nativeOnPause\n");
 		
 		ick::Application * app = reinterpret_cast<ick::Application *>(env->GetLongField(thiz, ick::jni::activity_application_field));
 		app->AndroidOnPause();

@@ -1,4 +1,4 @@
-﻿#include "tchar.h"
+#include "tchar.h"
 #include "../base/cstr.h"
 #include "../base/abort.h"
 
@@ -21,13 +21,13 @@ namespace ick{
 		int num = MultiByteToWideChar(code_page, 0, astr, -1, NULL, 0);
 		if (num == 0){
 			DWORD error = GetLastError();
-			ICK_ABORT("MultiByteToWideChar: %d", error);
+			ICK_ABORT("MultiByteToWideChar: %d\n", error);
 		}
 		WCHAR * buf = ICK_ALLOC(WCHAR, num);
 		num = MultiByteToWideChar(code_page, 0, astr, -1, buf, num);
 		if (num == 0){
 			DWORD error = GetLastError();
-			ICK_ABORT("MultiByteToWideChar: %d", error);
+			ICK_ABORT("MultiByteToWideChar: %d\n", error);
 		}
 		if (release) { ICK_FREE(astr); }
 		return buf;
@@ -73,14 +73,14 @@ namespace ick{
 			NULL, 0, NULL, NULL);
 		if (num == 0){
 			DWORD error = GetLastError();
-			ICK_ABORT("WideCharToMultiByte: %d", error);
+			ICK_ABORT("WideCharToMultiByte: %d\n", error);
 		}
 		CHAR * buf = ICK_ALLOC(CHAR, num);
 		num = WideCharToMultiByte(dest_code_page, 0, wstr, -1,
 			buf, num, NULL, NULL);
 		if (num == 0){
 			DWORD error = GetLastError();
-			ICK_ABORT("MultiByteToWideChar: %d", error);
+			ICK_ABORT("MultiByteToWideChar: %d\n", error);
 		}
 		if (release){ ICK_FREE(wstr); }
 		return buf;

@@ -176,8 +176,10 @@ namespace ick{
 	
 #ifdef ICK_ANDROID
 	void Application::AndroidOnCreate(){
-		if(android_egl_display_){ ICK_ABORT("egl already initialized\n"); }
 		
+		//ユーザinit
+		
+		if(android_egl_display_){ ICK_ABORT("egl display already initialized\n"); }
 		EGLDisplay egl_display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
 		if(egl_display == EGL_NO_DISPLAY){
 			ICK_ABORT("eglGetDisplay failed\n");
@@ -187,15 +189,44 @@ namespace ick{
 			ICK_ABORT("eglInitialize failed\n");
 		}
 		ICK_LOG_INFO("egl initialized. version: %d.%d\n", major, minor);
-		
 		android_egl_display_ = egl_display;
+		
+		if(android_egl_context_){ ICK_ABORT("egl context already created\n"); }
+		EGLint choose_attribs[] = {
+			EGL_RED_SIZE, 8,
+			EGL_GREEN_SIZE, 8,
+			EGL_BLUE_SIZE, 8,
+			EGL_ALPHA_SIZE, 8,
+			EGL_DEPTH_SIZE, 16,
+			EGL_STENCIL_SIZE, 8,
+			EGL_NONE
+		};
+		EGLConfig configs[1];
+		EGLint configs_num;
+		if(eglChooseConfig(android_egl_display_, choose_attribs,
+						   configs,ICK_ARRAY_SIZE(configs),&configs_num) == EGL_FALSE)
+		{
+			ICK_ABORT("eglChooseConfig failed\n");
+		}
+		if(configs_num == 0){ ICK_ABORT("no egl config returned\n"); }
+		EGLint context_attribs[] = {
+			EGL_CONTEXT_CLIENT_VERSION, 2,
+			EGL_NONE
+		};
+		EGLContext egl_context = eglCreateContext(egl_display, configs[0], NULL, context_attribs);
+		if(egl_context == EGL_NO_CONTEXT){
+			ICK_ABORT("eglCreateContext failed\n");
+		}
+		android_egl_context_ = egl_context;
 	}
 	void Application::AndroidOnDestroy(){
-		if(android_egl_context_){
-			
+		if(!android_egl_display_){ ICK_ABORT("egl display has not been initialized\n"); }
+		
+		if(!android_egl_context_){ ICK_ABORT("egl context has not been created\n"); }
+		if(eglDestroyContext(android_egl_display_, android_egl_context_) == EGL_FALSE){
+			ICK_ABORT("eglDestroyContext failed\n");
 		}
 		
-		if(!android_egl_display_){ ICK_ABORT("egl has not been initialized\n"); }
 		if(eglTerminate(android_egl_display_) == EGL_FALSE){
 			ICK_ABORT("eglTerminate failed\n");
 		}

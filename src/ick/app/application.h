@@ -42,6 +42,7 @@ namespace ick{
 		
 #ifdef ICK_ANDROID
 		EGLDisplay android_egl_display_;
+		EGLConfig  android_egl_config_;
 		EGLContext android_egl_context_;
 		EGLSurface android_egl_surface_;
 #endif

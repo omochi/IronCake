@@ -104,6 +104,7 @@ namespace ick{
 		
 #ifdef ICK_ANDROID
 		android_egl_display_ = NULL;
+		android_egl_config_  = NULL;
 		android_egl_context_ = NULL;
 		android_egl_surface_ = NULL;
 #endif
@@ -191,7 +192,7 @@ namespace ick{
 		ICK_LOG_INFO("egl initialized. version: %d.%d\n", major, minor);
 		android_egl_display_ = egl_display;
 		
-		if(android_egl_context_){ ICK_ABORT("egl context already created\n"); }
+		if(android_egl_config_){ ICK_ABORT("egl config already created\n"); }
 		EGLint choose_attribs[] = {
 			EGL_RED_SIZE, 8,
 			EGL_GREEN_SIZE, 8,
@@ -209,6 +210,9 @@ namespace ick{
 			ICK_ABORT("eglChooseConfig failed\n");
 		}
 		if(configs_num == 0){ ICK_ABORT("no egl config returned\n"); }
+		android_egl_config_ = configs[0];
+		
+		if(android_egl_context_){ ICK_ABORT("egl context already created\n"); }
 		EGLint context_attribs[] = {
 			EGL_CONTEXT_CLIENT_VERSION, 2,
 			EGL_NONE
@@ -240,7 +244,12 @@ namespace ick{
 	}
 	void Application::AndroidOnSurfaceAvailable(jobject surface_texture, int width, int height){
 		if(android_egl_surface_){ ICK_ABORT("surface already available\n"); }
-		//EGL初期化
+		
+		eglCreateWindowSurface(android_egl_display_,
+							   android_egl_config_,
+							   NativeWindowType  native_window,
+							   EGLint const *  attrib_list)
+		
 	}
 	void Application::AndroidOnSurfaceSizeChanged(jobject surface_texture, int width, int height){
 		//EGLSurface交換

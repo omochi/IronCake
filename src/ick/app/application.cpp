@@ -12,6 +12,10 @@
 #	include "../windows/wait.h"
 #endif
 
+#ifdef ICK_ANDROID
+#	include "../android/jni.h"
+#endif
+
 #include "application_controller.h"
 
 #include "../startup.h"
@@ -103,6 +107,8 @@ namespace ick{
 #endif
 		
 #ifdef ICK_ANDROID
+		android_env_         = NULL;
+		android_activity_    = NULL;
 		android_egl_display_ = NULL;
 		android_egl_config_  = NULL;
 		android_egl_context_ = NULL;
@@ -238,6 +244,8 @@ namespace ick{
 			ICK_ABORT("eglTerminate failed\n");
 		}
 		android_egl_display_ = NULL;
+		
+		AndroidSetEnv(NULL, NULL);
 	}
 	void Application::AndroidOnResume(){
 		
@@ -262,6 +270,24 @@ namespace ick{
 	void Application::AndroidOnSurfaceDestroyed(ANativeWindow * surface){
 		if(android_egl_surface_){
 			AndroidReleaseEGLSurface();
+		}
+	}
+	
+	void Application::AndroidUpdate(){
+		ICK_LOG_INFO("%s\n",__func__);
+		
+		android_env_->CallVoidMethod(android_activity_, jni::activity_schedule_update_timer_method, 1.f / 30.f);
+	}
+	
+	void Application::AndroidSetEnv(JNIEnv * env, jobject activity){
+		if(android_env_){
+			android_env_->DeleteGlobalRef(android_activity_);
+			android_activity_ = NULL;
+			android_env_ = NULL;
+		}
+		if(env){
+			android_env_ = env;
+			android_activity_ = env->NewGlobalRef(activity);
 		}
 	}
 	

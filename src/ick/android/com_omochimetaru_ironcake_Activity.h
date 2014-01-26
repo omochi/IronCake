@@ -121,6 +121,14 @@ JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_surfaceChanged
 JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_surfaceDestroyed
   (JNIEnv *, jobject, jobject);
 
+/*
+ * Class:     com_omochimetaru_ironcake_Activity
+ * Method:    update
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_update
+  (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif

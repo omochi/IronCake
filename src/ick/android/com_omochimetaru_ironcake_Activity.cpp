@@ -9,15 +9,7 @@
 #include "../app/application.h"
 #include "../startup.h"
 
-namespace ick{
-	namespace jni{
-		jmethodID activity_controller_construct_method;
-		jfieldID activity_application_field;
-		
-		jmethodID surface_holder_get_surface_method;
-	}
-}
-
+#include "jni.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,6 +20,8 @@ extern "C" {
 		jclass activity_class = env->FindClass("com/omochimetaru/ironcake/Activity");
 		ick::jni::activity_controller_construct_method =
 		env->GetMethodID(activity_class, "controllerConstruct", "()J");
+		ick::jni::activity_schedule_update_timer_method =
+		env->GetMethodID(activity_class, "scheduleUpdateTimer", "(F)V");
 		ick::jni::activity_application_field =
 		env->GetFieldID(activity_class, "application", "J");
 		
@@ -53,6 +47,7 @@ extern "C" {
 		ick::Application * app = ICK_NEW(ick::Application, reinterpret_cast<ick::ApplicationController *>(controller), true);
 		env->SetLongField(thiz, ick::jni::activity_application_field, reinterpret_cast<jlong>(app));
 		
+		app->AndroidSetEnv(env, thiz);
 		app->AndroidOnCreate();
 	}
 	
@@ -121,6 +116,14 @@ extern "C" {
 			//Activity.onDestroyが済んでいる場合がある
 			jobject surface = env->CallObjectMethod(surface_holder, ick::jni::surface_holder_get_surface_method);
 			app->AndroidOnSurfaceDestroyed(ANativeWindow_fromSurface(env, surface));
+		}
+	}
+	
+	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_update
+	(JNIEnv * env, jobject thiz){
+		ick::Application * app = reinterpret_cast<ick::Application *>(env->GetLongField(thiz, ick::jni::activity_application_field));
+		if(app){
+			app->AndroidUpdate();
 		}
 	}
 	

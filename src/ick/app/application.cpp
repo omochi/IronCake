@@ -3,6 +3,7 @@
 #include "../base/memory.h"
 #include "../base/abort.h"
 #include "../base/time.h"
+#include "../base/math.h"
 #include "../function/function.h"
 #include "../thread/scoped_lock.h"
 #include "../thread/loop_thread.h"
@@ -248,7 +249,8 @@ namespace ick{
 		AndroidSetEnv(NULL, NULL);
 	}
 	void Application::AndroidOnResume(){
-		
+		prev_update_clock_enabled_ = false;
+		prev_update_clock_ = 0;
 	}
 	void Application::AndroidOnPause(){
 	}
@@ -274,9 +276,15 @@ namespace ick{
 	}
 	
 	void Application::AndroidUpdate(){
+		double start_clock = ClockGet();
+		
+		
 		ICK_LOG_INFO("%s\n",__func__);
 		
-		android_env_->CallVoidMethod(android_activity_, jni::activity_schedule_update_timer_method, 1.f / 30.f);
+		double elapsed_time = ClockGet() - start_clock;
+		double sleep_time = Max<double>(0, 1.0 / 60.0 - elapsed_time);
+		
+		android_env_->CallVoidMethod(android_activity_, jni::activity_schedule_update_timer_method, static_cast<float>(sleep_time));
 	}
 	
 	void Application::AndroidSetEnv(JNIEnv * env, jobject activity){

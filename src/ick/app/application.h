@@ -47,12 +47,16 @@ namespace ick{
 #ifdef ICK_ANDROID
 		JNIEnv * android_env_;
 		jobject android_activity_;
-
 		
 		EGLDisplay android_egl_display_;
 		EGLConfig  android_egl_config_;
 		EGLContext android_egl_context_;
 		EGLSurface android_egl_surface_;
+#endif
+
+#ifdef ICK_ANDROID
+		bool prev_update_clock_enabled_;
+		double prev_update_clock_;
 #endif
 		
 #if defined ICK_MAC && defined __OBJC__

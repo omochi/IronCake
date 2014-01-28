@@ -46,6 +46,7 @@ namespace ick{
 #ifdef ICK_ANDROID
 		JNIEnv * android_env_;
 		jobject android_activity_;
+		bool android_activity_resumed_;
 		
 		EGLDisplay android_egl_display_;
 		EGLConfig  android_egl_config_;
@@ -104,6 +105,9 @@ namespace ick{
 		void AndroidOnSurfaceChanged(ANativeWindow * surface, int format, int width, int height);
 		void AndroidOnSurfaceDestroyed(ANativeWindow * surface);
 		
+		void AndroidStartUpdate();
+		void AndroidStopUpdate();
+
 		void AndroidUpdate();
 		
 		void AndroidSetEnv(JNIEnv * env, jobject activity);

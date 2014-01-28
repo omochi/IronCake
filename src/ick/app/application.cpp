@@ -14,7 +14,8 @@
 #endif
 
 #ifdef ICK_ANDROID
-#	include "../android/jni.h"
+#	include "../android/activity.h"
+#	include "../android/native_task.h"
 #endif
 
 #include "application_controller.h"
@@ -102,6 +103,8 @@ namespace ick{
 		ICK_ASSERT(controller);
 		controller_->application_ = this;
 		
+		update_running_ = false;
+		
 #ifdef ICK_APP_GLFW
 		glfw_window_ = NULL;
 #endif
@@ -109,6 +112,7 @@ namespace ick{
 #ifdef ICK_ANDROID
 		android_env_         = NULL;
 		android_activity_    = NULL;
+		android_activity_resumed_ = false;
 		android_egl_display_ = NULL;
 		android_egl_config_  = NULL;
 		android_egl_context_ = NULL;
@@ -227,6 +231,11 @@ namespace ick{
 		}
 		
 		if(!android_egl_context_){ ICK_ABORT("egl context has not been created\n"); }
+		
+		if(eglMakeCurrent(android_egl_display_, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT) == EGL_FALSE){
+			ICK_ABORT("eglMakeCurrent(clear) failed\n");
+		}
+		
 		if(eglDestroyContext(android_egl_display_, android_egl_context_) == EGL_FALSE){
 			ICK_ABORT("eglDestroyContext failed\n");
 		}
@@ -238,11 +247,21 @@ namespace ick{
 		
 		AndroidSetEnv(NULL, NULL);
 	}
+	void hogehoge(JNIEnv * env, jobject obj){}
 	void Application::AndroidOnResume(){
+		android_activity_resumed_ = true;
 		prev_update_clock_enabled_ = false;
 		prev_update_clock_ = 0;
+		
+		jobject task = jni::native_task::Create(android_env_, jni::native_task::NativeFunction(hogehoge));
+		jni::native_task::Release(android_env_, task);
+		
+		AndroidStartUpdate();
 	}
 	void Application::AndroidOnPause(){
+		AndroidStopUpdate();
+		
+		android_activity_resumed_ = false;
 	}
 	void Application::AndroidOnSurfaceCreated(ANativeWindow * surface){
 		if(android_egl_surface_){ ICK_ABORT("surface already available\n"); }
@@ -255,26 +274,50 @@ namespace ick{
 			ICK_ABORT("eglCreateWindowSurface failed\n");
 		}
 		android_egl_surface_ = egl_surface;
+		
+		AndroidStartUpdate();
 	}
 	void Application::AndroidOnSurfaceChanged(ANativeWindow * surface, int format, int width, int height){
 		ICK_LOG_INFO("SurfaceChanged: %d x %d", width, height);
 	}
 	void Application::AndroidOnSurfaceDestroyed(ANativeWindow * surface){
+		AndroidStopUpdate();
+		
 		if(android_egl_surface_){
 			AndroidReleaseEGLSurface();
+		}
+	}
+	
+	void Application::AndroidStartUpdate(){
+		if(!update_running_){
+			if(android_activity_resumed_ && android_egl_surface_){
+				update_running_ = true;
+				
+				//temp
+				AndroidUpdate();
+			}
+		}
+	}
+	void Application::AndroidStopUpdate(){
+		if(update_running_){
+			update_running_ = false;
 		}
 	}
 	
 	void Application::AndroidUpdate(){
 		double start_clock = ClockGet();
 		
-		
-		ICK_LOG_INFO("%s\n",__func__);
+		if(eglMakeCurrent(android_egl_display_,
+						  android_egl_surface_, android_egl_surface_,
+						  android_egl_context_) == EGL_FALSE)
+		{
+			ICK_ABORT("eglMakeCurrent failed\n");
+		}
 		
 		double elapsed_time = ClockGet() - start_clock;
 		double sleep_time = Max<double>(0, 1.0 / 60.0 - elapsed_time);
 		
-		android_env_->CallVoidMethod(android_activity_, jni::activity_schedule_update_timer_method, static_cast<float>(sleep_time));
+		// android_env_->CallVoidMethod(android_activity_, jni::activity::schedule_update_timer_method, static_cast<float>(sleep_time));
 	}
 	
 	void Application::AndroidSetEnv(JNIEnv * env, jobject activity){

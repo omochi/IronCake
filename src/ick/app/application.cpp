@@ -103,7 +103,6 @@ namespace ick{
 		controller_->application_ = this;
 		
 #ifdef ICK_APP_GLFW
-		glfw_do_window_create_ = false;
 		glfw_window_ = NULL;
 #endif
 		
@@ -146,34 +145,25 @@ namespace ick{
 		
 		controller_->DidLaunch();
 		
-		while(true){
+		glfwWindowHint(GLFW_RESIZABLE, 0);
+		glfw_window_ = glfwCreateWindow(640, 480, "IronCake GL Test", NULL, NULL);
+		if (!glfw_window_){ ICK_ABORT("glfwCreateWindow\n"); }
+		
+		glfwMakeContextCurrent(glfw_window_);
+		controller_->DidInitGL();
+	
+		while (!glfwWindowShouldClose(glfw_window_)){
+			glfwPollEvents();
 			
-			if(glfw_do_window_create_){
-				glfw_do_window_create_ = false;
-				
-				glfwWindowHint(GLFW_RESIZABLE, 0);
-				glfw_window_ = glfwCreateWindow(640, 480, "IronCake GL Test", NULL, NULL);
-				if (!glfw_window_){ ICK_ABORT("glfwCreateWindow\n"); }
-				
-				glfwMakeContextCurrent(glfw_window_);
-				controller_->DidInitGL();
-			}
+			controller_->OnUpdate();
+			controller_->OnRender();
 			
-			if(!glfw_window_){ break; }
-			
-			while (!glfwWindowShouldClose(glfw_window_)){
-				glfwPollEvents();
-				
-				controller_->OnUpdate();
-				controller_->OnRender();
-				
-				glfwSwapBuffers(glfw_window_);
-			}
-			
-			controller_->WillReleaseGL();
-			glfwDestroyWindow(glfw_window_);
-			glfw_window_ = NULL;
+			glfwSwapBuffers(glfw_window_);
 		}
+		
+		controller_->WillReleaseGL();
+		glfwDestroyWindow(glfw_window_);
+		glfw_window_ = NULL;
 		
 		controller_->WillTerminate();
 		
@@ -306,18 +296,7 @@ namespace ick{
 		android_egl_surface_ = NULL;
 	}
 #endif
-	
-	void Application::RequestGLInit(){
-#ifdef ICK_APP_GLFW
-		glfw_do_window_create_ = true;
-#endif
-	}
-	void Application::RequestGLRelease(){
-#ifdef ICK_APP_GLFW
-		glfwSetWindowShouldClose(glfw_window_, 1);
-#endif
-	}
-	
+
 	void Application::Launch(){
 		master_thread_->Post(FunctionMake(this, &Application::DoLaunch));
 		{

@@ -14,8 +14,6 @@ void SampleAppController::DidLaunch(){
 	sec_frame_count_ = 0;
 	prev_sec_clock_ = ick::ClockGet();
 	frame_count_ = 0;
-
-	application()->RequestGLInit();
 }
 void SampleAppController::WillTerminate(){
 }

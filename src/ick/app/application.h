@@ -40,7 +40,6 @@ namespace ick{
 		bool render_running_;
 		
 #ifdef ICK_APP_GLFW
-		bool glfw_do_window_create_;
 		GLFWwindow * glfw_window_;
 #endif
 		
@@ -110,10 +109,7 @@ namespace ick{
 		void AndroidSetEnv(JNIEnv * env, jobject activity);
 		void AndroidReleaseEGLSurface();
 #endif
-		
-		void RequestGLInit();
-		void RequestGLRelease();
-		
+
 		void Launch();
 		void Terminate();
 	private:

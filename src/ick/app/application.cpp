@@ -110,6 +110,9 @@ namespace ick{
 		}
 		
 		controller_->WillReleaseGL();
+		
+		glfwMakeContextCurrent(NULL);
+		
 		glfwDestroyWindow(glfw_window_);
 		glfw_window_ = NULL;
 		
@@ -134,7 +137,7 @@ namespace ick{
 	}
 	
 	void Application::AndroidOnCreate(){
-		//ユーザinit
+		controller_->DidLaunch();
 		
 		if(android_egl_display_){ ICK_ABORT("egl display already initialized\n"); }
 		EGLDisplay egl_display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
@@ -150,6 +153,8 @@ namespace ick{
 		
 		if(android_egl_config_){ ICK_ABORT("egl config already created\n"); }
 		EGLint choose_attribs[] = {
+			EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+			EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
 			EGL_RED_SIZE, 8,
 			EGL_GREEN_SIZE, 8,
 			EGL_BLUE_SIZE, 8,
@@ -181,15 +186,12 @@ namespace ick{
 	}
 	void Application::AndroidOnDestroy(){
 		if(!android_egl_display_){ ICK_ABORT("egl display has not been initialized\n"); }
+		if(!android_egl_context_){ ICK_ABORT("egl context has not been created\n"); }
+		
+		controller_->WillTerminate();
 		
 		if(android_egl_surface_){
 			AndroidReleaseEGLSurface();
-		}
-		
-		if(!android_egl_context_){ ICK_ABORT("egl context has not been created\n"); }
-		
-		if(eglMakeCurrent(android_egl_display_, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT) == EGL_FALSE){
-			ICK_ABORT("eglMakeCurrent(clear) failed\n");
 		}
 		
 		if(eglDestroyContext(android_egl_display_, android_egl_context_) == EGL_FALSE){
@@ -205,8 +207,6 @@ namespace ick{
 	}
 	void Application::AndroidOnResume(){
 		android_activity_resumed_ = true;
-		prev_update_clock_enabled_ = false;
-		prev_update_clock_ = 0;
 		
 		if(android_egl_surface_){
 			AndroidStartUpdate();
@@ -231,6 +231,17 @@ namespace ick{
 		}
 		android_egl_surface_ = egl_surface;
 		
+		AndroidEGLMakeCurrent();
+		
+		if(eglSwapInterval(android_egl_display_, 0) == EGL_FALSE)
+		{
+			ICK_ABORT("eglSwapInterval failed\n");
+		}
+		
+		controller_->DidInitGL();
+		
+		AndroidEGLClearCurrent();
+				
 		if(android_activity_resumed_){
 			AndroidStartUpdate();
 		}
@@ -294,15 +305,19 @@ namespace ick{
 	}
 	
 	void Application::AndroidUpdate(){
-		ICK_LOG_INFO("%s\n", __func__);
 		double start_clock = ClockGet();
+			
+		AndroidEGLMakeCurrent();
 		
-		if(eglMakeCurrent(android_egl_display_,
-						  android_egl_surface_, android_egl_surface_,
-						  android_egl_context_) == EGL_FALSE)
-		{
-			ICK_ABORT("eglMakeCurrent failed\n");
+		controller_->OnUpdate();
+		
+		controller_->OnRender();
+				
+		if(eglSwapBuffers(android_egl_display_, android_egl_surface_) == EGL_FALSE){
+			ICK_ABORT("eglSwapBuffers failed 0x%04x\n", eglGetError());
 		}
+		
+		AndroidEGLClearCurrent();
 		
 		double elapsed_time = ClockGet() - start_clock;
 		double sleep_time = Max<double>(0, 1.0 / 60.0 - elapsed_time);
@@ -310,7 +325,26 @@ namespace ick{
 		AndroidPostUpdateTask(sleep_time);
 	}
 	
+	void Application::AndroidEGLMakeCurrent(){
+		if(eglMakeCurrent(android_egl_display_,
+						  android_egl_surface_, android_egl_surface_,
+						  android_egl_context_) == EGL_FALSE)
+		{
+			ICK_ABORT("eglMakeCurrent failed\n");
+		}
+	}
+	void Application::AndroidEGLClearCurrent(){
+		if(eglMakeCurrent(android_egl_display_,EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT) == EGL_FALSE)
+		{
+			ICK_ABORT("eglMakeCurrent(clear) failed\n");
+		}
+	}
+	
 	void Application::AndroidReleaseEGLSurface(){
+		controller_->WillReleaseGL();
+		
+		AndroidEGLClearCurrent();
+		
 		if(eglDestroySurface(android_egl_display_, android_egl_surface_) == EGL_FALSE){
 			ICK_ABORT("eglDestroySurface failed\n");
 		}

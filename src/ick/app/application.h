@@ -71,6 +71,8 @@ namespace ick{
 		void AndroidUpdateTask(JNIEnv * env, jobject task);
 		void AndroidUpdate();
 		
+		void AndroidEGLMakeCurrent();
+		void AndroidEGLClearCurrent();
 		void AndroidReleaseEGLSurface();
 #endif
 

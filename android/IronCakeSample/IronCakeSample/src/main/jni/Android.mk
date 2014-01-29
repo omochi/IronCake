@@ -11,6 +11,7 @@ LOCAL_CFLAGS += -Wall
 LOCAL_CPPFLAGS += -std=gnu++11
 
 LOCAL_LDLIBS += -llog
+LOCAL_LDLIBS += -lGLESv2
 
 LOCAL_SRC_FILES += $(MY_DIR)/main.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/sample_app_controller.cpp

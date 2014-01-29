@@ -32,7 +32,6 @@ extern "C" {
 	(JNIEnv * env, jclass klass){
 		using namespace ick::jni::activity;
 		controller_construct_method = env->GetMethodID(klass, "controllerConstruct", "()J");
-		schedule_update_timer_method = env->GetMethodID(klass, "scheduleUpdateTimer", "(F)V");
 		application_field = env->GetFieldID(klass, "application", "J");
 		main_thread_handler_field = env->GetFieldID(klass, "mainThreadHandler", "Landroid/os/Handler;");
 		

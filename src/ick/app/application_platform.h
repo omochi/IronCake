@@ -24,4 +24,5 @@
 #ifdef ICK_ANDROID
 #	include <jni.h>
 #	include <EGL/egl.h>
+#	include <GLES2/gl2.h>
 #endif

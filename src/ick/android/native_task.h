@@ -27,3 +27,21 @@ namespace ick{
 		}
 	}
 }
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_NativeTask_nativeStaticInit
+	(JNIEnv * env, jclass klass);
+	
+	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_NativeTask_run
+	(JNIEnv * env, jobject thiz);
+	
+	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_NativeTask_release
+	(JNIEnv * env, jobject thiz);
+	
+#ifdef __cplusplus
+}
+#endif
+

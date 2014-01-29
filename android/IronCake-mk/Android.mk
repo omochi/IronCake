@@ -42,8 +42,8 @@ LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/loop_thread.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/app/application.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/app/application_controller.cpp
 
-LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/android/com_omochimetaru_ironcake_Activity.cpp
-LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/android/com_omochimetaru_ironcake_NativeTask.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/android/activity.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/android/native_task.cpp
 
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/ick.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/startup.cpp

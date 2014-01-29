@@ -1,5 +1,3 @@
-#include "com_omochimetaru_ironcake_Activity.h"
-
 #include "activity.h"
 
 #include <stdint.h>

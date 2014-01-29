@@ -17,8 +17,11 @@ namespace ick{
 			jmethodID controller_construct_method;
 			jmethodID schedule_update_timer_method;
 			jfieldID application_field;
+			jfieldID main_thread_handler_field;
 			
 			jmethodID surface_holder_get_surface_method;
+			
+			jmethodID handler_post_delayed_method;
 		}
 	}
 }
@@ -29,16 +32,17 @@ extern "C" {
 	
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeStaticInit
 	(JNIEnv * env, jclass klass){
-		ick::jni::activity::controller_construct_method =
-		env->GetMethodID(klass, "controllerConstruct", "()J");
-		ick::jni::activity::schedule_update_timer_method =
-		env->GetMethodID(klass, "scheduleUpdateTimer", "(F)V");
-		ick::jni::activity::application_field =
-		env->GetFieldID(klass, "application", "J");
+		using namespace ick::jni::activity;
+		controller_construct_method = env->GetMethodID(klass, "controllerConstruct", "()J");
+		schedule_update_timer_method = env->GetMethodID(klass, "scheduleUpdateTimer", "(F)V");
+		application_field = env->GetFieldID(klass, "application", "J");
+		main_thread_handler_field = env->GetFieldID(klass, "mainThreadHandler", "Landroid/os/Handler;");
 		
 		jclass surface_class = env->FindClass("android/view/SurfaceHolder");
-		ick::jni::activity::surface_holder_get_surface_method =
-		env->GetMethodID(surface_class, "getSurface", "()Landroid/view/Surface;");
+		surface_holder_get_surface_method = env->GetMethodID(surface_class, "getSurface", "()Landroid/view/Surface;");
+		
+		jclass handler_class = env->FindClass("android/os/Handler");
+		handler_post_delayed_method = env->GetMethodID(handler_class, "postDelayed", "(Ljava/lang/Runnable;J)Z");
 	}
 	
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnCreate

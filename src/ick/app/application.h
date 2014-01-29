@@ -57,6 +57,8 @@ namespace ick{
 #ifdef ICK_ANDROID
 		bool prev_update_clock_enabled_;
 		double prev_update_clock_;
+		
+		jobject android_posting_update_task_;
 #endif
 		
 #if defined ICK_MAC && defined __OBJC__
@@ -107,7 +109,9 @@ namespace ick{
 		
 		void AndroidStartUpdate();
 		void AndroidStopUpdate();
-
+		
+		void AndroidPostUpdateTask(double delay);
+		void AndroidUpdateTask(JNIEnv * env, jobject task);
 		void AndroidUpdate();
 		
 		void AndroidSetEnv(JNIEnv * env, jobject activity);

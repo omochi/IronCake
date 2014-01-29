@@ -31,14 +31,14 @@ namespace ick{
 			}
 			
 			jobject Create(JNIEnv * env, const NativeFunction & function){
-				ICK_LOG_INFO("NativeTask Create\n");
+//				ICK_LOG_INFO("NativeTask Create\n");
 				StaticInit(env);
 				jobject task = env->NewObject(native_task_class, constructor);
 				SetNativeFunction(env, task, ICK_NEW(NativeFunction, function));
 				return task;
 			}
 			void Release(JNIEnv * env, jobject task){
-				ICK_LOG_INFO("NativeTask Release\n");
+//				ICK_LOG_INFO("NativeTask Release\n");
 				NativeFunction * function = GetNativeFunction(env, task);
 				if(function){
 					ICK_DELETE(function);

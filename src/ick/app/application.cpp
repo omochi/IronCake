@@ -117,6 +117,7 @@ namespace ick{
 		android_egl_config_  = NULL;
 		android_egl_context_ = NULL;
 		android_egl_surface_ = NULL;
+		android_posting_update_task_ = NULL;
 #endif
 		
 		master_thread_ = ICK_NEW(LoopThread);
@@ -247,19 +248,19 @@ namespace ick{
 		
 		AndroidSetEnv(NULL, NULL);
 	}
-	void hogehoge(JNIEnv * env, jobject obj){}
 	void Application::AndroidOnResume(){
 		android_activity_resumed_ = true;
 		prev_update_clock_enabled_ = false;
 		prev_update_clock_ = 0;
 		
-		jobject task = jni::native_task::Create(android_env_, jni::native_task::NativeFunction(hogehoge));
-		jni::native_task::Release(android_env_, task);
-		
-		AndroidStartUpdate();
+		if(android_egl_surface_){
+			AndroidStartUpdate();
+		}
 	}
 	void Application::AndroidOnPause(){
-		AndroidStopUpdate();
+		if(update_running_){
+			AndroidStopUpdate();
+		}
 		
 		android_activity_resumed_ = false;
 	}
@@ -275,36 +276,70 @@ namespace ick{
 		}
 		android_egl_surface_ = egl_surface;
 		
-		AndroidStartUpdate();
+		if(android_activity_resumed_){
+			AndroidStartUpdate();
+		}
 	}
 	void Application::AndroidOnSurfaceChanged(ANativeWindow * surface, int format, int width, int height){
 		ICK_LOG_INFO("SurfaceChanged: %d x %d", width, height);
 	}
 	void Application::AndroidOnSurfaceDestroyed(ANativeWindow * surface){
-		AndroidStopUpdate();
+		if(update_running_){
+			AndroidStopUpdate();
+		}
 		
 		if(android_egl_surface_){
 			AndroidReleaseEGLSurface();
 		}
 	}
 	
+
 	void Application::AndroidStartUpdate(){
-		if(!update_running_){
-			if(android_activity_resumed_ && android_egl_surface_){
-				update_running_ = true;
-				
-				//temp
-				AndroidUpdate();
-			}
-		}
+		if(update_running_){ ICK_ABORT("update is already running\n"); }
+		if(!android_activity_resumed_){ ICK_ABORT("activity is not resumed\n"); }
+		if(!android_egl_surface_){ ICK_ABORT("egl surface is not created\n"); }
+		
+		update_running_ = true;
+		
+		AndroidPostUpdateTask(0.0);
 	}
 	void Application::AndroidStopUpdate(){
-		if(update_running_){
-			update_running_ = false;
+		if(!update_running_){ ICK_ABORT("update is not running\n"); }
+
+		update_running_ = false;
+		
+		//すでに積まれているタスクを消す
+		if(android_posting_update_task_){
+			jni::native_task::Release(android_env_, android_posting_update_task_);
+			android_env_->DeleteGlobalRef(android_posting_update_task_);
+			android_posting_update_task_ = NULL;
+		}
+		
+	}
+	
+	void Application::AndroidPostUpdateTask(double delay){
+		if(android_posting_update_task_){ ICK_ABORT("update task is already posting\n"); }
+		
+		jobject task = jni::native_task::Create(android_env_, FunctionMake(this, &Application::AndroidUpdateTask));
+		android_posting_update_task_ = android_env_->NewGlobalRef(task);
+		
+		jobject handler = android_env_->GetObjectField(android_activity_, jni::activity::main_thread_handler_field);
+		if(!android_env_->CallBooleanMethod(handler, jni::activity::handler_post_delayed_method,
+											android_posting_update_task_,
+											static_cast<jlong>(delay * 1000)))
+		{
+			ICK_ABORT("update task post failed\n");
 		}
 	}
 	
+	void Application::AndroidUpdateTask(JNIEnv * env, jobject task){
+		android_posting_update_task_ = NULL;
+		jni::native_task::Release(env, task);
+		AndroidUpdate();
+	}
+	
 	void Application::AndroidUpdate(){
+		ICK_LOG_INFO("%s\n", __func__);
 		double start_clock = ClockGet();
 		
 		if(eglMakeCurrent(android_egl_display_,
@@ -316,8 +351,8 @@ namespace ick{
 		
 		double elapsed_time = ClockGet() - start_clock;
 		double sleep_time = Max<double>(0, 1.0 / 60.0 - elapsed_time);
-		
-		// android_env_->CallVoidMethod(android_activity_, jni::activity::schedule_update_timer_method, static_cast<float>(sleep_time));
+
+		AndroidPostUpdateTask(sleep_time);
 	}
 	
 	void Application::AndroidSetEnv(JNIEnv * env, jobject activity){

@@ -183,6 +183,7 @@ namespace ick{
 			ICK_ABORT("eglCreateContext failed\n");
 		}
 		android_egl_context_ = egl_context;
+
 	}
 	void Application::AndroidOnDestroy(){
 		if(!android_egl_display_){ ICK_ABORT("egl display has not been initialized\n"); }
@@ -232,7 +233,7 @@ namespace ick{
 		android_egl_surface_ = egl_surface;
 		
 		AndroidEGLMakeCurrent();
-		
+
 		if(eglSwapInterval(android_egl_display_, 0) == EGL_FALSE)
 		{
 			ICK_ABORT("eglSwapInterval failed\n");
@@ -308,7 +309,7 @@ namespace ick{
 		double start_clock = ClockGet();
 			
 		AndroidEGLMakeCurrent();
-		
+
 		controller_->OnUpdate();
 		
 		controller_->OnRender();
@@ -322,6 +323,10 @@ namespace ick{
 		double elapsed_time = ClockGet() - start_clock;
 		double sleep_time = Max<double>(0, 1.0 / 60.0 - elapsed_time);
 
+//		ICK_LOG_INFO("timer delay: %f\n", sleep_time);
+		
+		sleep_time = 0;
+		
 		AndroidPostUpdateTask(sleep_time);
 	}
 	

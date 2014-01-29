@@ -49,56 +49,8 @@ namespace ick{
 	}
 #endif
 
-#ifdef ICK_WINDOWS
-
-	void Application::WinSetupUpdateTimer(){
-		win_update_timer_queue_ = CreateTimerQueue();
-		if (!win_update_timer_queue_){
-			ICK_ABORT("CreateTimerQueue: %s\n", WindowsLastErrorGetDescription().cstr());
-		}
-		if (!CreateTimerQueueTimer(&win_update_timer_,
-			win_update_timer_queue_,
-			ApplicationWinUpdateTimerCallback,
-			static_cast<VOID *>(this),
-			0, 16,
-			WT_EXECUTEDEFAULT)){
-			ICK_ABORT("CreateTimerQueueTimer: %s\n", WindowsLastErrorGetDescription().cstr());
-		}
-	}
-	void Application::WinTeardownUpdateTimer(){
-		HANDLE wait_event = CreateEvent(NULL, FALSE, FALSE, NULL);
-		if (!wait_event){
-			ICK_ABORT("CreateEvent(timer wait): %s\n", WindowsLastErrorGetDescription().cstr());
-		}
-
-		if (!DeleteTimerQueueTimer(win_update_timer_queue_, win_update_timer_,wait_event)){
-			ICK_ABORT("DeleteTimerQueueTimer: %s\n", WindowsLastErrorGetDescription().cstr());
-		}
-
-		DWORD wait_ret = WaitForSingleObject(wait_event, INFINITE);
-		if (WindowsWaitResultGetObjectIndex(wait_ret, 1) == -1){
-			ICK_ABORT("Wait: %s\n",WindowsWaitResultGetDescription(wait_ret, 1).cstr());
-		}
-
-		if (!CloseHandle(wait_event)){
-			ICK_ABORT("CloseHandle(timer wait): %s\n", WindowsLastErrorGetDescription().cstr());
-		}
-
-		if (!DeleteTimerQueue(win_update_timer_queue_)){
-			ICK_ABORT("DeleteTimerQueue: %s\n", WindowsLastErrorGetDescription().cstr());
-		}
-	}
-
-	VOID NTAPI ApplicationWinUpdateTimerCallback(PVOID lpParameter, BOOLEAN TimerOrWaitFired){
-		Application * thiz = static_cast<Application *>(lpParameter);
-		thiz->SignalUpdateTime();
-	}
-
-#endif
-
 	Application::Application(ApplicationController * controller, bool controller_release):
-	controller_(controller),controller_release_(controller_release),
-	running_(false)
+	controller_(controller),controller_release_(controller_release)
 	{
 		ICK_ASSERT(controller);
 		controller_->application_ = this;
@@ -119,19 +71,10 @@ namespace ick{
 		android_egl_surface_ = NULL;
 		android_posting_update_task_ = NULL;
 #endif
-		
-		master_thread_ = ICK_NEW(LoopThread);
-		master_thread_->set_name(String("master"));
-		master_thread_->Start();
+
 	}
 	
-	Application::~Application(){
-		if(running_){ ICK_ABORT("has not terminated\n"); }
-		
-		master_thread_->PostQuit();
-		master_thread_->Join();
-		ICK_DELETE(master_thread_);
-		
+	Application::~Application(){		
 		ick::PropertyClear(controller_, controller_release_);
 	}
 	
@@ -375,139 +318,6 @@ namespace ick{
 	}
 #endif
 
-	void Application::Launch(){
-		master_thread_->Post(FunctionMake(this, &Application::DoLaunch));
-		{
-			ICK_SCOPED_LOCK(running_mutex_);
-			while(!running_){ running_mutex_.Wait(); }
-		}
-	}
-	void Application::Terminate(){
-		master_thread_->Post(FunctionMake(this, &Application::DoTerminate));
-		{
-			ICK_SCOPED_LOCK(running_mutex_);
-			while(running_){ running_mutex_.Wait(); }
-		}
-	}
-	
-	void Application::SignalUpdateTime(){
-		ICK_SCOPED_LOCK(update_mutex_);
-		
-		if(update_running_){
-			update_deadline_missed_ = true;
-		}else{
-			RequestUpdate();
-		}
-	}
-	
-	void Application::RequestUpdate(){
-		ICK_SCOPED_LOCK(update_mutex_);
-		update_running_ = true;
-		update_deadline_missed_ = false;
-		
-		master_thread_->Post(FunctionMake(this, &Application::Update));
-	}
-	
-	void Application::RequestRender(){
-		ICK_SCOPED_LOCK(render_mutex_);
-		render_running_ = true;
-	
-		render_thread_->Post(FunctionMake(this, &Application::Render));
-	}
-	
-	void Application::DoLaunch(){
-		if(running_){ ICK_ABORT("already launched\n"); }
-		update_running_ = false;
-		update_deadline_missed_ = false;
-		render_running_ = false;
-		
-		render_thread_ = ICK_NEW(LoopThread);
-		render_thread_->set_name(String("render"));
-		render_thread_->Start();
-		render_thread_->Post(FunctionMake(this, &Application::InitRender));
-		
-#ifdef ICK_MAC
-		MacSetupDisplayLink();
-#endif
-#ifdef ICK_WINDOWS
-		WinSetupUpdateTimer();
-#endif
-		
-		{
-			ICK_SCOPED_LOCK(running_mutex_);
-			running_ = true;
-			running_mutex_.Broadcast();
-		}
-		
-		controller_->DidLaunch();
-	}
-	
-	void Application::DoTerminate(){
-		if(!running_){ ICK_ABORT("has not launched\n"); }
-		
-		controller_->WillTerminate();
-		
-#ifdef ICK_MAC
-		MacTeardownDisplayLink();
-#endif
-#ifdef ICK_WINDOWS
-		WinTeardownUpdateTimer();
-#endif
-		
-		render_thread_->PostQuit();
-		render_thread_->Join();
-		ICK_DELETE(render_thread_);
-		
-		{
-			ICK_SCOPED_LOCK(running_mutex_);
-			running_ = false;
-			running_mutex_.Broadcast();
-		}
-	}
-	
-	void Application::Update(){
-		{
-			ICK_SCOPED_LOCK(running_mutex_);
-			if(!running_){ return; }
-		}
-		
-		controller_->OnUpdate();
-		
-		{
-			ICK_SCOPED_LOCK(render_mutex_);
-			RequestRender();
-			while(render_running_){ render_mutex_.Wait(); }
-		}
-
-		{
-			ICK_SCOPED_LOCK(update_mutex_);
-			if(update_deadline_missed_){
-				RequestUpdate();
-			}else{
-				update_running_ = false;
-			}
-		}
-	}
-	
-	void Application::InitRender(){
-#ifdef ICK_APP_GLFW
-		glfwSwapInterval(0);
-		glfwMakeContextCurrent(glfw_window_);
-#endif
-	}
-	
-	void Application::Render(){
-		controller_->OnRender();
-		
-#ifdef ICK_APP_GLFW
-		glfwSwapBuffers(glfw_window_);
-#endif
-		{
-			ICK_SCOPED_LOCK(render_mutex_);
-			render_running_ = false;
-			render_mutex_.Broadcast();
-		}
-	}
 	
 }
 

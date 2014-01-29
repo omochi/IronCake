@@ -13,7 +13,6 @@ struct ANativeWindow;
 #endif
 
 namespace ick{
-	class LoopThread;
 	class ApplicationController;
 		
 #ifdef ICK_APP_GLFW
@@ -25,20 +24,8 @@ namespace ick{
 		ApplicationController * controller_;
 		bool controller_release_;
 		
-		Mutex running_mutex_;
-		bool running_;
-		
-		LoopThread * master_thread_;
-		
-		Mutex update_mutex_;
 		bool update_running_;
-		bool update_deadline_missed_;
-		
-		LoopThread * render_thread_;
-		
-		Mutex render_mutex_;
-		bool render_running_;
-		
+
 #ifdef ICK_APP_GLFW
 		GLFWwindow * glfw_window_;
 #endif
@@ -52,40 +39,8 @@ namespace ick{
 		EGLConfig  android_egl_config_;
 		EGLContext android_egl_context_;
 		EGLSurface android_egl_surface_;
-#endif
-
-#ifdef ICK_ANDROID
-		bool prev_update_clock_enabled_;
-		double prev_update_clock_;
 		
 		jobject android_posting_update_task_;
-#endif
-		
-#if defined ICK_MAC && defined __OBJC__
-		CVDisplayLinkRef mac_display_link_;
-		
-		void MacSetupDisplayLink();
-		void MacTeardownDisplayLink();
-		
-		friend CVReturn
-		ApplicationMacDisplayLinkOutputCallback(CVDisplayLinkRef displayLink,
-												const CVTimeStamp *inNow,
-												const CVTimeStamp *inOutputTime,
-												CVOptionFlags flagsIn,
-												CVOptionFlags *flagsOut,
-												void *displayLinkContext);
-#endif
-
-#if defined ICK_WINDOWS
-		HANDLE win_update_timer_queue_;
-		HANDLE win_update_timer_;
-
-		void WinSetupUpdateTimer();
-		void WinTeardownUpdateTimer();
-
-		friend VOID NTAPI 
-			ApplicationWinUpdateTimerCallback(
-				PVOID lpParameter, BOOLEAN TimerOrWaitFired);
 #endif
 
 	public:
@@ -124,20 +79,6 @@ namespace ick{
 #ifdef ICK_ANDROID
 		void AndroidReleaseEGL();
 #endif
-
-		//thread: any
-		void SignalUpdateTime();
-		void RequestUpdate();
-		void RequestRender();
-		
-		//thread: master
-		void DoLaunch();
-		void DoTerminate();
-		void Update();
-		
-		//thread: render
-		void InitRender();
-		void Render();
 
 	};
 }

@@ -121,6 +121,18 @@ namespace ick{
 #endif
 	
 #ifdef ICK_ANDROID
+	void Application::AndroidSetEnv(JNIEnv * env, jobject activity){
+		if(android_env_){
+			android_env_->DeleteGlobalRef(android_activity_);
+			android_activity_ = NULL;
+			android_env_ = NULL;
+		}
+		if(env){
+			android_env_ = env;
+			android_activity_ = env->NewGlobalRef(activity);
+		}
+	}
+	
 	void Application::AndroidOnCreate(){
 		//ユーザinit
 		
@@ -296,18 +308,6 @@ namespace ick{
 		double sleep_time = Max<double>(0, 1.0 / 60.0 - elapsed_time);
 
 		AndroidPostUpdateTask(sleep_time);
-	}
-	
-	void Application::AndroidSetEnv(JNIEnv * env, jobject activity){
-		if(android_env_){
-			android_env_->DeleteGlobalRef(android_activity_);
-			android_activity_ = NULL;
-			android_env_ = NULL;
-		}
-		if(env){
-			android_env_ = env;
-			android_activity_ = env->NewGlobalRef(activity);
-		}
 	}
 	
 	void Application::AndroidReleaseEGLSurface(){

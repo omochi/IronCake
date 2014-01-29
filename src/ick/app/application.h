@@ -54,6 +54,8 @@ namespace ick{
 		void GLFWMain();
 #endif
 #ifdef ICK_ANDROID
+		void AndroidSetEnv(JNIEnv * env, jobject activity);
+		
 		void AndroidOnCreate();
 		void AndroidOnDestroy();
 		void AndroidOnResume();
@@ -69,16 +71,10 @@ namespace ick{
 		void AndroidUpdateTask(JNIEnv * env, jobject task);
 		void AndroidUpdate();
 		
-		void AndroidSetEnv(JNIEnv * env, jobject activity);
 		void AndroidReleaseEGLSurface();
 #endif
 
-		void Launch();
-		void Terminate();
 	private:
-#ifdef ICK_ANDROID
-		void AndroidReleaseEGL();
-#endif
 
 	};
 }

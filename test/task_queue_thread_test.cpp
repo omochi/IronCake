@@ -1,6 +1,6 @@
 ﻿#include "test_base.h"
 
-class LoopThreadTest : public TestBase{
+class TaskQueueThreadTest : public TestBase{
 protected:
 	virtual void SetUp(){
 		TestBase::SetUp();
@@ -17,23 +17,23 @@ void f1(int * x){
 	EXPECT_EQ(ox + 1, *x);
 }
 
-void f1_post(ick::LoopThread * lp, int * x, int n){
+void f1_post(ick::TaskQueueThread * lp, int * x, int n){
 	for(int i=0;i<n;i++){
-		lp->Post(ick::FunctionBind1(f1, x));
+		lp->PostTask(ick::FunctionBind1(f1, x));
 		ick::Sleep(0.001);
 	}
 }
 
-TEST_F(LoopThreadTest, test1){
-	ick::LoopThread * loop_thread = ICK_NEW(ick::LoopThread);
-	loop_thread->Start();
+TEST_F(TaskQueueThreadTest, test1){
+	ick::TaskQueueThread * task_thread = ICK_NEW(ick::TaskQueueThread);
+	task_thread->Start();
 	
 	ick::Array<ick::Thread *> ps(16);
 	int x = 0;
 	
 	//インクリメントを1つのスレッドから10個投げ込む
 	for (int i = 0; i < ps.num(); i++){
-		ps[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind3(f1_post, loop_thread, &x, 10));
+		ps[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind3(f1_post, task_thread, &x, 10));
 		ps[i]->Start();
 	}
 	
@@ -42,9 +42,9 @@ TEST_F(LoopThreadTest, test1){
 		ICK_DELETE(ps[i]);
 	}
 	
-	loop_thread->PostQuit();
-	loop_thread->Join();
-	ICK_DELETE(loop_thread);
+	task_thread->PostQuit();
+	task_thread->Join();
+	ICK_DELETE(task_thread);
 	
 	EXPECT_EQ(ps.num() * 10, x);
 

@@ -43,17 +43,17 @@
 		D60285411861E64200CE5EC5 /* function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D602853E1861E64200CE5EC5 /* function.cpp */; };
 		D60285421861E64200CE5EC5 /* function.h in Headers */ = {isa = PBXBuildFile; fileRef = D602853F1861E64200CE5EC5 /* function.h */; };
 		D625B03A186C7B6800DF7CCF /* libIronCakeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE3184CE84600404D8D /* libIronCakeMac.a */; };
-		D625B03D186C96AC00DF7CCF /* loop_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D625B03B186C96AC00DF7CCF /* loop_thread.cpp */; };
-		D625B03E186C96AC00DF7CCF /* loop_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D625B03B186C96AC00DF7CCF /* loop_thread.cpp */; };
-		D625B03F186C96AC00DF7CCF /* loop_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = D625B03C186C96AC00DF7CCF /* loop_thread.h */; };
+		D625B03D186C96AC00DF7CCF /* task_queue_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D625B03B186C96AC00DF7CCF /* task_queue_thread.cpp */; };
+		D625B03E186C96AC00DF7CCF /* task_queue_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D625B03B186C96AC00DF7CCF /* task_queue_thread.cpp */; };
+		D625B03F186C96AC00DF7CCF /* task_queue_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = D625B03C186C96AC00DF7CCF /* task_queue_thread.h */; };
 		D625B042186DD25800DF7CCF /* property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D625B040186DD25800DF7CCF /* property.cpp */; };
 		D625B043186DD25800DF7CCF /* property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D625B040186DD25800DF7CCF /* property.cpp */; };
 		D625B044186DD25800DF7CCF /* property.h in Headers */ = {isa = PBXBuildFile; fileRef = D625B041186DD25800DF7CCF /* property.h */; };
 		D63ABDC91855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
 		D63ABDCA1855FCAC004349F8 /* string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D63ABDC71855FCAC004349F8 /* string.cpp */; };
 		D63ABDCB1855FCAC004349F8 /* string.h in Headers */ = {isa = PBXBuildFile; fileRef = D63ABDC81855FCAC004349F8 /* string.h */; };
-		D66297EF186DE4C0004060B9 /* loop_thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297EE186DE4C0004060B9 /* loop_thread_test.cpp */; };
-		D66297F0186DE4C0004060B9 /* loop_thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297EE186DE4C0004060B9 /* loop_thread_test.cpp */; };
+		D66297EF186DE4C0004060B9 /* task_queue_thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297EE186DE4C0004060B9 /* task_queue_thread_test.cpp */; };
+		D66297F0186DE4C0004060B9 /* task_queue_thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66297EE186DE4C0004060B9 /* task_queue_thread_test.cpp */; };
 		D66297F6186DECD9004060B9 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = D66297F3186DECD9004060B9 /* application.h */; };
 		D6629803186DFA37004060B9 /* application.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6629802186DFA37004060B9 /* application.mm */; };
 		D6629804186DFA37004060B9 /* application.mm in Sources */ = {isa = PBXBuildFile; fileRef = D6629802186DFA37004060B9 /* application.mm */; };
@@ -117,6 +117,7 @@
 		D68A57901892BCCF006231EE /* startup.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A578D1892BCCF006231EE /* startup.h */; };
 		D68A57951892C6E5006231EE /* glfw3.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57931892C6E5006231EE /* glfw3.h */; };
 		D68A57961892C6E5006231EE /* glfw3native.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57941892C6E5006231EE /* glfw3native.h */; };
+		D68A579B189AAC50006231EE /* task_postable.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A5798189AAC50006231EE /* task_postable.h */; };
 		D6B62AEF1863454500903540 /* function_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AEE1863454500903540 /* function_test.cpp */; };
 		D6B62AF01863454500903540 /* function_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AEE1863454500903540 /* function_test.cpp */; };
 		D6B62AF41863547F00903540 /* functor_holder.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62AF31863547F00903540 /* functor_holder.h */; };
@@ -213,13 +214,13 @@
 		D602853E1861E64200CE5EC5 /* function.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = function.cpp; sourceTree = "<group>"; };
 		D602853F1861E64200CE5EC5 /* function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function.h; sourceTree = "<group>"; };
 		D6079B7E1858C01600DFDEAA /* TestMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestMac; sourceTree = BUILT_PRODUCTS_DIR; };
-		D625B03B186C96AC00DF7CCF /* loop_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = loop_thread.cpp; sourceTree = "<group>"; };
-		D625B03C186C96AC00DF7CCF /* loop_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loop_thread.h; sourceTree = "<group>"; };
+		D625B03B186C96AC00DF7CCF /* task_queue_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = task_queue_thread.cpp; sourceTree = "<group>"; };
+		D625B03C186C96AC00DF7CCF /* task_queue_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = task_queue_thread.h; sourceTree = "<group>"; };
 		D625B040186DD25800DF7CCF /* property.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = property.cpp; sourceTree = "<group>"; };
 		D625B041186DD25800DF7CCF /* property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property.h; sourceTree = "<group>"; };
 		D63ABDC71855FCAC004349F8 /* string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string.cpp; sourceTree = "<group>"; };
 		D63ABDC81855FCAC004349F8 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
-		D66297EE186DE4C0004060B9 /* loop_thread_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = loop_thread_test.cpp; path = ../test/loop_thread_test.cpp; sourceTree = "<group>"; };
+		D66297EE186DE4C0004060B9 /* task_queue_thread_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = task_queue_thread_test.cpp; path = ../test/task_queue_thread_test.cpp; sourceTree = "<group>"; };
 		D66297F2186DECD9004060B9 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		D66297F3186DECD9004060B9 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		D6629802186DFA37004060B9 /* application.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = application.mm; sourceTree = "<group>"; };
@@ -271,6 +272,7 @@
 		D68A578D1892BCCF006231EE /* startup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = startup.h; sourceTree = "<group>"; };
 		D68A57931892C6E5006231EE /* glfw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
 		D68A57941892C6E5006231EE /* glfw3native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
+		D68A5798189AAC50006231EE /* task_postable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = task_postable.h; sourceTree = "<group>"; };
 		D6B62AEE1863454500903540 /* function_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = function_test.cpp; path = ../test/function_test.cpp; sourceTree = "<group>"; };
 		D6B62AF31863547F00903540 /* functor_holder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = functor_holder.h; sourceTree = "<group>"; };
 		D6B62AF51863570700903540 /* function_bind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind.h; sourceTree = "<group>"; };
@@ -393,7 +395,7 @@
 				D6B62AEE1863454500903540 /* function_test.cpp */,
 				D60285331860D4D100CE5EC5 /* thread_test.cpp */,
 				D6B62B03186C655A00903540 /* mutex_test.cpp */,
-				D66297EE186DE4C0004060B9 /* loop_thread_test.cpp */,
+				D66297EE186DE4C0004060B9 /* task_queue_thread_test.cpp */,
 			);
 			name = test;
 			sourceTree = "<group>";
@@ -418,8 +420,9 @@
 				D60285141860C22C00CE5EC5 /* thread.cpp */,
 				D6B62AFA18689ED400903540 /* function_thread.h */,
 				D6B62AF918689ED400903540 /* function_thread.cpp */,
-				D625B03C186C96AC00DF7CCF /* loop_thread.h */,
-				D625B03B186C96AC00DF7CCF /* loop_thread.cpp */,
+				D68A5798189AAC50006231EE /* task_postable.h */,
+				D625B03C186C96AC00DF7CCF /* task_queue_thread.h */,
+				D625B03B186C96AC00DF7CCF /* task_queue_thread.cpp */,
 			);
 			path = thread;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				D662981B186F3462004060B9 /* application_platform.h in Headers */,
 				D667FC7C184E490C00404D8D /* cstr.h in Headers */,
 				D667FC72184E490C00404D8D /* allocator.h in Headers */,
+				D68A579B189AAC50006231EE /* task_postable.h in Headers */,
 				D667FC7F184E490C00404D8D /* linked_list.h in Headers */,
 				D667FC83184E490C00404D8D /* macro.h in Headers */,
 				D625B044186DD25800DF7CCF /* property.h in Headers */,
@@ -653,7 +657,7 @@
 				D667FC86184E490C00404D8D /* memory.h in Headers */,
 				D667FCA918523C9600404D8D /* build.h in Headers */,
 				D60285181860C22C00CE5EC5 /* thread.h in Headers */,
-				D625B03F186C96AC00DF7CCF /* loop_thread.h in Headers */,
+				D625B03F186C96AC00DF7CCF /* task_queue_thread.h in Headers */,
 				D602851F1860C9F500CE5EC5 /* error.h in Headers */,
 				D667FC79184E490C00404D8D /* crt.h in Headers */,
 				D667FC76184E490C00404D8D /* compiler.h in Headers */,
@@ -808,7 +812,7 @@
 				D60284EA1860B31B00CE5EC5 /* linked_list_test.cpp in Sources */,
 				D60284EB1860B31B00CE5EC5 /* string_test.cpp in Sources */,
 				D6B62B08186C655A00903540 /* test_base.cpp in Sources */,
-				D66297F0186DE4C0004060B9 /* loop_thread_test.cpp in Sources */,
+				D66297F0186DE4C0004060B9 /* task_queue_thread_test.cpp in Sources */,
 				D60284E91860B31B00CE5EC5 /* array_test.cpp in Sources */,
 				D60285371860D4D500CE5EC5 /* thread_test.cpp in Sources */,
 			);
@@ -825,7 +829,7 @@
 				D60284E61860B31B00CE5EC5 /* linked_list_test.cpp in Sources */,
 				D6B62B07186C655A00903540 /* test_base.cpp in Sources */,
 				D60285061860BA7700CE5EC5 /* main.cpp in Sources */,
-				D66297EF186DE4C0004060B9 /* loop_thread_test.cpp in Sources */,
+				D66297EF186DE4C0004060B9 /* task_queue_thread_test.cpp in Sources */,
 				D60284E51860B31B00CE5EC5 /* array_test.cpp in Sources */,
 				D60285361860D4D500CE5EC5 /* thread_test.cpp in Sources */,
 			);
@@ -852,7 +856,7 @@
 				D63ABDC91855FCAC004349F8 /* string.cpp in Sources */,
 				D667FCA2185231AE00404D8D /* math.cpp in Sources */,
 				D667FC6D184E490C00404D8D /* abort.cpp in Sources */,
-				D625B03D186C96AC00DF7CCF /* loop_thread.cpp in Sources */,
+				D625B03D186C96AC00DF7CCF /* task_queue_thread.cpp in Sources */,
 				D667FC981852232300404D8D /* array.cpp in Sources */,
 				D6629806186DFAA7004060B9 /* application.cpp in Sources */,
 				D6B62B10186C657D00903540 /* time.cpp in Sources */,
@@ -885,7 +889,7 @@
 				D63ABDCA1855FCAC004349F8 /* string.cpp in Sources */,
 				D667FCA3185231AE00404D8D /* math.cpp in Sources */,
 				D667FC6E184E490C00404D8D /* abort.cpp in Sources */,
-				D625B03E186C96AC00DF7CCF /* loop_thread.cpp in Sources */,
+				D625B03E186C96AC00DF7CCF /* task_queue_thread.cpp in Sources */,
 				D667FC991852232300404D8D /* array.cpp in Sources */,
 				D6629805186DFAA6004060B9 /* application.cpp in Sources */,
 				D6B62B11186C657D00903540 /* time.cpp in Sources */,

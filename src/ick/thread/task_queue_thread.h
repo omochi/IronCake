@@ -1,30 +1,29 @@
 ﻿#pragma once
 
 #include "../base/linked_list.h"
-#include "../function/function.h"
 #include "mutex.h"
 #include "thread.h"
+#include "task_postable.h"
 
 //	終了する際は、PostQuit(), Join()
 
 namespace ick{
-	class LoopThread : public Thread {
+	class TaskQueueThread : public Thread, public TaskPostable {
 	private:
 		Mutex mutex_;
 		LinkedList<Function<void (*)()> > task_queue_;
 		bool do_quit_;
 		
-		//強制キャンセルが入る余地を残す
-		bool PickTask(Function<void (*)()> * task);
+		Function<void (*)()> PickTask();
 		
-		friend void LoopThreadQuit(LoopThread * thiz);
+		void Quit();
 	public:
-		LoopThread();
-		virtual ~LoopThread();
+		TaskQueueThread();
+		virtual ~TaskQueueThread();
 		
 		virtual void Run();
 		
-		void Post(const Function<void (*)()> & task);
+		void PostTask(const Function<void (*)()> & task);
 
 		void PostQuit();
 

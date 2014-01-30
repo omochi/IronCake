@@ -14,7 +14,9 @@ struct ANativeWindow;
 
 namespace ick{
 	class ApplicationController;
-		
+	
+	class LoopThread;
+	
 #ifdef ICK_APP_GLFW
 	int ApplicationGLFWMain(int argc, const char * argv [], ApplicationController * (*controller_constructor)() );
 #endif

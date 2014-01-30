@@ -36,7 +36,8 @@
 #include "thread/runnable.h"
 #include "thread/thread.h"
 #include "thread/function_thread.h"
-#include "thread/loop_thread.h"
+#include "thread/task_postable.h"
+#include "thread/task_queue_thread.h"
 
 #ifdef ICK_WINDOWS
 #	include "windows/tchar.h"

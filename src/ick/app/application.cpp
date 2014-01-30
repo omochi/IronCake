@@ -6,7 +6,7 @@
 #include "../base/math.h"
 #include "../function/function.h"
 #include "../thread/scoped_lock.h"
-#include "../thread/loop_thread.h"
+#include "../thread/task_queue_thread.h"
 
 #ifdef ICK_WINDOWS
 #	include "../windows/error.h"
@@ -287,7 +287,7 @@ namespace ick{
 	void Application::AndroidPostUpdateTask(double delay){
 		if(android_posting_update_task_){ ICK_ABORT("update task is already posting\n"); }
 		
-		jobject task = jni::native_task::Create(android_env_, FunctionMake(this, &Application::AndroidUpdateTask));
+		jobject task = jni::native_task::Create(android_env_, FunctionMake(this, &Application::AndroidUpdateTask), true);
 		android_posting_update_task_ = android_env_->NewGlobalRef(task);
 		
 		jobject handler = android_env_->GetObjectField(android_activity_, jni::activity::main_thread_handler_field);
@@ -301,7 +301,6 @@ namespace ick{
 	
 	void Application::AndroidUpdateTask(JNIEnv * env, jobject task){
 		android_posting_update_task_ = NULL;
-		jni::native_task::Release(env, task);
 		AndroidUpdate();
 	}
 	

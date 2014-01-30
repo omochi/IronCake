@@ -14,7 +14,7 @@ LOCAL_EXPORT_C_INCLUDES += $(MY_SRC_DIR)
 LOCAL_LDLIBS += -llog
 LOCAL_LDLIBS += -landroid
 LOCAL_LDLIBS += -lEGL
-LOCAL_LDLIBS += -lGLESv2
+
 
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/base/allocator.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/base/debug_allocator.cpp
@@ -38,13 +38,14 @@ LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/mutex.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/scoped_lock.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/thread.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/function_thread.cpp
-LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/loop_thread.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/task_queue_thread.cpp
 
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/app/application.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/app/application_controller.cpp
 
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/android/activity.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/android/native_task.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/android/android_handler.cpp
 
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/ick.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/startup.cpp

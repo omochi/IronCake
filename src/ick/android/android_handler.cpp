@@ -23,6 +23,15 @@ namespace ick{
 	AndroidHandler::~AndroidHandler(){
 		{
 			ICK_SCOPED_LOCK(mutex_);
+			//未実行タスクを解放しちゃう
+			while(true){
+				LinkedList<jobject>::Node * node = posting_tasks_.first();
+				if(!node){ break; }
+				jni::native_task::Release(env_, node->value());
+				env_->DeleteGlobalRef(node->value());
+				posting_tasks_.Remove(node);
+			}
+			
 			ICK_LOG_INFO("posting_tasks_: %d\n",posting_tasks_.num());
 		}
 		env_->DeleteGlobalRef(handler_);

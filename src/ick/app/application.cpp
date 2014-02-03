@@ -222,6 +222,7 @@ namespace ick{
 		}
 		android_egl_display_ = NULL;
 		
+		android_render_task_posting_ = false;
 		render_thread_->PostTask(FunctionMake(this, &Application::AndroidRenderThreadFinalize));
 		render_thread_->PostQuit();
 		render_thread_->Join();

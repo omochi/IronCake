@@ -39,8 +39,9 @@ namespace ick{
 	};
 	
 	template <typename T> class LinkedList {
-	private:
+	public:
 		typedef LinkedListNode<T> Node;
+	private:
 		Allocator * allocator_;
 		int num_;
 		Node * first_;

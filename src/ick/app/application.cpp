@@ -16,6 +16,7 @@
 #ifdef ICK_ANDROID
 #	include "../android/activity.h"
 #	include "../android/native_task.h"
+#	include "../android/android_handler.h"
 #endif
 
 #include "application_controller.h"
@@ -69,7 +70,9 @@ namespace ick{
 		android_egl_config_  = NULL;
 		android_egl_context_ = NULL;
 		android_egl_surface_ = NULL;
-		android_posting_update_task_ = NULL;
+		
+		main_thread_ = NULL;
+		android_update_task_posting_ = false;
 #endif
 
 	}
@@ -137,6 +140,10 @@ namespace ick{
 	}
 	
 	void Application::AndroidOnCreate(){
+		
+		jobject main_thread_handler = android_env_->GetObjectField(android_activity_, jni::activity::main_thread_handler_field);
+		main_thread_ = ICK_NEW(AndroidHandler, android_env_, main_thread_handler);
+		
 		controller_->DidLaunch();
 		
 		if(android_egl_display_){ ICK_ABORT("egl display already initialized\n"); }
@@ -204,6 +211,10 @@ namespace ick{
 		}
 		android_egl_display_ = NULL;
 		
+		android_update_task_posting_ = false;
+		ICK_DELETE(main_thread_);
+		main_thread_ = NULL;
+		
 		AndroidSetEnv(NULL, NULL);
 	}
 	void Application::AndroidOnResume(){
@@ -268,40 +279,29 @@ namespace ick{
 		
 		update_running_ = true;
 		
-		AndroidPostUpdateTask(0.0);
+		if(!android_update_task_posting_){
+			AndroidPostUpdateTask(0.0);
+		}
 	}
 	void Application::AndroidStopUpdate(){
 		if(!update_running_){ ICK_ABORT("update is not running\n"); }
 
 		update_running_ = false;
-		
-		//すでに積まれているタスクを消す
-		if(android_posting_update_task_){
-			jni::native_task::Release(android_env_, android_posting_update_task_);
-			android_env_->DeleteGlobalRef(android_posting_update_task_);
-			android_posting_update_task_ = NULL;
-		}
-		
+		android_update_task_posting_ = false;
 	}
 	
 	void Application::AndroidPostUpdateTask(double delay){
-		if(android_posting_update_task_){ ICK_ABORT("update task is already posting\n"); }
-		
-		jobject task = jni::native_task::Create(android_env_, FunctionMake(this, &Application::AndroidUpdateTask), true);
-		android_posting_update_task_ = android_env_->NewGlobalRef(task);
-		
-		jobject handler = android_env_->GetObjectField(android_activity_, jni::activity::main_thread_handler_field);
-		if(!android_env_->CallBooleanMethod(handler, jni::activity::handler_post_delayed_method,
-											android_posting_update_task_,
-											static_cast<jlong>(delay * 1000)))
-		{
-			ICK_ABORT("update task post failed\n");
-		}
+		android_update_task_posting_ = true;
+		main_thread_->PostTask(FunctionMake(this, &Application::AndroidUpdateTask));
 	}
-	
-	void Application::AndroidUpdateTask(JNIEnv * env, jobject task){
-		android_posting_update_task_ = NULL;
-		AndroidUpdate();
+
+	void Application::AndroidUpdateTask(){
+		ICK_LOG_INFO("%s\n", __func__);
+		if(android_update_task_posting_){
+			android_update_task_posting_ = false;
+			AndroidUpdate();
+		}
+
 	}
 	
 	void Application::AndroidUpdate(){

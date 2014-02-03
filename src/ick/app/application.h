@@ -14,8 +14,8 @@ struct ANativeWindow;
 
 namespace ick{
 	class ApplicationController;
-	
 	class LoopThread;
+	class AndroidHandler;
 	
 #ifdef ICK_APP_GLFW
 	int ApplicationGLFWMain(int argc, const char * argv [], ApplicationController * (*controller_constructor)() );
@@ -41,8 +41,10 @@ namespace ick{
 		EGLConfig  android_egl_config_;
 		EGLContext android_egl_context_;
 		EGLSurface android_egl_surface_;
+
 		
-		jobject android_posting_update_task_;
+		AndroidHandler * main_thread_;
+		bool android_update_task_posting_;
 #endif
 
 	public:
@@ -70,7 +72,7 @@ namespace ick{
 		void AndroidStopUpdate();
 		
 		void AndroidPostUpdateTask(double delay);
-		void AndroidUpdateTask(JNIEnv * env, jobject task);
+		void AndroidUpdateTask();
 		void AndroidUpdate();
 		
 		void AndroidEGLMakeCurrent();

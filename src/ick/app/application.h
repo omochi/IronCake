@@ -90,8 +90,6 @@ namespace ick{
 		void AndroidUpdateTask();
 		void AndroidUpdate();
 		
-		void AndroidRenderThreadInitialize();
-		void AndroidRenderThreadFinalize();
 		void AndroidRenderTask();
 
 		void AndroidEGLMakeCurrent();

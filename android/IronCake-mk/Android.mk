@@ -47,6 +47,7 @@ LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/app/application_controller.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/android/activity.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/android/native_task.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/android/android_handler.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/android/thread.cpp
 
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/ick.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/startup.cpp

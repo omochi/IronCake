@@ -18,6 +18,7 @@
 #	include "../android/activity.h"
 #	include "../android/native_task.h"
 #	include "../android/android_handler.h"
+#	include "../android/thread.h"
 #endif
 
 #include "application_controller.h"
@@ -152,7 +153,7 @@ namespace ick{
 		
 		render_thread_ = ICK_NEW(TaskQueueThread);
 		render_thread_->Start();
-		render_thread_->PostTask(FunctionMake(this, &Application::AndroidRenderThreadInitialize));
+		render_thread_->PostTask(FunctionBind1(&jni::AttachCurrentThread, android_vm_));
 		
 		controller_->DidLaunch();
 		
@@ -221,7 +222,7 @@ namespace ick{
 		}
 		android_egl_display_ = NULL;
 		
-		render_thread_->PostTask(FunctionMake(this, &Application::AndroidRenderThreadFinalize));
+		render_thread_->PostTask(FunctionBind1(&jni::DetachCurrentThread, android_vm_));
 		render_thread_->PostQuit();
 		render_thread_->Join();
 		ick::PropertyClear(render_thread_);
@@ -324,31 +325,7 @@ namespace ick{
 
 		render_thread_->PostTask(FunctionMake(this, &Application::AndroidRenderTask));
 	}
-	
-	void Application::AndroidRenderThreadInitialize(){
-		ICK_LOG_INFO("%s\n", __func__);
-		JNIEnv * env;
-		if(android_vm_->AttachCurrentThread(&env, NULL) != JNI_OK){
-			ICK_ABORT("jni AttachCurrentThread failed\n");
-		}
-	}
-	void Application::AndroidRenderThreadFinalize(){
-		ICK_LOG_INFO("%s\n", __func__);
-		if(android_vm_->DetachCurrentThread() != JNI_OK){
-			ICK_ABORT("jni DetachCurrentThread failed\n");
-		}
-	}
 
-	void Application::AndroidRenderTask(){
-		AndroidEGLMakeCurrent();
-		if(eglSwapBuffers(android_egl_display_, android_egl_surface_) == EGL_FALSE){
-			ICK_ABORT("eglSwapBuffers failed 0x%04x\n", eglGetError());
-		}
-		AndroidEGLClearCurrent();
-
-		main_thread_->PostTask(FunctionMake(this, &Application::AndroidPostSingleUpdateTask));
-	}
-		
 	void Application::AndroidEGLMakeCurrent(){
 		if(eglMakeCurrent(android_egl_display_,
 						  android_egl_surface_, android_egl_surface_,
@@ -376,6 +353,18 @@ namespace ick{
 		}
 		android_egl_surface_ = NULL;
 	}
+	
+	
+	void Application::AndroidRenderTask(){
+		AndroidEGLMakeCurrent();
+		if(eglSwapBuffers(android_egl_display_, android_egl_surface_) == EGL_FALSE){
+			ICK_ABORT("eglSwapBuffers failed 0x%04x\n", eglGetError());
+		}
+		AndroidEGLClearCurrent();
+		
+		main_thread_->PostTask(FunctionMake(this, &Application::AndroidPostSingleUpdateTask));
+	}
+	
 #endif
 
 	

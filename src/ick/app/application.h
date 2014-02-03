@@ -14,7 +14,7 @@ struct ANativeWindow;
 
 namespace ick{
 	class ApplicationController;
-	class LoopThread;
+	class TaskQueueThread;
 	class AndroidHandler;
 	
 #ifdef ICK_APP_GLFW
@@ -27,12 +27,17 @@ namespace ick{
 		bool controller_release_;
 		
 		bool update_running_;
+		
+		TaskQueueThread * render_thread_;
+		
+		Mutex mutex_;
 
 #ifdef ICK_APP_GLFW
 		GLFWwindow * glfw_window_;
 #endif
 		
 #ifdef ICK_ANDROID
+		JavaVM * android_vm_;
 		JNIEnv * android_env_;
 		jobject android_activity_;
 		bool android_activity_resumed_;
@@ -45,6 +50,9 @@ namespace ick{
 		
 		AndroidHandler * main_thread_;
 		bool android_update_task_posting_;
+		
+		bool android_render_task_posting_;
+		
 #endif
 
 	public:
@@ -74,6 +82,13 @@ namespace ick{
 		void AndroidPostUpdateTask(double delay);
 		void AndroidUpdateTask();
 		void AndroidUpdate();
+		
+		void AndroidRenderThreadInitialize();
+		void AndroidRenderThreadFinalize();
+		void AndroidPostRenderTask();
+		void AndroidRenderTask();
+		
+		void AndroidRenderFinishedTask();
 		
 		void AndroidEGLMakeCurrent();
 		void AndroidEGLClearCurrent();

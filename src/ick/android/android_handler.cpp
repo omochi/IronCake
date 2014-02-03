@@ -48,6 +48,8 @@ namespace ick{
 		if(!env->CallBooleanMethod(handler_, handler_post_method_, java_task)){
 			ICK_ABORT("Handler post failed\n");
 		}
+		
+		env->DeleteLocalRef(java_task);
 	}
 	
 	//抜けてくるとこちら

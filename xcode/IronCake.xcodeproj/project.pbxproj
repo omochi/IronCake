@@ -118,6 +118,9 @@
 		D68A57951892C6E5006231EE /* glfw3.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57931892C6E5006231EE /* glfw3.h */; };
 		D68A57961892C6E5006231EE /* glfw3native.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57941892C6E5006231EE /* glfw3native.h */; };
 		D68A579B189AAC50006231EE /* task_postable.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A5798189AAC50006231EE /* task_postable.h */; };
+		D68A579E18A00548006231EE /* signal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68A579C18A00548006231EE /* signal.cpp */; };
+		D68A579F18A00548006231EE /* signal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68A579C18A00548006231EE /* signal.cpp */; };
+		D68A57A018A00548006231EE /* signal.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A579D18A00548006231EE /* signal.h */; };
 		D6B62AEF1863454500903540 /* function_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AEE1863454500903540 /* function_test.cpp */; };
 		D6B62AF01863454500903540 /* function_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AEE1863454500903540 /* function_test.cpp */; };
 		D6B62AF41863547F00903540 /* functor_holder.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62AF31863547F00903540 /* functor_holder.h */; };
@@ -273,6 +276,8 @@
 		D68A57931892C6E5006231EE /* glfw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
 		D68A57941892C6E5006231EE /* glfw3native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
 		D68A5798189AAC50006231EE /* task_postable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = task_postable.h; sourceTree = "<group>"; };
+		D68A579C18A00548006231EE /* signal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = signal.cpp; sourceTree = "<group>"; };
+		D68A579D18A00548006231EE /* signal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signal.h; sourceTree = "<group>"; };
 		D6B62AEE1863454500903540 /* function_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = function_test.cpp; path = ../test/function_test.cpp; sourceTree = "<group>"; };
 		D6B62AF31863547F00903540 /* functor_holder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = functor_holder.h; sourceTree = "<group>"; };
 		D6B62AF51863570700903540 /* function_bind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind.h; sourceTree = "<group>"; };
@@ -423,6 +428,8 @@
 				D68A5798189AAC50006231EE /* task_postable.h */,
 				D625B03C186C96AC00DF7CCF /* task_queue_thread.h */,
 				D625B03B186C96AC00DF7CCF /* task_queue_thread.cpp */,
+				D68A579D18A00548006231EE /* signal.h */,
+				D68A579C18A00548006231EE /* signal.cpp */,
 			);
 			path = thread;
 			sourceTree = "<group>";
@@ -659,6 +666,7 @@
 				D60285181860C22C00CE5EC5 /* thread.h in Headers */,
 				D625B03F186C96AC00DF7CCF /* task_queue_thread.h in Headers */,
 				D602851F1860C9F500CE5EC5 /* error.h in Headers */,
+				D68A57A018A00548006231EE /* signal.h in Headers */,
 				D667FC79184E490C00404D8D /* crt.h in Headers */,
 				D667FC76184E490C00404D8D /* compiler.h in Headers */,
 				D6B62AF41863547F00903540 /* functor_holder.h in Headers */,
@@ -852,6 +860,7 @@
 				D6B62B15186C672000903540 /* scoped_lock.cpp in Sources */,
 				D667FC77184E490C00404D8D /* crt.cpp in Sources */,
 				D60285161860C22C00CE5EC5 /* thread.cpp in Sources */,
+				D68A579F18A00548006231EE /* signal.cpp in Sources */,
 				D667FC84184E490C00404D8D /* memory.cpp in Sources */,
 				D63ABDC91855FCAC004349F8 /* string.cpp in Sources */,
 				D667FCA2185231AE00404D8D /* math.cpp in Sources */,
@@ -885,6 +894,7 @@
 				D6B62B16186C672000903540 /* scoped_lock.cpp in Sources */,
 				D667FC78184E490C00404D8D /* crt.cpp in Sources */,
 				D60285171860C22C00CE5EC5 /* thread.cpp in Sources */,
+				D68A579E18A00548006231EE /* signal.cpp in Sources */,
 				D667FC85184E490C00404D8D /* memory.cpp in Sources */,
 				D63ABDCA1855FCAC004349F8 /* string.cpp in Sources */,
 				D667FCA3185231AE00404D8D /* math.cpp in Sources */,

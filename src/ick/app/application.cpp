@@ -248,6 +248,8 @@ namespace ick{
 		android_activity_resumed_ = false;
 	}
 	void Application::AndroidOnSurfaceCreated(ANativeWindow * surface){
+		ICK_SCOPED_LOCK(render_mutex_);
+		
 		if(android_egl_surface_){ ICK_ABORT("surface already available\n"); }
 		
 		EGLSurface egl_surface = eglCreateWindowSurface(android_egl_display_,
@@ -270,9 +272,13 @@ namespace ick{
 		}
 	}
 	void Application::AndroidOnSurfaceChanged(ANativeWindow * surface, int format, int width, int height){
+		ICK_SCOPED_LOCK(render_mutex_);
+		
 		ICK_LOG_INFO("SurfaceChanged: %d x %d", width, height);
 	}
 	void Application::AndroidOnSurfaceDestroyed(ANativeWindow * surface){
+		
+		
 		if(update_running_){
 			AndroidStopUpdate();
 		}
@@ -284,6 +290,8 @@ namespace ick{
 	
 
 	void Application::AndroidStartUpdate(){
+		ICK_SCOPED_LOCK(render_mutex_);
+		
 		if(update_running_){ ICK_ABORT("update is already running\n"); }
 		if(!android_activity_resumed_){ ICK_ABORT("activity is not resumed\n"); }
 		if(!android_egl_surface_){ ICK_ABORT("egl surface is not created\n"); }
@@ -295,6 +303,8 @@ namespace ick{
 		}
 	}
 	void Application::AndroidStopUpdate(){
+		ICK_SCOPED_LOCK(render_mutex_);
+		
 		if(!update_running_){ ICK_ABORT("update is not running\n"); }
 
 		update_running_ = false;
@@ -347,6 +357,10 @@ namespace ick{
 	}
 	
 	void Application::AndroidRenderTask(){
+		ICK_SCOPED_LOCK(render_mutex_);
+		
+		if(!update_running_){ return; }
+		
 		//ICK_LOG_INFO("%s\n", __func__);
 		AndroidEGLMakeCurrent();
 		
@@ -382,13 +396,17 @@ namespace ick{
 		}
 	}
 	void Application::AndroidEGLClearCurrent(){
-		if(eglMakeCurrent(android_egl_display_,EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT) == EGL_FALSE)
+		if(eglMakeCurrent(android_egl_display_,
+						  EGL_NO_SURFACE, EGL_NO_SURFACE,
+						  EGL_NO_CONTEXT) == EGL_FALSE)
 		{
-			ICK_ABORT("eglMakeCurrent(clear) failed\n");
+			ICK_ABORT("eglMakeCurrent(clear) failed: 0x%04x\n", eglGetError());
 		}
 	}
 	
 	void Application::AndroidReleaseEGLSurface(){
+		ICK_SCOPED_LOCK(render_mutex_);
+		
 		controller_->WillReleaseGL();
 		
 		AndroidEGLClearCurrent();

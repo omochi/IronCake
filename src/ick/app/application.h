@@ -31,6 +31,7 @@ namespace ick{
 		TaskQueueThread * render_thread_;
 		
 		Mutex mutex_;
+		Mutex render_mutex_;
 
 #ifdef ICK_APP_GLFW
 		GLFWwindow * glfw_window_;

@@ -1,12 +1,19 @@
 ﻿#pragma once
 
-//	Macの場合
-//		DisplayLinkでフレームを同期する。
-//		遅延する場合は全速で回す。
-//		間に合う場合、次の開始をDisplayLinkが来るまで待機する。
+//	Android
+//		StartUpdate,StopUpdate,Updateいずれもメインスレ。
+//		StartUpdateとStopUpdateの間にしかUpdateが呼ばれない。
+//		タスクはフラグを見て、折れてたら呼ばない。
+//		StopするかUpdateしたらフラグを折る。
+//		Startしたらフラグを立てて、2重発行はしない。
+//
+//		RenderはUpdateから呼ばれてレンダースレ。
+//		StopUpdateでタスクキューの消化を待つ事で、
+//		Start-Stop間しかRenderしないようにする。
 
 #include "application_platform.h"
 #include "../thread/mutex.h"
+#include "../thread/signal.h"
 
 #ifdef ICK_ANDROID
 struct ANativeWindow;
@@ -50,7 +57,8 @@ namespace ick{
 		
 		AndroidHandler * main_thread_;
 		bool android_update_task_posting_;
-
+		
+		Signal android_render_finish_signal_;
 		
 #endif
 
@@ -78,17 +86,14 @@ namespace ick{
 		void AndroidStartUpdate();
 		void AndroidStopUpdate();
 		
-		void AndroidPostUpdateTask(double delay);
+		void AndroidPostSingleUpdateTask();
 		void AndroidUpdateTask();
 		void AndroidUpdate();
 		
 		void AndroidRenderThreadInitialize();
 		void AndroidRenderThreadFinalize();
-		void AndroidPostRenderTask();
 		void AndroidRenderTask();
-		
-		void AndroidRenderFinishedTask();
-		
+
 		void AndroidEGLMakeCurrent();
 		void AndroidEGLClearCurrent();
 		void AndroidReleaseEGLSurface();

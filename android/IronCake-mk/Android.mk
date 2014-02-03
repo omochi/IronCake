@@ -39,6 +39,7 @@ LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/scoped_lock.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/thread.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/function_thread.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/task_queue_thread.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/signal.cpp
 
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/app/application.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/app/application_controller.cpp

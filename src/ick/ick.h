@@ -38,6 +38,7 @@
 #include "thread/function_thread.h"
 #include "thread/task_postable.h"
 #include "thread/task_queue_thread.h"
+#include "thread/signal.h"
 
 #ifdef ICK_WINDOWS
 #	include "windows/tchar.h"

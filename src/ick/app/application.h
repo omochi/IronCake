@@ -31,7 +31,6 @@ namespace ick{
 		TaskQueueThread * render_thread_;
 		
 		Mutex mutex_;
-		Mutex render_mutex_;
 
 #ifdef ICK_APP_GLFW
 		GLFWwindow * glfw_window_;
@@ -51,8 +50,7 @@ namespace ick{
 		
 		AndroidHandler * main_thread_;
 		bool android_update_task_posting_;
-		
-		bool android_render_task_posting_;
+
 		
 #endif
 

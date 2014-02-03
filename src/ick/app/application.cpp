@@ -75,8 +75,6 @@ namespace ick{
 		
 		main_thread_ = NULL;
 		android_update_task_posting_ = false;
-		
-		android_render_task_posting_ = false;
 #endif
 
 	}
@@ -222,7 +220,6 @@ namespace ick{
 		}
 		android_egl_display_ = NULL;
 		
-		android_render_task_posting_ = false;
 		render_thread_->PostTask(FunctionMake(this, &Application::AndroidRenderThreadFinalize));
 		render_thread_->PostQuit();
 		render_thread_->Join();
@@ -248,9 +245,9 @@ namespace ick{
 		android_activity_resumed_ = false;
 	}
 	void Application::AndroidOnSurfaceCreated(ANativeWindow * surface){
-		ICK_SCOPED_LOCK(render_mutex_);
+		ICK_SCOPED_LOCK(mutex_);
 		
-		if(android_egl_surface_){ ICK_ABORT("surface already available\n"); }
+		if(android_egl_surface_){ ICK_ABORT("surface already created\n"); }
 		
 		EGLSurface egl_surface = eglCreateWindowSurface(android_egl_display_,
 														android_egl_config_,
@@ -262,9 +259,7 @@ namespace ick{
 		android_egl_surface_ = egl_surface;
 		
 		AndroidEGLMakeCurrent();
-
 		controller_->DidInitGL();
-		
 		AndroidEGLClearCurrent();
 				
 		if(android_activity_resumed_){
@@ -272,13 +267,11 @@ namespace ick{
 		}
 	}
 	void Application::AndroidOnSurfaceChanged(ANativeWindow * surface, int format, int width, int height){
-		ICK_SCOPED_LOCK(render_mutex_);
+		ICK_SCOPED_LOCK(mutex_);
 		
 		ICK_LOG_INFO("SurfaceChanged: %d x %d", width, height);
 	}
 	void Application::AndroidOnSurfaceDestroyed(ANativeWindow * surface){
-		
-		
 		if(update_running_){
 			AndroidStopUpdate();
 		}
@@ -290,7 +283,7 @@ namespace ick{
 	
 
 	void Application::AndroidStartUpdate(){
-		ICK_SCOPED_LOCK(render_mutex_);
+		ICK_SCOPED_LOCK(mutex_);
 		
 		if(update_running_){ ICK_ABORT("update is already running\n"); }
 		if(!android_activity_resumed_){ ICK_ABORT("activity is not resumed\n"); }
@@ -303,7 +296,7 @@ namespace ick{
 		}
 	}
 	void Application::AndroidStopUpdate(){
-		ICK_SCOPED_LOCK(render_mutex_);
+		ICK_SCOPED_LOCK(mutex_);
 		
 		if(!update_running_){ ICK_ABORT("update is not running\n"); }
 
@@ -317,18 +310,17 @@ namespace ick{
 	}
 
 	void Application::AndroidUpdateTask(){
-		ICK_LOG_INFO("%s\n", __func__);
 		if(android_update_task_posting_){
 			android_update_task_posting_ = false;
 			AndroidUpdate();
 		}
-
 	}
 	
 	void Application::AndroidUpdate(){
 		AndroidEGLMakeCurrent();
 		
 		controller_->OnUpdate();
+		controller_->OnRender();
 		
 		AndroidEGLClearCurrent();
 
@@ -352,39 +344,26 @@ namespace ick{
 	
 	void Application::AndroidPostRenderTask(){
 		ICK_SCOPED_LOCK(mutex_);
-		android_render_task_posting_ = true;
 		render_thread_->PostTask(FunctionMake(this, &Application::AndroidRenderTask));
 	}
 	
 	void Application::AndroidRenderTask(){
-		ICK_SCOPED_LOCK(render_mutex_);
+		ICK_SCOPED_LOCK(mutex_);
 		
 		if(!update_running_){ return; }
 		
-		//ICK_LOG_INFO("%s\n", __func__);
 		AndroidEGLMakeCurrent();
-		
-		controller_->OnRender();
-		
 		if(eglSwapBuffers(android_egl_display_, android_egl_surface_) == EGL_FALSE){
 			ICK_ABORT("eglSwapBuffers failed 0x%04x\n", eglGetError());
 		}
-		
 		AndroidEGLClearCurrent();
-		
-		{
-			ICK_SCOPED_LOCK(mutex_);
-			android_render_task_posting_ = false;
-			mutex_.Broadcast();
-		}
-		
+
 		main_thread_->PostTask(FunctionMake(this, &Application::AndroidRenderFinishedTask));
 	}
 	
 	void Application::AndroidRenderFinishedTask(){
-		if(update_running_){
-			AndroidUpdate();
-		}
+		if(!update_running_){ return; }
+		AndroidUpdate();
 	}
 	
 	void Application::AndroidEGLMakeCurrent(){
@@ -405,10 +384,10 @@ namespace ick{
 	}
 	
 	void Application::AndroidReleaseEGLSurface(){
-		ICK_SCOPED_LOCK(render_mutex_);
+		ICK_SCOPED_LOCK(mutex_);
 		
+		AndroidEGLMakeCurrent();
 		controller_->WillReleaseGL();
-		
 		AndroidEGLClearCurrent();
 		
 		if(eglDestroySurface(android_egl_display_, android_egl_surface_) == EGL_FALSE){

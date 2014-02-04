@@ -7,7 +7,6 @@
 #include "../base/memory.h"
 
 #include "base_function_holder.h"
-#include "function.h"
 
 namespace ick {
 	template <typename F> class BaseFunctionHolder;

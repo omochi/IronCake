@@ -122,9 +122,9 @@
 		D68A57A818A144F0006231EE /* function_bind_decl.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A218A144F0006231EE /* function_bind_decl.h */; };
 		D68A57A918A144F0006231EE /* function_binder.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A318A144F0006231EE /* function_binder.h */; };
 		D68A57AB18A144F0006231EE /* function.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A518A144F0006231EE /* function.h */; };
-		D68A57AC18A144F0006231EE /* native_function_holder.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A618A144F0006231EE /* native_function_holder.h */; };
 		D68A57AE18A15092006231EE /* function_bind.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57AD18A15092006231EE /* function_bind.h */; };
 		D68A57B018A150C4006231EE /* method_binder.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57AF18A150C4006231EE /* method_binder.h */; };
+		D68A57B218A16648006231EE /* native_function_binder.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57B118A16648006231EE /* native_function_binder.h */; };
 		D6B62AEF1863454500903540 /* function_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AEE1863454500903540 /* function_test.cpp */; };
 		D6B62AF01863454500903540 /* function_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AEE1863454500903540 /* function_test.cpp */; };
 		D6B62AFB18689ED400903540 /* function_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AF918689ED400903540 /* function_thread.cpp */; };
@@ -281,9 +281,9 @@
 		D68A57A218A144F0006231EE /* function_bind_decl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind_decl.h; sourceTree = "<group>"; };
 		D68A57A318A144F0006231EE /* function_binder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_binder.h; sourceTree = "<group>"; };
 		D68A57A518A144F0006231EE /* function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function.h; sourceTree = "<group>"; };
-		D68A57A618A144F0006231EE /* native_function_holder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = native_function_holder.h; sourceTree = "<group>"; };
 		D68A57AD18A15092006231EE /* function_bind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind.h; sourceTree = "<group>"; };
 		D68A57AF18A150C4006231EE /* method_binder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = method_binder.h; sourceTree = "<group>"; };
+		D68A57B118A16648006231EE /* native_function_binder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = native_function_binder.h; sourceTree = "<group>"; };
 		D6B62AEE1863454500903540 /* function_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = function_test.cpp; path = ../test/function_test.cpp; sourceTree = "<group>"; };
 		D6B62AF918689ED400903540 /* function_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = function_thread.cpp; sourceTree = "<group>"; };
 		D6B62AFA18689ED400903540 /* function_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_thread.h; sourceTree = "<group>"; };
@@ -441,10 +441,10 @@
 			isa = PBXGroup;
 			children = (
 				D68A57A118A144F0006231EE /* base_function_holder.h */,
-				D68A57A618A144F0006231EE /* native_function_holder.h */,
+				D68A57B118A16648006231EE /* native_function_binder.h */,
+				D68A57AF18A150C4006231EE /* method_binder.h */,
 				D68A57A518A144F0006231EE /* function.h */,
 				D68A57A318A144F0006231EE /* function_binder.h */,
-				D68A57AF18A150C4006231EE /* method_binder.h */,
 				D68A57A218A144F0006231EE /* function_bind_decl.h */,
 				D68A57AD18A15092006231EE /* function_bind.h */,
 			);
@@ -660,10 +660,10 @@
 				D667FC8F184E512300404D8D /* ick.h in Headers */,
 				D68A57A818A144F0006231EE /* function_bind_decl.h in Headers */,
 				D68A57961892C6E5006231EE /* glfw3native.h in Headers */,
+				D68A57B218A16648006231EE /* native_function_binder.h in Headers */,
 				D6629809186E9D02004060B9 /* application_controller.h in Headers */,
 				D667FC6F184E490C00404D8D /* abort.h in Headers */,
 				D6B62B12186C657D00903540 /* time.h in Headers */,
-				D68A57AC18A144F0006231EE /* native_function_holder.h in Headers */,
 				D667FCAB1852520600404D8D /* array_decl.h in Headers */,
 				D667FC82184E490C00404D8D /* log.h in Headers */,
 				D6B62B0F186C657D00903540 /* debug_allocator.h in Headers */,

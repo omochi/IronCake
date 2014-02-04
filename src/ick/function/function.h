@@ -4,11 +4,12 @@
 
 #pragma once
 
+#include "../base/macro.h"
 #include "../base/memory.h"
 #include "../base/property.h"
 
 #include "base_function_holder.h"
-#include "native_function_holder.h"
+#include "native_function_binder.h"
 
 namespace ick {
 	template <typename F> class Function;
@@ -20,40 +21,35 @@ namespace ick {
 		typedef Function<FunctionType> ThisType;
 	private:
 		BaseFunctionHolder<FunctionType> * holder_;
-		bool holder_release_;
 	public:
 		BaseFunctionHolder<FunctionType> * holder() const { return holder_; }
 
 		Function():
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 		}
 		// ネイティブ関数からの暗黙変換
 		// explicit
 		Function(FunctionType native_function):
-		holder_(ICK_NEW(NativeFunctionHolder<FunctionType>,
-						native_function)),
-		holder_release_(true)
+		holder_(ICK_NEW(NativeFunctionBinder<FunctionType ICK_COMMA 0>,
+						native_function))
 		{
 		}
-		Function(BaseFunctionHolder<FunctionType> * holder,
-				 bool holder_release):
-		holder_(holder),
-		holder_release_(holder_release)
+		// holderの所有権を受け取る
+		Function(BaseFunctionHolder<FunctionType> * holder):
+		holder_(holder)
 		{
 		}
 		Function(const ThisType & copy):
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 			*this = copy;
 		}
 		virtual ~Function(){
-			PropertyClear(holder_, holder_release_);
+			PropertyClear(holder_);
 		}
 		ThisType & operator = (const ThisType & copy){
-			PropertySet(holder_, holder_release_, copy.holder_->Clone(), true);
+			PropertySet(holder_, copy.holder_->Clone());
 			return * this;
 		}
 		R operator() () {
@@ -69,40 +65,35 @@ namespace ick {
 		typedef Function<FunctionType> ThisType;
 	private:
 		BaseFunctionHolder<FunctionType> * holder_;
-		bool holder_release_;
 	public:
 		BaseFunctionHolder<FunctionType> * holder() const { return holder_; }
 
 		Function():
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 		}
 		// ネイティブ関数からの暗黙変換
 		// explicit
 		Function(FunctionType native_function):
-		holder_(ICK_NEW(NativeFunctionHolder<FunctionType>,
-						native_function)),
-		holder_release_(true)
+		holder_(ICK_NEW(NativeFunctionBinder<FunctionType ICK_COMMA 0>,
+						native_function))
 		{
 		}
-		Function(BaseFunctionHolder<FunctionType> * holder,
-				 bool holder_release):
-		holder_(holder),
-		holder_release_(holder_release)
+		// holderの所有権を受け取る
+		Function(BaseFunctionHolder<FunctionType> * holder):
+		holder_(holder)
 		{
 		}
 		Function(const ThisType & copy):
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 			*this = copy;
 		}
 		virtual ~Function(){
-			PropertyClear(holder_, holder_release_);
+			PropertyClear(holder_);
 		}
 		ThisType & operator = (const ThisType & copy){
-			PropertySet(holder_, holder_release_, copy.holder_->Clone(), true);
+			PropertySet(holder_, copy.holder_->Clone());
 			return * this;
 		}
 		R operator() (A1 a1) {
@@ -118,40 +109,35 @@ namespace ick {
 		typedef Function<FunctionType> ThisType;
 	private:
 		BaseFunctionHolder<FunctionType> * holder_;
-		bool holder_release_;
 	public:
 		BaseFunctionHolder<FunctionType> * holder() const { return holder_; }
 
 		Function():
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 		}
 		// ネイティブ関数からの暗黙変換
 		// explicit
 		Function(FunctionType native_function):
-		holder_(ICK_NEW(NativeFunctionHolder<FunctionType>,
-						native_function)),
-		holder_release_(true)
+		holder_(ICK_NEW(NativeFunctionBinder<FunctionType ICK_COMMA 0>,
+						native_function))
 		{
 		}
-		Function(BaseFunctionHolder<FunctionType> * holder,
-				 bool holder_release):
-		holder_(holder),
-		holder_release_(holder_release)
+		// holderの所有権を受け取る
+		Function(BaseFunctionHolder<FunctionType> * holder):
+		holder_(holder)
 		{
 		}
 		Function(const ThisType & copy):
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 			*this = copy;
 		}
 		virtual ~Function(){
-			PropertyClear(holder_, holder_release_);
+			PropertyClear(holder_);
 		}
 		ThisType & operator = (const ThisType & copy){
-			PropertySet(holder_, holder_release_, copy.holder_->Clone(), true);
+			PropertySet(holder_, copy.holder_->Clone());
 			return * this;
 		}
 		R operator() (A1 a1, A2 a2) {
@@ -167,40 +153,35 @@ namespace ick {
 		typedef Function<FunctionType> ThisType;
 	private:
 		BaseFunctionHolder<FunctionType> * holder_;
-		bool holder_release_;
 	public:
 		BaseFunctionHolder<FunctionType> * holder() const { return holder_; }
 
 		Function():
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 		}
 		// ネイティブ関数からの暗黙変換
 		// explicit
 		Function(FunctionType native_function):
-		holder_(ICK_NEW(NativeFunctionHolder<FunctionType>,
-						native_function)),
-		holder_release_(true)
+		holder_(ICK_NEW(NativeFunctionBinder<FunctionType ICK_COMMA 0>,
+						native_function))
 		{
 		}
-		Function(BaseFunctionHolder<FunctionType> * holder,
-				 bool holder_release):
-		holder_(holder),
-		holder_release_(holder_release)
+		// holderの所有権を受け取る
+		Function(BaseFunctionHolder<FunctionType> * holder):
+		holder_(holder)
 		{
 		}
 		Function(const ThisType & copy):
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 			*this = copy;
 		}
 		virtual ~Function(){
-			PropertyClear(holder_, holder_release_);
+			PropertyClear(holder_);
 		}
 		ThisType & operator = (const ThisType & copy){
-			PropertySet(holder_, holder_release_, copy.holder_->Clone(), true);
+			PropertySet(holder_, copy.holder_->Clone());
 			return * this;
 		}
 		R operator() (A1 a1, A2 a2, A3 a3) {
@@ -216,40 +197,35 @@ namespace ick {
 		typedef Function<FunctionType> ThisType;
 	private:
 		BaseFunctionHolder<FunctionType> * holder_;
-		bool holder_release_;
 	public:
 		BaseFunctionHolder<FunctionType> * holder() const { return holder_; }
 
 		Function():
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 		}
 		// ネイティブ関数からの暗黙変換
 		// explicit
 		Function(FunctionType native_function):
-		holder_(ICK_NEW(NativeFunctionHolder<FunctionType>,
-						native_function)),
-		holder_release_(true)
+		holder_(ICK_NEW(NativeFunctionBinder<FunctionType ICK_COMMA 0>,
+						native_function))
 		{
 		}
-		Function(BaseFunctionHolder<FunctionType> * holder,
-				 bool holder_release):
-		holder_(holder),
-		holder_release_(holder_release)
+		// holderの所有権を受け取る
+		Function(BaseFunctionHolder<FunctionType> * holder):
+		holder_(holder)
 		{
 		}
 		Function(const ThisType & copy):
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 			*this = copy;
 		}
 		virtual ~Function(){
-			PropertyClear(holder_, holder_release_);
+			PropertyClear(holder_);
 		}
 		ThisType & operator = (const ThisType & copy){
-			PropertySet(holder_, holder_release_, copy.holder_->Clone(), true);
+			PropertySet(holder_, copy.holder_->Clone());
 			return * this;
 		}
 		R operator() (A1 a1, A2 a2, A3 a3, A4 a4) {
@@ -266,40 +242,35 @@ namespace ick {
 		typedef Function<FunctionType> ThisType;
 	private:
 		BaseFunctionHolder<FunctionType> * holder_;
-		bool holder_release_;
 	public:
 		BaseFunctionHolder<FunctionType> * holder() const { return holder_; }
 
 		Function():
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 		}
 		// ネイティブ関数からの暗黙変換
 		// explicit
 		Function(FunctionType native_function):
-		holder_(ICK_NEW(NativeFunctionHolder<FunctionType>,
-						native_function)),
-		holder_release_(true)
+		holder_(ICK_NEW(NativeFunctionBinder<FunctionType ICK_COMMA 0>,
+						native_function))
 		{
 		}
-		Function(BaseFunctionHolder<FunctionType> * holder,
-				 bool holder_release):
-		holder_(holder),
-		holder_release_(holder_release)
+		// holderの所有権を受け取る
+		Function(BaseFunctionHolder<FunctionType> * holder):
+		holder_(holder)
 		{
 		}
 		Function(const ThisType & copy):
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 			*this = copy;
 		}
 		virtual ~Function(){
-			PropertyClear(holder_, holder_release_);
+			PropertyClear(holder_);
 		}
 		ThisType & operator = (const ThisType & copy){
-			PropertySet(holder_, holder_release_, copy.holder_->Clone(), true);
+			PropertySet(holder_, copy.holder_->Clone());
 			return * this;
 		}
 		R operator() (A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) {
@@ -316,40 +287,35 @@ namespace ick {
 		typedef Function<FunctionType> ThisType;
 	private:
 		BaseFunctionHolder<FunctionType> * holder_;
-		bool holder_release_;
 	public:
 		BaseFunctionHolder<FunctionType> * holder() const { return holder_; }
 
 		Function():
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 		}
 		// ネイティブ関数からの暗黙変換
 		// explicit
 		Function(FunctionType native_function):
-		holder_(ICK_NEW(NativeFunctionHolder<FunctionType>,
-						native_function)),
-		holder_release_(true)
+		holder_(ICK_NEW(NativeFunctionBinder<FunctionType ICK_COMMA 0>,
+						native_function))
 		{
 		}
-		Function(BaseFunctionHolder<FunctionType> * holder,
-				 bool holder_release):
-		holder_(holder),
-		holder_release_(holder_release)
+		// holderの所有権を受け取る
+		Function(BaseFunctionHolder<FunctionType> * holder):
+		holder_(holder)
 		{
 		}
 		Function(const ThisType & copy):
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 			*this = copy;
 		}
 		virtual ~Function(){
-			PropertyClear(holder_, holder_release_);
+			PropertyClear(holder_);
 		}
 		ThisType & operator = (const ThisType & copy){
-			PropertySet(holder_, holder_release_, copy.holder_->Clone(), true);
+			PropertySet(holder_, copy.holder_->Clone());
 			return * this;
 		}
 		R operator() (A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6) {
@@ -366,40 +332,35 @@ namespace ick {
 		typedef Function<FunctionType> ThisType;
 	private:
 		BaseFunctionHolder<FunctionType> * holder_;
-		bool holder_release_;
 	public:
 		BaseFunctionHolder<FunctionType> * holder() const { return holder_; }
 
 		Function():
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 		}
 		// ネイティブ関数からの暗黙変換
 		// explicit
 		Function(FunctionType native_function):
-		holder_(ICK_NEW(NativeFunctionHolder<FunctionType>,
-						native_function)),
-		holder_release_(true)
+		holder_(ICK_NEW(NativeFunctionBinder<FunctionType ICK_COMMA 0>,
+						native_function))
 		{
 		}
-		Function(BaseFunctionHolder<FunctionType> * holder,
-				 bool holder_release):
-		holder_(holder),
-		holder_release_(holder_release)
+		// holderの所有権を受け取る
+		Function(BaseFunctionHolder<FunctionType> * holder):
+		holder_(holder)
 		{
 		}
 		Function(const ThisType & copy):
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 			*this = copy;
 		}
 		virtual ~Function(){
-			PropertyClear(holder_, holder_release_);
+			PropertyClear(holder_);
 		}
 		ThisType & operator = (const ThisType & copy){
-			PropertySet(holder_, holder_release_, copy.holder_->Clone(), true);
+			PropertySet(holder_, copy.holder_->Clone());
 			return * this;
 		}
 		R operator() (A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7) {
@@ -416,40 +377,35 @@ namespace ick {
 		typedef Function<FunctionType> ThisType;
 	private:
 		BaseFunctionHolder<FunctionType> * holder_;
-		bool holder_release_;
 	public:
 		BaseFunctionHolder<FunctionType> * holder() const { return holder_; }
 
 		Function():
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 		}
 		// ネイティブ関数からの暗黙変換
 		// explicit
 		Function(FunctionType native_function):
-		holder_(ICK_NEW(NativeFunctionHolder<FunctionType>,
-						native_function)),
-		holder_release_(true)
+		holder_(ICK_NEW(NativeFunctionBinder<FunctionType ICK_COMMA 0>,
+						native_function))
 		{
 		}
-		Function(BaseFunctionHolder<FunctionType> * holder,
-				 bool holder_release):
-		holder_(holder),
-		holder_release_(holder_release)
+		// holderの所有権を受け取る
+		Function(BaseFunctionHolder<FunctionType> * holder):
+		holder_(holder)
 		{
 		}
 		Function(const ThisType & copy):
-		holder_(NULL),
-		holder_release_(false)
+		holder_(NULL)
 		{
 			*this = copy;
 		}
 		virtual ~Function(){
-			PropertyClear(holder_, holder_release_);
+			PropertyClear(holder_);
 		}
 		ThisType & operator = (const ThisType & copy){
-			PropertySet(holder_, holder_release_, copy.holder_->Clone(), true);
+			PropertySet(holder_, copy.holder_->Clone());
 			return * this;
 		}
 		R operator() (A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8) {

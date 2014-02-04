@@ -7,12 +7,30 @@
 #include "../base/memory.h"
 
 #include "function_bind_decl.h"
-#include "native_function_holder.h"
+#include "native_function_binder.h"
 #include "function.h"
 #include "function_binder.h"
 #include "method_binder.h"
 
 namespace ick {
+
+	// 引数0個の関数に、0個の引数をbindして、
+	// 引数0個の関数にする。
+	template <typename R>
+	Function<R(*)()>
+	FunctionBind(R(*native_function)()){
+		typedef Function<R(*)()> Bound;
+		typedef NativeFunctionBinder<R(*)(), 0> Binder;
+		return Bound(ICK_NEW(Binder, native_function));
+	}
+
+	template <typename R>
+	Function<R(*)()>
+	FunctionBind(Function<R(*)()> function ){
+		typedef Function<R(*)()> Bound;
+		typedef FunctionBinder<R(*)(), 0> Binder;
+		return Bound(ICK_NEW(Binder, function.holder()));
+	}
 
 	// 引数0個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -22,9 +40,27 @@ namespace ick {
 	FunctionBind(R(T::*method)(), T * instance){
 		typedef Function<R(*)()> Bound;
 		typedef MethodBinder<R(T::*)(), 0> Binder;
-		return Bound(ICK_NEW(Binder, method, instance), true);
+		return Bound(ICK_NEW(Binder, method, instance));
 	}
 
+
+	// 引数1個の関数に、0個の引数をbindして、
+	// 引数1個の関数にする。
+	template <typename R, typename A1>
+	Function<R(*)(A1)>
+	FunctionBind(R(*native_function)(A1)){
+		typedef Function<R(*)(A1)> Bound;
+		typedef NativeFunctionBinder<R(*)(A1), 0> Binder;
+		return Bound(ICK_NEW(Binder, native_function));
+	}
+
+	template <typename R, typename A1>
+	Function<R(*)(A1)>
+	FunctionBind(Function<R(*)(A1)> function ){
+		typedef Function<R(*)(A1)> Bound;
+		typedef FunctionBinder<R(*)(A1), 0> Binder;
+		return Bound(ICK_NEW(Binder, function.holder()));
+	}
 
 	// 引数1個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -34,7 +70,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1), T * instance){
 		typedef Function<R(*)(A1)> Bound;
 		typedef MethodBinder<R(T::*)(A1), 0> Binder;
-		return Bound(ICK_NEW(Binder, method, instance), true);
+		return Bound(ICK_NEW(Binder, method, instance));
 	}
 
 
@@ -44,10 +80,8 @@ namespace ick {
 	Function<R(*)()>
 	FunctionBind(R(*native_function)(A1), A1 a1){
 		typedef Function<R(*)()> Bound;
-		typedef FunctionBinder<R(*)(A1), 1> Binder;
-		typedef NativeFunctionHolder<R(*)(A1)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1), true);
+		typedef NativeFunctionBinder<R(*)(A1), 1> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1));
 	}
 
 	template <typename R, typename A1>
@@ -55,9 +89,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1)> function , A1 a1){
 		typedef Function<R(*)()> Bound;
 		typedef FunctionBinder<R(*)(A1), 1> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1));
 	}
-
 
 	// 引数1個のメソッドに、
 	// thisと1個の引数をbindして、
@@ -67,9 +100,27 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1), T * instance, A1 a1){
 		typedef Function<R(*)()> Bound;
 		typedef MethodBinder<R(T::*)(A1), 1> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1));
 	}
 
+
+	// 引数2個の関数に、0個の引数をbindして、
+	// 引数2個の関数にする。
+	template <typename R, typename A1, typename A2>
+	Function<R(*)(A1, A2)>
+	FunctionBind(R(*native_function)(A1, A2)){
+		typedef Function<R(*)(A1, A2)> Bound;
+		typedef NativeFunctionBinder<R(*)(A1, A2), 0> Binder;
+		return Bound(ICK_NEW(Binder, native_function));
+	}
+
+	template <typename R, typename A1, typename A2>
+	Function<R(*)(A1, A2)>
+	FunctionBind(Function<R(*)(A1, A2)> function ){
+		typedef Function<R(*)(A1, A2)> Bound;
+		typedef FunctionBinder<R(*)(A1, A2), 0> Binder;
+		return Bound(ICK_NEW(Binder, function.holder()));
+	}
 
 	// 引数2個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -79,7 +130,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2), T * instance){
 		typedef Function<R(*)(A1, A2)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2), 0> Binder;
-		return Bound(ICK_NEW(Binder, method, instance), true);
+		return Bound(ICK_NEW(Binder, method, instance));
 	}
 
 
@@ -89,10 +140,8 @@ namespace ick {
 	Function<R(*)(A2)>
 	FunctionBind(R(*native_function)(A1, A2), A1 a1){
 		typedef Function<R(*)(A2)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2), 1> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2), 1> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1));
 	}
 
 	template <typename R, typename A1, typename A2>
@@ -100,9 +149,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2)> function , A1 a1){
 		typedef Function<R(*)(A2)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2), 1> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1));
 	}
-
 
 	// 引数2個のメソッドに、
 	// thisと1個の引数をbindして、
@@ -112,7 +160,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2), T * instance, A1 a1){
 		typedef Function<R(*)(A2)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2), 1> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1));
 	}
 
 
@@ -122,10 +170,8 @@ namespace ick {
 	Function<R(*)()>
 	FunctionBind(R(*native_function)(A1, A2), A1 a1, A2 a2){
 		typedef Function<R(*)()> Bound;
-		typedef FunctionBinder<R(*)(A1, A2), 2> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2), 2> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2));
 	}
 
 	template <typename R, typename A1, typename A2>
@@ -133,9 +179,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2)> function , A1 a1, A2 a2){
 		typedef Function<R(*)()> Bound;
 		typedef FunctionBinder<R(*)(A1, A2), 2> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2));
 	}
-
 
 	// 引数2個のメソッドに、
 	// thisと2個の引数をbindして、
@@ -145,9 +190,27 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2), T * instance, A1 a1, A2 a2){
 		typedef Function<R(*)()> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2), 2> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2));
 	}
 
+
+	// 引数3個の関数に、0個の引数をbindして、
+	// 引数3個の関数にする。
+	template <typename R, typename A1, typename A2, typename A3>
+	Function<R(*)(A1, A2, A3)>
+	FunctionBind(R(*native_function)(A1, A2, A3)){
+		typedef Function<R(*)(A1, A2, A3)> Bound;
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3), 0> Binder;
+		return Bound(ICK_NEW(Binder, native_function));
+	}
+
+	template <typename R, typename A1, typename A2, typename A3>
+	Function<R(*)(A1, A2, A3)>
+	FunctionBind(Function<R(*)(A1, A2, A3)> function ){
+		typedef Function<R(*)(A1, A2, A3)> Bound;
+		typedef FunctionBinder<R(*)(A1, A2, A3), 0> Binder;
+		return Bound(ICK_NEW(Binder, function.holder()));
+	}
 
 	// 引数3個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -157,7 +220,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3), T * instance){
 		typedef Function<R(*)(A1, A2, A3)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3), 0> Binder;
-		return Bound(ICK_NEW(Binder, method, instance), true);
+		return Bound(ICK_NEW(Binder, method, instance));
 	}
 
 
@@ -167,10 +230,8 @@ namespace ick {
 	Function<R(*)(A2, A3)>
 	FunctionBind(R(*native_function)(A1, A2, A3), A1 a1){
 		typedef Function<R(*)(A2, A3)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3), 1> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3), 1> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1));
 	}
 
 	template <typename R, typename A1, typename A2, typename A3>
@@ -178,9 +239,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2, A3)> function , A1 a1){
 		typedef Function<R(*)(A2, A3)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3), 1> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1));
 	}
-
 
 	// 引数3個のメソッドに、
 	// thisと1個の引数をbindして、
@@ -190,7 +250,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3), T * instance, A1 a1){
 		typedef Function<R(*)(A2, A3)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3), 1> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1));
 	}
 
 
@@ -200,10 +260,8 @@ namespace ick {
 	Function<R(*)(A3)>
 	FunctionBind(R(*native_function)(A1, A2, A3), A1 a1, A2 a2){
 		typedef Function<R(*)(A3)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3), 2> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3), 2> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2));
 	}
 
 	template <typename R, typename A1, typename A2, typename A3>
@@ -211,9 +269,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2, A3)> function , A1 a1, A2 a2){
 		typedef Function<R(*)(A3)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3), 2> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2));
 	}
-
 
 	// 引数3個のメソッドに、
 	// thisと2個の引数をbindして、
@@ -223,7 +280,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3), T * instance, A1 a1, A2 a2){
 		typedef Function<R(*)(A3)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3), 2> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2));
 	}
 
 
@@ -233,10 +290,8 @@ namespace ick {
 	Function<R(*)()>
 	FunctionBind(R(*native_function)(A1, A2, A3), A1 a1, A2 a2, A3 a3){
 		typedef Function<R(*)()> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3), 3> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3), 3> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3));
 	}
 
 	template <typename R, typename A1, typename A2, typename A3>
@@ -244,9 +299,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2, A3)> function , A1 a1, A2 a2, A3 a3){
 		typedef Function<R(*)()> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3), 3> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3));
 	}
-
 
 	// 引数3個のメソッドに、
 	// thisと3個の引数をbindして、
@@ -256,9 +310,27 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3), T * instance, A1 a1, A2 a2, A3 a3){
 		typedef Function<R(*)()> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3), 3> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3));
 	}
 
+
+	// 引数4個の関数に、0個の引数をbindして、
+	// 引数4個の関数にする。
+	template <typename R, typename A1, typename A2, typename A3, typename A4>
+	Function<R(*)(A1, A2, A3, A4)>
+	FunctionBind(R(*native_function)(A1, A2, A3, A4)){
+		typedef Function<R(*)(A1, A2, A3, A4)> Bound;
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4), 0> Binder;
+		return Bound(ICK_NEW(Binder, native_function));
+	}
+
+	template <typename R, typename A1, typename A2, typename A3, typename A4>
+	Function<R(*)(A1, A2, A3, A4)>
+	FunctionBind(Function<R(*)(A1, A2, A3, A4)> function ){
+		typedef Function<R(*)(A1, A2, A3, A4)> Bound;
+		typedef FunctionBinder<R(*)(A1, A2, A3, A4), 0> Binder;
+		return Bound(ICK_NEW(Binder, function.holder()));
+	}
 
 	// 引数4個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -269,7 +341,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3, A4), T * instance){
 		typedef Function<R(*)(A1, A2, A3, A4)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4), 0> Binder;
-		return Bound(ICK_NEW(Binder, method, instance), true);
+		return Bound(ICK_NEW(Binder, method, instance));
 	}
 
 
@@ -279,10 +351,8 @@ namespace ick {
 	Function<R(*)(A2, A3, A4)>
 	FunctionBind(R(*native_function)(A1, A2, A3, A4), A1 a1){
 		typedef Function<R(*)(A2, A3, A4)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4), 1> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4), 1> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1));
 	}
 
 	template <typename R, typename A1, typename A2, typename A3, typename A4>
@@ -290,9 +360,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2, A3, A4)> function , A1 a1){
 		typedef Function<R(*)(A2, A3, A4)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4), 1> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1));
 	}
-
 
 	// 引数4個のメソッドに、
 	// thisと1個の引数をbindして、
@@ -303,7 +372,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3, A4), T * instance, A1 a1){
 		typedef Function<R(*)(A2, A3, A4)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4), 1> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1));
 	}
 
 
@@ -313,10 +382,8 @@ namespace ick {
 	Function<R(*)(A3, A4)>
 	FunctionBind(R(*native_function)(A1, A2, A3, A4), A1 a1, A2 a2){
 		typedef Function<R(*)(A3, A4)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4), 2> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4), 2> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2));
 	}
 
 	template <typename R, typename A1, typename A2, typename A3, typename A4>
@@ -324,9 +391,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2, A3, A4)> function , A1 a1, A2 a2){
 		typedef Function<R(*)(A3, A4)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4), 2> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2));
 	}
-
 
 	// 引数4個のメソッドに、
 	// thisと2個の引数をbindして、
@@ -337,7 +403,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3, A4), T * instance, A1 a1, A2 a2){
 		typedef Function<R(*)(A3, A4)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4), 2> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2));
 	}
 
 
@@ -347,10 +413,8 @@ namespace ick {
 	Function<R(*)(A4)>
 	FunctionBind(R(*native_function)(A1, A2, A3, A4), A1 a1, A2 a2, A3 a3){
 		typedef Function<R(*)(A4)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4), 3> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4), 3> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3));
 	}
 
 	template <typename R, typename A1, typename A2, typename A3, typename A4>
@@ -358,9 +422,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2, A3, A4)> function , A1 a1, A2 a2, A3 a3){
 		typedef Function<R(*)(A4)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4), 3> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3));
 	}
-
 
 	// 引数4個のメソッドに、
 	// thisと3個の引数をbindして、
@@ -371,7 +434,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3, A4), T * instance, A1 a1, A2 a2, A3 a3){
 		typedef Function<R(*)(A4)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4), 3> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3));
 	}
 
 
@@ -381,10 +444,8 @@ namespace ick {
 	Function<R(*)()>
 	FunctionBind(R(*native_function)(A1, A2, A3, A4), A1 a1, A2 a2, A3 a3, A4 a4){
 		typedef Function<R(*)()> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4), 4> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4), 4> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4));
 	}
 
 	template <typename R, typename A1, typename A2, typename A3, typename A4>
@@ -393,9 +454,8 @@ namespace ick {
      A4 a4){
 		typedef Function<R(*)()> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4), 4> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4));
 	}
-
 
 	// 引数4個のメソッドに、
 	// thisと4個の引数をbindして、
@@ -407,9 +467,29 @@ namespace ick {
      A4 a4){
 		typedef Function<R(*)()> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4), 4> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4));
 	}
 
+
+	// 引数5個の関数に、0個の引数をbindして、
+	// 引数5個の関数にする。
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)(A1, A2, A3, A4, A5)>
+	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5)){
+		typedef Function<R(*)(A1, A2, A3, A4, A5)> Bound;
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5), 0> Binder;
+		return Bound(ICK_NEW(Binder, native_function));
+	}
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)(A1, A2, A3, A4, A5)>
+	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5)> function ){
+		typedef Function<R(*)(A1, A2, A3, A4, A5)> Bound;
+		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5), 0> Binder;
+		return Bound(ICK_NEW(Binder, function.holder()));
+	}
 
 	// 引数5個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -420,7 +500,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3, A4, A5), T * instance){
 		typedef Function<R(*)(A1, A2, A3, A4, A5)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5), 0> Binder;
-		return Bound(ICK_NEW(Binder, method, instance), true);
+		return Bound(ICK_NEW(Binder, method, instance));
 	}
 
 
@@ -431,10 +511,8 @@ namespace ick {
 	Function<R(*)(A2, A3, A4, A5)>
 	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5), A1 a1){
 		typedef Function<R(*)(A2, A3, A4, A5)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5), 1> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5), 1> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -443,9 +521,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1){
 		typedef Function<R(*)(A2, A3, A4, A5)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5), 1> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1));
 	}
-
 
 	// 引数5個のメソッドに、
 	// thisと1個の引数をbindして、
@@ -456,7 +533,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3, A4, A5), T * instance, A1 a1){
 		typedef Function<R(*)(A2, A3, A4, A5)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5), 1> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1));
 	}
 
 
@@ -467,10 +544,8 @@ namespace ick {
 	Function<R(*)(A3, A4, A5)>
 	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5), A1 a1, A2 a2){
 		typedef Function<R(*)(A3, A4, A5)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5), 2> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5), 2> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -479,9 +554,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1, A2 a2){
 		typedef Function<R(*)(A3, A4, A5)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5), 2> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2));
 	}
-
 
 	// 引数5個のメソッドに、
 	// thisと2個の引数をbindして、
@@ -492,7 +566,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3, A4, A5), T * instance, A1 a1, A2 a2){
 		typedef Function<R(*)(A3, A4, A5)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5), 2> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2));
 	}
 
 
@@ -503,10 +577,8 @@ namespace ick {
 	Function<R(*)(A4, A5)>
 	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5), A1 a1, A2 a2, A3 a3){
 		typedef Function<R(*)(A4, A5)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5), 3> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5), 3> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -516,9 +588,8 @@ namespace ick {
      A3 a3){
 		typedef Function<R(*)(A4, A5)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5), 3> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3));
 	}
-
 
 	// 引数5個のメソッドに、
 	// thisと3個の引数をbindして、
@@ -530,7 +601,7 @@ namespace ick {
      A3 a3){
 		typedef Function<R(*)(A4, A5)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5), 3> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3));
 	}
 
 
@@ -542,10 +613,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5), A1 a1, A2 a2, A3 a3,
      A4 a4){
 		typedef Function<R(*)(A5)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5), 4> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5), 4> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -555,9 +624,8 @@ namespace ick {
      A3 a3, A4 a4){
 		typedef Function<R(*)(A5)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5), 4> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4));
 	}
-
 
 	// 引数5個のメソッドに、
 	// thisと4個の引数をbindして、
@@ -569,7 +637,7 @@ namespace ick {
      A3 a3, A4 a4){
 		typedef Function<R(*)(A5)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5), 4> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4));
 	}
 
 
@@ -581,10 +649,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5), A1 a1, A2 a2, A3 a3,
      A4 a4, A5 a5){
 		typedef Function<R(*)()> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5), 5> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4, a5), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5), 5> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4, a5));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -594,9 +660,8 @@ namespace ick {
      A3 a3, A4 a4, A5 a5){
 		typedef Function<R(*)()> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5), 5> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5));
 	}
-
 
 	// 引数5個のメソッドに、
 	// thisと5個の引数をbindして、
@@ -608,9 +673,29 @@ namespace ick {
      A3 a3, A4 a4, A5 a5){
 		typedef Function<R(*)()> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5), 5> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5));
 	}
 
+
+	// 引数6個の関数に、0個の引数をbindして、
+	// 引数6個の関数にする。
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A1, A2, A3, A4, A5, A6)>
+	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6)){
+		typedef Function<R(*)(A1, A2, A3, A4, A5, A6)> Bound;
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 0> Binder;
+		return Bound(ICK_NEW(Binder, native_function));
+	}
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A1, A2, A3, A4, A5, A6)>
+	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6)> function ){
+		typedef Function<R(*)(A1, A2, A3, A4, A5, A6)> Bound;
+		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 0> Binder;
+		return Bound(ICK_NEW(Binder, function.holder()));
+	}
 
 	// 引数6個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -621,7 +706,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3, A4, A5, A6), T * instance){
 		typedef Function<R(*)(A1, A2, A3, A4, A5, A6)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6), 0> Binder;
-		return Bound(ICK_NEW(Binder, method, instance), true);
+		return Bound(ICK_NEW(Binder, method, instance));
 	}
 
 
@@ -632,10 +717,8 @@ namespace ick {
 	Function<R(*)(A2, A3, A4, A5, A6)>
 	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6), A1 a1){
 		typedef Function<R(*)(A2, A3, A4, A5, A6)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 1> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 1> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -644,9 +727,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1){
 		typedef Function<R(*)(A2, A3, A4, A5, A6)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 1> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1));
 	}
-
 
 	// 引数6個のメソッドに、
 	// thisと1個の引数をbindして、
@@ -657,7 +739,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3, A4, A5, A6), T * instance, A1 a1){
 		typedef Function<R(*)(A2, A3, A4, A5, A6)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6), 1> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1));
 	}
 
 
@@ -668,10 +750,8 @@ namespace ick {
 	Function<R(*)(A3, A4, A5, A6)>
 	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6), A1 a1, A2 a2){
 		typedef Function<R(*)(A3, A4, A5, A6)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 2> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 2> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -680,9 +760,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2){
 		typedef Function<R(*)(A3, A4, A5, A6)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 2> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2));
 	}
-
 
 	// 引数6個のメソッドに、
 	// thisと2個の引数をbindして、
@@ -694,7 +773,7 @@ namespace ick {
      A2 a2){
 		typedef Function<R(*)(A3, A4, A5, A6)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6), 2> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2));
 	}
 
 
@@ -705,10 +784,8 @@ namespace ick {
 	Function<R(*)(A4, A5, A6)>
 	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6), A1 a1, A2 a2, A3 a3){
 		typedef Function<R(*)(A4, A5, A6)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 3> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 3> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -718,9 +795,8 @@ namespace ick {
      A3 a3){
 		typedef Function<R(*)(A4, A5, A6)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 3> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3));
 	}
-
 
 	// 引数6個のメソッドに、
 	// thisと3個の引数をbindして、
@@ -732,7 +808,7 @@ namespace ick {
      A2 a2, A3 a3){
 		typedef Function<R(*)(A4, A5, A6)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6), 3> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3));
 	}
 
 
@@ -744,10 +820,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6), A1 a1, A2 a2, A3 a3,
      A4 a4){
 		typedef Function<R(*)(A5, A6)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 4> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 4> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -757,9 +831,8 @@ namespace ick {
      A3 a3, A4 a4){
 		typedef Function<R(*)(A5, A6)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 4> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4));
 	}
-
 
 	// 引数6個のメソッドに、
 	// thisと4個の引数をbindして、
@@ -771,7 +844,7 @@ namespace ick {
      A2 a2, A3 a3, A4 a4){
 		typedef Function<R(*)(A5, A6)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6), 4> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4));
 	}
 
 
@@ -783,10 +856,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6), A1 a1, A2 a2, A3 a3,
      A4 a4, A5 a5){
 		typedef Function<R(*)(A6)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 5> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4, a5), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 5> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4, a5));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -796,9 +867,8 @@ namespace ick {
      A3 a3, A4 a4, A5 a5){
 		typedef Function<R(*)(A6)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 5> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5));
 	}
-
 
 	// 引数6個のメソッドに、
 	// thisと5個の引数をbindして、
@@ -810,7 +880,7 @@ namespace ick {
      A2 a2, A3 a3, A4 a4, A5 a5){
 		typedef Function<R(*)(A6)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6), 5> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5));
 	}
 
 
@@ -822,10 +892,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6), A1 a1, A2 a2, A3 a3,
      A4 a4, A5 a5, A6 a6){
 		typedef Function<R(*)()> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 6> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4, a5, a6), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 6> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4, a5, a6));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -835,10 +903,8 @@ namespace ick {
      A3 a3, A4 a4, A5 a5, A6 a6){
 		typedef Function<R(*)()> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6), 6> Binder;
-  return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5, a6),
-      true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5, a6));
 	}
-
 
 	// 引数6個のメソッドに、
 	// thisと6個の引数をbindして、
@@ -850,9 +916,29 @@ namespace ick {
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6){
 		typedef Function<R(*)()> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6), 6> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5, a6), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5, a6));
 	}
 
+
+	// 引数7個の関数に、0個の引数をbindして、
+	// 引数7個の関数にする。
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>
+	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7)){
+		typedef Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> Bound;
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 0> Binder;
+		return Bound(ICK_NEW(Binder, native_function));
+	}
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>
+	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function ){
+		typedef Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> Bound;
+		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 0> Binder;
+		return Bound(ICK_NEW(Binder, function.holder()));
+	}
 
 	// 引数7個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -863,7 +949,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3, A4, A5, A6, A7), T * instance){
 		typedef Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7), 0> Binder;
-		return Bound(ICK_NEW(Binder, method, instance), true);
+		return Bound(ICK_NEW(Binder, method, instance));
 	}
 
 
@@ -874,10 +960,8 @@ namespace ick {
 	Function<R(*)(A2, A3, A4, A5, A6, A7)>
 	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7), A1 a1){
 		typedef Function<R(*)(A2, A3, A4, A5, A6, A7)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 1> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 1> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -886,9 +970,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1){
 		typedef Function<R(*)(A2, A3, A4, A5, A6, A7)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 1> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1));
 	}
-
 
 	// 引数7個のメソッドに、
 	// thisと1個の引数をbindして、
@@ -899,7 +982,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3, A4, A5, A6, A7), T * instance, A1 a1){
 		typedef Function<R(*)(A2, A3, A4, A5, A6, A7)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7), 1> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1));
 	}
 
 
@@ -910,10 +993,8 @@ namespace ick {
 	Function<R(*)(A3, A4, A5, A6, A7)>
 	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7), A1 a1, A2 a2){
 		typedef Function<R(*)(A3, A4, A5, A6, A7)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 2> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 2> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -923,9 +1004,8 @@ namespace ick {
      A2 a2){
 		typedef Function<R(*)(A3, A4, A5, A6, A7)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 2> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2));
 	}
-
 
 	// 引数7個のメソッドに、
 	// thisと2個の引数をbindして、
@@ -937,7 +1017,7 @@ namespace ick {
      A2 a2){
 		typedef Function<R(*)(A3, A4, A5, A6, A7)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7), 2> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2));
 	}
 
 
@@ -949,10 +1029,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7), A1 a1, A2 a2,
      A3 a3){
 		typedef Function<R(*)(A4, A5, A6, A7)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 3> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 3> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -962,9 +1040,8 @@ namespace ick {
      A2 a2, A3 a3){
 		typedef Function<R(*)(A4, A5, A6, A7)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 3> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3));
 	}
-
 
 	// 引数7個のメソッドに、
 	// thisと3個の引数をbindして、
@@ -976,7 +1053,7 @@ namespace ick {
      A2 a2, A3 a3){
 		typedef Function<R(*)(A4, A5, A6, A7)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7), 3> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3));
 	}
 
 
@@ -988,10 +1065,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7), A1 a1, A2 a2,
      A3 a3, A4 a4){
 		typedef Function<R(*)(A5, A6, A7)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 4> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 4> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -1001,9 +1076,8 @@ namespace ick {
      A2 a2, A3 a3, A4 a4){
 		typedef Function<R(*)(A5, A6, A7)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 4> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4));
 	}
-
 
 	// 引数7個のメソッドに、
 	// thisと4個の引数をbindして、
@@ -1015,7 +1089,7 @@ namespace ick {
      A2 a2, A3 a3, A4 a4){
 		typedef Function<R(*)(A5, A6, A7)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7), 4> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4));
 	}
 
 
@@ -1027,10 +1101,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7), A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5){
 		typedef Function<R(*)(A6, A7)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 5> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4, a5), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 5> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4, a5));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -1040,9 +1112,8 @@ namespace ick {
      A2 a2, A3 a3, A4 a4, A5 a5){
 		typedef Function<R(*)(A6, A7)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 5> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5));
 	}
-
 
 	// 引数7個のメソッドに、
 	// thisと5個の引数をbindして、
@@ -1054,7 +1125,7 @@ namespace ick {
      A2 a2, A3 a3, A4 a4, A5 a5){
 		typedef Function<R(*)(A6, A7)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7), 5> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5));
 	}
 
 
@@ -1066,10 +1137,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7), A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5, A6 a6){
 		typedef Function<R(*)(A7)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 6> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4, a5, a6), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 6> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4, a5, a6));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -1079,10 +1148,8 @@ namespace ick {
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6){
 		typedef Function<R(*)(A7)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 6> Binder;
-  return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5, a6),
-      true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5, a6));
 	}
-
 
 	// 引数7個のメソッドに、
 	// thisと6個の引数をbindして、
@@ -1094,7 +1161,7 @@ namespace ick {
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6){
 		typedef Function<R(*)(A7)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7), 6> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5, a6), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5, a6));
 	}
 
 
@@ -1106,10 +1173,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7), A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5, A6 a6, A7 a7){
 		typedef Function<R(*)()> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 7> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4, a5, a6, a7), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 7> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4, a5, a6, a7));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -1119,10 +1184,8 @@ namespace ick {
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7){
 		typedef Function<R(*)()> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7), 7> Binder;
-  return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5, a6, a7),
-      true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5, a6, a7));
 	}
-
 
 	// 引数7個のメソッドに、
 	// thisと7個の引数をbindして、
@@ -1134,10 +1197,29 @@ namespace ick {
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7){
 		typedef Function<R(*)()> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7), 7> Binder;
-  return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5, a6, a7),
-      true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5, a6, a7));
 	}
 
+
+	// 引数8個の関数に、0個の引数をbindして、
+	// 引数8個の関数にする。
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>
+	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7, A8)){
+		typedef Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> Bound;
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 0> Binder;
+		return Bound(ICK_NEW(Binder, native_function));
+	}
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>
+	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function ){
+		typedef Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> Bound;
+		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 0> Binder;
+		return Bound(ICK_NEW(Binder, function.holder()));
+	}
 
 	// 引数8個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -1148,7 +1230,7 @@ namespace ick {
 	FunctionBind(R(T::*method)(A1, A2, A3, A4, A5, A6, A7, A8), T * instance){
 		typedef Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7, A8), 0> Binder;
-		return Bound(ICK_NEW(Binder, method, instance), true);
+		return Bound(ICK_NEW(Binder, method, instance));
 	}
 
 
@@ -1159,10 +1241,8 @@ namespace ick {
 	Function<R(*)(A2, A3, A4, A5, A6, A7, A8)>
 	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7, A8), A1 a1){
 		typedef Function<R(*)(A2, A3, A4, A5, A6, A7, A8)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 1> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 1> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -1171,9 +1251,8 @@ namespace ick {
 	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1){
 		typedef Function<R(*)(A2, A3, A4, A5, A6, A7, A8)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 1> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1));
 	}
-
 
 	// 引数8個のメソッドに、
 	// thisと1個の引数をbindして、
@@ -1185,7 +1264,7 @@ namespace ick {
      A1 a1){
 		typedef Function<R(*)(A2, A3, A4, A5, A6, A7, A8)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7, A8), 1> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1));
 	}
 
 
@@ -1197,10 +1276,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7, A8), A1 a1,
      A2 a2){
 		typedef Function<R(*)(A3, A4, A5, A6, A7, A8)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 2> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 2> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -1210,9 +1287,8 @@ namespace ick {
      A2 a2){
 		typedef Function<R(*)(A3, A4, A5, A6, A7, A8)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 2> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2));
 	}
-
 
 	// 引数8個のメソッドに、
 	// thisと2個の引数をbindして、
@@ -1224,7 +1300,7 @@ namespace ick {
      A1 a1, A2 a2){
 		typedef Function<R(*)(A3, A4, A5, A6, A7, A8)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7, A8), 2> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2));
 	}
 
 
@@ -1236,10 +1312,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7, A8), A1 a1,
      A2 a2, A3 a3){
 		typedef Function<R(*)(A4, A5, A6, A7, A8)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 3> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 3> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -1249,9 +1323,8 @@ namespace ick {
      A2 a2, A3 a3){
 		typedef Function<R(*)(A4, A5, A6, A7, A8)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 3> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3));
 	}
-
 
 	// 引数8個のメソッドに、
 	// thisと3個の引数をbindして、
@@ -1263,7 +1336,7 @@ namespace ick {
      A1 a1, A2 a2, A3 a3){
 		typedef Function<R(*)(A4, A5, A6, A7, A8)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7, A8), 3> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3));
 	}
 
 
@@ -1275,10 +1348,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7, A8), A1 a1,
      A2 a2, A3 a3, A4 a4){
 		typedef Function<R(*)(A5, A6, A7, A8)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 4> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 4> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -1288,9 +1359,8 @@ namespace ick {
      A2 a2, A3 a3, A4 a4){
 		typedef Function<R(*)(A5, A6, A7, A8)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 4> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4));
 	}
-
 
 	// 引数8個のメソッドに、
 	// thisと4個の引数をbindして、
@@ -1302,7 +1372,7 @@ namespace ick {
      A1 a1, A2 a2, A3 a3, A4 a4){
 		typedef Function<R(*)(A5, A6, A7, A8)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7, A8), 4> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4));
 	}
 
 
@@ -1314,10 +1384,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7, A8), A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5){
 		typedef Function<R(*)(A6, A7, A8)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 5> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4, a5), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 5> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4, a5));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -1327,9 +1395,8 @@ namespace ick {
      A2 a2, A3 a3, A4 a4, A5 a5){
 		typedef Function<R(*)(A6, A7, A8)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 5> Binder;
-		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5), true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5));
 	}
-
 
 	// 引数8個のメソッドに、
 	// thisと5個の引数をbindして、
@@ -1341,7 +1408,7 @@ namespace ick {
      A1 a1, A2 a2, A3 a3, A4 a4, A5 a5){
 		typedef Function<R(*)(A6, A7, A8)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7, A8), 5> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5));
 	}
 
 
@@ -1353,10 +1420,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7, A8), A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6){
 		typedef Function<R(*)(A7, A8)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 6> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4, a5, a6), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 6> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4, a5, a6));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -1366,10 +1431,8 @@ namespace ick {
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6){
 		typedef Function<R(*)(A7, A8)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 6> Binder;
-  return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5, a6),
-      true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5, a6));
 	}
-
 
 	// 引数8個のメソッドに、
 	// thisと6個の引数をbindして、
@@ -1381,7 +1444,7 @@ namespace ick {
      A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6){
 		typedef Function<R(*)(A7, A8)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7, A8), 6> Binder;
-		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5, a6), true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5, a6));
 	}
 
 
@@ -1393,10 +1456,8 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7, A8), A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7){
 		typedef Function<R(*)(A8)> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 7> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4, a5, a6, a7), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 7> Binder;
+		return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4, a5, a6, a7));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -1406,10 +1467,8 @@ namespace ick {
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7){
 		typedef Function<R(*)(A8)> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 7> Binder;
-  return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5, a6, a7),
-      true);
+		return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5, a6, a7));
 	}
-
 
 	// 引数8個のメソッドに、
 	// thisと7個の引数をbindして、
@@ -1421,8 +1480,7 @@ namespace ick {
      A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7){
 		typedef Function<R(*)(A8)> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7, A8), 7> Binder;
-  return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5, a6, a7),
-      true);
+		return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5, a6, a7));
 	}
 
 
@@ -1434,10 +1492,9 @@ namespace ick {
  FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7, A8), A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8){
 		typedef Function<R(*)()> Bound;
-		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 8> Binder;
-		typedef NativeFunctionHolder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> Holder;
-		Holder holder(native_function);
-		return Bound(ICK_NEW(Binder, &holder, a1, a2, a3, a4, a5, a6, a7, a8), true);
+		typedef NativeFunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 8> Binder;
+  return Bound(ICK_NEW(Binder, native_function, a1, a2, a3, a4, a5, a6, a7,
+      a8));
 	}
 
  template <typename R, typename A1, typename A2, typename A3, typename A4,
@@ -1448,9 +1505,8 @@ namespace ick {
 		typedef Function<R(*)()> Bound;
 		typedef FunctionBinder<R(*)(A1, A2, A3, A4, A5, A6, A7, A8), 8> Binder;
   return Bound(ICK_NEW(Binder, function.holder(), a1, a2, a3, a4, a5, a6, a7,
-      a8), true);
+      a8));
 	}
-
 
 	// 引数8個のメソッドに、
 	// thisと8個の引数をbindして、
@@ -1463,7 +1519,7 @@ namespace ick {
 		typedef Function<R(*)()> Bound;
 		typedef MethodBinder<R(T::*)(A1, A2, A3, A4, A5, A6, A7, A8), 8> Binder;
   return Bound(ICK_NEW(Binder, method, instance, a1, a2, a3, a4, a5, a6, a7,
-      a8), true);
+      a8));
 	}
 
 

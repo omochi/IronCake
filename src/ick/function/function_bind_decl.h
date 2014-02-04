@@ -6,6 +6,16 @@
 
 namespace ick {
 
+	// 引数0個の関数に、0個の引数をbindして、
+	// 引数0個の関数にする。
+	template <typename R>
+	Function<R(*)()>
+	FunctionBind(R(*native_function)());
+
+	template <typename R>
+	Function<R(*)()>
+	FunctionBind(Function<R(*)()> function );
+
 	// 引数0個のメソッドに、
 	// thisと0個の引数をbindして、
 	// 引数0個の関数にする。
@@ -13,6 +23,16 @@ namespace ick {
 	Function<R(*)()>
 	FunctionBind(R(T::*method)(), T * instance);
 
+
+	// 引数1個の関数に、0個の引数をbindして、
+	// 引数1個の関数にする。
+	template <typename R, typename A1>
+	Function<R(*)(A1)>
+	FunctionBind(R(*native_function)(A1));
+
+	template <typename R, typename A1>
+	Function<R(*)(A1)>
+	FunctionBind(Function<R(*)(A1)> function );
 
 	// 引数1個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -32,7 +52,6 @@ namespace ick {
 	Function<R(*)()>
 	FunctionBind(Function<R(*)(A1)> function , A1 a1);
 
-
 	// 引数1個のメソッドに、
 	// thisと1個の引数をbindして、
 	// 引数0個の関数にする。
@@ -40,6 +59,16 @@ namespace ick {
 	Function<R(*)()>
 	FunctionBind(R(T::*method)(A1), T * instance, A1 a1);
 
+
+	// 引数2個の関数に、0個の引数をbindして、
+	// 引数2個の関数にする。
+	template <typename R, typename A1, typename A2>
+	Function<R(*)(A1, A2)>
+	FunctionBind(R(*native_function)(A1, A2));
+
+	template <typename R, typename A1, typename A2>
+	Function<R(*)(A1, A2)>
+	FunctionBind(Function<R(*)(A1, A2)> function );
 
 	// 引数2個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -59,7 +88,6 @@ namespace ick {
 	Function<R(*)(A2)>
 	FunctionBind(Function<R(*)(A1, A2)> function , A1 a1);
 
-
 	// 引数2個のメソッドに、
 	// thisと1個の引数をbindして、
 	// 引数1個の関数にする。
@@ -78,7 +106,6 @@ namespace ick {
 	Function<R(*)()>
 	FunctionBind(Function<R(*)(A1, A2)> function , A1 a1, A2 a2);
 
-
 	// 引数2個のメソッドに、
 	// thisと2個の引数をbindして、
 	// 引数0個の関数にする。
@@ -86,6 +113,16 @@ namespace ick {
 	Function<R(*)()>
 	FunctionBind(R(T::*method)(A1, A2), T * instance, A1 a1, A2 a2);
 
+
+	// 引数3個の関数に、0個の引数をbindして、
+	// 引数3個の関数にする。
+	template <typename R, typename A1, typename A2, typename A3>
+	Function<R(*)(A1, A2, A3)>
+	FunctionBind(R(*native_function)(A1, A2, A3));
+
+	template <typename R, typename A1, typename A2, typename A3>
+	Function<R(*)(A1, A2, A3)>
+	FunctionBind(Function<R(*)(A1, A2, A3)> function );
 
 	// 引数3個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -105,7 +142,6 @@ namespace ick {
 	Function<R(*)(A2, A3)>
 	FunctionBind(Function<R(*)(A1, A2, A3)> function , A1 a1);
 
-
 	// 引数3個のメソッドに、
 	// thisと1個の引数をbindして、
 	// 引数2個の関数にする。
@@ -123,7 +159,6 @@ namespace ick {
 	template <typename R, typename A1, typename A2, typename A3>
 	Function<R(*)(A3)>
 	FunctionBind(Function<R(*)(A1, A2, A3)> function , A1 a1, A2 a2);
-
 
 	// 引数3個のメソッドに、
 	// thisと2個の引数をbindして、
@@ -143,7 +178,6 @@ namespace ick {
 	Function<R(*)()>
 	FunctionBind(Function<R(*)(A1, A2, A3)> function , A1 a1, A2 a2, A3 a3);
 
-
 	// 引数3個のメソッドに、
 	// thisと3個の引数をbindして、
 	// 引数0個の関数にする。
@@ -151,6 +185,16 @@ namespace ick {
 	Function<R(*)()>
 	FunctionBind(R(T::*method)(A1, A2, A3), T * instance, A1 a1, A2 a2, A3 a3);
 
+
+	// 引数4個の関数に、0個の引数をbindして、
+	// 引数4個の関数にする。
+	template <typename R, typename A1, typename A2, typename A3, typename A4>
+	Function<R(*)(A1, A2, A3, A4)>
+	FunctionBind(R(*native_function)(A1, A2, A3, A4));
+
+	template <typename R, typename A1, typename A2, typename A3, typename A4>
+	Function<R(*)(A1, A2, A3, A4)>
+	FunctionBind(Function<R(*)(A1, A2, A3, A4)> function );
 
 	// 引数4個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -171,7 +215,6 @@ namespace ick {
 	Function<R(*)(A2, A3, A4)>
 	FunctionBind(Function<R(*)(A1, A2, A3, A4)> function , A1 a1);
 
-
 	// 引数4個のメソッドに、
 	// thisと1個の引数をbindして、
 	// 引数3個の関数にする。
@@ -191,7 +234,6 @@ namespace ick {
 	Function<R(*)(A3, A4)>
 	FunctionBind(Function<R(*)(A1, A2, A3, A4)> function , A1 a1, A2 a2);
 
-
 	// 引数4個のメソッドに、
 	// thisと2個の引数をbindして、
 	// 引数2個の関数にする。
@@ -210,7 +252,6 @@ namespace ick {
 	template <typename R, typename A1, typename A2, typename A3, typename A4>
 	Function<R(*)(A4)>
 	FunctionBind(Function<R(*)(A1, A2, A3, A4)> function , A1 a1, A2 a2, A3 a3);
-
 
 	// 引数4個のメソッドに、
 	// thisと3個の引数をbindして、
@@ -232,7 +273,6 @@ namespace ick {
  FunctionBind(Function<R(*)(A1, A2, A3, A4)> function , A1 a1, A2 a2, A3 a3,
      A4 a4);
 
-
 	// 引数4個のメソッドに、
 	// thisと4個の引数をbindして、
 	// 引数0個の関数にする。
@@ -242,6 +282,18 @@ namespace ick {
  FunctionBind(R(T::*method)(A1, A2, A3, A4), T * instance, A1 a1, A2 a2, A3 a3,
      A4 a4);
 
+
+	// 引数5個の関数に、0個の引数をbindして、
+	// 引数5個の関数にする。
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)(A1, A2, A3, A4, A5)>
+	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5));
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5>
+	Function<R(*)(A1, A2, A3, A4, A5)>
+	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5)> function );
 
 	// 引数5個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -264,7 +316,6 @@ namespace ick {
 	Function<R(*)(A2, A3, A4, A5)>
 	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1);
 
-
 	// 引数5個のメソッドに、
 	// thisと1個の引数をbindして、
 	// 引数4個の関数にする。
@@ -285,7 +336,6 @@ namespace ick {
      typename A5>
 	Function<R(*)(A3, A4, A5)>
 	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1, A2 a2);
-
 
 	// 引数5個のメソッドに、
 	// thisと2個の引数をbindして、
@@ -308,7 +358,6 @@ namespace ick {
 	Function<R(*)(A4, A5)>
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1, A2 a2,
      A3 a3);
-
 
 	// 引数5個のメソッドに、
 	// thisと3個の引数をbindして、
@@ -334,7 +383,6 @@ namespace ick {
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1, A2 a2,
      A3 a3, A4 a4);
 
-
 	// 引数5個のメソッドに、
 	// thisと4個の引数をbindして、
 	// 引数1個の関数にする。
@@ -359,7 +407,6 @@ namespace ick {
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5)> function , A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5);
 
-
 	// 引数5個のメソッドに、
 	// thisと5個の引数をbindして、
 	// 引数0個の関数にする。
@@ -369,6 +416,18 @@ namespace ick {
  FunctionBind(R(T::*method)(A1, A2, A3, A4, A5), T * instance, A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5);
 
+
+	// 引数6個の関数に、0個の引数をbindして、
+	// 引数6個の関数にする。
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A1, A2, A3, A4, A5, A6)>
+	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6));
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6>
+	Function<R(*)(A1, A2, A3, A4, A5, A6)>
+	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6)> function );
 
 	// 引数6個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -391,7 +450,6 @@ namespace ick {
 	Function<R(*)(A2, A3, A4, A5, A6)>
 	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1);
 
-
 	// 引数6個のメソッドに、
 	// thisと1個の引数をbindして、
 	// 引数5個の関数にする。
@@ -412,7 +470,6 @@ namespace ick {
      typename A5, typename A6>
 	Function<R(*)(A3, A4, A5, A6)>
 	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2);
-
 
 	// 引数6個のメソッドに、
 	// thisと2個の引数をbindして、
@@ -436,7 +493,6 @@ namespace ick {
 	Function<R(*)(A4, A5, A6)>
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2,
      A3 a3);
-
 
 	// 引数6個のメソッドに、
 	// thisと3個の引数をbindして、
@@ -462,7 +518,6 @@ namespace ick {
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2,
      A3 a3, A4 a4);
 
-
 	// 引数6個のメソッドに、
 	// thisと4個の引数をbindして、
 	// 引数2個の関数にする。
@@ -486,7 +541,6 @@ namespace ick {
 	Function<R(*)(A6)>
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5);
-
 
 	// 引数6個のメソッドに、
 	// thisと5個の引数をbindして、
@@ -512,7 +566,6 @@ namespace ick {
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6)> function , A1 a1, A2 a2,
      A3 a3, A4 a4, A5 a5, A6 a6);
 
-
 	// 引数6個のメソッドに、
 	// thisと6個の引数をbindして、
 	// 引数0個の関数にする。
@@ -522,6 +575,18 @@ namespace ick {
  FunctionBind(R(T::*method)(A1, A2, A3, A4, A5, A6), T * instance, A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6);
 
+
+	// 引数7個の関数に、0個の引数をbindして、
+	// 引数7個の関数にする。
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>
+	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7));
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7>
+	Function<R(*)(A1, A2, A3, A4, A5, A6, A7)>
+	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function );
 
 	// 引数7個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -544,7 +609,6 @@ namespace ick {
 	Function<R(*)(A2, A3, A4, A5, A6, A7)>
 	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1);
 
-
 	// 引数7個のメソッドに、
 	// thisと1個の引数をbindして、
 	// 引数6個の関数にする。
@@ -566,7 +630,6 @@ namespace ick {
 	Function<R(*)(A3, A4, A5, A6, A7)>
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
      A2 a2);
-
 
 	// 引数7個のメソッドに、
 	// thisと2個の引数をbindして、
@@ -592,7 +655,6 @@ namespace ick {
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
      A2 a2, A3 a3);
 
-
 	// 引数7個のメソッドに、
 	// thisと3個の引数をbindして、
 	// 引数4個の関数にする。
@@ -616,7 +678,6 @@ namespace ick {
 	Function<R(*)(A5, A6, A7)>
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
      A2 a2, A3 a3, A4 a4);
-
 
 	// 引数7個のメソッドに、
 	// thisと4個の引数をbindして、
@@ -642,7 +703,6 @@ namespace ick {
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5);
 
-
 	// 引数7個のメソッドに、
 	// thisと5個の引数をbindして、
 	// 引数2個の関数にする。
@@ -666,7 +726,6 @@ namespace ick {
 	Function<R(*)(A7)>
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6);
-
 
 	// 引数7個のメソッドに、
 	// thisと6個の引数をbindして、
@@ -692,7 +751,6 @@ namespace ick {
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7);
 
-
 	// 引数7個のメソッドに、
 	// thisと7個の引数をbindして、
 	// 引数0個の関数にする。
@@ -702,6 +760,18 @@ namespace ick {
  FunctionBind(R(T::*method)(A1, A2, A3, A4, A5, A6, A7), T * instance, A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7);
 
+
+	// 引数8個の関数に、0個の引数をbindして、
+	// 引数8個の関数にする。
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>
+	FunctionBind(R(*native_function)(A1, A2, A3, A4, A5, A6, A7, A8));
+
+ template <typename R, typename A1, typename A2, typename A3, typename A4,
+     typename A5, typename A6, typename A7, typename A8>
+	Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)>
+	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function );
 
 	// 引数8個のメソッドに、
 	// thisと0個の引数をbindして、
@@ -723,7 +793,6 @@ namespace ick {
      typename A5, typename A6, typename A7, typename A8>
 	Function<R(*)(A2, A3, A4, A5, A6, A7, A8)>
 	FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1);
-
 
 	// 引数8個のメソッドに、
 	// thisと1個の引数をbindして、
@@ -749,7 +818,6 @@ namespace ick {
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2);
 
-
 	// 引数8個のメソッドに、
 	// thisと2個の引数をbindして、
 	// 引数6個の関数にする。
@@ -773,7 +841,6 @@ namespace ick {
 	Function<R(*)(A4, A5, A6, A7, A8)>
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2, A3 a3);
-
 
 	// 引数8個のメソッドに、
 	// thisと3個の引数をbindして、
@@ -799,7 +866,6 @@ namespace ick {
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2, A3 a3, A4 a4);
 
-
 	// 引数8個のメソッドに、
 	// thisと4個の引数をbindして、
 	// 引数4個の関数にする。
@@ -823,7 +889,6 @@ namespace ick {
 	Function<R(*)(A6, A7, A8)>
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5);
-
 
 	// 引数8個のメソッドに、
 	// thisと5個の引数をbindして、
@@ -849,7 +914,6 @@ namespace ick {
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6);
 
-
 	// 引数8個のメソッドに、
 	// thisと6個の引数をbindして、
 	// 引数2個の関数にする。
@@ -874,7 +938,6 @@ namespace ick {
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7);
 
-
 	// 引数8個のメソッドに、
 	// thisと7個の引数をbindして、
 	// 引数1個の関数にする。
@@ -898,7 +961,6 @@ namespace ick {
 	Function<R(*)()>
  FunctionBind(Function<R(*)(A1, A2, A3, A4, A5, A6, A7, A8)> function , A1 a1,
      A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8);
-
 
 	// 引数8個のメソッドに、
 	// thisと8個の引数をbindして、

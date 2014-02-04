@@ -39,9 +39,6 @@
 		D602851F1860C9F500CE5EC5 /* error.h in Headers */ = {isa = PBXBuildFile; fileRef = D602851C1860C9F500CE5EC5 /* error.h */; };
 		D60285361860D4D500CE5EC5 /* thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285331860D4D100CE5EC5 /* thread_test.cpp */; };
 		D60285371860D4D500CE5EC5 /* thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285331860D4D100CE5EC5 /* thread_test.cpp */; };
-		D60285401861E64200CE5EC5 /* function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D602853E1861E64200CE5EC5 /* function.cpp */; };
-		D60285411861E64200CE5EC5 /* function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D602853E1861E64200CE5EC5 /* function.cpp */; };
-		D60285421861E64200CE5EC5 /* function.h in Headers */ = {isa = PBXBuildFile; fileRef = D602853F1861E64200CE5EC5 /* function.h */; };
 		D625B03A186C7B6800DF7CCF /* libIronCakeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE3184CE84600404D8D /* libIronCakeMac.a */; };
 		D625B03D186C96AC00DF7CCF /* task_queue_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D625B03B186C96AC00DF7CCF /* task_queue_thread.cpp */; };
 		D625B03E186C96AC00DF7CCF /* task_queue_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D625B03B186C96AC00DF7CCF /* task_queue_thread.cpp */; };
@@ -121,11 +118,16 @@
 		D68A579E18A00548006231EE /* signal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68A579C18A00548006231EE /* signal.cpp */; };
 		D68A579F18A00548006231EE /* signal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68A579C18A00548006231EE /* signal.cpp */; };
 		D68A57A018A00548006231EE /* signal.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A579D18A00548006231EE /* signal.h */; };
+		D68A57A718A144F0006231EE /* base_function_holder.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A118A144F0006231EE /* base_function_holder.h */; };
+		D68A57A818A144F0006231EE /* function_bind_decl.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A218A144F0006231EE /* function_bind_decl.h */; };
+		D68A57A918A144F0006231EE /* function_binder.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A318A144F0006231EE /* function_binder.h */; };
+		D68A57AA18A144F0006231EE /* function_holder.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A418A144F0006231EE /* function_holder.h */; };
+		D68A57AB18A144F0006231EE /* function.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A518A144F0006231EE /* function.h */; };
+		D68A57AC18A144F0006231EE /* native_function_holder.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A618A144F0006231EE /* native_function_holder.h */; };
+		D68A57AE18A15092006231EE /* function_bind.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57AD18A15092006231EE /* function_bind.h */; };
+		D68A57B018A150C4006231EE /* method_binder.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57AF18A150C4006231EE /* method_binder.h */; };
 		D6B62AEF1863454500903540 /* function_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AEE1863454500903540 /* function_test.cpp */; };
 		D6B62AF01863454500903540 /* function_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AEE1863454500903540 /* function_test.cpp */; };
-		D6B62AF41863547F00903540 /* functor_holder.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62AF31863547F00903540 /* functor_holder.h */; };
-		D6B62AF61863570700903540 /* function_bind.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62AF51863570700903540 /* function_bind.h */; };
-		D6B62AF818635E3F00903540 /* function_bind_decl.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62AF718635E3F00903540 /* function_bind_decl.h */; };
 		D6B62AFB18689ED400903540 /* function_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AF918689ED400903540 /* function_thread.cpp */; };
 		D6B62AFC18689ED400903540 /* function_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6B62AF918689ED400903540 /* function_thread.cpp */; };
 		D6B62AFD18689ED400903540 /* function_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = D6B62AFA18689ED400903540 /* function_thread.h */; };
@@ -214,8 +216,6 @@
 		D602851B1860C9F500CE5EC5 /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error.cpp; sourceTree = "<group>"; };
 		D602851C1860C9F500CE5EC5 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
 		D60285331860D4D100CE5EC5 /* thread_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = thread_test.cpp; path = ../test/thread_test.cpp; sourceTree = "<group>"; };
-		D602853E1861E64200CE5EC5 /* function.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = function.cpp; sourceTree = "<group>"; };
-		D602853F1861E64200CE5EC5 /* function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function.h; sourceTree = "<group>"; };
 		D6079B7E1858C01600DFDEAA /* TestMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestMac; sourceTree = BUILT_PRODUCTS_DIR; };
 		D625B03B186C96AC00DF7CCF /* task_queue_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = task_queue_thread.cpp; sourceTree = "<group>"; };
 		D625B03C186C96AC00DF7CCF /* task_queue_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = task_queue_thread.h; sourceTree = "<group>"; };
@@ -278,10 +278,15 @@
 		D68A5798189AAC50006231EE /* task_postable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = task_postable.h; sourceTree = "<group>"; };
 		D68A579C18A00548006231EE /* signal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = signal.cpp; sourceTree = "<group>"; };
 		D68A579D18A00548006231EE /* signal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signal.h; sourceTree = "<group>"; };
+		D68A57A118A144F0006231EE /* base_function_holder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_function_holder.h; sourceTree = "<group>"; };
+		D68A57A218A144F0006231EE /* function_bind_decl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind_decl.h; sourceTree = "<group>"; };
+		D68A57A318A144F0006231EE /* function_binder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_binder.h; sourceTree = "<group>"; };
+		D68A57A418A144F0006231EE /* function_holder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_holder.h; sourceTree = "<group>"; };
+		D68A57A518A144F0006231EE /* function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function.h; sourceTree = "<group>"; };
+		D68A57A618A144F0006231EE /* native_function_holder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = native_function_holder.h; sourceTree = "<group>"; };
+		D68A57AD18A15092006231EE /* function_bind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind.h; sourceTree = "<group>"; };
+		D68A57AF18A150C4006231EE /* method_binder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = method_binder.h; sourceTree = "<group>"; };
 		D6B62AEE1863454500903540 /* function_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = function_test.cpp; path = ../test/function_test.cpp; sourceTree = "<group>"; };
-		D6B62AF31863547F00903540 /* functor_holder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = functor_holder.h; sourceTree = "<group>"; };
-		D6B62AF51863570700903540 /* function_bind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind.h; sourceTree = "<group>"; };
-		D6B62AF718635E3F00903540 /* function_bind_decl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind_decl.h; sourceTree = "<group>"; };
 		D6B62AF918689ED400903540 /* function_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = function_thread.cpp; sourceTree = "<group>"; };
 		D6B62AFA18689ED400903540 /* function_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_thread.h; sourceTree = "<group>"; };
 		D6B62AFE1869B64200903540 /* mutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mutex.cpp; sourceTree = "<group>"; };
@@ -437,11 +442,14 @@
 		D602853D1861E64200CE5EC5 /* function */ = {
 			isa = PBXGroup;
 			children = (
-				D6B62AF718635E3F00903540 /* function_bind_decl.h */,
-				D6B62AF51863570700903540 /* function_bind.h */,
-				D6B62AF31863547F00903540 /* functor_holder.h */,
-				D602853F1861E64200CE5EC5 /* function.h */,
-				D602853E1861E64200CE5EC5 /* function.cpp */,
+				D68A57A118A144F0006231EE /* base_function_holder.h */,
+				D68A57A618A144F0006231EE /* native_function_holder.h */,
+				D68A57A518A144F0006231EE /* function.h */,
+				D68A57A418A144F0006231EE /* function_holder.h */,
+				D68A57A318A144F0006231EE /* function_binder.h */,
+				D68A57AF18A150C4006231EE /* method_binder.h */,
+				D68A57A218A144F0006231EE /* function_bind_decl.h */,
+				D68A57AD18A15092006231EE /* function_bind.h */,
 			);
 			path = function;
 			sourceTree = "<group>";
@@ -631,13 +639,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D667FC91184F95DD00404D8D /* std.h in Headers */,
+				D68A57AB18A144F0006231EE /* function.h in Headers */,
 				D662981B186F3462004060B9 /* application_platform.h in Headers */,
 				D667FC7C184E490C00404D8D /* cstr.h in Headers */,
+				D68A57A918A144F0006231EE /* function_binder.h in Headers */,
 				D667FC72184E490C00404D8D /* allocator.h in Headers */,
 				D68A579B189AAC50006231EE /* task_postable.h in Headers */,
 				D667FC7F184E490C00404D8D /* linked_list.h in Headers */,
 				D667FC83184E490C00404D8D /* macro.h in Headers */,
 				D625B044186DD25800DF7CCF /* property.h in Headers */,
+				D68A57A718A144F0006231EE /* base_function_holder.h in Headers */,
+				D68A57AA18A144F0006231EE /* function_holder.h in Headers */,
 				D667FCA4185231AE00404D8D /* math.h in Headers */,
 				D6B62B021869B64200903540 /* mutex.h in Headers */,
 				D6B62AFD18689ED400903540 /* function_thread.h in Headers */,
@@ -650,26 +662,26 @@
 				D66297F6186DECD9004060B9 /* application.h in Headers */,
 				D667FC75184E490C00404D8D /* assert.h in Headers */,
 				D667FC8F184E512300404D8D /* ick.h in Headers */,
+				D68A57A818A144F0006231EE /* function_bind_decl.h in Headers */,
 				D68A57961892C6E5006231EE /* glfw3native.h in Headers */,
 				D6629809186E9D02004060B9 /* application_controller.h in Headers */,
 				D667FC6F184E490C00404D8D /* abort.h in Headers */,
-				D60285421861E64200CE5EC5 /* function.h in Headers */,
-				D6B62AF818635E3F00903540 /* function_bind_decl.h in Headers */,
 				D6B62B12186C657D00903540 /* time.h in Headers */,
+				D68A57AC18A144F0006231EE /* native_function_holder.h in Headers */,
 				D667FCAB1852520600404D8D /* array_decl.h in Headers */,
 				D667FC82184E490C00404D8D /* log.h in Headers */,
 				D6B62B0F186C657D00903540 /* debug_allocator.h in Headers */,
-				D6B62AF61863570700903540 /* function_bind.h in Headers */,
 				D63ABDCB1855FCAC004349F8 /* string.h in Headers */,
 				D667FC86184E490C00404D8D /* memory.h in Headers */,
 				D667FCA918523C9600404D8D /* build.h in Headers */,
 				D60285181860C22C00CE5EC5 /* thread.h in Headers */,
+				D68A57B018A150C4006231EE /* method_binder.h in Headers */,
 				D625B03F186C96AC00DF7CCF /* task_queue_thread.h in Headers */,
+				D68A57AE18A15092006231EE /* function_bind.h in Headers */,
 				D602851F1860C9F500CE5EC5 /* error.h in Headers */,
 				D68A57A018A00548006231EE /* signal.h in Headers */,
 				D667FC79184E490C00404D8D /* crt.h in Headers */,
 				D667FC76184E490C00404D8D /* compiler.h in Headers */,
-				D6B62AF41863547F00903540 /* functor_holder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -855,7 +867,6 @@
 				D68A578F1892BCCF006231EE /* startup.cpp in Sources */,
 				D6629803186DFA37004060B9 /* application.mm in Sources */,
 				D667FC80184E490C00404D8D /* log.cpp in Sources */,
-				D60285401861E64200CE5EC5 /* function.cpp in Sources */,
 				D667FC8D184E512300404D8D /* ick.cpp in Sources */,
 				D6B62B15186C672000903540 /* scoped_lock.cpp in Sources */,
 				D667FC77184E490C00404D8D /* crt.cpp in Sources */,
@@ -889,7 +900,6 @@
 				D68A578E1892BCCF006231EE /* startup.cpp in Sources */,
 				D6629804186DFA37004060B9 /* application.mm in Sources */,
 				D667FC81184E490C00404D8D /* log.cpp in Sources */,
-				D60285411861E64200CE5EC5 /* function.cpp in Sources */,
 				D667FC8E184E512300404D8D /* ick.cpp in Sources */,
 				D6B62B16186C672000903540 /* scoped_lock.cpp in Sources */,
 				D667FC78184E490C00404D8D /* crt.cpp in Sources */,

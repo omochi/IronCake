@@ -1,6 +1,7 @@
 ﻿#include "task_queue_thread.h"
 
 #include "scoped_lock.h"
+#include "function_bind.h"
 
 namespace ick{
 	Function<void (*)()> TaskQueueThread::PickTask(){
@@ -43,7 +44,7 @@ namespace ick{
 	}
 	
 	void TaskQueueThread::PostQuit(){
-		PostTask(FunctionMake(this, &TaskQueueThread::Quit));
+		PostTask(FunctionBind(&TaskQueueThread::Quit, this));
 	}
 	
 	

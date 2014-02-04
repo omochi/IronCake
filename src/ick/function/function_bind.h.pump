@@ -3,61 +3,60 @@
 #include "../base/memory.h"
 
 #include "function_bind_decl.h"
-#include "functor_holder.h"
+#include "native_function_holder.h"
 #include "function.h"
+#include "function_holder.h"
+#include "function_binder.h"
+#include "method_binder.h"
 
 namespace ick {
-	template <typename FP, int N> class FunctionBinder;
-
 	$var an_max = 8
-	$range an 0..an_max $$ args num
+	$range an 0..an_max $$ 元の関数の引数の数
 	$for an [[
 	$range ai 1..an
-	$range bn 1..an $$ bind num
+	$range bn 0..an $$ bindする引数の数
 	$for bn [[
 	$range bi 1..bn
-	$var can = an - bn $$ call args num
+	$var can = an - bn $$ bind後の関数の引数の数
 	$range cai bn+1..an
 
-	template <typename R$for ai [[, typename A$ai]]>
-	class FunctionBinder<R(*)($for ai , [[A$ai]]),$bn>{
-	public:
-		typedef R (*FunctionType)($for ai , [[A$ai]]);
-		typedef FunctionBinder<FunctionType,$bn> ThisType;
-	private:
-		Function<R(*)($for ai , [[A$ai]])> function_;
-		$for bi [[A$bi a$bi[[]]_; ]]
+	$$ 関数はbind0は無い
+	$if ( bn > 0 ) [[
 
-	public:
-		FunctionBinder(const Function<R(*)($for ai , [[A$ai]])> & function, $for bi , [[A$bi a$bi]]):
-		function_(function),
-		$for bi , [[a$bi[[]]_(a$bi)]]
-		
-		{
-		}
-		virtual ~FunctionBinder(){}
-
-		virtual R operator() ($for cai , [[A$cai a$cai]]) {
-			return function_($for bi , [[a$bi[[]]_]] $if (bn * can) > 0 [[, ]] $for cai , [[a$cai]]);
-		}
-	};
-	
+	// 引数$an個の関数に、$bn個の引数をbindして、
+	// 引数$can個の関数にする。
 	template <typename R$for ai [[, typename A$ai]]>
 	Function<R(*)($for cai , [[A$cai]])> 
-	FunctionBind$bn(Function<R(*)($for ai , [[A$ai]])> function $for bi [[, A$bi a$bi]]){
-		return FunctionMake<FunctionBinder<R(*)($for ai , [[A$ai]]),$bn>,R(*)($for cai , [[A$cai]])>(
-			FunctionBinder<R(*)($for ai , [[A$ai]]),$bn>(function $for bi [[, a$bi]])
-		);
+	FunctionBind(R(*native_function)($for ai , [[A$ai]])$for bi [[, A$bi a$bi]]){
+		typedef Function<R(*)($for cai , [[A$cai]])> Bound;
+		typedef FunctionBinder<R(*)($for ai , [[A$ai]]), $bn> Binder;
+		typedef NativeFunctionHolder<R(*)($for ai , [[A$ai]])> Holder;
+		Holder holder(native_function);
+		return Bound(ICK_NEW(Binder, &holder$for bi [[, a$bi]]), true);
 	}
 
 	template <typename R$for ai [[, typename A$ai]]>
 	Function<R(*)($for cai , [[A$cai]])> 
-	FunctionBind$bn(R (*function)($for ai , [[A$ai]]) $for bi [[, A$bi a$bi]]){
-		return FunctionBind$bn(Function<R(*)($for ai , [[A$ai]])>(function)
-			$for bi [[, a$bi]]);
+	FunctionBind(Function<R(*)($for ai , [[A$ai]])> function $for bi [[, A$bi a$bi]]){
+		typedef Function<R(*)($for cai , [[A$cai]])> Bound;
+		typedef FunctionBinder<R(*)($for ai , [[A$ai]]), $bn> Binder;
+		return Bound(ICK_NEW(Binder, function.holder()$for bi [[, a$bi]]), true);
 	}
 
-	]] $$ bind num
-	]] $$ args num
+	]]
+
+	// 引数$an個のメソッドに、
+	// thisと$bn個の引数をbindして、
+	// 引数$can個の関数にする。
+	template <class T, typename R$for ai [[, typename A$ai]]>
+	Function<R(*)($for cai , [[A$cai]])> 
+	FunctionBind(R(T::*method)($for ai , [[A$ai]]), T * instance$for bi [[, A$bi a$bi]]){
+		typedef Function<R(*)($for cai , [[A$cai]])> Bound;
+		typedef MethodBinder<R(T::*)($for ai , [[A$ai]]), $bn> Binder;
+		return Bound(ICK_NEW(Binder, method, instance$for bi [[, a$bi]]), true);
+	}
+
+	]] $$ bindする引数の数
+	]] $$ 元の関数の引数の数
 
 }

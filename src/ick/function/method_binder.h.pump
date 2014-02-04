@@ -1,0 +1,59 @@
+#pragma once
+
+#include "../base/memory.h"
+
+#include "base_function_holder.h"
+#include "function.h"
+
+namespace ick {
+	template <typename F> class BaseFunctionHolder;
+	template <typename F, int N> class MethodBinder;
+	$var an_max = 8
+	$range an 0..an_max $$ 元のメソッドの引数の数
+	$for an [[
+	$range ai 1..an
+	$range bn 0..an $$ bindする引数の数。thisだけの場合があるので0から。
+	$for bn [[
+	$range bi 1..bn
+	$var can = an - bn $$ bind後の関数の引数の数
+	$range cai bn+1..an
+
+	// 引数$an個のメソッドに、
+	// thisと$bn個の引数をbindして、
+	// 引数$can個の関数にする。
+	template <class T, typename R$for ai [[, typename A$ai]]>
+	class MethodBinder<R(T::*)($for ai , [[A$ai]]), $bn> :
+		public BaseFunctionHolder<R(*)($for cai , [[A$cai]])>{
+	public:
+		typedef R (T::*MethodType)($for ai , [[A$ai]]);
+		typedef R (*CallFunctionType)($for cai , [[A$cai]]);
+		typedef BaseFunctionHolder<CallFunctionType> SuperType;
+		typedef MethodBinder<MethodType, $bn> ThisType;
+	private:
+		MethodType method_;
+		T * instance_;
+		$for bi [[A$bi a$bi[[]]_; ]]
+
+	public:
+		MethodBinder(MethodType method, T * instance$for bi [[, A$bi a$bi]]):
+		method_(method),
+		instance_(instance)$if (bn > 0) [[,
+		]]
+		$for bi , [[a$bi[[]]_(a$bi)]]
+		
+		{
+		}
+		virtual ~MethodBinder(){
+		}
+		virtual SuperType * Clone() const { 
+			return ICK_NEW(ThisType, method_, instance_$for bi [[, a$bi[[]]_]]);
+		}
+		virtual R operator() ($for cai , [[A$cai a$cai]]) {
+			return (instance_->*method_)($for bi , [[a$bi[[]]_]]$if ((bn > 0) * (can > 0) != 0) [[, ]]$for cai , [[a$cai]]);
+		}
+	};
+
+	]] $$ bindする引数の数
+	]] $$ 元のメソッドの引数の数
+
+}

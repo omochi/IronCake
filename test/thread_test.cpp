@@ -40,7 +40,7 @@ void Func1(int * x, int n){
 TEST_F(ThreadTest, function_thread){
 	int x;
 	ick::FunctionThread * th1 = ICK_NEW(ick::FunctionThread,
-										ick::FunctionBind2(Func1, &x, 100));
+										ick::FunctionBind(Func1, &x, 100));
 	
 	th1->Start();
 	th1->Join();

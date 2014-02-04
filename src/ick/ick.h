@@ -27,8 +27,12 @@
 #include "base/error.h"
 #include "base/time.h"
 
-#include "function/functor_holder.h"
+#include "function/base_function_holder.h"
+#include "function/native_function_holder.h"
 #include "function/function.h"
+#include "function/function_holder.h"
+#include "function/function_binder.h"
+#include "function/method_binder.h"
 #include "function/function_bind.h"
 
 #include "thread/mutex.h"

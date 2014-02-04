@@ -1,0 +1,37 @@
+#pragma once
+
+#include "../base/memory.h"
+#include "base_function_holder.h"
+
+namespace ick {
+	template <typename F> class NativeFunctionHolder;
+	$var an_max = 8
+	$range an 0..an_max
+	$for an [[
+	$range ai 1..an
+
+	template <typename R$for ai [[, typename A$ai]]>
+	class NativeFunctionHolder<R(*)($for ai , [[A$ai]])> :
+		public BaseFunctionHolder<R(*)($for ai , [[A$ai]])>{
+	public:
+		typedef R (*FunctionType)($for ai , [[A$ai]]);
+		typedef BaseFunctionHolder<FunctionType> SuperType;
+		typedef NativeFunctionHolder<FunctionType> ThisType;
+	private:
+		FunctionType native_function_;
+	public:
+		NativeFunctionHolder(FunctionType native_function):
+		native_function_(native_function)
+		{}
+		virtual ~NativeFunctionHolder(){};
+		virtual SuperType * Clone() const { 
+			return ICK_NEW(ThisType, native_function_);
+		}
+		virtual R operator() ($for ai , [[A$ai a$ai]]){
+			return (*native_function_)($for ai , [[a$ai]]);
+		}
+	};
+	]]
+
+}
+

@@ -19,7 +19,7 @@ void f1(int * x){
 
 void f1_post(ick::TaskQueueThread * lp, int * x, int n){
 	for(int i=0;i<n;i++){
-		lp->PostTask(ick::FunctionBind1(f1, x));
+		lp->PostTask(ick::FunctionBind(f1, x));
 		ick::Sleep(0.001);
 	}
 }
@@ -33,7 +33,7 @@ TEST_F(TaskQueueThreadTest, test1){
 	
 	//インクリメントを1つのスレッドから10個投げ込む
 	for (int i = 0; i < ps.num(); i++){
-		ps[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind3(f1_post, task_thread, &x, 10));
+		ps[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind(f1_post, task_thread, &x, 10));
 		ps[i]->Start();
 	}
 	

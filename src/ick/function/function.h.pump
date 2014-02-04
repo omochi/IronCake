@@ -3,18 +3,11 @@
 #include "../base/memory.h"
 #include "../base/property.h"
 
-#include "functor_holder.h"
+#include "base_function_holder.h"
+#include "native_function_holder.h"
 
 namespace ick {
-	template <typename FP> class Function;
-	
-	template <typename F, typename FP> 
-	Function<FP> FunctionMake(const F & functor);
-	
-	template <typename FP>
-	Function<typename FunctorHolder<FP, FP>::FunctionType> 
-	FunctionMake(typename FunctorHolder<FP, FP>::ClassType * instance, const FP & functor);
-
+	template <typename F> class Function;
 	$var an_max = 8
 	$range an 0..an_max
 	$for an [[
@@ -26,32 +19,41 @@ namespace ick {
 		typedef R (*FunctionType)($for ai , [[A$ai]]);
 		typedef Function<FunctionType> ThisType;
 	private:
-		BaseFunctorHolder<FunctionType> * holder_;
+		BaseFunctionHolder<FunctionType> * holder_;
+		bool holder_release_;
 	public:
-		BaseFunctorHolder<FunctionType> * holder() const { return holder_; }
+		BaseFunctionHolder<FunctionType> * holder() const { return holder_; }
 
 		Function():
-		holder_(NULL){
+		holder_(NULL),
+		holder_release_(false)
+		{
 		}
-		//ネイティブ関数の暗黙変換
+		// ネイティブ関数からの暗黙変換
+		// explicit
 		Function(FunctionType native_function):
-		holder_(
-			ICK_NEW(FunctorHolder<FunctionType ICK_COMMA FunctionType>, 
-				native_function)){
+		holder_(ICK_NEW(NativeFunctionHolder<FunctionType>,
+						native_function)),
+		holder_release_(true)
+		{
 		}
-		explicit Function(const BaseFunctorHolder<FunctionType> & holder):
-		holder_(holder.Clone()){
+		Function(BaseFunctionHolder<FunctionType> * holder,
+				 bool holder_release):
+		holder_(holder),
+		holder_release_(holder_release)
+		{
 		}
-
 		Function(const ThisType & copy):
-		holder_(NULL){
+		holder_(NULL),
+		holder_release_(false)
+		{
 			*this = copy;
 		}
 		virtual ~Function(){
-			PropertyClear(holder_);
+			PropertyClear(holder_, holder_release_);
 		}
 		ThisType & operator = (const ThisType & copy){
-			PropertySet(holder_, copy.holder_->Clone());
+			PropertySet(holder_, holder_release_, copy.holder_->Clone(), true);
 			return * this;
 		}
 		R operator() ($for ai , [[A$ai a$ai]]) { 
@@ -61,18 +63,6 @@ namespace ick {
 
 	]]
 	
-	template <typename F, typename FP>
-	Function<FP> FunctionMake(const F & functor){
-		return Function<FP>(FunctorHolder<F, FP>(functor));
-	}
-
-	template <typename FP>
-	Function<typename FunctorHolder<FP, FP>::FunctionType> 
-	FunctionMake(typename FunctorHolder<FP, FP>::ClassType * instance, const FP & functor){
-		return Function<typename FunctorHolder<FP, FP>::FunctionType>(
-			FunctorHolder<FP, FP>(instance, functor)
-		);
-	}
 
 }
 

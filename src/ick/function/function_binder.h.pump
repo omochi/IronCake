@@ -1,0 +1,56 @@
+#pragma once
+
+#include "../base/memory.h"
+
+#include "base_function_holder.h"
+#include "function.h"
+
+namespace ick {
+	template <typename F> class BaseFunctionHolder;
+	template <typename F, int N> class FunctionBinder;
+	$var an_max = 8
+	$range an 0..an_max $$ 元の関数の引数の数
+	$for an [[
+	$range ai 1..an
+	$range bn 1..an $$ bindする引数の数
+	$for bn [[
+	$range bi 1..bn
+	$var can = an - bn $$ bind後の関数の引数の数
+	$range cai bn+1..an
+
+	// 引数$an個の関数に、$bn個の引数をbindして、
+	// 引数$can個の関数にする。
+	template <typename R$for ai [[, typename A$ai]]>
+	class FunctionBinder<R(*)($for ai , [[A$ai]]), $bn> :
+		public BaseFunctionHolder<R(*)($for cai , [[A$cai]])>{
+	public:
+		typedef R (*FunctionType)($for ai , [[A$ai]]);
+		typedef R (*CallFunctionType)($for cai , [[A$cai]]);
+		typedef BaseFunctionHolder<CallFunctionType> SuperType;
+		typedef FunctionBinder<FunctionType, $bn> ThisType;
+	private:
+		BaseFunctionHolder<FunctionType> * holder_;
+		$for bi [[A$bi a$bi[[]]_; ]]
+
+	public:
+		FunctionBinder(const BaseFunctionHolder<FunctionType> * holder, $for bi , [[A$bi a$bi]]):
+		holder_(holder->Clone()),
+		$for bi , [[a$bi[[]]_(a$bi)]]
+		
+		{
+		}
+		virtual ~FunctionBinder(){
+			ICK_DELETE(holder_);
+		}
+		virtual SuperType * Clone() const { 
+			return ICK_NEW(ThisType, holder_$for bi [[, a$bi[[]]_]]);
+		}
+		virtual R operator() ($for cai , [[A$cai a$cai]]) {
+			return (*holder_)($for bi , [[a$bi[[]]_]]$if ((bn > 0) * (can > 0) != 0) [[, ]]$for cai , [[a$cai]]);
+		}
+	};
+
+	]] $$ bindする引数の数
+	]] $$ 元の関数の引数の数
+
+}

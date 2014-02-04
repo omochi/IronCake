@@ -27,7 +27,7 @@ TEST_F(MutexTest, mutex){
 	ick::Mutex mutex;
 	int x = 0;
 	for(int i = 0; i < ths.num(); i++){
-		ths[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind2(f2, &mutex, &x));
+		ths[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind(f2, &mutex, &x));
 		ths[i]->Start();
 	}
 	for(int i = 0; i < ths.num(); i++){
@@ -51,7 +51,7 @@ TEST_F(MutexTest, scoped_lock){
 	ick::Mutex mutex;
 	int x = 0;
 	for(int i = 0; i < ths.num(); i++){
-		ths[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind2(f2_2, &mutex, &x));
+		ths[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind(f2_2, &mutex, &x));
 		ths[i]->Start();
 	}
 	for(int i = 0; i < ths.num(); i++){
@@ -83,12 +83,12 @@ TEST_F(MutexTest, cond){
 	ick::Mutex mutex;
 	int x = 0;
 	for(int i = 0; i < ws.num(); i++){
-		ws[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind3(f3_wait, &mutex, &x, ws.num()));
+		ws[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind(f3_wait, &mutex, &x, ws.num()));
 		ws[i]->Start();
 	}
 	ick::Sleep(0.001);
 	for(int i = 0; i< ns.num(); i++){
-		ns[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind2(f3_notify, &mutex, &x));
+		ns[i] = ICK_NEW(ick::FunctionThread, ick::FunctionBind(f3_notify, &mutex, &x));
 		ns[i]->Start();
 	}
 	for(int i = 0; i< ns.num(); i++){

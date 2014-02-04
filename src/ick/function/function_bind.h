@@ -9,7 +9,6 @@
 #include "function_bind_decl.h"
 #include "native_function_holder.h"
 #include "function.h"
-#include "function_holder.h"
 #include "function_binder.h"
 #include "method_binder.h"
 

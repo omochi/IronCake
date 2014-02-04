@@ -30,7 +30,6 @@
 #include "function/base_function_holder.h"
 #include "function/native_function_holder.h"
 #include "function/function.h"
-#include "function/function_holder.h"
 #include "function/function_binder.h"
 #include "function/method_binder.h"
 #include "function/function_bind.h"

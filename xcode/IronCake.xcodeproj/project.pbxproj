@@ -121,7 +121,6 @@
 		D68A57A718A144F0006231EE /* base_function_holder.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A118A144F0006231EE /* base_function_holder.h */; };
 		D68A57A818A144F0006231EE /* function_bind_decl.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A218A144F0006231EE /* function_bind_decl.h */; };
 		D68A57A918A144F0006231EE /* function_binder.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A318A144F0006231EE /* function_binder.h */; };
-		D68A57AA18A144F0006231EE /* function_holder.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A418A144F0006231EE /* function_holder.h */; };
 		D68A57AB18A144F0006231EE /* function.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A518A144F0006231EE /* function.h */; };
 		D68A57AC18A144F0006231EE /* native_function_holder.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57A618A144F0006231EE /* native_function_holder.h */; };
 		D68A57AE18A15092006231EE /* function_bind.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57AD18A15092006231EE /* function_bind.h */; };
@@ -281,7 +280,6 @@
 		D68A57A118A144F0006231EE /* base_function_holder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_function_holder.h; sourceTree = "<group>"; };
 		D68A57A218A144F0006231EE /* function_bind_decl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind_decl.h; sourceTree = "<group>"; };
 		D68A57A318A144F0006231EE /* function_binder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_binder.h; sourceTree = "<group>"; };
-		D68A57A418A144F0006231EE /* function_holder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_holder.h; sourceTree = "<group>"; };
 		D68A57A518A144F0006231EE /* function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function.h; sourceTree = "<group>"; };
 		D68A57A618A144F0006231EE /* native_function_holder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = native_function_holder.h; sourceTree = "<group>"; };
 		D68A57AD18A15092006231EE /* function_bind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind.h; sourceTree = "<group>"; };
@@ -445,7 +443,6 @@
 				D68A57A118A144F0006231EE /* base_function_holder.h */,
 				D68A57A618A144F0006231EE /* native_function_holder.h */,
 				D68A57A518A144F0006231EE /* function.h */,
-				D68A57A418A144F0006231EE /* function_holder.h */,
 				D68A57A318A144F0006231EE /* function_binder.h */,
 				D68A57AF18A150C4006231EE /* method_binder.h */,
 				D68A57A218A144F0006231EE /* function_bind_decl.h */,
@@ -649,7 +646,6 @@
 				D667FC83184E490C00404D8D /* macro.h in Headers */,
 				D625B044186DD25800DF7CCF /* property.h in Headers */,
 				D68A57A718A144F0006231EE /* base_function_holder.h in Headers */,
-				D68A57AA18A144F0006231EE /* function_holder.h in Headers */,
 				D667FCA4185231AE00404D8D /* math.h in Headers */,
 				D6B62B021869B64200903540 /* mutex.h in Headers */,
 				D6B62AFD18689ED400903540 /* function_thread.h in Headers */,

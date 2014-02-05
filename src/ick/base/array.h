@@ -188,35 +188,35 @@ namespace ick{
 		}
 	};
 		
-	template <typename T> Array<T> ArrayMake1(const T & a1){
+	template <typename T> Array<T> ArrayMake(const T & a1){
 		T array_[] = { a1 };
 		return Array<T>(array_,ICK_ARRAY_SIZE(array_));
 	}
-	template <typename T> Array<T> ArrayMake2(const T & a1,const T & a2){
+	template <typename T> Array<T> ArrayMake(const T & a1,const T & a2){
 		T array_[] = { a1,a2 };
 		return Array<T>(array_,ICK_ARRAY_SIZE(array_));
 	}
-	template <typename T> Array<T> ArrayMake3(const T & a1,const T & a2,const T & a3){
+	template <typename T> Array<T> ArrayMake(const T & a1,const T & a2,const T & a3){
 		T array_[] = { a1,a2,a3 };
 		return Array<T>(array_,ICK_ARRAY_SIZE(array_));
 	}
-	template <typename T> Array<T> ArrayMake4(const T & a1,const T & a2,const T & a3,const T & a4){
+	template <typename T> Array<T> ArrayMake(const T & a1,const T & a2,const T & a3,const T & a4){
 		T array_[] = { a1,a2,a3,a4 };
 		return Array<T>(array_,ICK_ARRAY_SIZE(array_));
 	}
-	template <typename T> Array<T> ArrayMake5(const T & a1,const T & a2,const T & a3,const T & a4,const T & a5){
+	template <typename T> Array<T> ArrayMake(const T & a1,const T & a2,const T & a3,const T & a4,const T & a5){
 		T array_[] = { a1,a2,a3,a4,a5 };
 		return Array<T>(array_,ICK_ARRAY_SIZE(array_));
 	}
-	template <typename T> Array<T> ArrayMake6(const T & a1,const T & a2,const T & a3,const T & a4,const T & a5,const T & a6){
+	template <typename T> Array<T> ArrayMake(const T & a1,const T & a2,const T & a3,const T & a4,const T & a5,const T & a6){
 		T array_[] = { a1,a2,a3,a4,a5,a6 };
 		return Array<T>(array_,ICK_ARRAY_SIZE(array_));
 	}
-	template <typename T> Array<T> ArrayMake7(const T & a1,const T & a2,const T & a3,const T & a4,const T & a5,const T & a6,const T & a7){
+	template <typename T> Array<T> ArrayMake(const T & a1,const T & a2,const T & a3,const T & a4,const T & a5,const T & a6,const T & a7){
 		T array_[] = { a1,a2,a3,a4,a5,a6,a7 };
 		return Array<T>(array_,ICK_ARRAY_SIZE(array_));
 	}
-	template <typename T> Array<T> ArrayMake8(const T & a1,const T & a2,const T & a3,const T & a4,const T & a5,const T & a6,const T & a7,const T & a8){
+	template <typename T> Array<T> ArrayMake(const T & a1,const T & a2,const T & a3,const T & a4,const T & a5,const T & a6,const T & a7,const T & a8){
 		T array_[] = { a1,a2,a3,a4,a5,a6,a7,a8 };
 		return Array<T>(array_,ICK_ARRAY_SIZE(array_));
 	}

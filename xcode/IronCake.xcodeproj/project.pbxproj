@@ -110,7 +110,6 @@
 		D68A57901892BCCF006231EE /* startup.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A578D1892BCCF006231EE /* startup.h */; };
 		D68A57951892C6E5006231EE /* glfw3.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57931892C6E5006231EE /* glfw3.h */; };
 		D68A57961892C6E5006231EE /* glfw3native.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A57941892C6E5006231EE /* glfw3native.h */; };
-		D68A579B189AAC50006231EE /* task_postable.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A5798189AAC50006231EE /* task_postable.h */; };
 		D68A579E18A00548006231EE /* signal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68A579C18A00548006231EE /* signal.cpp */; };
 		D68A579F18A00548006231EE /* signal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D68A579C18A00548006231EE /* signal.cpp */; };
 		D68A57A018A00548006231EE /* signal.h in Headers */ = {isa = PBXBuildFile; fileRef = D68A579D18A00548006231EE /* signal.h */; };
@@ -277,7 +276,6 @@
 		D68A578D1892BCCF006231EE /* startup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = startup.h; sourceTree = "<group>"; };
 		D68A57931892C6E5006231EE /* glfw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
 		D68A57941892C6E5006231EE /* glfw3native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
-		D68A5798189AAC50006231EE /* task_postable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = task_postable.h; sourceTree = "<group>"; };
 		D68A579C18A00548006231EE /* signal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = signal.cpp; sourceTree = "<group>"; };
 		D68A579D18A00548006231EE /* signal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signal.h; sourceTree = "<group>"; };
 		D68A57A118A144F0006231EE /* base_function_holder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_function_holder.h; sourceTree = "<group>"; };
@@ -457,7 +455,6 @@
 				D68A57C318A2A1A6006231EE /* task_queue_interface.h */,
 				D68A57CA18A2A8AD006231EE /* task_queue.h */,
 				D68A57C918A2A8AD006231EE /* task_queue.cpp */,
-				D68A5798189AAC50006231EE /* task_postable.h */,
 				D625B03C186C96AC00DF7CCF /* task_queue_thread.h */,
 				D625B03B186C96AC00DF7CCF /* task_queue_thread.cpp */,
 				D68A579D18A00548006231EE /* signal.h */,
@@ -701,7 +698,6 @@
 				D667FC7C184E490C00404D8D /* cstr.h in Headers */,
 				D68A57A918A144F0006231EE /* function_binder.h in Headers */,
 				D667FC72184E490C00404D8D /* allocator.h in Headers */,
-				D68A579B189AAC50006231EE /* task_postable.h in Headers */,
 				D667FC7F184E490C00404D8D /* linked_list.h in Headers */,
 				D667FC83184E490C00404D8D /* macro.h in Headers */,
 				D625B044186DD25800DF7CCF /* property.h in Headers */,

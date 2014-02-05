@@ -1,31 +1,27 @@
 ﻿#pragma once
 
-#include "../base/linked_list.h"
-#include "mutex.h"
 #include "thread.h"
-#include "task_postable.h"
+#include "task_queue.h"
 
 //	終了する際は、PostQuit(), Join()
 
 namespace ick{
-	class TaskQueueThread : public Thread, public TaskPostable {
+	class TaskQueueThread : public Thread {
 	private:
-		Mutex mutex_;
-		LinkedList<Function<void (*)()> > task_queue_;
+		TaskQueue task_queue_;
+
 		bool do_quit_;
 		
-		Function<void (*)()> PickTask();
-		
-		void Quit();
+		void QuitTask(bool cancelled);
 	public:
 		TaskQueueThread();
 		virtual ~TaskQueueThread();
 		
-		virtual void Run();
+		TaskQueue * task_queue();
 		
-		void PostTask(const Function<void (*)()> & task);
-
+		void Post(Task * task);
 		void PostQuit();
-
+		
+		virtual void Run();
 	};
 }

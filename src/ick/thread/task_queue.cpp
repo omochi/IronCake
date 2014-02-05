@@ -23,9 +23,11 @@ namespace ick{
 	}
 
 	void TaskQueue::Post(Task * task){
+		ICK_LOG_INFO("task queue post begin\n");
 		ICK_SCOPED_LOCK(mutex_);
 		queue_.InsertLast(task);
 		mutex_.Broadcast();
+		ICK_LOG_INFO("task queue post end\n");
 	}
 	void TaskQueue::Cancel(Task * task){
 		ICK_SCOPED_LOCK(mutex_);
@@ -36,11 +38,17 @@ namespace ick{
 	}
 
 	Task * TaskQueue::Pick(){
-		ICK_SCOPED_LOCK(mutex_);
+//		ICK_SCOPED_LOCK(mutex_);
 		while(true){
 			LinkedListNode<Task *> * first = queue_.first();
-			if(first){ return first->value(); }
+			if(first){
+				Task * task = first->value();
+				queue_.Remove(first);
+				return task;
+			}
+			ICK_LOG_INFO("task queue wait\n");
 			mutex_.Wait();
+			ICK_LOG_INFO("task queue awake\n");
 		}
 	}
 }

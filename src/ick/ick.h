@@ -39,7 +39,9 @@
 #include "thread/runnable.h"
 #include "thread/thread.h"
 #include "thread/function_thread.h"
-#include "thread/task_postable.h"
+#include "thread/task.h"
+#include "thread/task_queue_interface.h"
+#include "thread/task_queue.h"
 #include "thread/task_queue_thread.h"
 #include "thread/signal.h"
 

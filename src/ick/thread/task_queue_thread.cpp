@@ -4,22 +4,8 @@
 #include "../function/function_bind.h"
 
 namespace ick{
-	Function<void (*)()> TaskQueueThread::PickTask(){
-		Function<void (*)()> task;
-		ICK_SCOPED_LOCK(mutex_);
-
-		while(true){
-			if(task_queue_.num() > 0){
-				task = task_queue_.first()->value();
-				task_queue_.Remove(task_queue_.first());
-				break;
-			}
-			mutex_.Wait();
-		}
-		return task;
-	}
-	
-	void TaskQueueThread::Quit(){
+	void TaskQueueThread::QuitTask(bool cancelled){
+		(void)cancelled;
 		do_quit_ = true;
 	}
 	
@@ -30,21 +16,25 @@ namespace ick{
 	TaskQueueThread::~TaskQueueThread(){
 		
 	}
-	void TaskQueueThread::Run(){
-		while(!do_quit_){
-			Function<void (*)()> task = PickTask();
-			task();
-		}
+	TaskQueue * TaskQueueThread::task_queue(){
+		return & task_queue_;
 	}
 	
-	void TaskQueueThread::PostTask(const Function<void (*)()> & task){
-		ICK_SCOPED_LOCK(mutex_);
-		task_queue_.InsertLast(task);
-		mutex_.Signal();
+	void TaskQueueThread::Run(){
+		while(!do_quit_){
+			{
+				ICK_SCOPED_LOCK(*task_queue_.mutex());
+				TaskRun(task_queue_.Pick());
+			}
+		}
+	}
+
+	void TaskQueueThread::Post(Task * task){
+		task_queue_.Post(task);
 	}
 	
 	void TaskQueueThread::PostQuit(){
-		PostTask(FunctionBind(&TaskQueueThread::Quit, this));
+		Post(ICK_NEW(Task, FunctionBind(&TaskQueueThread::QuitTask, this)));
 	}
 	
 	

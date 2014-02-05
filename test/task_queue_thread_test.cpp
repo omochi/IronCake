@@ -11,7 +11,8 @@ protected:
 };
 
 //LoopThreadではロックがいらない
-void f1(int * x){
+void f1(int * x, bool cancelled){
+	(void)cancelled;
 	int ox = *x;
 	*x = *x + 1;
 	EXPECT_EQ(ox + 1, *x);
@@ -19,7 +20,7 @@ void f1(int * x){
 
 void f1_post(ick::TaskQueueThread * lp, int * x, int n){
 	for(int i=0;i<n;i++){
-		lp->PostTask(ick::FunctionBind(f1, x));
+		lp->Post(ICK_NEW(ick::Task, ick::FunctionBind(f1, x)));
 		ick::Sleep(0.001);
 	}
 }

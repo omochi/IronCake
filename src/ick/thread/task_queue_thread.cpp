@@ -22,10 +22,9 @@ namespace ick{
 	
 	void TaskQueueThread::Run(){
 		while(!do_quit_){
-			{
-				ICK_SCOPED_LOCK(*task_queue_.mutex());
+			task_queue_.mutex()->Lock();
 				TaskRun(task_queue_.Pick());
-			}
+			task_queue_.mutex()->Unlock();
 		}
 	}
 

@@ -42,7 +42,7 @@ extern "C" {
 		handler_post_delayed_method = env->GetMethodID(handler_class, "postDelayed", "(Ljava/lang/Runnable;J)Z");
 	}
 	
-	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnCreate
+	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_didCreate
 	(JNIEnv * env, jobject thiz){
 		__android_log_print(ANDROID_LOG_INFO, "IronCake", "%s", __func__);
 		
@@ -63,25 +63,22 @@ extern "C" {
 		app->AndroidOnCreate();
 	}
 	
-	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnDestroy
+	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_willDestroy
 	(JNIEnv * env, jobject thiz){
 		__android_log_print(ANDROID_LOG_INFO, "IronCake", "%s", __func__);
 		
 		ick::Application * app = reinterpret_cast<ick::Application *>(env->GetLongField(thiz, ick::jni::activity::application_field));
-		
+ 
 		app->AndroidOnDestroy();
-		
 		ICK_DELETE(app);
-		
 		env->SetLongField(thiz, ick::jni::activity::application_field, 0);
-		
 		if(!ick::Shutdown()){
 			__android_log_print(ANDROID_LOG_ERROR, "IronCake", "ick::Shutdown failed");
 			::abort();
 		}
 	}
 	
-	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnResume
+	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_didResume
 	(JNIEnv * env, jobject thiz){
 		__android_log_print(ANDROID_LOG_INFO, "IronCake", "%s", __func__);
 		
@@ -89,7 +86,7 @@ extern "C" {
 		app->AndroidOnResume();
 	}
 	
-	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeOnPause
+	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_willPause
 	(JNIEnv * env, jobject thiz){
 		__android_log_print(ANDROID_LOG_INFO, "IronCake", "%s", __func__);
 		
@@ -130,15 +127,7 @@ extern "C" {
 			app->AndroidOnSurfaceDestroyed(ANativeWindow_fromSurface(env, surface));
 		}
 	}
-	
-	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_update
-	(JNIEnv * env, jobject thiz){
-		ick::Application * app = reinterpret_cast<ick::Application *>(env->GetLongField(thiz, ick::jni::activity::application_field));
-		if(app){
-			app->AndroidUpdate();
-		}
-	}
-	
+		
 #ifdef __cplusplus
 }
 #endif

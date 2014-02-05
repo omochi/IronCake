@@ -284,6 +284,14 @@
 		D68A57AD18A15092006231EE /* function_bind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_bind.h; sourceTree = "<group>"; };
 		D68A57AF18A150C4006231EE /* method_binder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = method_binder.h; sourceTree = "<group>"; };
 		D68A57B118A16648006231EE /* native_function_binder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = native_function_binder.h; sourceTree = "<group>"; };
+		D68A57B418A2816E006231EE /* activity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = activity.cpp; sourceTree = "<group>"; };
+		D68A57B518A2816E006231EE /* activity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = activity.h; sourceTree = "<group>"; };
+		D68A57B618A2816E006231EE /* android_handler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = android_handler.cpp; sourceTree = "<group>"; };
+		D68A57B718A2816E006231EE /* android_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = android_handler.h; sourceTree = "<group>"; };
+		D68A57B818A2816E006231EE /* native_task.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = native_task.cpp; sourceTree = "<group>"; };
+		D68A57B918A2816E006231EE /* native_task.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = native_task.h; sourceTree = "<group>"; };
+		D68A57BA18A2816E006231EE /* thread.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
+		D68A57BB18A2816E006231EE /* thread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
 		D6B62AEE1863454500903540 /* function_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = function_test.cpp; path = ../test/function_test.cpp; sourceTree = "<group>"; };
 		D6B62AF918689ED400903540 /* function_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = function_thread.cpp; sourceTree = "<group>"; };
 		D6B62AFA18689ED400903540 /* function_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function_thread.h; sourceTree = "<group>"; };
@@ -554,6 +562,7 @@
 				D667FC59184E490C00404D8D /* base */,
 				D602853D1861E64200CE5EC5 /* function */,
 				D60285131860BF9F00CE5EC5 /* thread */,
+				D68A57B318A2816E006231EE /* android */,
 				D66297F1186DECD9004060B9 /* app */,
 			);
 			path = ick;
@@ -618,6 +627,21 @@
 			);
 			name = GLFW;
 			path = ../libs/glfw/include/GLFW;
+			sourceTree = "<group>";
+		};
+		D68A57B318A2816E006231EE /* android */ = {
+			isa = PBXGroup;
+			children = (
+				D68A57BB18A2816E006231EE /* thread.h */,
+				D68A57BA18A2816E006231EE /* thread.cpp */,
+				D68A57B518A2816E006231EE /* activity.h */,
+				D68A57B418A2816E006231EE /* activity.cpp */,
+				D68A57B918A2816E006231EE /* native_task.h */,
+				D68A57B818A2816E006231EE /* native_task.cpp */,
+				D68A57B718A2816E006231EE /* android_handler.h */,
+				D68A57B618A2816E006231EE /* android_handler.cpp */,
+			);
+			path = android;
 			sourceTree = "<group>";
 		};
 		D6B62B1D186C6B5B00903540 /* SampleMac */ = {

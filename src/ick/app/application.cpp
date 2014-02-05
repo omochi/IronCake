@@ -153,7 +153,7 @@ namespace ick{
 		
 		render_thread_ = ICK_NEW(TaskQueueThread);
 		render_thread_->Start();
-		render_thread_->PostTask(FunctionBind1(&jni::AttachCurrentThread, android_vm_));
+		render_thread_->PostTask(FunctionBind(&jni::AttachCurrentThread, android_vm_));
 		
 		controller_->DidLaunch();
 		
@@ -222,7 +222,7 @@ namespace ick{
 		}
 		android_egl_display_ = NULL;
 		
-		render_thread_->PostTask(FunctionBind1(&jni::DetachCurrentThread, android_vm_));
+		render_thread_->PostTask(FunctionBind(&jni::DetachCurrentThread, android_vm_));
 		render_thread_->PostQuit();
 		render_thread_->Join();
 		ick::PropertyClear(render_thread_);
@@ -295,15 +295,16 @@ namespace ick{
 		
 		//実行中のRenderを終了待ちする
 		android_render_finish_signal_.set_on(false);
-		render_thread_->PostTask(FunctionBind1(FunctionMake(&android_render_finish_signal_,
-															&Signal::set_on), true));
+		render_thread_->PostTask(FunctionBind(&Signal::set_on,
+											  &android_render_finish_signal_,
+											  true));
 		android_render_finish_signal_.Wait();
 	}
 	
 	void Application::AndroidPostSingleUpdateTask(){
 		if(!android_update_task_posting_){
 			android_update_task_posting_ = true;
-			main_thread_->PostTask(FunctionMake(this, &Application::AndroidUpdateTask));
+			main_thread_->PostTask(FunctionBind(&Application::AndroidUpdateTask, this));
 		}
 	}
 
@@ -323,7 +324,7 @@ namespace ick{
 		
 		AndroidEGLClearCurrent();
 
-		render_thread_->PostTask(FunctionMake(this, &Application::AndroidRenderTask));
+		render_thread_->PostTask(FunctionBind(&Application::AndroidRenderTask, this));
 	}
 
 	void Application::AndroidEGLMakeCurrent(){
@@ -362,7 +363,7 @@ namespace ick{
 		}
 		AndroidEGLClearCurrent();
 		
-		main_thread_->PostTask(FunctionMake(this, &Application::AndroidPostSingleUpdateTask));
+		main_thread_->PostTask(FunctionBind(&Application::AndroidPostSingleUpdateTask, this));
 	}
 	
 #endif

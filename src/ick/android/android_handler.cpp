@@ -45,7 +45,9 @@ namespace ick{
 		}
 		//タスクを一段包む
 		jobject java_task = jni::native_task::Create(env,
-													 FunctionBind1(FunctionMake(this, &AndroidHandler::TaskRun), task),
+													 FunctionBind(&AndroidHandler::TaskRun,
+																  this,
+																  task),
 													 true);
 		
 		{

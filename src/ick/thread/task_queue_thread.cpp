@@ -1,7 +1,7 @@
 ﻿#include "task_queue_thread.h"
 
 #include "scoped_lock.h"
-#include "function_bind.h"
+#include "../function/function_bind.h"
 
 namespace ick{
 	Function<void (*)()> TaskQueueThread::PickTask(){

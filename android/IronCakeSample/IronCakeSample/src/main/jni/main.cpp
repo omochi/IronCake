@@ -6,15 +6,20 @@
 extern "C" {
 #endif
 
-	jint JNI_OnLoad(JavaVM *vm, void *reserved){
-		ick::g_startup_config.memory_debug = true;
-		return JNI_VERSION_1_6;
-	}
-	
 	JNIEXPORT jlong JNICALL Java_com_omochimetaru_ironcakesample_MainActivity_controllerConstruct
 	(JNIEnv * env, jobject thiz){
 		return reinterpret_cast<jlong>(ICK_NEW(SampleAppController));
 	}
+	
+	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcakesample_MainActivity_willCreate
+	(JNIEnv * env, jobject thiz){
+		ick::g_startup_config.memory_debug = true;
+	}
+	
+	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcakesample_MainActivity_didDestroy
+	(JNIEnv * env, jobject thiz){
+	}
+	
 
 #ifdef __cplusplus
 }

@@ -23,4 +23,18 @@ public class MainActivity extends com.omochimetaru.ironcake.Activity {
     @Override
     protected native long controllerConstruct();
 
+    private native void willCreate();
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        willCreate();
+        super.onCreate(savedInstanceState);
+    }
+
+    private native void didDestroy();
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        didDestroy();
+    }
+
 }

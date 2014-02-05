@@ -32,8 +32,6 @@ LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/base/error.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/base/time.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/base/property.cpp
 
-LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/function/function.cpp
-
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/mutex.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/scoped_lock.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/ick/thread/thread.cpp

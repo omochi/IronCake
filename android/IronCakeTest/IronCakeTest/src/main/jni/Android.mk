@@ -21,7 +21,7 @@ LOCAL_SRC_FILES += $(MY_SRC_DIR)/string_test.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/function_test.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/thread_test.cpp
 LOCAL_SRC_FILES += $(MY_SRC_DIR)/mutex_test.cpp
-LOCAL_SRC_FILES += $(MY_SRC_DIR)/loop_thread_test.cpp
+LOCAL_SRC_FILES += $(MY_SRC_DIR)/task_queue_thread_test.cpp
 
 LOCAL_SHARED_LIBRARIES += IronCake
 LOCAL_STATIC_LIBRARIES += gtest

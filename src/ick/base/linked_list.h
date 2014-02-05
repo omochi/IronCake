@@ -12,6 +12,8 @@
 #include "allocator.h"
 #include "assert.h"
 
+#include "linked_list_decl.h"
+
 namespace ick{
 	template <typename T> class LinkedList;
 	
@@ -39,9 +41,8 @@ namespace ick{
 	};
 	
 	template <typename T> class LinkedList {
-	public:
-		typedef LinkedListNode<T> Node;
 	private:
+		typedef LinkedListNode<T> Node;
 		Allocator * allocator_;
 		int num_;
 		Node * first_;
@@ -151,4 +152,12 @@ namespace ick{
 			while(last_){ Remove(last_); }
 		}
 	};
+	
+	template <typename T>
+	LinkedListNode<T> * LinkedListFind(const LinkedList<T> & list, const T & value){
+		for(LinkedListNode<T> * node = list.first(); node != NULL; node = node->next()){
+			if(node->value() == value){ return node; }
+		}
+		return NULL;
+	}
 }

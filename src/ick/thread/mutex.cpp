@@ -24,6 +24,7 @@ namespace ick{
 #else
 		pthread_mutex_t mutex;
 		pthread_cond_t cond;
+		int lock_nest;
 #endif
 	};
 	
@@ -51,6 +52,7 @@ namespace ick{
 #else
 		impl_->mutex = PTHREAD_RECURSIVE_MUTEX_INITIALIZER;
 		impl_->cond = PTHREAD_COND_INITIALIZER;
+		impl_->lock_nest = 0;
 #endif
 	}
 	
@@ -72,20 +74,27 @@ namespace ick{
 
 		ICK_DELETE_A(allocator_, impl_);
 	}
-	
+
 	void Mutex::Lock(){
-#ifdef ICK_WINDOWS
-		EnterCriticalSection(&impl_->mutex_lock);
+#if ICK_WINDWOS
+		EnterCriticalSection(&impl->mutex_lock);
 #else
 		ICK_EN_CALL(pthread_mutex_lock(&impl_->mutex));
+		if(impl_->lock_nest > 0){
+			ICK_EN_CALL(pthread_mutex_unlock(&impl_->mutex));
+		}
+		impl_->lock_nest++;
 #endif
 	}
 	
 	void Mutex::Unlock(){
-#ifdef ICK_WINDOWS
-		LeaveCriticalSection(&impl_->mutex_lock);
+#if ICK_WINDWOS
+		LeaveCriticalSection(&impl->mutex_lock);
 #else
-		ICK_EN_CALL(pthread_mutex_unlock(&impl_->mutex));
+		impl_->lock_nest--;
+		if(impl_->lock_nest == 0){
+			ICK_EN_CALL(pthread_mutex_unlock(&impl_->mutex));
+		}
 #endif
 	}
 	
@@ -114,7 +123,13 @@ namespace ick{
 
 		Lock();
 #else
+		
+		int lock_nest = impl_->lock_nest;
+		impl_->lock_nest = 0;
+
 		ICK_EN_CALL(pthread_cond_wait(&impl_->cond, &impl_->mutex));
+		
+		impl_->lock_nest = lock_nest;
 #endif
 	}
 	

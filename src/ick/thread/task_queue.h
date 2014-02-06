@@ -22,7 +22,9 @@ namespace ick{
 		virtual void Post(Task * task);
 		virtual void Cancel(Task * task);
 
-		// ロック範囲で使う事
+		// ロックしてから呼び出して、
+		// アンロックまでに実行、解放すること。
+		// そうしなければ、Cancelでバグる。
 		Task * Pick();
 	};
 }

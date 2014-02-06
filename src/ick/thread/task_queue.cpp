@@ -36,6 +36,7 @@ namespace ick{
 	}
 
 	Task * TaskQueue::Pick(){
+		ICK_SCOPED_LOCK(mutex_);
 		while(true){
 			LinkedListNode<Task *> * first = queue_.first();
 			if(first){

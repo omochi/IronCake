@@ -29,11 +29,11 @@ extern "C" {
 #endif
 	
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeStaticInit
-	(JNIEnv * env, jclass klass){
+	(JNIEnv * env, jclass clazz){
 		using namespace ick::jni::activity;
-		controller_construct_method = env->GetMethodID(klass, "controllerConstruct", "()J");
-		application_field = env->GetFieldID(klass, "application", "J");
-		main_thread_handler_field = env->GetFieldID(klass, "mainThreadHandler", "Landroid/os/Handler;");
+		controller_construct_method = env->GetMethodID(clazz, "controllerConstruct", "()J");
+		application_field = env->GetFieldID(clazz, "application", "J");
+		main_thread_handler_field = env->GetFieldID(clazz, "mainThreadHandler", "Landroid/os/Handler;");
 		
 		jclass surface_class = env->FindClass("android/view/SurfaceHolder");
 		surface_holder_get_surface_method = env->GetMethodID(surface_class, "getSurface", "()Landroid/view/Surface;");

@@ -69,7 +69,7 @@ extern "C" {
 #endif
 	
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_NativeTask_nativeStaticInit
-	(JNIEnv * env, jclass klass){
+	(JNIEnv * env, jclass clazz){
 		ick::jni::native_task::StaticInit(env);
 	}
 	

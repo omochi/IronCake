@@ -1,25 +1,31 @@
 #include "native_task.h"
 
 #include "../base/log.h"
-#include "../function/function.h"
+#include "../thread/mutex.h"
+#include "../thread/scoped_lock.h"
+#include "../thread/task.h"
 
 namespace ick{
 	namespace jni{
-		jclass native_task_class = NULL;
+		static jclass native_task_class = NULL;
 		
 		namespace native_task{
-			jmethodID constructor;
-			jfieldID function_field;
-			jfieldID auto_release_field;
+			
+			static jmethodID constructor;
+			static jfieldID function_field;
 			
 			void StaticInit(JNIEnv * env){
-				if(!native_task_class){
-					ICK_LOG_INFO("NativeTask StaticInit\n");
-					native_task_class = static_cast<jclass>(env->NewGlobalRef(env->FindClass("com/omochimetaru/ironcake/NativeTask")));
-					constructor = env->GetMethodID(native_task_class, "<init>", "()V");
-					function_field = env->GetFieldID(native_task_class, "function", "J");
-					auto_release_field = env->GetFieldID(native_task_class, "autoRelease", "Z");
-				}
+				ICK_LOG_INFO("NativeTask StaticInit\n");
+				jclass local_native_task_class = env->FindClass("com/omochimetaru/ironcake/NativeTask");
+				native_task_class = static_cast<jclass>(env->NewGlobalRef(local_native_task_class));
+				constructor = env->GetMethodID(native_task_class, "<init>", "()V");
+				function_field = env->GetFieldID(native_task_class, "function", "J");
+				
+				env->DeleteLocalRef(local_native_task_class);
+			}
+			void StaticRelease(JNIEnv * env){
+				env->DeleteGlobalRef(native_task_class);
+				native_task_class = NULL;
 			}
 			
 			NativeFunction * GetNativeFunction(JNIEnv * env, jobject task){
@@ -30,18 +36,9 @@ namespace ick{
 				env->SetLongField(task, function_field, reinterpret_cast<jlong>(function));
 			}
 			
-			bool GetAutoRelease(JNIEnv * env, jobject task){
-				return static_cast<bool>(env->GetBooleanField(task, auto_release_field));
-			}
-			void SetAutoRelease(JNIEnv * env, jobject task, bool auto_release){
-				env->SetBooleanField(task, auto_release_field, static_cast<jboolean>(auto_release));
-			}
-			
-			jobject Create(JNIEnv * env, const NativeFunction & function, bool auto_release){
-				StaticInit(env);
+			jobject Create(JNIEnv * env, const NativeFunction & function){
 				jobject task = env->NewObject(native_task_class, constructor);
 				SetNativeFunction(env, task, ICK_NEW(NativeFunction, function));
-				SetAutoRelease(env, task, auto_release);
 				return task;
 			}
 			void Release(JNIEnv * env, jobject task){
@@ -55,9 +52,6 @@ namespace ick{
 				NativeFunction * function = GetNativeFunction(env, task);
 				if(function){
 					(*function)(env, task);
-				}
-				if(GetAutoRelease(env, task)){
-					Release(env, task);
 				}
 			}
 		}

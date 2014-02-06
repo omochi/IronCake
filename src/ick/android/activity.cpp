@@ -9,6 +9,7 @@
 #include "../base/log.h"
 #include "../app/application.h"
 #include "../startup.h"
+#include "startup.h"
 
 #include "java_vm.h"
 
@@ -43,6 +44,9 @@ extern "C" {
 		
 		jclass handler_class = env->FindClass("android/os/Handler");
 		handler_post_delayed_method = env->GetMethodID(handler_class, "postDelayed", "(Ljava/lang/Runnable;J)Z");
+		
+		env->DeleteLocalRef(surface_class);
+		env->DeleteLocalRef(handler_class);
 	}
 	
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_didCreate
@@ -57,9 +61,8 @@ extern "C" {
 			__android_log_print(ANDROID_LOG_ERROR, "IronCake", "ick::Startup failed");
 			::abort();
 		}
-		
-		if(env->GetJavaVM(&g_java_vm)){ ICK_ABORT("GetJavaVM failed\n"); }
-		
+		ick::jni::Startup(env);
+				
 		jlong controller = env->CallLongMethod(thiz, ick::jni::activity::controller_construct_method);
 		ick::Application * app = ICK_NEW(ick::Application, reinterpret_cast<ick::ApplicationController *>(controller), true);
 		env->SetLongField(thiz, ick::jni::activity::application_field, reinterpret_cast<jlong>(app));
@@ -77,6 +80,8 @@ extern "C" {
 		app->AndroidOnDestroy();
 		ICK_DELETE(app);
 		env->SetLongField(thiz, ick::jni::activity::application_field, 0);
+		
+		ick::jni::Shutdown(env);
 		if(!ick::Shutdown()){
 			__android_log_print(ANDROID_LOG_ERROR, "IronCake", "ick::Shutdown failed");
 			::abort();

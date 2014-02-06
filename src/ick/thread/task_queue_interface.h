@@ -10,6 +10,8 @@
 // 実装時はTaskの実行とCancelを同期化しなければならない。
 // 実行かCancelがされるとTaskは解放される。
 
+// キューの開放時には残っているTaskを全てCancelする。
+
 namespace ick{
 	class TaskQueueInterface {
 	public:

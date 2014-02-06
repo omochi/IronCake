@@ -73,13 +73,13 @@ namespace ick{
 		
 #ifdef ICK_ANDROID
 		JNIEnv * env;
-		if(g_java_vm->AttachCurrentThread(&env, NULL) != JNI_OK){
+		if(jni::java_vm->AttachCurrentThread(&env, NULL) != JNI_OK){
 			ICK_ABORT("AttachCurrentThread failed\n");
 		}
 #endif
 		thiz->Run();
 #ifdef ICK_ANDROID
-		if(g_java_vm->DetachCurrentThread() != JNI_OK){
+		if(jni::java_vm->DetachCurrentThread() != JNI_OK){
 			ICK_ABORT("DetachCurrentThread failed\n");
 		}
 #endif

@@ -224,8 +224,13 @@
 		D625B03C186C96AC00DF7CCF /* task_queue_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = task_queue_thread.h; sourceTree = "<group>"; };
 		D625B040186DD25800DF7CCF /* property.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = property.cpp; sourceTree = "<group>"; };
 		D625B041186DD25800DF7CCF /* property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = property.h; sourceTree = "<group>"; };
+		D6275B0B18A3D6970001A83B /* Android.mk */ = {isa = PBXFileReference; lastKnownFileType = text; path = Android.mk; sourceTree = "<group>"; };
+		D6275B0C18A3D6970001A83B /* Application.mk */ = {isa = PBXFileReference; lastKnownFileType = text; path = Application.mk; sourceTree = "<group>"; };
+		D6275B0D18A3D6970001A83B /* build.bash */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.bash; sourceTree = "<group>"; };
 		D63ABDC71855FCAC004349F8 /* string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string.cpp; sourceTree = "<group>"; };
 		D63ABDC81855FCAC004349F8 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
+		D64D23CE18A3FAE6004933BC /* startup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = startup.cpp; sourceTree = "<group>"; };
+		D64D23CF18A3FAE6004933BC /* startup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = startup.h; sourceTree = "<group>"; };
 		D66297EE186DE4C0004060B9 /* task_queue_thread_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = task_queue_thread_test.cpp; path = ../test/task_queue_thread_test.cpp; sourceTree = "<group>"; };
 		D66297F2186DECD9004060B9 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		D66297F3186DECD9004060B9 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
@@ -287,8 +292,8 @@
 		D68A57B118A16648006231EE /* native_function_binder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = native_function_binder.h; sourceTree = "<group>"; };
 		D68A57B418A2816E006231EE /* activity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = activity.cpp; sourceTree = "<group>"; };
 		D68A57B518A2816E006231EE /* activity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = activity.h; sourceTree = "<group>"; };
-		D68A57B618A2816E006231EE /* android_handler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = android_handler.cpp; sourceTree = "<group>"; };
-		D68A57B718A2816E006231EE /* android_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = android_handler.h; sourceTree = "<group>"; };
+		D68A57B618A2816E006231EE /* android_task_queue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = android_task_queue.cpp; sourceTree = "<group>"; };
+		D68A57B718A2816E006231EE /* android_task_queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = android_task_queue.h; sourceTree = "<group>"; };
 		D68A57B818A2816E006231EE /* native_task.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = native_task.cpp; sourceTree = "<group>"; };
 		D68A57B918A2816E006231EE /* native_task.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = native_task.h; sourceTree = "<group>"; };
 		D68A57BA18A2816E006231EE /* java_vm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = java_vm.cpp; sourceTree = "<group>"; };
@@ -478,6 +483,25 @@
 			path = function;
 			sourceTree = "<group>";
 		};
+		D6275B0918A3D67D0001A83B /* android */ = {
+			isa = PBXGroup;
+			children = (
+				D6275B0A18A3D6970001A83B /* IronCake-mk */,
+			);
+			name = android;
+			sourceTree = "<group>";
+		};
+		D6275B0A18A3D6970001A83B /* IronCake-mk */ = {
+			isa = PBXGroup;
+			children = (
+				D6275B0B18A3D6970001A83B /* Android.mk */,
+				D6275B0C18A3D6970001A83B /* Application.mk */,
+				D6275B0D18A3D6970001A83B /* build.bash */,
+			);
+			name = "IronCake-mk";
+			path = "../android/IronCake-mk";
+			sourceTree = "<group>";
+		};
 		D66297F1186DECD9004060B9 /* app */ = {
 			isa = PBXGroup;
 			children = (
@@ -503,6 +527,7 @@
 		D667FBAD184CE7AC00404D8D = {
 			isa = PBXGroup;
 			children = (
+				D6275B0918A3D67D0001A83B /* android */,
 				D68A57911892C6D0006231EE /* libs */,
 				D667FC09184CE8D500404D8D /* src */,
 				D60284D61860B2E000CE5EC5 /* test */,
@@ -651,14 +676,16 @@
 		D68A57B318A2816E006231EE /* android */ = {
 			isa = PBXGroup;
 			children = (
+				D64D23CF18A3FAE6004933BC /* startup.h */,
+				D64D23CE18A3FAE6004933BC /* startup.cpp */,
 				D68A57BB18A2816E006231EE /* java_vm.h */,
 				D68A57BA18A2816E006231EE /* java_vm.cpp */,
 				D68A57B518A2816E006231EE /* activity.h */,
 				D68A57B418A2816E006231EE /* activity.cpp */,
 				D68A57B918A2816E006231EE /* native_task.h */,
 				D68A57B818A2816E006231EE /* native_task.cpp */,
-				D68A57B718A2816E006231EE /* android_handler.h */,
-				D68A57B618A2816E006231EE /* android_handler.cpp */,
+				D68A57B718A2816E006231EE /* android_task_queue.h */,
+				D68A57B618A2816E006231EE /* android_task_queue.cpp */,
 			);
 			path = android;
 			sourceTree = "<group>";

@@ -33,7 +33,7 @@ namespace ick{
 	}
 	
 	void TaskQueueThread::PostQuit(){
-		Post(ICK_NEW(Task, FunctionBind(&TaskQueueThread::QuitTask, this)));
+		Post(TaskCreate(FunctionBind(&TaskQueueThread::QuitTask, this)));
 	}
 	
 	

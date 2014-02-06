@@ -22,7 +22,11 @@ struct ANativeWindow;
 namespace ick{
 	class ApplicationController;
 	class TaskQueueThread;
-	class AndroidHandler;
+	class TaskQueueInterface;
+	
+#ifdef ICK_ANDROID
+	class AndroidTaskQueue;
+#endif
 	
 #ifdef ICK_APP_GLFW
 	int ApplicationGLFWMain(int argc, const char * argv [], ApplicationController * (*controller_constructor)() );
@@ -53,12 +57,10 @@ namespace ick{
 		EGLContext android_egl_context_;
 		EGLSurface android_egl_surface_;
 
-		
-		AndroidHandler * main_thread_;
+		AndroidTaskQueue * android_main_queue_;
 		bool android_update_task_posting_;
 		
-		Signal android_render_finish_signal_;
-		
+		Signal android_render_finish_signal_;		
 #endif
 
 	public:
@@ -66,6 +68,8 @@ namespace ick{
 		virtual ~Application();
 	
 		ApplicationController * controller() const;
+		
+		TaskQueueInterface * main_queue() const;
 		
 #ifdef ICK_APP_GLFW
 		GLFWwindow * glfw_window() const;

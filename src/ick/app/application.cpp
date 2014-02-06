@@ -15,10 +15,10 @@
 #endif
 
 #ifdef ICK_ANDROID
+#	include "../android/java_vm.h"
 #	include "../android/activity.h"
 #	include "../android/native_task.h"
-#	include "../android/android_handler.h"
-#	include "../android/thread.h"
+#	include "../android/android_task_queue.h"
 #endif
 
 #include "application_controller.h"
@@ -75,7 +75,7 @@ namespace ick{
 		android_egl_context_ = NULL;
 		android_egl_surface_ = NULL;
 		
-		main_thread_ = NULL;
+		android_main_queue_ = NULL;
 		android_update_task_posting_ = false;
 #endif
 
@@ -87,6 +87,14 @@ namespace ick{
 	
 	ApplicationController * Application::controller() const{
 		return controller_;
+	}
+	
+	TaskQueueInterface * Application::main_queue() const{
+#ifdef ICK_ANDROID
+		return android_main_queue_;
+#else
+#warning todo
+#endif
 	}
 		
 #ifdef ICK_APP_GLFW
@@ -144,9 +152,7 @@ namespace ick{
 	}
 
 	void Application::AndroidOnCreate(){
-		
-		jobject main_thread_handler = android_env_->GetObjectField(android_activity_, jni::activity::main_thread_handler_field);
-		main_thread_ = ICK_NEW(AndroidHandler, android_env_, main_thread_handler);
+		android_main_queue_ = ICK_NEW(AndroidTaskQueue, android_env_);
 		
 		render_thread_ = ICK_NEW(TaskQueueThread);
 		render_thread_->Start();
@@ -223,7 +229,7 @@ namespace ick{
 		ick::PropertyClear(render_thread_);
 		
 		android_update_task_posting_ = false;
-		ick::PropertyClear(main_thread_);
+		ick::PropertyClear(android_main_queue_);
 		
 		AndroidSetEnv(NULL, NULL);
 	}
@@ -290,16 +296,17 @@ namespace ick{
 		
 		//実行中のRenderを終了待ちする
 		android_render_finish_signal_.set_on(false);
-		render_thread_->PostTask(FunctionBind(&Signal::set_on,
-											  &android_render_finish_signal_,
-											  true));
+		render_thread_->Post(TaskCreate(FunctionBind(&Signal::set_on,
+													 &android_render_finish_signal_,
+													 true), true));
 		android_render_finish_signal_.Wait();
 	}
 	
 	void Application::AndroidPostSingleUpdateTask(){
 		if(!android_update_task_posting_){
 			android_update_task_posting_ = true;
-			main_thread_->PostTask(FunctionBind(&Application::AndroidUpdateTask, this));
+			main_queue()->Post(TaskCreate(FunctionBind(&Application::AndroidUpdateTask,
+													   this), true));
 		}
 	}
 
@@ -318,8 +325,9 @@ namespace ick{
 		controller_->OnRender();
 		
 		AndroidEGLClearCurrent();
-
-		render_thread_->PostTask(FunctionBind(&Application::AndroidRenderTask, this));
+		
+		render_thread_->Post(TaskCreate(FunctionBind(&Application::AndroidRenderTask,
+													 this), true));
 	}
 
 	void Application::AndroidEGLMakeCurrent(){
@@ -358,7 +366,8 @@ namespace ick{
 		}
 		AndroidEGLClearCurrent();
 		
-		main_thread_->PostTask(FunctionBind(&Application::AndroidPostSingleUpdateTask, this));
+		main_queue()->Post(TaskCreate(FunctionBind(&Application::AndroidPostSingleUpdateTask,
+												   this), true));
 	}
 	
 #endif

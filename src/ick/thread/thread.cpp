@@ -13,6 +13,11 @@
 #	include <pthread.h>
 #endif
 
+#ifdef ICK_ANDROID
+#	include <jni.h>
+#	include "../android/java_vm.h"
+#endif
+
 namespace ick{
 	struct ThreadImpl{
 #ifdef ICK_WINDOWS
@@ -66,7 +71,19 @@ namespace ick{
 		ICK_EN_CALL(pthread_setname_np(thiz->impl()->thread, thiz->name().cstr()));
 #endif
 		
+#ifdef ICK_ANDROID
+		JNIEnv * env;
+		if(g_java_vm->AttachCurrentThread(&env, NULL) != JNI_OK){
+			ICK_ABORT("AttachCurrentThread failed\n");
+		}
+#endif
 		thiz->Run();
+#ifdef ICK_ANDROID
+		if(g_java_vm->DetachCurrentThread() != JNI_OK){
+			ICK_ABORT("DetachCurrentThread failed\n");
+		}
+#endif
+		
 #ifdef ICK_WINDOWS
 		return 0;
 #else

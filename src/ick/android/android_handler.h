@@ -24,7 +24,6 @@ namespace ick{
 		static jmethodID handler_post_method_;
 		static void StaticInit(JNIEnv * env);
 		
-		JavaVM * vm_;
 		JNIEnv * env_;
 		jobject handler_;
 		

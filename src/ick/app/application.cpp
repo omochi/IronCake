@@ -137,12 +137,9 @@ namespace ick{
 			android_activity_ = NULL;
 			android_env_ = NULL;
 		}
-		android_vm_ = NULL;
 		if(env){
 			android_env_ = env;
 			android_activity_ = env->NewGlobalRef(activity);
-			
-			if(env->GetJavaVM(&android_vm_)){ ICK_ABORT("GetJavaVM failed\n"); }
 		}
 	}
 
@@ -153,7 +150,6 @@ namespace ick{
 		
 		render_thread_ = ICK_NEW(TaskQueueThread);
 		render_thread_->Start();
-		render_thread_->PostTask(FunctionBind(&jni::AttachCurrentThread, android_vm_));
 		
 		controller_->DidLaunch();
 		
@@ -222,7 +218,6 @@ namespace ick{
 		}
 		android_egl_display_ = NULL;
 		
-		render_thread_->PostTask(FunctionBind(&jni::DetachCurrentThread, android_vm_));
 		render_thread_->PostQuit();
 		render_thread_->Join();
 		ick::PropertyClear(render_thread_);

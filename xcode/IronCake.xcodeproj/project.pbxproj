@@ -291,8 +291,8 @@
 		D68A57B718A2816E006231EE /* android_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = android_handler.h; sourceTree = "<group>"; };
 		D68A57B818A2816E006231EE /* native_task.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = native_task.cpp; sourceTree = "<group>"; };
 		D68A57B918A2816E006231EE /* native_task.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = native_task.h; sourceTree = "<group>"; };
-		D68A57BA18A2816E006231EE /* thread.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
-		D68A57BB18A2816E006231EE /* thread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
+		D68A57BA18A2816E006231EE /* java_vm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = java_vm.cpp; sourceTree = "<group>"; };
+		D68A57BB18A2816E006231EE /* java_vm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = java_vm.h; sourceTree = "<group>"; };
 		D68A57BD18A29235006231EE /* error.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = error.cpp; sourceTree = "<group>"; };
 		D68A57BE18A29235006231EE /* error.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
 		D68A57BF18A29235006231EE /* tchar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tchar.cpp; sourceTree = "<group>"; };
@@ -651,8 +651,8 @@
 		D68A57B318A2816E006231EE /* android */ = {
 			isa = PBXGroup;
 			children = (
-				D68A57BB18A2816E006231EE /* thread.h */,
-				D68A57BA18A2816E006231EE /* thread.cpp */,
+				D68A57BB18A2816E006231EE /* java_vm.h */,
+				D68A57BA18A2816E006231EE /* java_vm.cpp */,
 				D68A57B518A2816E006231EE /* activity.h */,
 				D68A57B418A2816E006231EE /* activity.cpp */,
 				D68A57B918A2816E006231EE /* native_task.h */,

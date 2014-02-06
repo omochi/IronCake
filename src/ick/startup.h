@@ -4,7 +4,7 @@
 
 namespace ick{
 	class Allocator;
-	
+		
 	struct StartupConfig {
 		Allocator * allocator; // = NULL
 		bool memory_debug; // = false

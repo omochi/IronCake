@@ -3,6 +3,8 @@
 #include "../thread/scoped_lock.h"
 #include "../function/function_bind.h"
 
+#include "java_vm.h"
+
 namespace ick{
 	jmethodID AndroidHandler::handler_post_method_ = NULL;
 	
@@ -16,7 +18,6 @@ namespace ick{
 	AndroidHandler::AndroidHandler(JNIEnv * env, jobject handler){
 		StaticInit(env);
 		
-		if(env->GetJavaVM(&vm_)){ ICK_ABORT("GetJavaVM failed\n"); }
 		env_ = env;
 		handler_ = env->NewGlobalRef(handler);
 	}
@@ -39,10 +40,8 @@ namespace ick{
 	
 	void AndroidHandler::PostTask(const Function<void (*)()> & task){
 		//呼び出し元スレッドのenv
-		JNIEnv * env;
-		if(vm_->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK){
-			ICK_ABORT("GetEnv failed\n");
-		}
+		JNIEnv * env = jni::GetEnv();
+
 		//タスクを一段包む
 		jobject java_task = jni::native_task::Create(env,
 													 FunctionBind(&AndroidHandler::TaskRun,

@@ -44,7 +44,6 @@ namespace ick{
 #endif
 		
 #ifdef ICK_ANDROID
-		JavaVM * android_vm_;
 		JNIEnv * android_env_;
 		jobject android_activity_;
 		bool android_activity_resumed_;

@@ -4,10 +4,13 @@
 #include <android/log.h>
 #include <android/native_window_jni.h>
 
+#include "../base/abort.h"
 #include "../base/memory.h"
 #include "../base/log.h"
 #include "../app/application.h"
 #include "../startup.h"
+
+#include "java_vm.h"
 
 namespace ick{
 	namespace jni{
@@ -54,6 +57,8 @@ extern "C" {
 			__android_log_print(ANDROID_LOG_ERROR, "IronCake", "ick::Startup failed");
 			::abort();
 		}
+		
+		if(env->GetJavaVM(&g_java_vm)){ ICK_ABORT("GetJavaVM failed\n"); }
 		
 		jlong controller = env->CallLongMethod(thiz, ick::jni::activity::controller_construct_method);
 		ick::Application * app = ICK_NEW(ick::Application, reinterpret_cast<ick::ApplicationController *>(controller), true);

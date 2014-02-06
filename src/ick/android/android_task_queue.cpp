@@ -14,7 +14,6 @@ namespace ick{
 	void AndroidTaskQueue::StaticInit(JNIEnv * env){
 		jclass handler_class = env->FindClass("android/os/Handler");
 		handler_post_method = env->GetMethodID(handler_class, "post", "(Ljava/lang/Runnable;)Z");
-		env->DeleteLocalRef(handler_class);
 	}
 	
 	void AndroidTaskQueue::StaticRelease(JNIEnv * env){
@@ -30,14 +29,8 @@ namespace ick{
 		
 		jclass handler_class = env->FindClass("android/os/Handler");
 		jmethodID handler_ctor = env->GetMethodID(handler_class, "<init>", "(Landroid/os/Looper;)V");
-		jobject local_handler = env->NewObject(handler_class, handler_ctor, current_looper);
-		
-		handler_ = env->NewGlobalRef(local_handler);
-		
-		env->DeleteLocalRef(looper_class);
-		env->DeleteLocalRef(handler_class);
-		env->DeleteLocalRef(current_looper);
-		env->DeleteLocalRef(local_handler);
+
+		handler_ = env->NewGlobalRef(env->NewObject(handler_class, handler_ctor, current_looper));
 	}
 	AndroidTaskQueue::~AndroidTaskQueue(){
 		ICK_SCOPED_LOCK(mutex_);
@@ -66,7 +59,6 @@ namespace ick{
 		if(!env->CallBooleanMethod(handler_, handler_post_method, java_task)){
 			ICK_ABORT("Handler post failed\n");
 		}
-		env->DeleteLocalRef(java_task);
 	}
 	
 	// TaskRun

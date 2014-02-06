@@ -16,12 +16,9 @@ namespace ick{
 			
 			void StaticInit(JNIEnv * env){
 				ICK_LOG_INFO("NativeTask StaticInit\n");
-				jclass local_native_task_class = env->FindClass("com/omochimetaru/ironcake/NativeTask");
-				native_task_class = static_cast<jclass>(env->NewGlobalRef(local_native_task_class));
+				native_task_class = static_cast<jclass>(env->NewGlobalRef(env->FindClass("com/omochimetaru/ironcake/NativeTask")));
 				constructor = env->GetMethodID(native_task_class, "<init>", "()V");
-				function_field = env->GetFieldID(native_task_class, "function", "J");
-				
-				env->DeleteLocalRef(local_native_task_class);
+				function_field = env->GetFieldID(native_task_class, "function", "J");				
 			}
 			void StaticRelease(JNIEnv * env){
 				env->DeleteGlobalRef(native_task_class);

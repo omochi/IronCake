@@ -14,7 +14,6 @@ namespace ick{
 			NativeFunction * GetNativeFunction(JNIEnv * env, jobject task);
 			void SetNativeFunction(JNIEnv * env, jobject task, NativeFunction * function);
 									
-			// must DeleteLocalRef
 			jobject Create(JNIEnv * env, const NativeFunction & function);
 			void Release(JNIEnv * env, jobject task);
 			

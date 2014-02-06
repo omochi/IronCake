@@ -16,14 +16,22 @@
 namespace ick{
 	namespace jni{
 		namespace activity{
-			jmethodID controller_construct_method;
-			jmethodID schedule_update_timer_method;
-			jfieldID application_field;
-			jfieldID main_thread_handler_field;
+			static jmethodID controller_construct_method;
+			static jfieldID application_field;
+			static jmethodID surface_holder_get_surface_method;
 			
-			jmethodID surface_holder_get_surface_method;
-			
-			jmethodID handler_post_delayed_method;
+			void StaticInit(JNIEnv * env){
+				jclass activity_class = env->FindClass("com/omochimetaru/ironcake/Activity");
+				
+				controller_construct_method = env->GetMethodID(activity_class, "controllerConstruct", "()J");
+				application_field = env->GetFieldID(activity_class, "application", "J");
+				
+				jclass surface_class = env->FindClass("android/view/SurfaceHolder");
+				surface_holder_get_surface_method = env->GetMethodID(surface_class, "getSurface", "()Landroid/view/Surface;");
+			}
+			void StaticRelease(JNIEnv * env){
+				
+			}
 		}
 	}
 }
@@ -31,24 +39,7 @@ namespace ick{
 #ifdef __cplusplus
 extern "C" {
 #endif
-	
-	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_nativeStaticInit
-	(JNIEnv * env, jclass clazz){
-		using namespace ick::jni::activity;
-		controller_construct_method = env->GetMethodID(clazz, "controllerConstruct", "()J");
-		application_field = env->GetFieldID(clazz, "application", "J");
-		main_thread_handler_field = env->GetFieldID(clazz, "mainThreadHandler", "Landroid/os/Handler;");
-		
-		jclass surface_class = env->FindClass("android/view/SurfaceHolder");
-		surface_holder_get_surface_method = env->GetMethodID(surface_class, "getSurface", "()Landroid/view/Surface;");
-		
-		jclass handler_class = env->FindClass("android/os/Handler");
-		handler_post_delayed_method = env->GetMethodID(handler_class, "postDelayed", "(Ljava/lang/Runnable;J)Z");
-		
-		env->DeleteLocalRef(surface_class);
-		env->DeleteLocalRef(handler_class);
-	}
-	
+
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_didCreate
 	(JNIEnv * env, jobject thiz){
 		__android_log_print(ANDROID_LOG_INFO, "IronCake", "%s", __func__);

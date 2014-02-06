@@ -67,7 +67,6 @@ namespace ick{
 #endif
 		
 #ifdef ICK_ANDROID
-		android_env_         = NULL;
 		android_activity_    = NULL;
 		android_activity_resumed_ = false;
 		android_egl_display_ = NULL;
@@ -139,20 +138,9 @@ namespace ick{
 #endif
 	
 #ifdef ICK_ANDROID
-	void Application::AndroidSetEnv(JNIEnv * env, jobject activity){
-		if(android_env_){
-			android_env_->DeleteGlobalRef(android_activity_);
-			android_activity_ = NULL;
-			android_env_ = NULL;
-		}
-		if(env){
-			android_env_ = env;
-			android_activity_ = env->NewGlobalRef(activity);
-		}
-	}
-
-	void Application::AndroidOnCreate(){
-		android_main_queue_ = ICK_NEW(AndroidTaskQueue, android_env_);
+	void Application::AndroidOnCreate(JNIEnv * env, jobject activity){
+		android_activity_ = env->NewGlobalRef(activity);
+		android_main_queue_ = ICK_NEW(AndroidTaskQueue, env);
 		
 		render_thread_ = ICK_NEW(TaskQueueThread);
 		render_thread_->Start();
@@ -205,7 +193,8 @@ namespace ick{
 		android_egl_context_ = egl_context;
 
 	}
-	void Application::AndroidOnDestroy(){
+	void Application::AndroidOnDestroy(JNIEnv * env, jobject activity){
+		(void)activity;
 		if(!android_egl_display_){ ICK_ABORT("egl display has not been initialized\n"); }
 		if(!android_egl_context_){ ICK_ABORT("egl context has not been created\n"); }
 		
@@ -231,7 +220,8 @@ namespace ick{
 		android_update_task_posting_ = false;
 		ick::PropertyClear(android_main_queue_);
 		
-		AndroidSetEnv(NULL, NULL);
+		env->DeleteGlobalRef(android_activity_);
+		android_activity_ = NULL;
 	}
 	void Application::AndroidOnResume(){
 		android_activity_resumed_ = true;

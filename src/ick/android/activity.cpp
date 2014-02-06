@@ -58,8 +58,7 @@ extern "C" {
 		ick::Application * app = ICK_NEW(ick::Application, reinterpret_cast<ick::ApplicationController *>(controller), true);
 		env->SetLongField(thiz, ick::jni::activity::application_field, reinterpret_cast<jlong>(app));
 		
-		app->AndroidSetEnv(env, thiz);
-		app->AndroidOnCreate();
+		app->AndroidOnCreate(env, thiz);
 	}
 	
 	JNIEXPORT void JNICALL Java_com_omochimetaru_ironcake_Activity_willDestroy
@@ -68,7 +67,7 @@ extern "C" {
 		
 		ick::Application * app = reinterpret_cast<ick::Application *>(env->GetLongField(thiz, ick::jni::activity::application_field));
  
-		app->AndroidOnDestroy();
+		app->AndroidOnDestroy(env, thiz);
 		ICK_DELETE(app);
 		env->SetLongField(thiz, ick::jni::activity::application_field, 0);
 		

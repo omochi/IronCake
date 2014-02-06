@@ -48,7 +48,6 @@ namespace ick{
 #endif
 		
 #ifdef ICK_ANDROID
-		JNIEnv * android_env_;
 		jobject android_activity_;
 		bool android_activity_resumed_;
 		
@@ -76,10 +75,8 @@ namespace ick{
 		void GLFWMain();
 #endif
 #ifdef ICK_ANDROID
-		void AndroidSetEnv(JNIEnv * env, jobject activity);
-		
-		void AndroidOnCreate();
-		void AndroidOnDestroy();
+		void AndroidOnCreate(JNIEnv * env, jobject activity);
+		void AndroidOnDestroy(JNIEnv * env, jobject activity);
 		void AndroidOnResume();
 		void AndroidOnPause();
 		void AndroidOnSurfaceCreated(ANativeWindow * surface);

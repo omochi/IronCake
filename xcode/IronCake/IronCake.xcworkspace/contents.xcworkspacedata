@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../libs/googletest/xcode/gtest.xcodeproj">
+      location = "group:../../libs/googletest/xcode/gtest.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:IronCake.xcodeproj">

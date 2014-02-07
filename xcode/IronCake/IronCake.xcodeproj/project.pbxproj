@@ -21,7 +21,6 @@
 		D60284E91860B31B00CE5EC5 /* array_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60284D81860B2EE00CE5EC5 /* array_test.cpp */; };
 		D60284EA1860B31B00CE5EC5 /* linked_list_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60284D91860B2EE00CE5EC5 /* linked_list_test.cpp */; };
 		D60284EB1860B31B00CE5EC5 /* string_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60284DA1860B2EE00CE5EC5 /* string_test.cpp */; };
-		D60284F11860B35900CE5EC5 /* libIronCakeiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */; };
 		D60284FB1860B6FB00CE5EC5 /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D60284971858CBE200CE5EC5 /* libgtest.a */; };
 		D60285041860B95700CE5EC5 /* libIronCakeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE3184CE84600404D8D /* libIronCakeMac.a */; };
 		D60285061860BA7700CE5EC5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285051860BA7700CE5EC5 /* main.cpp */; };
@@ -29,7 +28,6 @@
 		D602850D1860BAEB00CE5EC5 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = D602850A1860BAEB00CE5EC5 /* main.mm */; };
 		D602850E1860BAEB00CE5EC5 /* TestiOS-info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D602850B1860BAEB00CE5EC5 /* TestiOS-info.plist */; };
 		D60285101860BAF300CE5EC5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D602850F1860BAF300CE5EC5 /* Images.xcassets */; };
-		D60285121860BBB400CE5EC5 /* libgtest-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D60285111860BBB400CE5EC5 /* libgtest-ios.a */; };
 		D60285161860C22C00CE5EC5 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285141860C22C00CE5EC5 /* thread.cpp */; };
 		D60285171860C22C00CE5EC5 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285141860C22C00CE5EC5 /* thread.cpp */; };
 		D60285181860C22C00CE5EC5 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = D60285151860C22C00CE5EC5 /* thread.h */; };
@@ -39,6 +37,8 @@
 		D602851F1860C9F500CE5EC5 /* error.h in Headers */ = {isa = PBXBuildFile; fileRef = D602851C1860C9F500CE5EC5 /* error.h */; };
 		D60285361860D4D500CE5EC5 /* thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285331860D4D100CE5EC5 /* thread_test.cpp */; };
 		D60285371860D4D500CE5EC5 /* thread_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D60285331860D4D100CE5EC5 /* thread_test.cpp */; };
+		D623381418A566BB0050723E /* libIronCakeiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */; };
+		D623381618A567980050723E /* libgtest-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D623381518A567980050723E /* libgtest-ios.a */; };
 		D625B03A186C7B6800DF7CCF /* libIronCakeMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D667FBE3184CE84600404D8D /* libIronCakeMac.a */; };
 		D625B03D186C96AC00DF7CCF /* task_queue_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D625B03B186C96AC00DF7CCF /* task_queue_thread.cpp */; };
 		D625B03E186C96AC00DF7CCF /* task_queue_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D625B03B186C96AC00DF7CCF /* task_queue_thread.cpp */; };
@@ -220,6 +220,8 @@
 		D602851C1860C9F500CE5EC5 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
 		D60285331860D4D100CE5EC5 /* thread_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = thread_test.cpp; path = ../test/thread_test.cpp; sourceTree = "<group>"; };
 		D6079B7E1858C01600DFDEAA /* TestMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestMac; sourceTree = BUILT_PRODUCTS_DIR; };
+		D623381218A566AA0050723E /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-ios.a"; path = "../../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
+		D623381518A567980050723E /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-ios.a"; path = "../../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
 		D625B03B186C96AC00DF7CCF /* task_queue_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = task_queue_thread.cpp; sourceTree = "<group>"; };
 		D625B03C186C96AC00DF7CCF /* task_queue_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = task_queue_thread.h; sourceTree = "<group>"; };
 		D625B040186DD25800DF7CCF /* property.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = property.cpp; sourceTree = "<group>"; };
@@ -340,8 +342,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D60285121860BBB400CE5EC5 /* libgtest-ios.a in Frameworks */,
-				D60284F11860B35900CE5EC5 /* libIronCakeiOS.a in Frameworks */,
+				D623381618A567980050723E /* libgtest-ios.a in Frameworks */,
+				D623381418A566BB0050723E /* libIronCakeiOS.a in Frameworks */,
 				D60284A51858CD6B00CE5EC5 /* CoreGraphics.framework in Frameworks */,
 				D60284A61858CD6B00CE5EC5 /* UIKit.framework in Frameworks */,
 				D60284A31858CD6B00CE5EC5 /* Foundation.framework in Frameworks */,
@@ -399,7 +401,8 @@
 			children = (
 				D60285051860BA7700CE5EC5 /* main.cpp */,
 			);
-			path = TestMac;
+			name = TestMac;
+			path = ../TestMac;
 			sourceTree = "<group>";
 		};
 		D60284A71858CD6B00CE5EC5 /* TestiOS */ = {
@@ -415,7 +418,8 @@
 				D60284D2185A119300CE5EC5 /* ICKTestAppMainViewController.mm */,
 				D60284D3185A119300CE5EC5 /* ICKTestAppMainViewController.xib */,
 			);
-			path = TestiOS;
+			name = TestiOS;
+			path = ../TestiOS;
 			sourceTree = "<group>";
 		};
 		D60284D61860B2E000CE5EC5 /* test */ = {
@@ -433,6 +437,7 @@
 				D66297EE186DE4C0004060B9 /* task_queue_thread_test.cpp */,
 			);
 			name = test;
+			path = ../../test;
 			sourceTree = "<group>";
 		};
 		D60285071860BAEB00CE5EC5 /* en.lproj */ = {
@@ -499,7 +504,7 @@
 				D6275B0D18A3D6970001A83B /* build.bash */,
 			);
 			name = "IronCake-mk";
-			path = "../android/IronCake-mk";
+			path = "../../android/IronCake-mk";
 			sourceTree = "<group>";
 		};
 		D66297F1186DECD9004060B9 /* app */ = {
@@ -522,6 +527,7 @@
 				D6629820186F64D1004060B9 /* sample_app_controller.cpp */,
 			);
 			name = sample;
+			path = ../../sample;
 			sourceTree = "<group>";
 		};
 		D667FBAD184CE7AC00404D8D = {
@@ -555,6 +561,8 @@
 		D667FBB8184CE7AC00404D8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D623381518A567980050723E /* libgtest-ios.a */,
+				D623381218A566AA0050723E /* libgtest-ios.a */,
 				D662982618706A98004060B9 /* libglfw3.a */,
 				D6629811186F2314004060B9 /* CoreVideo.framework */,
 				D6B62B33186C71DD00903540 /* AppKit.framework */,
@@ -610,7 +618,8 @@
 				D68A57BC18A29235006231EE /* windows */,
 				D66297F1186DECD9004060B9 /* app */,
 			);
-			path = ick;
+			name = ick;
+			path = ../../src/ick;
 			sourceTree = "<group>";
 		};
 		D667FC59184E490C00404D8D /* base */ = {
@@ -670,7 +679,7 @@
 				D68A57941892C6E5006231EE /* glfw3native.h */,
 			);
 			name = GLFW;
-			path = ../libs/glfw/include/GLFW;
+			path = ../../libs/glfw/include/GLFW;
 			sourceTree = "<group>";
 		};
 		D68A57B318A2816E006231EE /* android */ = {
@@ -708,7 +717,8 @@
 			children = (
 				D6B62B1E186C6B5B00903540 /* main.cpp */,
 			);
-			path = SampleMac;
+			name = SampleMac;
+			path = ../SampleMac;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1052,7 +1062,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1065,11 +1075,11 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					../src,
-					../libs/googletest/include,
-					../libs/googletest/src,
+					../../src,
+					../../libs/googletest/include,
+					../../libs/googletest/src,
 				);
-				INFOPLIST_FILE = "TestiOS/TestiOS-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/../TestiOS/TestiOS-info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/IronCake-emfqkmnunqhkvyczwvcyitznypja/Build/Products/Debug",
@@ -1088,7 +1098,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1097,11 +1107,11 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					../src,
-					../libs/googletest/include,
-					../libs/googletest/src,
+					../../src,
+					../../libs/googletest/include,
+					../../libs/googletest/src,
 				);
-				INFOPLIST_FILE = "TestiOS/TestiOS-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/../TestiOS/TestiOS-info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/IronCake-emfqkmnunqhkvyczwvcyitznypja/Build/Products/Debug",
@@ -1119,14 +1129,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					../src,
-					../libs/googletest/include,
-					../libs/googletest/src,
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/IronCake-emfqkmnunqhkvyczwvcyitznypja/Build/Products/Debug",
-					/Users/omochi/work/github/omochi/IronCake/libs/glfw/src,
+					../../src,
+					../../libs/googletest/include,
+					../../libs/googletest/src,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1140,14 +1145,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					../src,
-					../libs/googletest/include,
-					../libs/googletest/src,
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/IronCake-emfqkmnunqhkvyczwvcyitznypja/Build/Products/Debug",
-					/Users/omochi/work/github/omochi/IronCake/libs/glfw/src,
+					../../src,
+					../../libs/googletest/include,
+					../../libs/googletest/src,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1211,11 +1211,11 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					../src,
-					../libs/glfw/include,
+					../../src,
+					../../libs/glfw/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = /Users/omochi/work/github/omochi/IronCake/libs/glfw/src;
+				LIBRARY_SEARCH_PATHS = ../../libs/glfw/src;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
@@ -1273,11 +1273,11 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					../src,
-					../libs/glfw/include,
+					../../src,
+					../../libs/glfw/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = /Users/omochi/work/github/omochi/IronCake/libs/glfw/src;
+				LIBRARY_SEARCH_PATHS = ../../libs/glfw/src;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
@@ -1308,10 +1308,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/omochi/work/github/omochi/IronCake/libs/glfw/src,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -1321,10 +1318,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/omochi/work/github/omochi/IronCake/libs/glfw/src,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};

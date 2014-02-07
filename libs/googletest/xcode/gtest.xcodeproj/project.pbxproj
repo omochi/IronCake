@@ -1073,6 +1073,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40899FB30FFA7567000B29AE /* StaticLibraryTarget.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
@@ -1089,6 +1090,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40899FB30FFA7567000B29AE /* StaticLibraryTarget.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;

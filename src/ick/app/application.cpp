@@ -93,6 +93,7 @@ namespace ick{
 		return android_main_queue_;
 #else
 #warning todo
+		return NULL;
 #endif
 	}
 		

@@ -194,7 +194,7 @@
 
 /* Begin PBXFileReference section */
 		D60284971858CBE200CE5EC5 /* libgtest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest.a; path = "../../../../../Library/Developer/Xcode/DerivedData/IronCake-emfqkmnunqhkvyczwvcyitznypja/Build/Products/Debug/libgtest.a"; sourceTree = "<group>"; };
-		D60284A21858CD6B00CE5EC5 /* TestiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D60284A21858CD6B00CE5EC5 /* IronCakeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IronCakeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D60284A41858CD6B00CE5EC5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D60284CE185A108F00CE5EC5 /* ICKTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICKTestAppDelegate.h; sourceTree = "<group>"; };
 		D60284CF185A108F00CE5EC5 /* ICKTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICKTestAppDelegate.m; sourceTree = "<group>"; };
@@ -219,7 +219,7 @@
 		D602851B1860C9F500CE5EC5 /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error.cpp; sourceTree = "<group>"; };
 		D602851C1860C9F500CE5EC5 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
 		D60285331860D4D100CE5EC5 /* thread_test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = thread_test.cpp; path = ../test/thread_test.cpp; sourceTree = "<group>"; };
-		D6079B7E1858C01600DFDEAA /* TestMac */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestMac; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6079B7E1858C01600DFDEAA /* IronCakeTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IronCakeTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D623381218A566AA0050723E /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-ios.a"; path = "../../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
 		D623381518A567980050723E /* libgtest-ios.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libgtest-ios.a"; path = "../../libs/googletest/xcode/build/Debug-iphoneos/libgtest-ios.a"; sourceTree = "<group>"; };
 		D625B03B186C96AC00DF7CCF /* task_queue_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = task_queue_thread.cpp; sourceTree = "<group>"; };
@@ -551,8 +551,8 @@
 			children = (
 				D667FBB6184CE7AC00404D8D /* libIronCakeiOS.a */,
 				D667FBE3184CE84600404D8D /* libIronCakeMac.a */,
-				D6079B7E1858C01600DFDEAA /* TestMac */,
-				D60284A21858CD6B00CE5EC5 /* TestiOS.app */,
+				D6079B7E1858C01600DFDEAA /* IronCakeTest */,
+				D60284A21858CD6B00CE5EC5 /* IronCakeTest.app */,
 				D6B62B1C186C6B5B00903540 /* SampleMac */,
 			);
 			name = Products;
@@ -796,7 +796,7 @@
 			);
 			name = TestiOS;
 			productName = iOSTest;
-			productReference = D60284A21858CD6B00CE5EC5 /* TestiOS.app */;
+			productReference = D60284A21858CD6B00CE5EC5 /* IronCakeTest.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D6079B7D1858C01600DFDEAA /* TestMac */ = {
@@ -813,7 +813,7 @@
 			);
 			name = TestMac;
 			productName = TestMac;
-			productReference = D6079B7E1858C01600DFDEAA /* TestMac */;
+			productReference = D6079B7E1858C01600DFDEAA /* IronCakeTest */;
 			productType = "com.apple.product-type.tool";
 		};
 		D667FBB5184CE7AC00404D8D /* IronCakeiOS */ = {
@@ -1085,7 +1085,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/IronCake-emfqkmnunqhkvyczwvcyitznypja/Build/Products/Debug",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = IronCakeTest;
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1116,7 +1116,7 @@
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/IronCake-emfqkmnunqhkvyczwvcyitznypja/Build/Products/Debug",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = IronCakeTest;
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1133,7 +1133,7 @@
 					../../libs/googletest/include,
 					../../libs/googletest/src,
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = IronCakeTest;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -1149,7 +1149,7 @@
 					../../libs/googletest/include,
 					../../libs/googletest/src,
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = IronCakeTest;
 				SDKROOT = macosx;
 			};
 			name = Release;
